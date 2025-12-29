@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Shield, BarChart3, MessageSquare } from "lucide-react";
+import dashboardPreview from "@/assets/dashboard-preview.png";
 
 const Hero = () => {
   return (
@@ -60,37 +61,12 @@ const Hero = () => {
         {/* Hero Image/Dashboard Preview */}
         <div className="mt-16 max-w-5xl mx-auto animate-scale-in" style={{ animationDelay: "0.5s" }}>
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border bg-card">
-            <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
-            <div className="aspect-[16/9] bg-gradient-subtle flex items-center justify-center">
-              <div className="w-full h-full p-6 lg:p-10">
-                {/* Mock Dashboard */}
-                <div className="w-full h-full rounded-xl bg-card border border-border shadow-lg overflow-hidden">
-                  {/* Dashboard Header */}
-                  <div className="h-12 bg-muted border-b border-border flex items-center px-4 gap-2">
-                    <div className="w-3 h-3 rounded-full bg-destructive/60" />
-                    <div className="w-3 h-3 rounded-full bg-accent/60" />
-                    <div className="w-3 h-3 rounded-full bg-secondary/60" />
-                    <div className="ml-4 h-6 w-48 bg-border rounded" />
-                  </div>
-                  {/* Dashboard Content */}
-                  <div className="p-6 grid grid-cols-3 gap-4 h-[calc(100%-3rem)]">
-                    <div className="col-span-2 space-y-4">
-                      <div className="h-8 w-48 bg-muted rounded" />
-                      <div className="h-32 bg-muted rounded-lg" />
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="h-24 bg-primary/10 rounded-lg" />
-                        <div className="h-24 bg-secondary/10 rounded-lg" />
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="h-8 w-32 bg-muted rounded" />
-                      <div className="h-48 bg-accent/10 rounded-lg" />
-                      <div className="h-20 bg-muted rounded-lg" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none z-10" />
+            <img 
+              src={dashboardPreview} 
+              alt="StudyBuddy Works admin dashboard showing AI usage analytics, student engagement metrics, and learning outcome insights" 
+              className="w-full h-auto"
+            />
           </div>
         </div>
       </div>
