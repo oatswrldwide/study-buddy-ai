@@ -94,9 +94,6 @@ const MarketSelector = () => {
                   </li>
                   <li className="flex items-start gap-2 text-sm text-foreground/90">
                     <ArrowRight className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                    <span>CAPS & IEB Curriculum Aligned</span>
-                  </li>
-                </ul>
                     <span>Personalized Learning Path</span>
                   </li>
                 </ul>

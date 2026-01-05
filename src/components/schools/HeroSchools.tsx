@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ArrowRight, Play, Shield, BarChart3, TrendingUp, Users, Activity, AlertCircle } from "lucide-react";
 import { schoolsConfig } from "@/config/schools";
+import SchoolLeadForm from "@/components/forms/SchoolLeadForm";
 
 const HeroSchools = () => {
   const { hero } = schoolsConfig;
+  const [showForm, setShowForm] = useState(false);
 
   return (
+    <>
     <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-white">
       {/* Table Mountain Silhouette Background - Subtle SA Element */}
       <div className="absolute bottom-0 left-0 right-0 h-32 opacity-[0.03]">
@@ -40,7 +45,11 @@ const HeroSchools = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-start gap-3 mb-8">
-              <Button size="lg" className="bg-primary hover:bg-primary-dark text-white shadow-sm">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary-dark text-white shadow-sm"
+                onClick={() => setShowForm(true)}
+              >
                 {hero.ctaPrimary}
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
@@ -184,6 +193,20 @@ const HeroSchools = () => {
         </div>
       </div>
     </section>
+
+    {/* Lead Form Dialog */}
+    <Dialog open={showForm} onOpenChange={setShowForm}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold">Request a Demo</DialogTitle>
+        </DialogHeader>
+        <SchoolLeadForm 
+          onSuccess={() => setShowForm(false)} 
+          onClose={() => setShowForm(false)}
+        />
+      </DialogContent>
+    </Dialog>
+    </>
   );
 };
 

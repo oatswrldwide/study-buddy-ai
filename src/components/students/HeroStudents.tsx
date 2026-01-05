@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ArrowRight, Star, Smartphone, Clock, BookOpen, MessageSquare, Send, Sparkles, Shield } from "lucide-react";
 import { studentsConfig } from "@/config/students";
+import StudentSignupForm from "@/components/forms/StudentSignupForm";
 
 const HeroStudents = () => {
   const { hero } = studentsConfig;
+  const [showForm, setShowForm] = useState(false);
 
   return (
+    <>
     <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-white">
       {/* Subtle protea pattern background - SA element */}
       <div className="absolute top-0 right-0 w-96 h-96 opacity-[0.02]">
@@ -157,7 +162,11 @@ const HeroStudents = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-start gap-3 mb-8">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-white shadow-sm">
+              <Button 
+                size="lg" 
+                className="bg-accent hover:bg-accent/90 text-white shadow-sm"
+                onClick={() => setShowForm(true)}
+              >
                 {hero.ctaPrimary}
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
@@ -185,6 +194,20 @@ const HeroStudents = () => {
         </div>
       </div>
     </section>
+
+    {/* Signup Form Dialog */}
+    <Dialog open={showForm} onOpenChange={setShowForm}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold">Create Your Account</DialogTitle>
+        </DialogHeader>
+        <StudentSignupForm 
+          onSuccess={() => setShowForm(false)} 
+          onClose={() => setShowForm(false)}
+        />
+      </DialogContent>
+    </Dialog>
+    </>
   );
 };
 
