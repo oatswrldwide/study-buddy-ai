@@ -12,8 +12,8 @@ const HeroStudents = () => {
   return (
     <>
     <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-white">
-      {/* Subtle protea pattern background - SA element */}
-      <div className="absolute top-0 right-0 w-96 h-96 opacity-[0.02]">
+      {/* Protea pattern background - SA National Flower */}
+      <div className="absolute top-0 right-0 w-96 h-96 opacity-[0.06]">
         <svg viewBox="0 0 200 200" className="w-full h-full">
           {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
             <ellipse

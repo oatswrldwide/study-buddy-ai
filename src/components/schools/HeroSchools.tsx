@@ -12,16 +12,24 @@ const HeroSchools = () => {
   return (
     <>
     <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-white">
-      {/* Table Mountain Silhouette Background - Subtle SA Element */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 opacity-[0.03]">
+      {/* Table Mountain Silhouette Background - SA Element */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 opacity-[0.08]">
         <svg viewBox="0 0 1200 100" className="w-full h-full" preserveAspectRatio="none">
           <path d="M0,100 L0,40 L200,35 L400,45 L500,25 L600,25 L700,25 L800,45 L1000,35 L1200,40 L1200,100 Z" 
                 fill="currentColor" className="text-primary"/>
         </svg>
       </div>
       
-      {/* Subtle warm sand gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-amber-50/30 via-white to-white" />
+      {/* SA Colors Accent - Warm gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-amber-50/40 via-white to-white" />
+      
+      {/* Geometric pattern inspired by SA flag */}
+      <div className="absolute top-0 right-0 w-64 h-64 opacity-[0.05]">
+        <svg viewBox="0 0 100 100" className="w-full h-full">
+          <polygon points="0,0 30,50 0,100" fill="currentColor" className="text-accent"/>
+          <polygon points="30,50 100,0 100,100" fill="currentColor" className="text-secondary"/>
+        </svg>
+      </div>
 
       <div className="container mx-auto px-4 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
