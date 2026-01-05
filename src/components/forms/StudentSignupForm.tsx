@@ -9,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, CheckCircle, GraduationCap, AlertCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
@@ -45,7 +44,6 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [showParentEmail, setShowParentEmail] = useState(false);
-  const { toast } = useToast();
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -94,11 +92,7 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
       
       if (error) {
         console.error("Supabase error:", error);
-        toast({
-          variant: "destructive",
-          title: "Signup failed",
-          description: "There was an error creating your account. Please try again.",
-        });
+        alert("There was an error creating your account. Please try again.");
         return;
       }
       
@@ -109,11 +103,7 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
       }, 2000);
     } catch (error) {
       console.error("Form submission error:", error);
-      toast({
-        variant: "destructive",
-        title: "Signup failed",
-        description: "There was an error creating your account. Please try again.",
-      });
+      alert("There was an error creating your account. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

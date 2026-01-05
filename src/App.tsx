@@ -7,6 +7,7 @@ import MarketSelector from "./pages/MarketSelector";
 import SchoolsLanding from "./pages/SchoolsLanding";
 import StudentsLanding from "./pages/StudentsLanding";
 import NotFound from "./pages/NotFound";
+import TestPage from "./pages/TestPage";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MarketSelector />} />
+          <Route path="/test" element={<TestPage />} />
           <Route path="/schools" element={<SchoolsLanding />} />
           <Route path="/students" element={<StudentsLanding />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

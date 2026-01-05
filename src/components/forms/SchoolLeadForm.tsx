@@ -10,7 +10,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle, School, Users, FileText } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   // Step 1: Contact Info
@@ -45,7 +44,6 @@ const SchoolLeadForm = ({ onSuccess, onClose }: SchoolLeadFormProps) => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { toast } = useToast();
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -94,11 +92,7 @@ const SchoolLeadForm = ({ onSuccess, onClose }: SchoolLeadFormProps) => {
       
       if (error) {
         console.error("Supabase error:", error);
-        toast({
-          variant: "destructive",
-          title: "Submission failed",
-          description: "There was an error submitting your request. Please try again.",
-        });
+        alert("There was an error submitting your request. Please try again.");
         return;
       }
       
@@ -109,11 +103,7 @@ const SchoolLeadForm = ({ onSuccess, onClose }: SchoolLeadFormProps) => {
       }, 2000);
     } catch (error) {
       console.error("Form submission error:", error);
-      toast({
-        variant: "destructive",
-        title: "Submission failed",
-        description: "There was an error submitting your request. Please try again.",
-      });
+      alert("There was an error submitting your request. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
