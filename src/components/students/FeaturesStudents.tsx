@@ -1,0 +1,105 @@
+import { studentsConfig } from "@/config/students";
+import * as LucideIcons from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+
+const FeaturesStudents = () => {
+  const { features, additionalFeatures, subjects } = studentsConfig;
+
+  return (
+    <section id="features" className="py-20 lg:py-32 bg-background">
+      <div className="container mx-auto px-4">
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            Everything You Need to{" "}
+            <span className="text-gradient">Ace Your Exams</span>
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Your personal AI tutor that's available 24/7, understands your curriculum, and helps you actually learn.
+          </p>
+        </div>
+
+        {/* Main Feature Cards */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {features.map((feature, index) => {
+            const Icon = LucideIcons[feature.icon as keyof typeof LucideIcons] as any;
+            return (
+              <div
+                key={feature.title}
+                className="group relative p-8 rounded-2xl bg-card border border-border shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Icon */}
+                <div
+                  className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
+                    feature.color === "primary"
+                      ? "bg-primary/10 text-primary"
+                      : feature.color === "secondary"
+                      ? "bg-secondary/10 text-secondary"
+                      : "bg-accent/10 text-accent"
+                  }`}
+                >
+                  {Icon && <Icon className="w-7 h-7" />}
+                </div>
+
+                {/* Content */}
+                <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>
+                <p className="text-muted-foreground mb-6">{feature.description}</p>
+
+                {/* Highlights */}
+                <ul className="space-y-2">
+                  {feature.highlights.map((highlight, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Subjects Section */}
+        <div className="mb-16 p-8 rounded-2xl bg-card border border-border">
+          <h3 className="text-2xl font-bold text-foreground text-center mb-6">
+            All Your Subjects Covered
+          </h3>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {subjects.map((subject, index) => (
+              <Badge key={index} variant="secondary" className="px-4 py-2 text-sm">
+                {subject}
+              </Badge>
+            ))}
+          </div>
+          <p className="text-center text-muted-foreground mt-6">
+            Whether it's Maths, Science, or Languages - we've got you covered for CAPS & IEB curriculum.
+          </p>
+        </div>
+
+        {/* Additional Features Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {additionalFeatures.map((feature, index) => {
+            const Icon = LucideIcons[feature.icon as keyof typeof LucideIcons] as any;
+            return (
+              <div
+                key={feature.title}
+                className="flex flex-col items-center text-center gap-3 p-6 rounded-xl bg-card border border-border hover:shadow-md transition-shadow duration-300"
+              >
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                  {Icon && <Icon className="w-6 h-6 text-accent" />}
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">{feature.title}</h4>
+                  <p className="text-sm text-muted-foreground">{feature.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FeaturesStudents;
