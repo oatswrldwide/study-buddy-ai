@@ -6,107 +6,106 @@ const MarketSelector = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-subtle">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float-delayed" />
-      </div>
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      {/* Subtle background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-amber-50/30 via-white to-white" />
 
-      <div className="container mx-auto px-4 relative">
+      <div className="container mx-auto px-4 relative py-16">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-2 mb-8">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-hero flex items-center justify-center shadow-lg">
-                <BookOpen className="w-8 h-8 text-primary-foreground" />
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <div className="w-14 h-14 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shadow-sm">
+                <BookOpen className="w-7 h-7 text-primary" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6">
-              Welcome to{" "}
-              <span className="text-gradient">StudyBuddy Works</span>
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
+              Welcome to <span className="text-primary">StudyBuddy</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              AI-powered learning platform designed for South African education. Choose your path:
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              AI-powered learning for South African education. Choose your path:
             </p>
           </div>
 
           {/* Market Selection Cards */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             {/* Schools Card */}
             <div
-              className="group relative p-8 rounded-2xl bg-card border-2 border-border hover:border-primary shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+              className="group relative p-6 rounded-lg bg-white border border-border/50 hover:border-primary hover:shadow-md transition-all duration-300 cursor-pointer"
               onClick={() => navigate("/schools")}
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <School className="w-10 h-10 text-primary" />
+              <div className="flex flex-col">
+                <div className="w-14 h-14 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+                  <School className="w-7 h-7 text-primary" />
                 </div>
-                <h2 className="text-2xl font-bold text-foreground mb-4">
+                <h2 className="text-xl font-bold text-foreground mb-3">
                   For Schools & Institutions
                 </h2>
-                <p className="text-muted-foreground mb-6">
-                  Monitor AI usage, empower teachers with insights, and ensure academic integrity across your institution.
+                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+                  Monitor AI usage, empower teachers with insights, and ensure academic integrity.
                 </p>
-                <ul className="space-y-2 mb-8 text-left w-full">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start gap-2 text-sm text-foreground/90">
                     <ArrowRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                     <span>Admin Dashboard & Analytics</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2 text-sm text-foreground/90">
                     <ArrowRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                     <span>Teacher Insights & Reports</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2 text-sm text-foreground/90">
                     <ArrowRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                     <span>POPIA Compliant & Secure</span>
                   </li>
                 </ul>
-                <Button variant="hero" size="lg" className="w-full group-hover:shadow-glow">
+                <Button variant="default" size="lg" className="w-full">
                   Explore for Schools
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
-                <p className="text-sm text-muted-foreground mt-4">
-                  From R2,499/month • 14-day free trial
+                <p className="text-xs text-muted-foreground mt-3 text-center">
+                  From R2,499/month • 14-day trial
                 </p>
               </div>
             </div>
 
             {/* Students Card */}
             <div
-              className="group relative p-8 rounded-2xl bg-card border-2 border-border hover:border-accent shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+              className="group relative p-6 rounded-lg bg-white border border-border/50 hover:border-accent hover:shadow-md transition-all duration-300 cursor-pointer"
               onClick={() => navigate("/students")}
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <GraduationCap className="w-10 h-10 text-accent" />
+              <div className="flex flex-col">
+                <div className="w-14 h-14 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent/15 transition-colors">
+                  <GraduationCap className="w-7 h-7 text-accent" />
                 </div>
-                <h2 className="text-2xl font-bold text-foreground mb-4">
+                <h2 className="text-xl font-bold text-foreground mb-3">
                   For Students & Parents
                 </h2>
-                <p className="text-muted-foreground mb-6">
-                  Get 24/7 homework help, exam prep, and personalized tutoring for all subjects. Perfect for matric success!
+                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+                  Get 24/7 homework help, exam prep, and personalized tutoring. Perfect for matric!
                 </p>
-                <ul className="space-y-2 mb-8 text-left w-full">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start gap-2 text-sm text-foreground/90">
                     <ArrowRight className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                     <span>24/7 AI Tutor for All Subjects</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2 text-sm text-foreground/90">
                     <ArrowRight className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                     <span>Homework Help & Exam Prep</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2 text-sm text-foreground/90">
                     <ArrowRight className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                     <span>CAPS & IEB Curriculum Aligned</span>
                   </li>
                 </ul>
-                <Button variant="hero" size="lg" className="w-full group-hover:shadow-glow-accent">
+                    <span>Personalized Learning Path</span>
+                  </li>
+                </ul>
+                <Button variant="accent" size="lg" className="w-full">
                   Start Learning Today
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
-                <p className="text-sm text-muted-foreground mt-4">
-                  From R99/month • 7-day free trial
+                <p className="text-xs text-muted-foreground mt-3 text-center">
+                  From R99/month • 7-day trial
                 </p>
               </div>
             </div>
@@ -115,17 +114,17 @@ const MarketSelector = () => {
           {/* Trust Indicators */}
           <div className="text-center">
             <p className="text-sm text-muted-foreground mb-4">
-              Trusted by 50+ schools and 12,000+ students across South Africa
+              Trusted by 50+ schools and 12,000+ learners across South Africa
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border">
-                <span className="text-sm text-muted-foreground">🔒 POPIA Compliant</span>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
+                <span className="text-xs text-foreground/90">🔒 POPIA Compliant</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border">
-                <span className="text-sm text-muted-foreground">✓ CAPS & IEB Aligned</span>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
+                <span className="text-xs text-foreground/90">✓ CAPS & IEB Aligned</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border">
-                <span className="text-sm text-muted-foreground">⚡ 99.9% Uptime</span>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
+                <span className="text-xs text-foreground/90">⚡ 99.9% Uptime</span>
               </div>
             </div>
           </div>

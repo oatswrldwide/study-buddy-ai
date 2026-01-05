@@ -28,44 +28,44 @@ const PricingCard = ({
 
   return (
     <Card
-      className={`relative p-6 rounded-2xl transition-all duration-500 hover:-translate-y-2 ${
+      className={`relative p-6 rounded-lg transition-all duration-300 ${
         highlighted
-          ? "border-2 border-primary shadow-xl scale-105"
-          : "border border-border shadow-md hover:shadow-xl"
+          ? "border-2 border-primary shadow-md bg-primary/[0.02]"
+          : "border border-border/50 shadow-sm hover:shadow-md hover:border-border"
       }`}
     >
       {/* Badge for popular/highlighted tiers */}
       {badge && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <Badge className="bg-accent text-accent-foreground px-4 py-1 text-sm font-semibold shadow-md">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+          <Badge className="bg-accent text-accent-foreground px-3 py-1 text-xs font-semibold border border-accent/20">
             {badge}
           </Badge>
         </div>
       )}
 
       <CardHeader className="pb-6">
-        <CardTitle className="text-2xl font-bold text-foreground">{name}</CardTitle>
-        <CardDescription className="text-muted-foreground mt-2">{description}</CardDescription>
+        <CardTitle className="text-xl font-bold text-foreground">{name}</CardTitle>
+        <CardDescription className="text-muted-foreground mt-2 leading-relaxed">{description}</CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-6">
         {/* Pricing */}
         <div className="space-y-1">
           <div className="flex items-baseline gap-2">
-            <span className="text-4xl font-extrabold text-foreground">{displayPrice}</span>
-            {showPeriod && <span className="text-muted-foreground">/{period}</span>}
+            <span className="text-3xl font-bold text-foreground">{displayPrice}</span>
+            {showPeriod && <span className="text-muted-foreground text-sm">/{period}</span>}
           </div>
           {billingPeriod === "annual" && priceAnnual && period && (
-            <p className="text-sm text-secondary font-medium">Save 20% with annual billing</p>
+            <p className="text-sm text-secondary font-medium">Save 20% annually</p>
           )}
         </div>
 
         {/* Features list */}
-        <ul className="space-y-3">
+        <ul className="space-y-2.5">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-2">
-              <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-              <span className="text-sm text-muted-foreground">{feature}</span>
+            <li key={index} className="flex items-start gap-2.5">
+              <CheckCircle className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+              <span className="text-sm text-foreground/90 leading-relaxed">{feature}</span>
             </li>
           ))}
         </ul>
@@ -73,9 +73,13 @@ const PricingCard = ({
 
       <CardFooter>
         <Button
-          variant={highlighted ? "hero" : "outline"}
+          variant={highlighted ? "default" : "outline"}
           size="lg"
-          className="w-full"
+          className={`w-full ${
+            highlighted 
+              ? "bg-primary hover:bg-primary-dark text-white shadow-sm" 
+              : "border-2 border-border hover:bg-muted/50"
+          }`}
           onClick={onCtaClick}
         >
           {ctaText}

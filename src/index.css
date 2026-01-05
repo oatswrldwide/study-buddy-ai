@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,54 +6,54 @@
 
 @layer base {
   :root {
-    /* StudyBuddy Works Design System */
-    --background: 210 33% 98%;
-    --foreground: 222 47% 11%;
+    /* StudyBuddy Works - South African Design System */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 215 25% 15%;
 
-    /* Primary: Deep trustworthy blue */
-    --primary: 220 72% 45%;
+    /* Primary: Deep navy (Table Mountain at dusk) */
+    --primary: 215 45% 28%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 220 72% 55%;
-    --primary-dark: 220 72% 35%;
+    --primary-light: 215 35% 38%;
+    --primary-dark: 215 50% 20%;
 
-    /* Secondary: Growth green */
-    --secondary: 160 60% 42%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary: Warm terracotta (SA earth tones) */
+    --secondary: 15 55% 58%;
+    --secondary-foreground: 215 25% 15%;
 
-    /* Accent: Warm orange for CTAs */
-    --accent: 25 95% 53%;
+    /* Accent: Muted gold (Protea highlights) */
+    --accent: 40 65% 48%;
     --accent-foreground: 0 0% 100%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 220 13% 46%;
+    --muted: 215 15% 92%;
+    --muted-foreground: 215 12% 40%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 220 72% 45%;
+    --border: 215 15% 88%;
+    --input: 215 15% 88%;
+    --ring: 215 45% 28%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Custom design tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(220 72% 45%) 0%, hsl(240 65% 50%) 50%, hsl(280 60% 45%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(210 33% 98%) 0%, hsl(220 30% 96%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 30% 99%) 100%);
-    --gradient-green: linear-gradient(135deg, hsl(160 60% 42%) 0%, hsl(170 55% 38%) 100%);
+    /* SA-inspired design tokens */
+    --gradient-hero: linear-gradient(135deg, hsl(215 45% 28%) 0%, hsl(215 35% 38%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(35 30% 96%) 0%, hsl(0 0% 100%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(35 20% 98%) 100%);
+    --gradient-terracotta: linear-gradient(135deg, hsl(15 55% 58%) 0%, hsl(20 48% 52%) 100%);
     
-    --shadow-sm: 0 1px 2px 0 hsl(220 13% 46% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(220 13% 46% / 0.1), 0 2px 4px -2px hsl(220 13% 46% / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(220 13% 46% / 0.1), 0 4px 6px -4px hsl(220 13% 46% / 0.1);
-    --shadow-xl: 0 20px 25px -5px hsl(220 13% 46% / 0.1), 0 8px 10px -6px hsl(220 13% 46% / 0.1);
-    --shadow-glow: 0 0 40px hsl(220 72% 45% / 0.15);
-    --shadow-glow-accent: 0 0 30px hsl(25 95% 53% / 0.3);
+    --shadow-sm: 0 1px 2px 0 hsl(215 15% 20% / 0.04);
+    --shadow-md: 0 2px 4px -1px hsl(215 15% 20% / 0.08);
+    --shadow-lg: 0 4px 8px -2px hsl(215 15% 20% / 0.12);
+    --shadow-xl: 0 8px 16px -4px hsl(215 15% 20% / 0.16);
+    --shadow-border: inset 0 0 0 1px hsl(215 15% 88%);
+    --shadow-focus: 0 0 0 3px hsl(215 45% 28% / 0.1);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -66,16 +66,16 @@
   }
 
   .dark {
-    --background: 222 47% 8%;
-    --foreground: 210 40% 98%;
+    --background: 215 25% 10%;
+    --foreground: 35 20% 95%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 25% 12%;
+    --card-foreground: 35 20% 95%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 25% 12%;
+    --popover-foreground: 35 20% 95%;
 
-    --primary: 220 72% 55%;
+    --primary: 215 35% 45%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 160 50% 45%;
@@ -116,7 +116,30 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  p {
+    line-height: 1.7;
   }
 }
 
@@ -138,76 +161,7 @@
     background: var(--gradient-card);
   }
 
-  .bg-gradient-green {
-    background: var(--gradient-green);
-  }
-
-  .shadow-glow {
-    box-shadow: var(--shadow-glow);
-  }
-
-  .shadow-glow-accent {
-    box-shadow: var(--shadow-glow-accent);
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-float-delayed {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: 2s;
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.5s ease-out forwards;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .bg-gradient-terracotta {
+    background: var(--gradient-terracotta);
   }
 }

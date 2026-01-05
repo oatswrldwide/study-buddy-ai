@@ -6,176 +6,181 @@ const HeroStudents = () => {
   const { hero } = studentsConfig;
 
   return (
-    <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-      {/* Background Elements - Warmer colors for students */}
-      <div className="absolute inset-0 bg-gradient-subtle" />
-      <div className="absolute top-20 left-1/4 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float-delayed" />
+    <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-white">
+      {/* Subtle protea pattern background - SA element */}
+      <div className="absolute top-0 right-0 w-96 h-96 opacity-[0.02]">
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+            <ellipse
+              key={angle}
+              cx="100"
+              cy="100"
+              rx="80"
+              ry="30"
+              fill="currentColor"
+              className="text-accent"
+              transform={`rotate(${angle} 100 100)`}
+            />
+          ))}
+          <circle cx="100" cy="100" r="20" fill="currentColor" className="text-accent"/>
+        </svg>
+      </div>
+      
+      {/* Warm gradient - less intense */}
+      <div className="absolute inset-0 bg-gradient-to-b from-amber-50/40 via-white to-white" />
 
       <div className="container mx-auto px-4 relative">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-8 animate-fade-in-up">
-            <Star className="w-4 h-4 fill-accent" />
-            <span>{hero.badge}</span>
-          </div>
-
-          {/* Main Heading */}
-          <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight mb-6 animate-fade-in-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            {hero.headline}
-          </h1>
-
-          {/* Subheading */}
-          <p
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in-up"
-            style={{ animationDelay: "0.2s" }}
-          >
-            {hero.subheadline}
-          </p>
-
-          {/* CTA Buttons */}
-          <div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up"
-            style={{ animationDelay: "0.3s" }}
-          >
-            <Button variant="hero" size="xl">
-              {hero.ctaPrimary}
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="xl">
-              {hero.ctaSecondary}
-            </Button>
-          </div>
-
-          {/* Feature Pills */}
-          <div
-            className="flex flex-wrap items-center justify-center gap-4 animate-fade-in-up"
-            style={{ animationDelay: "0.4s" }}
-          >
-            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-card shadow-md border border-border">
-              <BookOpen className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium text-foreground">All Subjects</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-card shadow-md border border-border">
-              <Clock className="w-5 h-5 text-secondary" />
-              <span className="text-sm font-medium text-foreground">24/7 Help</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-card shadow-md border border-border">
-              <Smartphone className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-foreground">R99/month</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Hero Image - Student focused */}
-        <div
-          className="mt-16 max-w-5xl mx-auto animate-scale-in"
-          style={{ animationDelay: "0.5s" }}
-        >
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border bg-card">
-            {/* AI Tutor Chat Interface Mockup */}
-            <div className="bg-gradient-to-br from-orange-50 to-purple-50 p-8">
-              {/* Chat Header */}
-              <div className="bg-white rounded-xl shadow-sm p-4 mb-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-purple-500 flex items-center justify-center">
-                      <Sparkles className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-slate-800">StudyBuddy AI</h3>
-                      <div className="flex items-center gap-2 text-sm text-slate-600">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>Online • Ready to help</span>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Chat Interface */}
+          <div className="relative order-2 lg:order-1">
+            <div className="relative rounded-lg overflow-hidden shadow-lg border border-border/50 bg-white">
+              {/* AI Tutor Chat Interface - Simplified */}
+              <div className="bg-slate-50 p-5">
+                {/* Chat Header */}
+                <div className="bg-white rounded-lg border border-border/50 p-4 mb-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <Sparkles className="w-5 h-5 text-accent" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-semibold text-slate-800">StudyBuddy AI</h3>
+                        <div className="flex items-center gap-1.5 text-xs text-slate-600">
+                          <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                          <span>Online</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex gap-2">
-                    <div className="px-3 py-1 bg-purple-100 text-purple-700 rounded-lg text-sm font-medium">Mathematics</div>
-                    <div className="px-3 py-1 bg-orange-100 text-orange-700 rounded-lg text-sm font-medium">Grade 11</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Chat Messages */}
-              <div className="space-y-4 mb-6">
-                {/* Student Message */}
-                <div className="flex justify-end">
-                  <div className="max-w-md bg-blue-500 text-white rounded-2xl rounded-tr-sm p-4 shadow-md">
-                    <p className="text-sm">Hi! Can you help me solve this quadratic equation: x² + 5x + 6 = 0?</p>
-                    <p className="text-xs text-blue-100 mt-2">10:23 AM</p>
-                  </div>
-                </div>
-
-                {/* AI Response */}
-                <div className="flex justify-start">
-                  <div className="max-w-md bg-white rounded-2xl rounded-tl-sm p-4 shadow-md">
-                    <p className="text-sm text-slate-800 mb-3">Great question! Let's solve this step by step using factoring. First, let's identify what we need:</p>
-                    <div className="bg-slate-50 rounded-lg p-3 mb-3">
-                      <p className="text-sm font-mono text-slate-700">x² + 5x + 6 = 0</p>
-                      <p className="text-xs text-slate-600 mt-2">We need two numbers that multiply to 6 and add to 5</p>
+                    <div className="flex gap-1.5">
+                      <div className="px-2 py-1 bg-accent/10 text-accent rounded text-xs font-medium border border-accent/20">Maths</div>
+                      <div className="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-medium border border-primary/20">Gr 11</div>
                     </div>
-                    <p className="text-sm text-slate-800">Can you think of two numbers that meet these conditions? 🤔</p>
-                    <p className="text-xs text-slate-500 mt-2">10:24 AM</p>
                   </div>
                 </div>
 
-                {/* Student Response */}
-                <div className="flex justify-end">
-                  <div className="max-w-md bg-blue-500 text-white rounded-2xl rounded-tr-sm p-4 shadow-md">
-                    <p className="text-sm">Is it 2 and 3? They multiply to 6 and add to 5!</p>
-                    <p className="text-xs text-blue-100 mt-2">10:25 AM</p>
-                  </div>
-                </div>
-
-                {/* AI Confirmation */}
-                <div className="flex justify-start">
-                  <div className="max-w-md bg-white rounded-2xl rounded-tl-sm p-4 shadow-md">
-                    <p className="text-sm text-slate-800 mb-2">Excellent! 🎉 You got it! Now we can factor:</p>
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-2">
-                      <p className="text-sm font-mono text-slate-700">(x + 2)(x + 3) = 0</p>
+                {/* Chat Messages - SA student names */}
+                <div className="space-y-3 mb-4">
+                  {/* Student Message - Thabo */}
+                  <div className="flex justify-end">
+                    <div className="max-w-[85%] bg-primary text-white rounded-lg rounded-tr-sm p-3 shadow-sm">
+                      <p className="text-sm leading-relaxed">Can you help me solve x² + 5x + 6 = 0?</p>
+                      <p className="text-xs text-primary-foreground/70 mt-1.5">14:23</p>
                     </div>
-                    <p className="text-sm text-slate-800">This means x = -2 or x = -3. Want to verify by substituting these values?</p>
-                    <p className="text-xs text-slate-500 mt-2">10:25 AM</p>
+                  </div>
+
+                  {/* AI Response */}
+                  <div className="flex justify-start">
+                    <div className="max-w-[85%] bg-white border border-border/50 rounded-lg rounded-tl-sm p-3 shadow-sm">
+                      <p className="text-sm text-slate-700 leading-relaxed mb-2">Let's factor this! We need two numbers that multiply to 6 and add to 5.</p>
+                      <div className="bg-slate-50 border border-border/50 rounded p-2 my-2">
+                        <p className="text-xs font-mono text-slate-700">x² + 5x + 6 = 0</p>
+                      </div>
+                      <p className="text-sm text-slate-700 leading-relaxed">Can you find those numbers? 🤔</p>
+                      <p className="text-xs text-slate-500 mt-1.5">14:24</p>
+                    </div>
+                  </div>
+
+                  {/* Student Response */}
+                  <div className="flex justify-end">
+                    <div className="max-w-[85%] bg-primary text-white rounded-lg rounded-tr-sm p-3 shadow-sm">
+                      <p className="text-sm leading-relaxed">2 and 3!</p>
+                      <p className="text-xs text-primary-foreground/70 mt-1.5">14:25</p>
+                    </div>
+                  </div>
+
+                  {/* AI Confirmation */}
+                  <div className="flex justify-start">
+                    <div className="max-w-[85%] bg-white border border-border/50 rounded-lg rounded-tl-sm p-3 shadow-sm">
+                      <p className="text-sm text-slate-700 leading-relaxed mb-2">Perfect! 🎉</p>
+                      <div className="bg-green-50 border border-green-200 rounded p-2 mb-2">
+                        <p className="text-xs font-mono text-green-800">(x + 2)(x + 3) = 0</p>
+                        <p className="text-xs text-green-700 mt-1">x = -2 or x = -3</p>
+                      </div>
+                      <p className="text-sm text-slate-700 leading-relaxed">Well done, Thabo!</p>
+                      <p className="text-xs text-slate-500 mt-1.5">14:25</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Input Box */}
-              <div className="bg-white rounded-xl shadow-sm p-4">
-                <div className="flex items-center gap-3">
-                  <input
-                    type="text"
-                    placeholder="Ask anything about your homework..."
-                    className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 placeholder-slate-400"
-                    disabled
-                  />
-                  <button className="px-6 py-3 bg-gradient-to-r from-orange-400 to-purple-500 text-white rounded-lg font-medium flex items-center gap-2 hover:shadow-lg transition-shadow">
-                    <Send className="w-4 h-4" />
-                    Send
-                  </button>
+                {/* Input Box */}
+                <div className="bg-white border border-border/50 rounded-lg p-3">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      placeholder="Type your question..."
+                      className="flex-1 px-3 py-2 bg-slate-50 border border-border/50 rounded text-sm text-slate-800 placeholder-slate-400"
+                      disabled
+                    />
+                    <button className="px-4 py-2 bg-accent hover:bg-accent/90 text-white rounded font-medium flex items-center gap-1.5 text-sm">
+                      <Send className="w-3.5 h-3.5" />
+                      Send
+                    </button>
+                  </div>
+                  <p className="text-xs text-slate-500 mt-2 flex items-center gap-1.5">
+                    <Shield className="w-3 h-3" />
+                    Private & secure
+                  </p>
                 </div>
-                <p className="text-xs text-slate-500 mt-2 flex items-center gap-2">
-                  <Shield className="w-3 h-3" />
-                  Your conversations are private and secure
-                </p>
               </div>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <Star className="w-4 h-4 fill-accent text-accent" />
+                <span className="font-medium">4.9/5</span>
+              </div>
+              <span className="text-border">•</span>
+              <div>12,000+ learners</div>
+              <span className="text-border">•</span>
+              <div className="text-accent font-medium">Free 7-day trial</div>
             </div>
           </div>
-          
-          {/* Quick Stats Below Image */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 fill-accent text-accent" />
-              <span>4.9/5 rating</span>
+
+          {/* Right Column - Content */}
+          <div className="text-left order-1 lg:order-2">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-accent/5 text-accent text-sm font-medium mb-6 border border-accent/10">
+              <Star className="w-4 h-4 fill-accent" />
+              <span>{hero.badge}</span>
             </div>
-            <div>•</div>
-            <div>12,000+ students</div>
-            <div>•</div>
-            <div>Free for 7 days</div>
+
+            {/* Main Heading - Reduced size and weight */}
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-5">
+              {hero.headline}
+            </h1>
+
+            {/* Subheading */}
+            <p className="text-base md:text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
+              {hero.subheadline}
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-start gap-3 mb-8">
+              <Button size="lg" className="bg-accent hover:bg-accent/90 text-white shadow-sm">
+                {hero.ctaPrimary}
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Button>
+              <Button variant="outline" size="lg" className="border-2 border-border hover:bg-muted/50">
+                {hero.ctaSecondary}
+              </Button>
+            </div>
+
+            {/* Feature Pills - More subtle */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
+                <BookOpen className="w-4 h-4 text-accent" />
+                <span className="text-sm text-foreground">All Matric Subjects</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
+                <Clock className="w-4 h-4 text-secondary" />
+                <span className="text-sm text-foreground">24/7 Available</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
+                <Smartphone className="w-4 h-4 text-primary" />
+                <span className="text-sm text-foreground">From R99/month</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
