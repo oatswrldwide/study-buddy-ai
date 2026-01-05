@@ -16,6 +16,8 @@ import SchoolLeadsPage from "./pages/admin/SchoolLeadsPage";
 import StudentSignupsPage from "./pages/admin/StudentSignupsPage";
 import PaymentsPage from "./pages/admin/PaymentsPage";
 import StudentPortal from "./pages/StudentPortal";
+import SchoolDashboard from "./pages/school/SchoolDashboard";
+import ParentDashboard from "./pages/parent/ParentDashboard";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +71,22 @@ const App = () => (
               element={
                 <ProtectedRoute allowedRoles={["admin"]}>
                   <PaymentsPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/school" 
+              element={
+                <ProtectedRoute allowedRoles={["school"]}>
+                  <SchoolDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/parent" 
+              element={
+                <ProtectedRoute allowedRoles={["parent"]}>
+                  <ParentDashboard />
                 </ProtectedRoute>
               } 
             />
