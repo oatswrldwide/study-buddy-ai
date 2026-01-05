@@ -255,6 +255,73 @@ export type Database = {
           subscription_end_date?: string | null
         }
       }
+      admin_users: {
+        Row: {
+          id: string
+          auth_user_id: string
+          email: string
+          full_name: string
+          role: 'admin' | 'super_admin'
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          auth_user_id: string
+          email: string
+          full_name: string
+          role?: 'admin' | 'super_admin'
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          auth_user_id?: string
+          email?: string
+          full_name?: string
+          role?: 'admin' | 'super_admin'
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      school_accounts: {
+        Row: {
+          id: string
+          auth_user_id: string
+          school_lead_id: string | null
+          school_name: string
+          contact_email: string
+          subscription_status: 'trial' | 'active' | 'inactive' | 'suspended'
+          subscription_start_date: string | null
+          subscription_end_date: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          auth_user_id: string
+          school_lead_id?: string | null
+          school_name: string
+          contact_email: string
+          subscription_status?: 'trial' | 'active' | 'inactive' | 'suspended'
+          subscription_start_date?: string | null
+          subscription_end_date?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          auth_user_id?: string
+          school_lead_id?: string | null
+          school_name?: string
+          contact_email?: string
+          subscription_status?: 'trial' | 'active' | 'inactive' | 'suspended'
+          subscription_start_date?: string | null
+          subscription_end_date?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+      }
     }
   }
 }
@@ -279,3 +346,12 @@ export type ChatMessageUpdate = Database['public']['Tables']['chat_messages']['U
 export type PaymentProof = Database['public']['Tables']['payment_proofs']['Row']
 export type PaymentProofInsert = Database['public']['Tables']['payment_proofs']['Insert']
 export type PaymentProofUpdate = Database['public']['Tables']['payment_proofs']['Update']
+
+export type AdminUser = Database['public']['Tables']['admin_users']['Row']
+export type AdminUserInsert = Database['public']['Tables']['admin_users']['Insert']
+export type AdminUserUpdate = Database['public']['Tables']['admin_users']['Update']
+
+export type SchoolAccount = Database['public']['Tables']['school_accounts']['Row']
+export type SchoolAccountInsert = Database['public']['Tables']['school_accounts']['Insert']
+export type SchoolAccountUpdate = Database['public']['Tables']['school_accounts']['Update']
+

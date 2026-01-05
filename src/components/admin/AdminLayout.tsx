@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, Users, GraduationCap, CreditCard, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -9,6 +10,13 @@ interface AdminLayoutProps {
 
 const AdminLayout = ({ children }: AdminLayoutProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { signOut, user } = useAuth();
+  
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/login");
+  };
   
   const navItems = [
     { path: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -35,10 +43,10 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
             </div>
             <div>
               <h1 className="font-display text-xl font-bold text-foreground">StudyBuddy Admin</h1>
-              <p className="text-xs text-muted-foreground">Management Portal</p>
+              <p className="text-xs text-muted-foreground">{user?.email || "Management Portal"}</p>
             </div>
           </div>
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" onClick={handleLogout}>
             <LogOut className="w-4 h-4 mr-2" />
             Logout
           </Button>
