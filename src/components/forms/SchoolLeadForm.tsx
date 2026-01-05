@@ -9,6 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle, School, Users, FileText } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   // Step 1: Contact Info
@@ -43,6 +45,7 @@ const SchoolLeadForm = ({ onSuccess, onClose }: SchoolLeadFormProps) => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -68,11 +71,36 @@ const SchoolLeadForm = ({ onSuccess, onClose }: SchoolLeadFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // TODO: Replace with actual API call
-      console.log("Form data:", data);
+      // Insert into Supabase
+      const { error } = await supabase
+        .from('school_leads')
+        .insert({
+          full_name: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          position: data.position,
+          school_name: data.schoolName,
+          province: data.province,
+          school_type: data.schoolType,
+          learner_count: parseInt(data.learnerCount),
+          curriculum: data.curriculum,
+          subjects: data.subjects ? [data.subjects] : [],
+          current_solution: data.currentSolution || null,
+          challenges: data.challenges,
+          preferred_start_date: data.preferredStartDate || null,
+          gdpr_consent: data.gdprConsent,
+          status: 'new'
+        });
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (error) {
+        console.error("Supabase error:", error);
+        toast({
+          variant: "destructive",
+          title: "Submission failed",
+          description: "There was an error submitting your request. Please try again.",
+        });
+        return;
+      }
       
       setIsSuccess(true);
       
@@ -81,7 +109,11 @@ const SchoolLeadForm = ({ onSuccess, onClose }: SchoolLeadFormProps) => {
       }, 2000);
     } catch (error) {
       console.error("Form submission error:", error);
-      form.setError("root", { message: "Failed to submit. Please try again." });
+      toast({
+        variant: "destructive",
+        title: "Submission failed",
+        description: "There was an error submitting your request. Please try again.",
+      });
     } finally {
       setIsSubmitting(false);
     }

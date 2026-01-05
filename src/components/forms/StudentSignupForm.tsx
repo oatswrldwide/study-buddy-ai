@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, CheckCircle, GraduationCap, AlertCircle } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
@@ -43,6 +45,7 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [showParentEmail, setShowParentEmail] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -73,11 +76,31 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // TODO: Replace with actual API call
-      console.log("Form data:", data);
+      // Insert into Supabase
+      const { error } = await supabase
+        .from('student_signups')
+        .insert({
+          full_name: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          date_of_birth: data.dateOfBirth,
+          grade: parseInt(data.grade),
+          parent_email: data.parentEmail || null,
+          subjects: data.subjects,
+          referral_source: data.referralSource || null,
+          gdpr_consent: data.gdprConsent,
+          status: 'trial'
+        });
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (error) {
+        console.error("Supabase error:", error);
+        toast({
+          variant: "destructive",
+          title: "Signup failed",
+          description: "There was an error creating your account. Please try again.",
+        });
+        return;
+      }
       
       setIsSuccess(true);
       
@@ -86,7 +109,11 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
       }, 2000);
     } catch (error) {
       console.error("Form submission error:", error);
-      form.setError("root", { message: "Failed to submit. Please try again." });
+      toast({
+        variant: "destructive",
+        title: "Signup failed",
+        description: "There was an error creating your account. Please try again.",
+      });
     } finally {
       setIsSubmitting(false);
     }
