@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [loading, setLoading] = useState(true);
 
   const fetchUserRole = async (userId: string, userEmail?: string) => {
+    console.log("Fetching role for user:", userId, userEmail);
     try {
       // Check admin_users table
       const { data: adminData } = await supabase
@@ -48,8 +49,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         .single();
 
       if (adminData) {
+        console.log("User is admin:", adminData);
         setRole("admin");
-        return;
+        return "admin";
       }
 
       // Check school_accounts table
@@ -60,8 +62,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         .single();
 
       if (schoolData) {
+        console.log("User is school:", schoolData);
         setRole("school");
-        return;
+        return "school";
       }
 
       // Check student_signups table
@@ -72,8 +75,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         .single();
 
       if (studentData) {
+        console.log("User is student:", studentData);
         setRole("student");
-        return;
+        return "student";
       }
 
       // Check if user is a parent (by parent_email matching user email)
@@ -85,25 +89,29 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           .limit(1);
 
         if (parentData && parentData.length > 0) {
+          console.log("User is parent:", parentData);
           setRole("parent");
-          return;
+          return "parent";
         }
       }
 
+      console.log("No role found for user");
       setRole(null);
+      return null;
     } catch (error) {
       console.error("Error fetching user role:", error);
       setRole(null);
+      return null;
     }
   };
 
   useEffect(() => {
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        fetchUserRole(session.user.id, session.user.email);
+        await fetchUserRole(session.user.id, session.user.email);
       }
       setLoading(false);
     });
@@ -111,11 +119,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        fetchUserRole(session.user.id, session.user.email);
+        await fetchUserRole(session.user.id, session.user.email);
       } else {
         setRole(null);
       }

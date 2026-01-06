@@ -8,7 +8,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("Login useEffect - user:", user, "role:", role);
+    
     if (user && role) {
+      console.log("Redirecting to dashboard for role:", role);
       // Redirect logged-in users to their dashboard
       switch (role) {
         case "admin":
