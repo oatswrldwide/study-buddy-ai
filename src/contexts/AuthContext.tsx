@@ -42,11 +42,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     console.log("Fetching role for user:", userId, userEmail);
     try {
       // Check admin_users table
-      const { data: adminData } = await supabase
+      const { data: adminData, error: adminError } = await supabase
         .from("admin_users")
         .select("role")
         .eq("auth_user_id", userId)
         .single();
+
+      if (adminError) {
+        console.error("Admin query error:", adminError.message, adminError.details, adminError.hint);
+      }
+      console.log("Admin query result:", { adminData, adminError });
 
       if (adminData) {
         console.log("User is admin:", adminData);
@@ -55,11 +60,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
 
       // Check school_accounts table
-      const { data: schoolData } = await supabase
+      const { data: schoolData, error: schoolError } = await supabase
         .from("school_accounts")
         .select("id")
         .eq("auth_user_id", userId)
         .single();
+
+      console.log("School query result:", { schoolData, schoolError });
 
       if (schoolData) {
         console.log("User is school:", schoolData);
@@ -68,11 +75,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
 
       // Check student_signups table
-      const { data: studentData } = await supabase
+      const { data: studentData, error: studentError } = await supabase
         .from("student_signups")
         .select("id, parent_email")
         .eq("auth_user_id", userId)
         .single();
+
+      console.log("Student query result:", { studentData, studentError });
 
       if (studentData) {
         console.log("User is student:", studentData);
@@ -82,11 +91,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       // Check if user is a parent (by parent_email matching user email)
       if (userEmail) {
-        const { data: parentData } = await supabase
+        const { data: parentData, error: parentError } = await supabase
           .from("student_signups")
           .select("id")
           .eq("parent_email", userEmail)
           .limit(1);
+
+        console.log("Parent query result:", { parentData, parentError });
 
         if (parentData && parentData.length > 0) {
           console.log("User is parent:", parentData);
