@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, Loader2, Bot, User, Plus, Menu } from "lucide-react";
 import { sendMessage, validateMessage } from "@/lib/gemini";
+import { supabase } from "@/lib/supabase";
 
 interface Message {
   role: "user" | "assistant";
@@ -15,9 +16,11 @@ interface AIChatProps {
   subject: string;
   grade: number;
   conversationId?: string;
+  studentSignupId?: string;
 }
 
-const AIChat = ({ subject, grade }: AIChatProps) => {
+const AIChat = ({ subject, grade, conversationId: initialConversationId, studentSignupId }: AIChatProps) => {
+  const [conversationId, setConversationId] = useState<string | null>(initialConversationId || null);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -52,7 +55,7 @@ const AIChat = ({ subject, grade }: AIChatProps) => {
     }
   };
 
-  const handleNewChat = () => {
+  const handleNewChat = async () => {
     setMessages([
       {
         role: "assistant",
@@ -61,6 +64,56 @@ const AIChat = ({ subject, grade }: AIChatProps) => {
       },
     ]);
     setInput("");
+    setConversationId(null);
+  };
+
+  const createOrGetConversation = async () => {
+    if (conversationId) return conversationId;
+
+    if (!studentSignupId) {
+      console.warn("No student signup ID provided, chat will not be saved");
+      return null;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("chat_conversations")
+        .insert({
+          user_id: studentSignupId,
+          subject,
+          grade,
+          message_count: 0,
+          token_count: 0,
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      setConversationId(data.id);
+      return data.id;
+    } catch (error) {
+      console.error("Error creating conversation:", error);
+      return null;
+    }
+  };
+
+  const saveMessage = async (role: "user" | "assistant", content: string, convId: string) => {
+    try {
+      await supabase.from("chat_messages").insert({
+        conversation_id: convId,
+        role,
+        content,
+        tokens: Math.ceil(content.length / 4), // Rough token estimate
+      });
+
+      // Update conversation message count
+      await supabase.rpc("increment_conversation_count", {
+        conversation_id: convId,
+      });
+    } catch (error) {
+      console.error("Error saving message:", error);
+    }
   };
 
   const handleSend = async () => {
@@ -81,6 +134,14 @@ const AIChat = ({ subject, grade }: AIChatProps) => {
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
+
+    // Create or get conversation ID
+    const convId = await createOrGetConversation();
+
+    // Save user message
+    if (convId) {
+      await saveMessage("user", userMessage.content, convId);
+    }
 
     try {
       let aiResponse = "";
@@ -113,6 +174,11 @@ const AIChat = ({ subject, grade }: AIChatProps) => {
           };
           return updated;
         });
+      }
+
+      // Save complete AI response
+      if (convId && aiResponse) {
+        await saveMessage("assistant", aiResponse, convId);
       }
     } catch (error) {
       console.error("Chat error:", error);
