@@ -33,9 +33,17 @@ CREATE TABLE IF NOT EXISTS school_accounts (
 ALTER TABLE student_signups 
 ADD COLUMN IF NOT EXISTS auth_user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE;
 
--- Add unique constraint
-ALTER TABLE student_signups 
-ADD CONSTRAINT IF NOT EXISTS student_signups_auth_user_id_key UNIQUE (auth_user_id);
+-- Add unique constraint (wrapped in DO block since IF NOT EXISTS isn't supported)
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint 
+    WHERE conname = 'student_signups_auth_user_id_key'
+  ) THEN
+    ALTER TABLE student_signups 
+    ADD CONSTRAINT student_signups_auth_user_id_key UNIQUE (auth_user_id);
+  END IF;
+END $$;
 
 -- 4. Update chat_conversations to reference auth.users correctly
 -- First check if we need to update the table
