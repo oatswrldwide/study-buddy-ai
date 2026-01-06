@@ -64,7 +64,7 @@ export const getSchoolAnalytics = async (schoolName: string): Promise<SchoolAnal
     const { data: conversations, error: convError } = await supabase
       .from("chat_conversations")
       .select("*")
-      .in("user_id", studentIds);
+      .in("student_signup_id", studentIds);
 
     if (convError) throw convError;
 
@@ -111,7 +111,7 @@ export const getSchoolAnalytics = async (schoolName: string): Promise<SchoolAnal
     const recentlyActive = new Set(
       messages?.filter((m) => new Date(m.created_at) >= sevenDaysAgo).map((m) => {
         const conv = conversations?.find((c) => c.id === m.conversation_id);
-        return conv?.user_id;
+        return conv?.student_signup_id;
       })
     );
     const atRiskStudents = students.filter((s) => !recentlyActive.has(s.id)).length;
@@ -175,7 +175,7 @@ export const getStudentAnalytics = async (studentIds: string[]): Promise<Student
     const { data: conversations, error: convError } = await supabase
       .from("chat_conversations")
       .select("*")
-      .in("user_id", studentIds);
+      .in("student_signup_id", studentIds);
 
     if (convError) throw convError;
 
@@ -190,7 +190,7 @@ export const getStudentAnalytics = async (studentIds: string[]): Promise<Student
     if (messagesError) throw messagesError;
 
     return (students || []).map((student) => {
-      const studentConvs = conversations?.filter((c) => c.user_id === student.id) || [];
+      const studentConvs = conversations?.filter((c) => c.student_signup_id === student.id) || [];
       const studentConvIds = studentConvs.map((c) => c.id);
       const studentMessages = messages?.filter((m) => studentConvIds.includes(m.conversation_id)) || [];
 
@@ -259,7 +259,7 @@ export const getRiskIndicators = async (schoolName: string): Promise<RiskIndicat
     const { data: conversations, error: convError } = await supabase
       .from("chat_conversations")
       .select("*")
-      .in("user_id", studentIds);
+      .in("student_signup_id", studentIds);
 
     if (convError) throw convError;
 
@@ -277,7 +277,7 @@ export const getRiskIndicators = async (schoolName: string): Promise<RiskIndicat
     const now = new Date();
 
     students.forEach((student) => {
-      const studentConvs = conversations?.filter((c) => c.user_id === student.id) || [];
+      const studentConvs = conversations?.filter((c) => c.student_signup_id === student.id) || [];
       const studentConvIds = studentConvs.map((c) => c.id);
       const studentMessages = messages?.filter((m) => studentConvIds.includes(m.conversation_id)) || [];
 
