@@ -61,9 +61,16 @@ const HeroSchools = () => {
                 {hero.ctaPrimary}
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
-              <Button variant="outline" size="lg" className="border-2 border-border hover:bg-muted/50">
-                <Play className="w-4 h-4 mr-1" />
-                Watch Demo
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 border-border hover:bg-muted/50"
+                asChild
+              >
+                <a href="https://oatswrldwide.github.io/zenzele-edu/" target="_blank" rel="noopener noreferrer">
+                  <Play className="w-4 h-4 mr-1" />
+                  Watch Demo
+                </a>
               </Button>
             </div>
 

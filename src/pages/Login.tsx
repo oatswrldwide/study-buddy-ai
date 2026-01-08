@@ -17,9 +17,6 @@ const Login = () => {
         case "admin":
           navigate("/admin");
           break;
-        case "school":
-          navigate("/school");
-          break;
         case "parent":
           navigate("/parent");
           break;

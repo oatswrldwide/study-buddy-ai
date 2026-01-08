@@ -59,20 +59,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         return "admin";
       }
 
-      // Check school_accounts table
-      const { data: schoolData, error: schoolError } = await supabase
-        .from("school_accounts")
-        .select("id")
-        .eq("auth_user_id", userId)
-        .single();
-
-      console.log("School query result:", { schoolData, schoolError });
-
-      if (schoolData) {
-        console.log("User is school:", schoolData);
-        setRole("school");
-        return "school";
-      }
+      // School backend removed - schools link to external demo
+      // Schools are now managed manually, no self-service login
 
       // Check student_signups table
       const { data: studentData, error: studentError } = await supabase
