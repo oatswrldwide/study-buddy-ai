@@ -75,22 +75,7 @@ const App = () => (
                 </ProtectedRoute>
               } 
             />
-            <Route 
-              path="/school" 
-              element={
-                <ProtectedRoute allowedRoles={["school"]}>
-                  <SchoolDashboard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/school/students" 
-              element={
-                <ProtectedRoute allowedRoles={["school"]}>
-                  <SchoolStudentsPage />
-                </ProtectedRoute>
-              } 
-            />
+            {/* School routes removed - using external demo */}
             <Route 
               path="/parent" 
               element={
