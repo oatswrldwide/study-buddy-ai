@@ -24,6 +24,7 @@ import ParentDashboard from "./pages/parent/ParentDashboard";
 import ParentActivity from "./pages/parent/ParentActivity";
 import ParentPayments from "./pages/parent/ParentPayments";
 import ParentSettings from "./pages/parent/ParentSettings";
+import DemoCredentials from "./pages/DemoCredentials";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<MarketSelector />} />
             <Route path="/test" element={<TestPage />} />
+            <Route path="/demo" element={<DemoCredentials />} />
             <Route path="/schools" element={<SchoolsLanding />} />
             <Route path="/students" element={<StudentsLanding />} />
             <Route path="/login" element={<Login />} />

@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import LoginForm from "@/components/auth/LoginForm";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { HelpCircle } from "lucide-react";
 
 const Login = () => {
   const { user, role } = useAuth();
@@ -45,6 +47,17 @@ const Login = () => {
         </div>
 
         <LoginForm />
+
+        <Alert>
+          <HelpCircle className="h-4 w-4" />
+          <AlertDescription>
+            <strong>Need help accessing the app?</strong>
+            <br />
+            <Link to="/demo" className="text-primary hover:underline">
+              View setup instructions and demo credentials →
+            </Link>
+          </AlertDescription>
+        </Alert>
 
         <div className="text-center text-sm text-muted-foreground">
           <p>Need help? Contact support@studybuddy.co.za</p>
