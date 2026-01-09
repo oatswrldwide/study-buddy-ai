@@ -170,7 +170,7 @@ const HeroStudents = () => {
                 {hero.ctaPrimary}
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
-              <Button variant="outline" size="lg" className="border-2 border-border hover:bg-muted/50">
+              <Button variant="outline" size="lg" className="border-2 border-border hover:bg-muted/50" onClick={() => window.scrollTo({ top: 800, behavior: 'smooth' })}>
                 {hero.ctaSecondary}
               </Button>
             </div>

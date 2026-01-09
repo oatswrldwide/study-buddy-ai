@@ -1,11 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import StudentSignupForm from "@/components/forms/StudentSignupForm";
 import { studentsConfig } from "@/config/students";
 
 const CTAStudents = () => {
   const { cta } = studentsConfig;
+  const [showForm, setShowForm] = useState(false);
 
   return (
+    <>
     <section className="py-20 lg:py-32 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -19,11 +24,11 @@ const CTAStudents = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <Button variant="hero" size="xl" className="shadow-glow">
+            <Button variant="default" size="xl" className="shadow-glow bg-accent hover:bg-accent/90 text-white" onClick={() => setShowForm(true)}>
               {cta.ctaPrimary}
               <ArrowRight className="w-5 h-5" />
             </Button>
-            <Button variant="outline" size="xl">
+            <Button variant="outline" size="xl" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               {cta.ctaSecondary}
             </Button>
           </div>
@@ -45,6 +50,17 @@ const CTAStudents = () => {
         </div>
       </div>
     </section>
+
+    {/* Student Signup Form Dialog */}
+    <Dialog open={showForm} onOpenChange={setShowForm}>
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>Start Learning Today</DialogTitle>
+        </DialogHeader>
+        <StudentSignupForm onSuccess={() => setShowForm(false)} />
+      </DialogContent>
+    </Dialog>
+    </>
   );
 };
 

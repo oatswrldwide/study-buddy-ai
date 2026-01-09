@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, BookOpen } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navLinks = [
     { href: "#features", label: "Features" },
@@ -40,8 +42,8 @@ const Header = () => {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost">Log In</Button>
-          <Button variant="hero">Get Started Free</Button>
+          <Button variant="ghost" onClick={() => navigate("/login")}>Log In</Button>
+          <Button variant="hero" onClick={() => navigate("/students")}>Get Started Free</Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -69,8 +71,8 @@ const Header = () => {
               </a>
             ))}
             <div className="flex flex-col gap-2 pt-4 border-t border-border">
-              <Button variant="ghost" className="w-full">Log In</Button>
-              <Button variant="hero" className="w-full">Get Started Free</Button>
+              <Button variant="ghost" className="w-full" onClick={() => navigate("/login")}>Log In</Button>
+              <Button variant="hero" className="w-full" onClick={() => navigate("/students")}>Get Started Free</Button>
             </div>
           </div>
         </div>

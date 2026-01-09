@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import SchoolLayout from "@/components/school/SchoolLayout";
 import { supabase } from "@/lib/supabase";
+import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -38,6 +39,7 @@ interface Student {
 
 const SchoolStudentsPage = () => {
   const { user } = useAuth();
+  const { toast } = useToast();
   const [students, setStudents] = useState<Student[]>([]);
   const [filteredStudents, setFilteredStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
@@ -365,7 +367,16 @@ const SchoolStudentsPage = () => {
                           {student.parent_email}
                         </TableCell>
                         <TableCell className="text-right">
-                          <Button variant="outline" size="sm">
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => {
+                              toast({
+                                title: "Coming Soon",
+                                description: "Detailed student view is under development.",
+                              });
+                            }}
+                          >
                             View Details
                           </Button>
                         </TableCell>

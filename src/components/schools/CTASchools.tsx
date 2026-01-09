@@ -1,11 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import SchoolLeadForm from "@/components/forms/SchoolLeadForm";
 import { schoolsConfig } from "@/config/schools";
 
 const CTASchools = () => {
   const { cta } = schoolsConfig;
+  const [showForm, setShowForm] = useState(false);
 
   return (
+    <>
     <section className="py-20 lg:py-32 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -19,11 +24,11 @@ const CTASchools = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <Button variant="hero" size="xl">
+            <Button variant="default" size="xl" className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => setShowForm(true)}>
               {cta.ctaPrimary}
               <ArrowRight className="w-5 h-5" />
             </Button>
-            <Button variant="outline" size="xl">
+            <Button variant="outline" size="xl" onClick={() => window.open("https://calendly.com", "_blank")}>
               {cta.ctaSecondary}
             </Button>
           </div>
@@ -40,6 +45,17 @@ const CTASchools = () => {
         </div>
       </div>
     </section>
+
+    {/* School Lead Form Dialog */}
+    <Dialog open={showForm} onOpenChange={setShowForm}>
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>Book Your Demo</DialogTitle>
+        </DialogHeader>
+        <SchoolLeadForm onSuccess={() => setShowForm(false)} />
+      </DialogContent>
+    </Dialog>
+    </>
   );
 };
 

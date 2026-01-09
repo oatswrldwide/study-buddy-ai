@@ -18,7 +18,12 @@ import PaymentsPage from "./pages/admin/PaymentsPage";
 import StudentPortal from "./pages/StudentPortal";
 import SchoolDashboard from "./pages/school/SchoolDashboard";
 import SchoolStudentsPage from "./pages/school/SchoolStudentsPage";
+import SchoolPerformance from "./pages/school/SchoolPerformance";
+import SchoolSettings from "./pages/school/SchoolSettings";
 import ParentDashboard from "./pages/parent/ParentDashboard";
+import ParentActivity from "./pages/parent/ParentActivity";
+import ParentPayments from "./pages/parent/ParentPayments";
+import ParentSettings from "./pages/parent/ParentSettings";
 
 const queryClient = new QueryClient();
 
@@ -75,12 +80,67 @@ const App = () => (
                 </ProtectedRoute>
               } 
             />
-            {/* School routes removed - using external demo */}
+            <Route 
+              path="/school" 
+              element={
+                <ProtectedRoute allowedRoles={["school"]}>
+                  <SchoolDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/school/students" 
+              element={
+                <ProtectedRoute allowedRoles={["school"]}>
+                  <SchoolStudentsPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/school/performance" 
+              element={
+                <ProtectedRoute allowedRoles={["school"]}>
+                  <SchoolPerformance />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/school/settings" 
+              element={
+                <ProtectedRoute allowedRoles={["school"]}>
+                  <SchoolSettings />
+                </ProtectedRoute>
+              } 
+            />
             <Route 
               path="/parent" 
               element={
                 <ProtectedRoute allowedRoles={["parent"]}>
                   <ParentDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/parent/activity" 
+              element={
+                <ProtectedRoute allowedRoles={["parent"]}>
+                  <ParentActivity />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/parent/payments" 
+              element={
+                <ProtectedRoute allowedRoles={["parent"]}>
+                  <ParentPayments />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/parent/settings" 
+              element={
+                <ProtectedRoute allowedRoles={["parent"]}>
+                  <ParentSettings />
                 </ProtectedRoute>
               } 
             />

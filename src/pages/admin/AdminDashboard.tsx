@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -135,24 +136,24 @@ const AdminDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <a
-                  href="/admin/leads"
+                <Link
+                  to="/admin/leads"
                   className="block text-sm text-primary hover:underline"
                 >
                   → Review new school leads
-                </a>
-                <a
-                  href="/admin/students"
+                </Link>
+                <Link
+                  to="/admin/students"
                   className="block text-sm text-primary hover:underline"
                 >
                   → Manage student accounts
-                </a>
-                <a
-                  href="/admin/payments"
+                </Link>
+                <Link
+                  to="/admin/payments"
                   className="block text-sm text-primary hover:underline"
                 >
                   → Process payment approvals
-                </a>
+                </Link>
               </div>
             </CardContent>
           </Card>

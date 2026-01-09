@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import PricingCard from "@/components/shared/PricingCard";
+import SchoolLeadForm from "@/components/forms/SchoolLeadForm";
 import { schoolsPricing } from "@/config/pricing";
 
 const PricingSchools = () => {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("monthly");
+  const [showForm, setShowForm] = useState(false);
 
   const handleCtaClick = (tierId: string) => {
     console.log(`CTA clicked for tier: ${tierId}`);
-    // TODO: Implement form modal or redirect to demo/signup
+    setShowForm(true);
   };
 
   return (
+    <>
     <section id="pricing" className="py-20 lg:py-32 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         {/* Section Header */}
@@ -63,6 +67,17 @@ const PricingSchools = () => {
         </div>
       </div>
     </section>
+
+    {/* School Lead Form Dialog */}
+    <Dialog open={showForm} onOpenChange={setShowForm}>
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>Get Started with StudyBuddy</DialogTitle>
+        </DialogHeader>
+        <SchoolLeadForm onSuccess={() => setShowForm(false)} />
+      </DialogContent>
+    </Dialog>
+    </>
   );
 };
 

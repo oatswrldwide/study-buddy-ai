@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const benefits = [
   "14-day free trial",
@@ -9,6 +10,8 @@ const benefits = [
 ];
 
 const CTA = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="pricing" className="py-20 lg:py-32 bg-gradient-subtle">
       <div className="container mx-auto px-4">
@@ -24,11 +27,11 @@ const CTA = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <Button variant="hero" size="xl">
+            <Button variant="hero" size="xl" onClick={() => navigate("/")}>
               Start Free Trial
               <ArrowRight className="w-5 h-5" />
             </Button>
-            <Button variant="outline" size="xl">
+            <Button variant="outline" size="xl" onClick={() => navigate("/schools")}>
               Talk to Sales
             </Button>
           </div>

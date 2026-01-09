@@ -58,7 +58,15 @@ const MarketSelector = () => {
                     <span>POPIA Compliant & Secure</span>
                   </li>
                 </ul>
-                <Button variant="default" size="lg" className="w-full">
+                <Button 
+                  variant="default" 
+                  size="lg" 
+                  className="w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate("/schools");
+                  }}
+                >
                   Explore for Schools
                   <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -97,7 +105,15 @@ const MarketSelector = () => {
                     <span>Personalized Learning Path</span>
                   </li>
                 </ul>
-                <Button variant="accent" size="lg" className="w-full">
+                <Button 
+                  variant="accent" 
+                  size="lg" 
+                  className="w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate("/students");
+                  }}
+                >
                   Start Learning Today
                   <ArrowRight className="w-4 h-4" />
                 </Button>
