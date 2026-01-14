@@ -151,8 +151,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       return { error: null };
     } catch (error) {
       return { error: error as Error };
-    }InWithGoogle,
-    sign
+    }
   };
 
   const signOut = async () => {
@@ -166,6 +165,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     role,
     loading,
     signIn,
+    signInWithGoogle,
     signUp,
     signOut,
     isAdmin: role === "admin",

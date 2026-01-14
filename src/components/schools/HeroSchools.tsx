@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { ArrowRight, Play, Shield, BarChart3, TrendingUp, Users, Activity, AlertCircle } from "lucide-react";
 import { schoolsConfig } from "@/config/schools";
 import SchoolLeadForm from "@/components/forms/SchoolLeadForm";
+import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
 
 const HeroSchools = () => {
   const { hero } = schoolsConfig;

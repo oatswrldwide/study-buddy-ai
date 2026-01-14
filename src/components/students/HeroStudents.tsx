@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { ArrowRight, Star, Smartphone, Clock, BookOpen, MessageSquare, Send, Sparkles, Shield } from "lucide-react";
 import { studentsConfig } from "@/config/students";
 import StudentSignupForm from "@/components/forms/StudentSignupForm";
+import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
 
 const HeroStudents = () => {
   const { hero } = studentsConfig;
