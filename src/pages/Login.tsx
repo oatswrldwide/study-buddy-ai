@@ -17,13 +17,16 @@ const Login = () => {
       // Redirect logged-in users to their dashboard
       switch (role) {
         case "admin":
-          navigate("/admin");
+          navigate("/admin/dashboard");
+          break;
+        case "school":
+          navigate("/school/dashboard");
           break;
         case "parent":
-          navigate("/parent");
+          navigate("/parent/dashboard");
           break;
         case "student":
-          navigate("/portal");
+          navigate("/student-portal");
           break;
         default:
           navigate("/");

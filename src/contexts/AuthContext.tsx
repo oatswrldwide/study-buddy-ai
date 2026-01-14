@@ -49,11 +49,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const fetchUserRole = async (userId: string, userEmail?: string) => {
     console.log("Fetching role for user:", userId, userEmail);
     try {
-      // Check custom claims first (set via Cloud Function)
-      const idTokenResult = await auth.currentUser?.getIdTokenResult();
+      // Force refresh token to get latest custom claims
+      const idTokenResult = await auth.currentUser?.getIdTokenResult(true);
       if (idTokenResult?.claims?.role) {
         const userRole = idTokenResult.claims.role as UserRole;
-        console.log("User role from custom claims:", userRole);
+        console.log("✅ User role from custom claims:", userRole);
         setRole(userRole);
         return userRole;
       }
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const adminDoc = await getDoc(adminDocRef);
 
       if (adminDoc.exists()) {
-        console.log("User is admin:", adminDoc.data());
+        console.log("✅ User is admin (from Firestore):", adminDoc.data());
         setRole("admin");
         return "admin";
       }
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const studentDoc = await getDoc(studentDocRef);
 
       if (studentDoc.exists()) {
-        console.log("User is student:", studentDoc.data());
+        console.log("✅ User is student:", studentDoc.data());
         setRole("student");
         return "student";
       }
@@ -89,17 +89,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         const parentSnapshot = await getDocs(parentQuery);
 
         if (!parentSnapshot.empty) {
-          console.log("User is parent");
+          console.log("✅ User is parent");
           setRole("parent");
           return "parent";
         }
       }
 
-      console.log("No role found for user");
-      setRole(null);
-      return null;
+      console.log("⚠️ No role found for user - defaulting to student");
+      setRole("student");
+      return "student";
     } catch (error) {
-      console.error("Error fetching user role:", error);
+      console.error("❌ Error fetching user role:", error);
       setRole(null);
       return null;
     }

@@ -33,6 +33,7 @@ const GoogleSignInButton = ({
           description: error.message,
           variant: "destructive",
         });
+        setLoading(false);
         return;
       }
 
@@ -41,21 +42,10 @@ const GoogleSignInButton = ({
         description: "Successfully signed in with Google",
       });
 
-      // Redirect based on role or specified redirect
-      if (redirectTo) {
-        navigate(redirectTo);
-      } else if (role === "admin") {
-        navigate("/admin/dashboard");
-      } else if (role === "school") {
-        navigate("/school/dashboard");
-      } else if (role === "parent") {
-        navigate("/parent/dashboard");
-      } else if (role === "student") {
-        navigate("/student-portal");
-      } else {
-        // New user - redirect to student portal by default
-        navigate("/student-portal");
-      }
+      // Don't navigate immediately - let the Login page or AuthContext handle it
+      // The useEffect in Login.tsx will redirect based on role once it's loaded
+      console.log("Google sign-in successful, waiting for role detection...");
+      
     } catch (error) {
       console.error("Google sign-in error:", error);
       toast({
@@ -63,7 +53,6 @@ const GoogleSignInButton = ({
         description: "Failed to sign in with Google",
         variant: "destructive",
       });
-    } finally {
       setLoading(false);
     }
   };
