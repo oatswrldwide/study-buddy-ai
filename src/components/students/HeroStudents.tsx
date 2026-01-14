@@ -162,15 +162,12 @@ const HeroStudents = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-start gap-3 mb-8">
-              <Button 
+              <GoogleSignInButton 
                 size="lg" 
                 className="bg-accent hover:bg-accent/90 text-white shadow-sm"
-                onClick={() => setShowForm(true)}
-              >
-                {hero.ctaPrimary}
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
-              <Button variant="outline" size="lg" className="border-2 border-border hover:bg-muted/50" onClick={() => window.scrollTo({ top: 800, behavior: 'smooth' })}>
+                redirectTo="/student-portal"
+              />
+              <Button variant="outline" size="lg" className="border-2 border-border hover:bg-muted/50" onClick={() => setShowForm(true)}>
                 {hero.ctaSecondary}
               </Button>
             </div>

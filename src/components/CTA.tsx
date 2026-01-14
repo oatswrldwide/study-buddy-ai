@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
 
 const benefits = [
   "14-day free trial",
@@ -27,10 +28,11 @@ const CTA = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <Button variant="hero" size="xl" onClick={() => navigate("/")}>
-              Start Free Trial
-              <ArrowRight className="w-5 h-5" />
-            </Button>
+            <GoogleSignInButton 
+              variant="default" 
+              size="xl" 
+              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+            />
             <Button variant="outline" size="xl" onClick={() => navigate("/schools")}>
               Talk to Sales
             </Button>

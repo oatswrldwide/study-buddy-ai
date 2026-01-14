@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import SchoolLeadForm from "@/components/forms/SchoolLeadForm";
+import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
 import { schoolsConfig } from "@/config/schools";
 
 const CTASchools = () => {
@@ -24,12 +25,15 @@ const CTASchools = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <Button variant="default" size="xl" className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => setShowForm(true)}>
+            <GoogleSignInButton 
+              variant="default" 
+              size="xl" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              redirectTo="/school/dashboard"
+            />
+            <Button variant="outline" size="xl" onClick={() => setShowForm(true)}>
               {cta.ctaPrimary}
               <ArrowRight className="w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="xl" onClick={() => window.open("https://calendly.com", "_blank")}>
-              {cta.ctaSecondary}
             </Button>
           </div>
 

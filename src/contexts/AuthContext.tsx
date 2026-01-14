@@ -5,6 +5,8 @@ import {
   createUserWithEmailAndPassword,
   signOut as firebaseSignOut,
   onAuthStateChanged,
+  signInWithPopup,
+  GoogleAuthProvider,
   User,
 } from "firebase/auth";
 import { doc, getDoc, collection, query, where, getDocs, limit } from "firebase/firestore";
@@ -16,6 +18,7 @@ interface AuthContextType {
   role: UserRole | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signInWithGoogle: () => Promise<{ error: Error | null }>;
   signUp: (email: string, password: string, metadata?: any) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   isAdmin: boolean;
@@ -126,6 +129,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({
+        prompt: 'select_account'
+      });
+      await signInWithPopup(auth, provider);
+      return { error: null };
+    } catch (error) {
+      return { error: error as Error };
+    }
+  };
+
   const signUp = async (email: string, password: string, metadata?: any) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -135,7 +151,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       return { error: null };
     } catch (error) {
       return { error: error as Error };
-    }
+    }InWithGoogle,
+    sign
   };
 
   const signOut = async () => {

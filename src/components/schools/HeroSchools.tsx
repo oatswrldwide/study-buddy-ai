@@ -53,24 +53,19 @@ const HeroSchools = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-start gap-3 mb-8">
-              <Button 
+              <GoogleSignInButton 
                 size="lg" 
                 className="bg-primary hover:bg-primary-dark text-white shadow-sm"
-                onClick={() => setShowForm(true)}
-              >
-                {hero.ctaPrimary}
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
+                redirectTo="/school/dashboard"
+              />
               <Button 
                 variant="outline" 
                 size="lg" 
                 className="border-2 border-border hover:bg-muted/50"
-                asChild
+                onClick={() => setShowForm(true)}
               >
-                <a href="https://oatswrldwide.github.io/zenzele-edu/" target="_blank" rel="noopener noreferrer">
-                  <Play className="w-4 h-4 mr-1" />
-                  Watch Demo
-                </a>
+                {hero.ctaPrimary}
+                <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
 

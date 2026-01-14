@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import StudentSignupForm from "@/components/forms/StudentSignupForm";
+import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
 import { studentsConfig } from "@/config/students";
 
 const CTAStudents = () => {
@@ -24,12 +25,15 @@ const CTAStudents = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <Button variant="default" size="xl" className="shadow-glow bg-accent hover:bg-accent/90 text-white" onClick={() => setShowForm(true)}>
+            <GoogleSignInButton 
+              variant="default" 
+              size="xl" 
+              className="shadow-glow bg-accent hover:bg-accent/90 text-white"
+              redirectTo="/student-portal"
+            />
+            <Button variant="outline" size="xl" onClick={() => setShowForm(true)}>
               {cta.ctaPrimary}
               <ArrowRight className="w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="xl" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              {cta.ctaSecondary}
             </Button>
           </div>
 
