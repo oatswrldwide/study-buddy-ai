@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle, School, Users, FileText } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const formSchema = z.object({
   // Step 1: Contact Info
@@ -69,32 +70,26 @@ const SchoolLeadForm = ({ onSuccess, onClose }: SchoolLeadFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // Insert into Supabase
-      const { error } = await supabase
-        .from('school_leads')
-        .insert({
-          full_name: data.fullName,
-          email: data.email,
-          phone: data.phone,
-          position: data.position,
-          school_name: data.schoolName,
-          province: data.province,
-          school_type: data.schoolType,
-          learner_count: parseInt(data.learnerCount),
-          curriculum: data.curriculum,
-          subjects: data.subjects ? [data.subjects] : [],
-          current_solution: data.currentSolution || null,
-          challenges: data.challenges,
-          preferred_start_date: data.preferredStartDate || null,
-          gdpr_consent: data.gdprConsent,
-          status: 'new'
-        });
-      
-      if (error) {
-        console.error("Supabase error:", error);
-        alert("There was an error submitting your request. Please try again.");
-        return;
-      }
+      // Insert into Firestore
+      const leadsRef = collection(db, 'school_leads');
+      await addDoc(leadsRef, {
+        full_name: data.fullName,
+        email: data.email,
+        phone: data.phone,
+        position: data.position,
+        school_name: data.schoolName,
+        province: data.province,
+        school_type: data.schoolType,
+        learner_count: parseInt(data.learnerCount),
+        curriculum: data.curriculum,
+        subjects: data.subjects ? [data.subjects] : [],
+        current_solution: data.currentSolution || null,
+        challenges: data.challenges,
+        preferred_start_date: data.preferredStartDate || null,
+        gdpr_consent: data.gdprConsent,
+        status: 'new',
+        created_at: serverTimestamp(),
+      });
       
       setIsSuccess(true);
       

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, GraduationCap, CheckCircle, Clock } from "lucide-react";
@@ -27,17 +28,23 @@ const AdminDashboard = () => {
 
   const loadStats = async () => {
     try {
-      const [leadsResult, studentsResult] = await Promise.all([
-        supabase.from("school_leads").select("*", { count: "exact" }),
-        supabase.from("student_signups").select("*", { count: "exact" }),
+      const leadsRef = collection(db, "school_leads");
+      const studentsRef = collection(db, "student_signups");
+
+      const [leadsSnapshot, studentsSnapshot] = await Promise.all([
+        getDocs(leadsRef),
+        getDocs(studentsRef),
       ]);
 
-      const newLeads = leadsResult.data?.filter((l) => l.status === "new").length || 0;
-      const activeTrials = studentsResult.data?.filter((s) => s.status === "trial").length || 0;
+      const leadsData = leadsSnapshot.docs.map(doc => doc.data());
+      const studentsData = studentsSnapshot.docs.map(doc => doc.data());
+
+      const newLeads = leadsData.filter((l: any) => l.status === "new").length;
+      const activeTrials = studentsData.filter((s: any) => s.status === "trial").length;
 
       setStats({
-        totalLeads: leadsResult.count || 0,
-        totalStudents: studentsResult.count || 0,
+        totalLeads: leadsSnapshot.size,
+        totalStudents: studentsSnapshot.size,
         activeTrials,
         pendingLeads: newLeads,
       });

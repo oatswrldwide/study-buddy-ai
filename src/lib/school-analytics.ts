@@ -1,4 +1,5 @@
-import { supabase } from "./supabase";
+import { db } from "./firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { differenceInDays, startOfDay, startOfWeek, subDays } from "date-fns";
 
 export interface StudentAnalytics {
@@ -37,13 +38,16 @@ export interface RiskIndicator {
 export const getSchoolAnalytics = async (schoolName: string): Promise<SchoolAnalytics> => {
   try {
     // Get all students for this school
-    const { data: students, error: studentsError } = await supabase
-      .from("student_signups")
-      .select("id, full_name")
-      .eq("school_name", schoolName);
+    const studentsRef = collection(db, "student_signups");
+    const studentsQuery = query(studentsRef, where("school_name", "==", schoolName));
+    const studentsSnapshot = await getDocs(studentsQuery);
+    
+    const students = studentsSnapshot.docs.map(doc => ({
+      id: doc.id,
+      full_name: doc.data().full_name
+    }));
 
-    if (studentsError) throw studentsError;
-    if (!students || students.length === 0) {
+    if (students.length === 0) {
       return {
         totalStudents: 0,
         activeToday: 0,
@@ -60,23 +64,21 @@ export const getSchoolAnalytics = async (schoolName: string): Promise<SchoolAnal
 
     const studentIds = students.map((s) => s.id);
 
-    // Get all conversations for these students
-    const { data: conversations, error: convError } = await supabase
-      .from("chat_conversations")
-      .select("*")
-      .in("student_signup_id", studentIds);
+    // Get all conversations for these students (Firestore doesn't support IN with arrays, so we query all and filter)
+    const conversationsRef = collection(db, "chat_conversations");
+    const conversationsSnapshot = await getDocs(conversationsRef);
+    const conversations = conversationsSnapshot.docs
+      .map(doc => ({ id: doc.id, ...doc.data() }))
+      .filter((c: any) => studentIds.includes(c.student_signup_id || c.user_id));
 
-    if (convError) throw convError;
-
-    const conversationIds = conversations?.map((c) => c.id) || [];
+    const conversationIds = conversations.map((c: any) => c.id);
 
     // Get all messages
-    const { data: messages, error: messagesError } = await supabase
-      .from("chat_messages")
-      .select("*")
-      .in("conversation_id", conversationIds);
-
-    if (messagesError) throw messagesError;
+    const messagesRef = collection(db, "chat_messages");
+    const messagesSnapshot = await getDocs(messagesRef);
+    const messages = messagesSnapshot.docs
+      .map(doc => ({ id: doc.id, ...doc.data() }))
+      .filter((m: any) => conversationIds.includes(m.conversation_id));
 
     // Calculate metrics
     const now = new Date();
@@ -84,16 +86,22 @@ export const getSchoolAnalytics = async (schoolName: string): Promise<SchoolAnal
     const weekStart = startOfWeek(now);
 
     const activeToday = new Set(
-      messages?.filter((m) => new Date(m.created_at) >= todayStart).map((m) => m.conversation_id)
+      messages?.filter((m: any) => {
+        const createdAt = m.created_at?.toDate ? m.created_at.toDate() : new Date(m.created_at);
+        return createdAt >= todayStart;
+      }).map((m: any) => m.conversation_id)
     ).size;
 
     const activeThisWeek = new Set(
-      messages?.filter((m) => new Date(m.created_at) >= weekStart).map((m) => m.conversation_id)
+      messages?.filter((m: any) => {
+        const createdAt = m.created_at?.toDate ? m.created_at.toDate() : new Date(m.created_at);
+        return createdAt >= weekStart;
+      }).map((m: any) => m.conversation_id)
     ).size;
 
     // Subject distribution
     const subjectCounts: Record<string, number> = {};
-    conversations?.forEach((c) => {
+    conversations?.forEach((c: any) => {
       subjectCounts[c.subject] = (subjectCounts[c.subject] || 0) + 1;
     });
 

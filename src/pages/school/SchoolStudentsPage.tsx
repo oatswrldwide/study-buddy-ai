@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import SchoolLayout from "@/components/school/SchoolLayout";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { doc, getDoc, collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -63,30 +64,32 @@ const SchoolStudentsPage = () => {
       setLoading(true);
 
       // First get the school account to find the school name
-      const { data: schoolData, error: schoolError } = await supabase
-        .from("school_accounts")
-        .select("school_name")
-        .eq("auth_user_id", user?.id)
-        .single();
+      const schoolRef = doc(db, "school_accounts", user?.uid || "");
+      const schoolDoc = await getDoc(schoolRef);
 
-      if (schoolError) throw schoolError;
-      if (!schoolData) {
+      if (!schoolDoc.exists()) {
         console.error("No school account found");
         return;
       }
 
+      const schoolData = schoolDoc.data();
       setSchoolName(schoolData.school_name);
 
       // Load students for this school
-      const { data: studentsData, error: studentsError } = await supabase
-        .from("student_signups")
-        .select("*")
-        .eq("school_name", schoolData.school_name)
-        .order("created_at", { ascending: false });
+      const studentsRef = collection(db, "student_signups");
+      const q = query(
+        studentsRef,
+        where("school_name", "==", schoolData.school_name),
+        orderBy("created_at", "desc")
+      );
+      
+      const snapshot = await getDocs(q);
+      const studentsData = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as Student[];
 
-      if (studentsError) throw studentsError;
-
-      setStudents(studentsData || []);
+      setStudents(studentsData);
     } catch (error) {
       console.error("Error loading students:", error);
     } finally {

@@ -8,7 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, CheckCircle, GraduationCap, AlertCircle } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
@@ -74,27 +75,22 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // Insert into Supabase
-      const { error } = await supabase
-        .from('student_signups')
-        .insert({
-          full_name: data.fullName,
-          email: data.email,
-          phone: data.phone,
-          date_of_birth: data.dateOfBirth,
-          grade: parseInt(data.grade),
-          parent_email: data.parentEmail || null,
-          subjects: data.subjects,
-          referral_source: data.referralSource || null,
-          gdpr_consent: data.gdprConsent,
-          status: 'trial'
-        });
-      
-      if (error) {
-        console.error("Supabase error:", error);
-        alert("There was an error creating your account. Please try again.");
-        return;
-      }
+      // Insert into Firestore
+      const signupsRef = collection(db, 'student_signups');
+      await addDoc(signupsRef, {
+        full_name: data.fullName,
+        email: data.email,
+        phone: data.phone,
+        date_of_birth: data.dateOfBirth,
+        grade: parseInt(data.grade),
+        parent_email: data.parentEmail || null,
+        subjects: data.subjects,
+        referral_source: data.referralSource || null,
+        gdpr_consent: data.gdprConsent,
+        status: 'trial',
+        created_at: serverTimestamp(),
+        trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+      });
       
       setIsSuccess(true);
       

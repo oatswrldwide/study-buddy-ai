@@ -1,12 +1,18 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { supabase } from "@/lib/supabase";
-import { User, Session } from "@supabase/supabase-js";
+import { auth, db } from "@/lib/firebase";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut as firebaseSignOut,
+  onAuthStateChanged,
+  User,
+} from "firebase/auth";
+import { doc, getDoc, collection, query, where, getDocs, limit } from "firebase/firestore";
 
 type UserRole = "admin" | "school" | "parent" | "student";
 
 interface AuthContextType {
   user: User | null;
-  session: Session | null;
   role: UserRole | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
@@ -34,61 +40,53 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
   const [role, setRole] = useState<UserRole | null>(null);
   const [loading, setLoading] = useState(true);
 
   const fetchUserRole = async (userId: string, userEmail?: string) => {
     console.log("Fetching role for user:", userId, userEmail);
     try {
-      // Check admin_users table
-      const { data: adminData, error: adminError } = await supabase
-        .from("admin_users")
-        .select("role")
-        .eq("auth_user_id", userId)
-        .single();
-
-      if (adminError) {
-        console.error("Admin query error:", adminError.message, adminError.details, adminError.hint);
+      // Check custom claims first (set via Cloud Function)
+      const idTokenResult = await auth.currentUser?.getIdTokenResult();
+      if (idTokenResult?.claims?.role) {
+        const userRole = idTokenResult.claims.role as UserRole;
+        console.log("User role from custom claims:", userRole);
+        setRole(userRole);
+        return userRole;
       }
-      console.log("Admin query result:", { adminData, adminError });
 
-      if (adminData) {
-        console.log("User is admin:", adminData);
+      // Fallback: Check admin_users collection
+      const adminDocRef = doc(db, "admin_users", userId);
+      const adminDoc = await getDoc(adminDocRef);
+
+      if (adminDoc.exists()) {
+        console.log("User is admin:", adminDoc.data());
         setRole("admin");
         return "admin";
       }
 
-      // School backend removed - schools link to external demo
-      // Schools are now managed manually, no self-service login
+      // Check student_signups collection
+      const studentDocRef = doc(db, "student_signups", userId);
+      const studentDoc = await getDoc(studentDocRef);
 
-      // Check student_signups table
-      const { data: studentData, error: studentError } = await supabase
-        .from("student_signups")
-        .select("id, parent_email")
-        .eq("auth_user_id", userId)
-        .single();
-
-      console.log("Student query result:", { studentData, studentError });
-
-      if (studentData) {
-        console.log("User is student:", studentData);
+      if (studentDoc.exists()) {
+        console.log("User is student:", studentDoc.data());
         setRole("student");
         return "student";
       }
 
       // Check if user is a parent (by parent_email matching user email)
       if (userEmail) {
-        const { data: parentData, error: parentError } = await supabase
-          .from("student_signups")
-          .select("id")
-          .eq("parent_email", userEmail)
-          .limit(1);
+        const studentsRef = collection(db, "student_signups");
+        const parentQuery = query(
+          studentsRef,
+          where("parent_email", "==", userEmail),
+          limit(1)
+        );
+        const parentSnapshot = await getDocs(parentQuery);
 
-        console.log("Parent query result:", { parentData, parentError });
-
-        if (parentData && parentData.length > 0) {
-          console.log("User is parent:", parentData);
+        if (!parentSnapshot.empty) {
+          console.log("User is parent");
           setRole("parent");
           return "parent";
         }
@@ -105,40 +103,24 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        await fetchUserRole(session.user.id, session.user.email);
-      }
-      setLoading(false);
-    });
-
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        await fetchUserRole(session.user.id, session.user.email);
+    // Listen for auth state changes
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setUser(user);
+      if (user) {
+        await fetchUserRole(user.uid, user.email || undefined);
       } else {
         setRole(null);
       }
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => unsubscribe();
   }, []);
 
   const signIn = async (email: string, password: string) => {
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      return { error };
+      await signInWithEmailAndPassword(auth, email, password);
+      return { error: null };
     } catch (error) {
       return { error: error as Error };
     }
@@ -146,29 +128,24 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signUp = async (email: string, password: string, metadata?: any) => {
     try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: metadata,
-        },
-      });
-      return { error };
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // Note: metadata handling would typically be done via Cloud Function
+      // For now, you'd need to create the corresponding document in Firestore
+      console.log("User signed up:", userCredential.user.uid, "metadata:", metadata);
+      return { error: null };
     } catch (error) {
       return { error: error as Error };
     }
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    await firebaseSignOut(auth);
     setUser(null);
-    setSession(null);
     setRole(null);
   };
 
   const value = {
     user,
-    session,
     role,
     loading,
     signIn,

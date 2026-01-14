@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import SchoolLayout from "@/components/school/SchoolLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 import { useAuth } from "@/contexts/AuthContext";
 import { Users, TrendingUp, Clock, BookOpen, AlertTriangle, Activity, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -26,19 +27,17 @@ const SchoolDashboard = () => {
 
     try {
       // Get school account
-      const { data: schoolAccount } = await supabase
-        .from("school_accounts")
-        .select("school_name")
-        .eq("auth_user_id", user.id)
-        .single();
+      const schoolRef = doc(db, "school_accounts", user.uid);
+      const schoolDoc = await getDoc(schoolRef);
 
-      if (schoolAccount) {
-        setSchoolName(schoolAccount.school_name);
+      if (schoolDoc.exists()) {
+        const schoolData = schoolDoc.data();
+        setSchoolName(schoolData.school_name);
 
         // Load analytics and risk indicators in parallel
         const [analyticsData, riskData] = await Promise.all([
-          getSchoolAnalytics(schoolAccount.school_name),
-          getRiskIndicators(schoolAccount.school_name),
+          getSchoolAnalytics(schoolData.school_name),
+          getRiskIndicators(schoolData.school_name),
         ]);
 
         setAnalytics(analyticsData);

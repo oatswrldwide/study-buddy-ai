@@ -4,9 +4,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { supabase, StudentSignup } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { collection, query, where, orderBy, getDocs, doc, updateDoc } from "firebase/firestore";
 import { GraduationCap, Mail, Phone, Calendar, RefreshCw, BookOpen } from "lucide-react";
 import { format, differenceInDays } from "date-fns";
+
+interface StudentSignup {
+  id: string;
+  full_name: string;
+  email: string;
+  phone: string;
+  date_of_birth: string;
+  grade: number;
+  status: string;
+  trial_ends_at: string | null;
+  created_at: string;
+  [key: string]: any;
+}
 
 const StudentSignupsPage = () => {
   const [students, setStudents] = useState<StudentSignup[]>([]);
@@ -16,19 +30,20 @@ const StudentSignupsPage = () => {
   const loadStudents = async () => {
     setLoading(true);
     try {
-      let query = supabase
-        .from("student_signups")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const studentsRef = collection(db, "student_signups");
+      let q = query(studentsRef, orderBy("created_at", "desc"));
 
       if (statusFilter !== "all") {
-        query = query.eq("status", statusFilter);
+        q = query(studentsRef, where("status", "==", statusFilter), orderBy("created_at", "desc"));
       }
 
-      const { data, error } = await query;
+      const snapshot = await getDocs(q);
+      const data = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as StudentSignup[];
 
-      if (error) throw error;
-      setStudents(data || []);
+      setStudents(data);
     } catch (error) {
       console.error("Error loading students:", error);
       alert("Failed to load students");
@@ -43,12 +58,8 @@ const StudentSignupsPage = () => {
 
   const updateStatus = async (id: string, newStatus: string) => {
     try {
-      const { error } = await supabase
-        .from("student_signups")
-        .update({ status: newStatus })
-        .eq("id", id);
-
-      if (error) throw error;
+      const studentRef = doc(db, "student_signups", id);
+      await updateDoc(studentRef, { status: newStatus });
       await loadStudents();
     } catch (error) {
       console.error("Error updating status:", error);

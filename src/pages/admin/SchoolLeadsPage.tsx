@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { collection, query, where, orderBy, getDocs, doc, updateDoc } from "firebase/firestore";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -43,19 +44,20 @@ const SchoolLeadsPage = () => {
   const loadLeads = async () => {
     setLoading(true);
     try {
-      let query = supabase
-        .from("school_leads")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const leadsRef = collection(db, "school_leads");
+      let q = query(leadsRef, orderBy("created_at", "desc"));
 
       if (filter !== "all") {
-        query = query.eq("status", filter);
+        q = query(leadsRef, where("status", "==", filter), orderBy("created_at", "desc"));
       }
 
-      const { data, error } = await query;
+      const snapshot = await getDocs(q);
+      const data = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as SchoolLead[];
 
-      if (error) throw error;
-      setLeads(data || []);
+      setLeads(data);
     } catch (error) {
       console.error("Error loading leads:", error);
       alert("Failed to load leads");
@@ -66,12 +68,8 @@ const SchoolLeadsPage = () => {
 
   const updateStatus = async (id: string, newStatus: string) => {
     try {
-      const { error } = await supabase
-        .from("school_leads")
-        .update({ status: newStatus })
-        .eq("id", id);
-
-      if (error) throw error;
+      const leadRef = doc(db, "school_leads", id);
+      await updateDoc(leadRef, { status: newStatus });
       loadLeads();
     } catch (error) {
       console.error("Error updating status:", error);

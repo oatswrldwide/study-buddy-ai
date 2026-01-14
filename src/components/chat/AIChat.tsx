@@ -4,7 +4,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, Loader2, Bot, User, Plus, Menu } from "lucide-react";
 import { sendMessage, validateMessage } from "@/lib/gemini";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import {
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+  increment,
+  serverTimestamp,
+} from "firebase/firestore";
 
 interface Message {
   role: "user" | "assistant";
@@ -76,22 +84,19 @@ const AIChat = ({ subject, grade, conversationId: initialConversationId, student
     }
 
     try {
-      const { data, error } = await supabase
-        .from("chat_conversations")
-        .insert({
-          user_id: studentSignupId,
-          subject,
-          grade,
-          message_count: 0,
-          token_count: 0,
-        })
-        .select()
-        .single();
+      const conversationsRef = collection(db, "chat_conversations");
+      const docRef = await addDoc(conversationsRef, {
+        user_id: studentSignupId,
+        subject,
+        grade,
+        message_count: 0,
+        token_count: 0,
+        created_at: serverTimestamp(),
+        updated_at: serverTimestamp(),
+      });
 
-      if (error) throw error;
-
-      setConversationId(data.id);
-      return data.id;
+      setConversationId(docRef.id);
+      return docRef.id;
     } catch (error) {
       console.error("Error creating conversation:", error);
       return null;
@@ -100,16 +105,20 @@ const AIChat = ({ subject, grade, conversationId: initialConversationId, student
 
   const saveMessage = async (role: "user" | "assistant", content: string, convId: string) => {
     try {
-      await supabase.from("chat_messages").insert({
+      const messagesRef = collection(db, "chat_messages");
+      await addDoc(messagesRef, {
         conversation_id: convId,
         role,
         content,
         tokens: Math.ceil(content.length / 4), // Rough token estimate
+        created_at: serverTimestamp(),
       });
 
-      // Update conversation message count
-      await supabase.rpc("increment_conversation_count", {
-        conversation_id: convId,
+      // Update conversation message count and updated_at
+      const conversationRef = doc(db, "chat_conversations", convId);
+      await updateDoc(conversationRef, {
+        message_count: increment(1),
+        updated_at: serverTimestamp(),
       });
     } catch (error) {
       console.error("Error saving message:", error);

@@ -3,7 +3,8 @@ import AIChat from "@/components/chat/AIChat";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const StudentPortal = () => {
   const { signOut, user } = useAuth();
@@ -16,15 +17,11 @@ const StudentPortal = () => {
       if (!user) return;
 
       try {
-        const { data, error } = await supabase
-          .from("student_signups")
-          .select("id, grade, subjects")
-          .eq("auth_user_id", user.id)
-          .single();
+        const studentRef = doc(db, "student_signups", user.uid);
+        const studentDoc = await getDoc(studentRef);
 
-        if (error) throw error;
-        if (data) {
-          setStudentSignupId(data.id);
+        if (studentDoc.exists()) {
+          setStudentSignupId(studentDoc.id);
         }
       } catch (error) {
         console.error("Error loading student data:", error);

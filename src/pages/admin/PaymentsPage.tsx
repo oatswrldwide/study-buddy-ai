@@ -6,9 +6,24 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { supabase, PaymentProof } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { collection, query, where, orderBy, getDocs, doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { CreditCard, Calendar, DollarSign, RefreshCw, CheckCircle2, XCircle, Eye } from "lucide-react";
 import { format } from "date-fns";
+
+interface PaymentProof {
+  id: string;
+  student_id: string;
+  amount: number;
+  payment_method: string;
+  proof_image_url: string;
+  status: string;
+  created_at: any;
+  reviewed_at?: any;
+  rejection_reason?: string;
+  subscription_start_date?: any;
+  [key: string]: any;
+}
 
 const PaymentsPage = () => {
   const [payments, setPayments] = useState<PaymentProof[]>([]);
@@ -22,19 +37,20 @@ const PaymentsPage = () => {
   const loadPayments = async () => {
     setLoading(true);
     try {
-      let query = supabase
-        .from("payment_proofs")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const paymentsRef = collection(db, "payment_proofs");
+      let q = query(paymentsRef, orderBy("created_at", "desc"));
 
       if (statusFilter !== "all") {
-        query = query.eq("status", statusFilter);
+        q = query(paymentsRef, where("status", "==", statusFilter), orderBy("created_at", "desc"));
       }
 
-      const { data, error } = await query;
+      const snapshot = await getDocs(q);
+      const data = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as PaymentProof[];
 
-      if (error) throw error;
-      setPayments(data || []);
+      setPayments(data);
     } catch (error) {
       console.error("Error loading payments:", error);
       alert("Failed to load payment proofs");
@@ -49,24 +65,18 @@ const PaymentsPage = () => {
 
   const approvePayment = async (id: string) => {
     try {
-      const { error } = await supabase
-        .from("payment_proofs")
-        .update({
-          status: "approved",
-          reviewed_at: new Date().toISOString(),
-          subscription_start_date: new Date().toISOString(),
-        })
-        .eq("id", id);
-
-      if (error) throw error;
+      const paymentRef = doc(db, "payment_proofs", id);
+      await updateDoc(paymentRef, {
+        status: "approved",
+        reviewed_at: serverTimestamp(),
+        subscription_start_date: serverTimestamp(),
+      });
 
       // Update student status to active
       const payment = payments.find((p) => p.id === id);
       if (payment) {
-        await supabase
-          .from("student_signups")
-          .update({ status: "active" })
-          .eq("id", payment.student_id);
+        const studentRef = doc(db, "student_signups", payment.student_id);
+        await updateDoc(studentRef, { status: "active" });
       }
 
       alert("Payment approved! Student activated.");
@@ -84,16 +94,12 @@ const PaymentsPage = () => {
     }
 
     try {
-      const { error } = await supabase
-        .from("payment_proofs")
-        .update({
-          status: "rejected",
-          reviewed_at: new Date().toISOString(),
-          rejection_reason: rejectionReason,
-        })
-        .eq("id", selectedPayment.id);
-
-      if (error) throw error;
+      const paymentRef = doc(db, "payment_proofs", selectedPayment.id);
+      await updateDoc(paymentRef, {
+        status: "rejected",
+        reviewed_at: serverTimestamp(),
+        rejection_reason: rejectionReason,
+      });
 
       alert("Payment rejected. Student notified.");
       setShowRejectDialog(false);

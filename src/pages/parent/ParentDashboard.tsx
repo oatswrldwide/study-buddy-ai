@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import ParentLayout from "@/components/parent/ParentLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { useAuth } from "@/contexts/AuthContext";
 import { GraduationCap, Clock, BookOpen, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -22,13 +23,16 @@ const ParentDashboard = () => {
     if (!user?.email) return;
 
     try {
-      const { data, error } = await supabase
-        .from("student_signups")
-        .select("*")
-        .eq("parent_email", user.email);
-
-      if (error) throw error;
-      setChildren(data || []);
+      const studentsRef = collection(db, "student_signups");
+      const q = query(studentsRef, where("parent_email", "==", user.email));
+      const snapshot = await getDocs(q);
+      
+      const data = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      
+      setChildren(data);
     } catch (error) {
       console.error("Error loading children:", error);
     } finally {
