@@ -13,8 +13,21 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
+// Validate configuration
+if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+  console.error("Firebase configuration is missing. Please check your environment variables.");
+  console.error("Required: VITE_FIREBASE_API_KEY, VITE_FIREBASE_PROJECT_ID");
+}
+
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+let app;
+try {
+  app = initializeApp(firebaseConfig);
+  console.log("✅ Firebase initialized successfully");
+} catch (error) {
+  console.error("❌ Failed to initialize Firebase:", error);
+  throw error;
+}
 
 // Initialize Firebase services
 export const auth = getAuth(app);

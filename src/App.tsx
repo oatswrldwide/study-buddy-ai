@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
+import ErrorBoundary from "./components/ErrorBoundary";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import MarketSelector from "./pages/MarketSelector";
 import SchoolsLanding from "./pages/SchoolsLanding";
@@ -29,13 +30,14 @@ import DemoCredentials from "./pages/DemoCredentials";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
             <Route path="/" element={<MarketSelector />} />
             <Route path="/test" element={<TestPage />} />
             <Route path="/demo" element={<DemoCredentials />} />
@@ -44,6 +46,14 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route 
               path="/portal" 
+              element={
+                <ProtectedRoute allowedRoles={["student", "admin"]}>
+                  <StudentPortal />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/student-portal" 
               element={
                 <ProtectedRoute allowedRoles={["student", "admin"]}>
                   <StudentPortal />
@@ -83,6 +93,14 @@ const App = () => (
               } 
             />
             <Route 
+              path="/admin/dashboard" 
+              element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
               path="/school" 
               element={
                 <ProtectedRoute allowedRoles={["school", "admin"]}>
@@ -95,6 +113,14 @@ const App = () => (
               element={
                 <ProtectedRoute allowedRoles={["school", "admin"]}>
                   <SchoolStudentsPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/school/dashboard" 
+              element={
+                <ProtectedRoute allowedRoles={["school", "admin"]}>
+                  <SchoolDashboard />
                 </ProtectedRoute>
               } 
             />
@@ -116,6 +142,14 @@ const App = () => (
             />
             <Route 
               path="/parent" 
+              element={
+                <ProtectedRoute allowedRoles={["parent", "admin"]}>
+                  <ParentDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/parent/dashboard" 
               element={
                 <ProtectedRoute allowedRoles={["parent", "admin"]}>
                   <ParentDashboard />
@@ -153,6 +187,7 @@ const App = () => (
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;

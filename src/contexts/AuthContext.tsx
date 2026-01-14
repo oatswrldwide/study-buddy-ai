@@ -106,8 +106,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   useEffect(() => {
+    console.log("🔐 AuthContext: Setting up auth listener");
     // Listen for auth state changes
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      console.log("🔐 Auth state changed:", user ? `User: ${user.email}` : "No user");
       setUser(user);
       if (user) {
         await fetchUserRole(user.uid, user.email || undefined);
@@ -115,9 +117,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setRole(null);
       }
       setLoading(false);
+      console.log("🔐 Auth loading complete");
     });
 
-    return () => unsubscribe();
+    return () => {
+      console.log("🔐 AuthContext: Cleaning up auth listener");
+      unsubscribe();
+    };
   }, []);
 
   const signIn = async (email: string, password: string) => {

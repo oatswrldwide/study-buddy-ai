@@ -26,11 +26,14 @@ service cloud.firestore {
     // Student Signups - Public insert, owner/admin read, admin update
     match /student_signups/{signupId} {
       allow create: if true; // Public can sign up
-      allow read: if isOwner(signupId) || 
+      allow read: if isAuthenticated() && (
+                     isOwner(signupId) || 
                      isAdmin() ||
-                     (isAuthenticated() && 
-                      request.auth.token.email == resource.data.parent_email);
-      allow update: if isAdmin();
+                     request.auth.token.email == resource.data.parent_email ||
+                     request.auth.uid == signupId
+                  );
+      allow update: if isAdmin() || isOwner(signupId);
+      allow delete: if isAdmin();
     }
     
     // Admin Users - Admin only
@@ -71,12 +74,9 @@ service cloud.firestore {
     match /chat_messages/{messageId} {
       allow create: if isAuthenticated();
       
-      allow read: if isAuthenticated() && (
-        // This simplified rule allows reads if authenticated
-        // More complex access control should be done via Cloud Functions
-        // or by organizing messages as subcollections under conversations
-        true || isAdmin()
-      );
+      allow read: if isAuthenticated();
+      
+      allow update, delete: if isAdmin();
     }
     
     // Payment Proofs - Owner submit, admin approve
