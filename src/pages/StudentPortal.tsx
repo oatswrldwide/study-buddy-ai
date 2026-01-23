@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import AIChat from "@/components/chat/AIChat";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card } from "@/components/ui/card";
-import { LogOut, GraduationCap, BookOpen, Loader2, AlertCircle } from "lucide-react";
+import { LogOut, BookOpen, GraduationCap } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card } from "@/components/ui/card";
 
 interface StudentData {
   full_name: string;
@@ -14,26 +14,27 @@ interface StudentData {
   grade: number;
   subjects: string[];
   school_name?: string;
-  curriculum?: string;
 }
 
 const StudentPortal = () => {
   const { signOut, user } = useAuth();
+  const [selectedSubject, setSelectedSubject] = useState<string>("");
+  const [selectedGrade, setSelectedGrade] = useState<string>("");
   const [studentData, setStudentData] = useState<StudentData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedSubject, setSelectedSubject] = useState<string>("");
-  const [selectedGrade, setSelectedGrade] = useState<string>("");
 
   useEffect(() => {
     const loadStudentData = async () => {
       if (!user) {
-        setError("No user logged in");
         setLoading(false);
         return;
       }
 
       try {
+        setLoading(true);
+        setError(null);
+        
         const studentRef = doc(db, "student_signups", user.uid);
         const studentDoc = await getDoc(studentRef);
 
@@ -41,7 +42,7 @@ const StudentPortal = () => {
           const data = studentDoc.data() as StudentData;
           setStudentData(data);
           
-          // Set defaults from student profile
+          // Set initial subject and grade from student data
           if (data.subjects && data.subjects.length > 0) {
             setSelectedSubject(data.subjects[0]);
           }
@@ -53,7 +54,7 @@ const StudentPortal = () => {
         }
       } catch (error) {
         console.error("Error loading student data:", error);
-        setError("Failed to load your profile. Please try refreshing the page.");
+        setError("Failed to load your profile. Please refresh the page.");
       } finally {
         setLoading(false);
       }
@@ -66,56 +67,56 @@ const StudentPortal = () => {
     await signOut();
   };
 
+  // Show loading state
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#343541]">
+      <div className="h-screen flex items-center justify-center bg-[#343541]">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-white animate-spin mx-auto mb-4" />
+          <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-white/70">Loading your profile...</p>
         </div>
       </div>
     );
   }
 
+  // Show error state
   if (error || !studentData) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#343541] p-4">
-        <Card className="max-w-md w-full p-6 bg-[#40414f] border-white/10">
-          <div className="text-center">
-            <AlertCircle className="w-12 h-12 text-red-400 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-white mb-2">Profile Error</h2>
-            <p className="text-white/70 mb-4">{error}</p>
-            <div className="space-y-2">
-              <Button onClick={() => window.location.reload()} className="w-full">
-                Refresh Page
-              </Button>
-              <Button onClick={handleLogout} variant="outline" className="w-full">
-                Logout
-              </Button>
-            </div>
-          </div>
+      <div className="h-screen flex items-center justify-center bg-[#343541]">
+        <Card className="max-w-md p-6 text-center">
+          <h2 className="text-xl font-bold text-foreground mb-2">Unable to Load Profile</h2>
+          <p className="text-muted-foreground mb-4">{error || "Student data not found"}</p>
+          <Button onClick={handleLogout} variant="outline">
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
         </Card>
       </div>
     );
   }
 
+  // Show subject/grade selector if not selected
   if (!selectedSubject || !selectedGrade) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#343541] p-4">
-        <Card className="max-w-md w-full p-6 bg-[#40414f] border-white/10">
+      <div className="h-screen flex items-center justify-center bg-[#343541] p-4">
+        <Card className="max-w-md w-full p-6">
           <div className="text-center mb-6">
-            <GraduationCap className="w-12 h-12 text-[#10a37f] mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">Welcome, {studentData.full_name}!</h2>
-            <p className="text-white/70">Select a subject to start learning</p>
+            <h2 className="text-2xl font-bold text-foreground mb-2">
+              Welcome, {studentData.full_name}! 👋
+            </h2>
+            <p className="text-muted-foreground">
+              Select a subject and grade to start learning
+            </p>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-white/90 mb-2 block">
+              <label className="block text-sm font-medium text-foreground mb-2">
+                <BookOpen className="w-4 h-4 inline mr-2" />
                 Subject
               </label>
               <Select value={selectedSubject} onValueChange={setSelectedSubject}>
-                <SelectTrigger className="bg-[#343541] text-white border-white/10">
+                <SelectTrigger>
                   <SelectValue placeholder="Choose a subject" />
                 </SelectTrigger>
                 <SelectContent>
@@ -129,11 +130,12 @@ const StudentPortal = () => {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-white/90 mb-2 block">
-                Grade Level
+              <label className="block text-sm font-medium text-foreground mb-2">
+                <GraduationCap className="w-4 h-4 inline mr-2" />
+                Grade
               </label>
               <Select value={selectedGrade} onValueChange={setSelectedGrade}>
-                <SelectTrigger className="bg-[#343541] text-white border-white/10">
+                <SelectTrigger>
                   <SelectValue placeholder="Choose your grade" />
                 </SelectTrigger>
                 <SelectContent>
@@ -147,13 +149,27 @@ const StudentPortal = () => {
             </div>
 
             <Button 
-              onClick={() => {/* Will trigger re-render with chat */}} 
-              className="w-full bg-[#10a37f] hover:bg-[#0d8c6f]"
+              onClick={() => {
+                if (selectedSubject && selectedGrade) {
+                  // Subject and grade are now selected, component will re-render
+                }
+              }}
+              className="w-full"
               disabled={!selectedSubject || !selectedGrade}
             >
               Start Learning
             </Button>
           </div>
+
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleLogout}
+            className="w-full mt-4"
+          >
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
         </Card>
       </div>
     );
@@ -161,13 +177,19 @@ const StudentPortal = () => {
 
   return (
     <div className="relative h-screen">
-      {/* Header with subject/grade selector and logout */}
-      <div className="absolute top-4 right-4 left-4 z-50 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2">
-            <BookOpen className="w-4 h-4 text-white" />
+      {/* Header with student info and controls */}
+      <div className="absolute top-0 left-0 right-0 z-50 bg-[#343541] border-b border-white/10 px-4 py-2">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="text-white">
+              <p className="text-sm font-medium">{studentData.full_name}</p>
+              <p className="text-xs text-white/50">{selectedSubject} • Grade {selectedGrade}</p>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-2">
             <Select value={selectedSubject} onValueChange={setSelectedSubject}>
-              <SelectTrigger className="w-[180px] bg-transparent border-none text-white h-auto p-0">
+              <SelectTrigger className="w-[180px] bg-white/10 text-white border-white/20">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -178,41 +200,28 @@ const StudentPortal = () => {
                 ))}
               </SelectContent>
             </Select>
-          </div>
 
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2">
-            <GraduationCap className="w-4 h-4 text-white" />
-            <Select value={selectedGrade} onValueChange={setSelectedGrade}>
-              <SelectTrigger className="w-[120px] bg-transparent border-none text-white h-auto p-0">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {[8, 9, 10, 11, 12].map((grade) => (
-                  <SelectItem key={grade} value={grade.toString()}>
-                    Grade {grade}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleLogout}
+              className="bg-white/10 hover:bg-white/20 text-white"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Logout
+            </Button>
           </div>
         </div>
-
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleLogout}
-          className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm"
-        >
-          <LogOut className="w-4 h-4 mr-2" />
-          Logout
-        </Button>
       </div>
       
-      <AIChat 
-        subject={selectedSubject} 
-        grade={parseInt(selectedGrade)} 
-        studentSignupId={user?.uid}
-      />
+      {/* Chat interface with top padding for header */}
+      <div className="h-full pt-16">
+        <AIChat 
+          subject={selectedSubject} 
+          grade={parseInt(selectedGrade)} 
+          studentSignupId={user?.uid}
+        />
+      </div>
     </div>
   );
 };

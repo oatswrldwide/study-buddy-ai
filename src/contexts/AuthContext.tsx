@@ -95,9 +95,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
       }
 
-      console.log("⚠️ No role found for user - defaulting to student");
-      setRole("student");
-      return "student";
+      console.log("⚠️ No role found for user - defaulting to null");
+      setRole(null);
+      return null;
     } catch (error) {
       console.error("❌ Error fetching user role:", error);
       setRole(null);

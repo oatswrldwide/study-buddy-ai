@@ -9,20 +9,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, CheckCircle, GraduationCap, AlertCircle } from "lucide-react";
 import { db, auth } from "@/lib/firebase";
-import { collection, addDoc, serverTimestamp, doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Valid email is required"),
-  phone: z.string().min(10, "Valid phone number is required"),
   password: z.string().min(6, "Password must be at least 6 characters"),
+  phone: z.string().min(10, "Valid phone number is required"),
   dateOfBirth: z.string().min(1, "Date of birth is required"),
   grade: z.string().min(1, "Grade is required"),
   parentEmail: z.string().email("Valid parent email is required").optional().or(z.literal("")),
   subjects: z.array(z.string()).min(1, "Select at least one subject"),
-  curriculum: z.string().default("CAPS"),
-  schoolName: z.string().optional(),
   referralSource: z.string().optional(),
   gdprConsent: z.boolean().refine(val => val === true, "You must accept the terms"),
 }).refine((data) => {
@@ -55,14 +53,12 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
     defaultValues: {
       fullName: "",
       email: "",
-      phone: "",
       password: "",
+      phone: "",
       dateOfBirth: "",
       grade: "",
       parentEmail: "",
       subjects: [],
-      curriculum: "CAPS",
-      schoolName: "",
       referralSource: "",
       gdprConsent: false,
     },
@@ -89,14 +85,14 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
         data.password
       );
       
-      const user = userCredential.user;
-
-      // Step 2: Send email verification
-      await sendEmailVerification(user);
+      const userId = userCredential.user.uid;
       
-      // Step 3: Create Firestore document with matching UID
-      const studentRef = doc(db, 'student_signups', user.uid);
-      await setDoc(studentRef, {
+      // Step 2: Send email verification
+      await sendEmailVerification(userCredential.user);
+      
+      // Step 3: Create student document in Firestore with matching UID
+      const studentDocRef = doc(db, 'student_signups', userId);
+      await setDoc(studentDocRef, {
         full_name: data.fullName,
         email: data.email,
         phone: data.phone,
@@ -104,14 +100,11 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
         grade: parseInt(data.grade),
         parent_email: data.parentEmail || null,
         subjects: data.subjects,
-        curriculum: data.curriculum || 'CAPS',
-        school_name: data.schoolName || null,
         referral_source: data.referralSource || null,
         gdpr_consent: data.gdprConsent,
         status: 'trial',
         created_at: serverTimestamp(),
         trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
-        updated_at: serverTimestamp(),
       });
       
       setIsSuccess(true);
@@ -121,17 +114,17 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
       }, 2000);
     } catch (error: any) {
       console.error("Form submission error:", error);
-      let errorMessage = "There was an error creating your account. Please try again.";
       
+      // Show user-friendly error messages
       if (error.code === 'auth/email-already-in-use') {
-        errorMessage = "This email is already registered. Please use a different email or try logging in.";
+        alert("This email is already registered. Please log in instead.");
       } else if (error.code === 'auth/weak-password') {
-        errorMessage = "Password is too weak. Please use a stronger password.";
+        alert("Password is too weak. Please use at least 6 characters.");
       } else if (error.code === 'auth/invalid-email') {
-        errorMessage = "Invalid email address. Please check and try again.";
+        alert("Invalid email address. Please check and try again.");
+      } else {
+        alert("There was an error creating your account. Please try again.");
       }
-      
-      form.setError("root", { message: errorMessage });
     } finally {
       setIsSubmitting(false);
     }
@@ -145,11 +138,19 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
         </div>
         <h3 className="text-2xl font-bold text-foreground mb-2">Welcome to StudyBuddy!</h3>
         <p className="text-muted-foreground mb-6">
-          Your 7-day free trial starts now. Check your email for login details.
+          Your 7-day free trial starts now. Please verify your email to get started.
         </p>
-        <p className="text-sm text-muted-foreground">
-          Email sent to <span className="font-medium text-foreground">{form.getValues("email")}</span>
-        </p>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-left">
+          <p className="text-sm text-blue-800 mb-2">
+            <strong>📧 Verification email sent to:</strong>
+          </p>
+          <p className="text-sm font-medium text-blue-900">
+            {form.getValues("email")}
+          </p>
+          <p className="text-xs text-blue-600 mt-2">
+            Check your inbox and click the verification link to activate your account.
+          </p>
+        </div>
       </div>
     );
   }
@@ -197,49 +198,45 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
           )}
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="email">Email Address *</Label>
-            <Input
-              id="email"
-              type="email"
-              {...form.register("email")}
-              placeholder="your.email@example.com"
-              className="mt-1"
-            />
-            {form.formState.errors.email && (
-              <p className="text-sm text-red-600 mt-1">{form.formState.errors.email.message}</p>
-            )}
-          </div>
-
-          <div>
-            <Label htmlFor="password">Password *</Label>
-            <Input
-              id="password"
-              type="password"
-              {...form.register("password")}
-              placeholder="At least 6 characters"
-              className="mt-1"
-            />
-            {form.formState.errors.password && (
-              <p className="text-sm text-red-600 mt-1">{form.formState.errors.password.message}</p>
-            )}
-          </div>
+        <div>
+          <Label htmlFor="email">Email Address *</Label>
+          <Input
+            id="email"
+            type="email"
+            {...form.register("email")}
+            placeholder="your.email@example.com"
+            className="mt-1"
+          />
+          {form.formState.errors.email && (
+            <p className="text-sm text-red-600 mt-1">{form.formState.errors.email.message}</p>
+          )}
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="phone">Phone Number *</Label>
-            <Input
-              id="phone"
-              {...form.register("phone")}
-              placeholder="082 123 4567"
-              className="mt-1"
-            />
-            {form.formState.errors.phone && (
-              <p className="text-sm text-red-600 mt-1">{form.formState.errors.phone.message}</p>
-            )}
-          </div>
+        <div>
+          <Label htmlFor="password">Password *</Label>
+          <Input
+            id="password"
+            type="password"
+            {...form.register("password")}
+            placeholder="At least 6 characters"
+            className="mt-1"
+          />
+          {form.formState.errors.password && (
+            <p className="text-sm text-red-600 mt-1">{form.formState.errors.password.message}</p>
+          )}
+        </div>
+
+        <div>
+          <Label htmlFor="phone">Phone Number *</Label>
+          <Input
+            id="phone"
+            {...form.register("phone")}
+            placeholder="082 123 4567"
+            className="mt-1"
+          />
+          {form.formState.errors.phone && (
+            <p className="text-sm text-red-600 mt-1">{form.formState.errors.phone.message}</p>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-4">
