@@ -8,17 +8,21 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, CheckCircle, GraduationCap, AlertCircle } from "lucide-react";
-import { db } from "@/lib/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db, auth } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp, doc, setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Valid email is required"),
   phone: z.string().min(10, "Valid phone number is required"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
   dateOfBirth: z.string().min(1, "Date of birth is required"),
   grade: z.string().min(1, "Grade is required"),
   parentEmail: z.string().email("Valid parent email is required").optional().or(z.literal("")),
   subjects: z.array(z.string()).min(1, "Select at least one subject"),
+  curriculum: z.string().default("CAPS"),
+  schoolName: z.string().optional(),
   referralSource: z.string().optional(),
   gdprConsent: z.boolean().refine(val => val === true, "You must accept the terms"),
 }).refine((data) => {
@@ -52,10 +56,13 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
       fullName: "",
       email: "",
       phone: "",
+      password: "",
       dateOfBirth: "",
       grade: "",
       parentEmail: "",
       subjects: [],
+      curriculum: "CAPS",
+      schoolName: "",
       referralSource: "",
       gdprConsent: false,
     },
@@ -75,9 +82,21 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // Insert into Firestore
-      const signupsRef = collection(db, 'student_signups');
-      await addDoc(signupsRef, {
+      // Step 1: Create Firebase Auth user
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      
+      const user = userCredential.user;
+
+      // Step 2: Send email verification
+      await sendEmailVerification(user);
+      
+      // Step 3: Create Firestore document with matching UID
+      const studentRef = doc(db, 'student_signups', user.uid);
+      await setDoc(studentRef, {
         full_name: data.fullName,
         email: data.email,
         phone: data.phone,
@@ -85,11 +104,14 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
         grade: parseInt(data.grade),
         parent_email: data.parentEmail || null,
         subjects: data.subjects,
+        curriculum: data.curriculum || 'CAPS',
+        school_name: data.schoolName || null,
         referral_source: data.referralSource || null,
         gdpr_consent: data.gdprConsent,
         status: 'trial',
         created_at: serverTimestamp(),
         trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+        updated_at: serverTimestamp(),
       });
       
       setIsSuccess(true);
@@ -97,9 +119,19 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
       setTimeout(() => {
         onSuccess?.();
       }, 2000);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Form submission error:", error);
-      alert("There was an error creating your account. Please try again.");
+      let errorMessage = "There was an error creating your account. Please try again.";
+      
+      if (error.code === 'auth/email-already-in-use') {
+        errorMessage = "This email is already registered. Please use a different email or try logging in.";
+      } else if (error.code === 'auth/weak-password') {
+        errorMessage = "Password is too weak. Please use a stronger password.";
+      } else if (error.code === 'auth/invalid-email') {
+        errorMessage = "Invalid email address. Please check and try again.";
+      }
+      
+      form.setError("root", { message: errorMessage });
     } finally {
       setIsSubmitting(false);
     }
@@ -180,6 +212,22 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
             )}
           </div>
 
+          <div>
+            <Label htmlFor="password">Password *</Label>
+            <Input
+              id="password"
+              type="password"
+              {...form.register("password")}
+              placeholder="At least 6 characters"
+              className="mt-1"
+            />
+            {form.formState.errors.password && (
+              <p className="text-sm text-red-600 mt-1">{form.formState.errors.password.message}</p>
+            )}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
           <div>
             <Label htmlFor="phone">Phone Number *</Label>
             <Input

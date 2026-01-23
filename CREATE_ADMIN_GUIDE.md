@@ -50,8 +50,8 @@ Create `admin-user.json`:
 ```json
 {
   "users": [{
-    "localId": "YOUR_USER_UID_HERE",
-    "email": "admin@example.com",
+    "localId": "fEVXlsDhDeTrhgOwMtm9sSxGTy62",
+    "email": "ongezile.mqokeli@gmail.com",
     "customClaims": "{\"role\":\"admin\"}"
   }]
 }

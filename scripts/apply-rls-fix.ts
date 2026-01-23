@@ -19,8 +19,8 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_SERVICE_KEY;
+const SUPABASE_URL = (process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL) as string | undefined;
+const SUPABASE_SERVICE_KEY = (process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_SERVICE_KEY) as string | undefined;
 
 if (!SUPABASE_URL) {
   console.error('❌ Error: SUPABASE_URL or VITE_SUPABASE_URL environment variable is required');
@@ -50,9 +50,9 @@ async function applySqlFile(sqlFilePath: string) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'apikey': SUPABASE_SERVICE_KEY,
+      'apikey': SUPABASE_SERVICE_KEY!,
       'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
-    },
+    } as Record<string, string>,
     body: JSON.stringify({ query: sqlContent })
   });
 
@@ -85,10 +85,10 @@ async function applySqlFile(sqlFilePath: string) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'apikey': SUPABASE_SERVICE_KEY,
+            'apikey': SUPABASE_SERVICE_KEY!,
             'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
             'Prefer': 'return=minimal'
-          },
+          } as Record<string, string>,
           body: JSON.stringify({ query })
         });
         
@@ -126,7 +126,7 @@ async function applySqlFile(sqlFilePath: string) {
       console.log('⚠️  Some statements failed. Please review the errors above.');
       console.log('💡 Tip: You can also copy the SQL file content and paste it directly into');
       console.log('   Supabase SQL Editor at:');
-      console.log(`   ${SUPABASE_URL.replace('https://', 'https://supabase.com/dashboard/project/')}/sql`);
+      console.log(`   ${SUPABASE_URL!.replace('https://', 'https://supabase.com/dashboard/project/')}/sql`);
       return false;
     }
   }
@@ -160,9 +160,9 @@ async function verifyPolicies() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'apikey': SUPABASE_SERVICE_KEY,
+        'apikey': SUPABASE_SERVICE_KEY!,
         'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
-      },
+      } as Record<string, string>,
       body: JSON.stringify({ query })
     });
     
@@ -220,7 +220,7 @@ async function main() {
     console.error('');
     console.error('🔧 Please apply manually:');
     console.error('   1. Open Supabase SQL Editor:');
-    console.error(`      ${SUPABASE_URL.replace('https://', 'https://supabase.com/dashboard/project/')}/sql`);
+    console.error(`      ${SUPABASE_URL!.replace('https://', 'https://supabase.com/dashboard/project/')}/sql`);
     console.error('   2. Copy contents from: src/lib/fix-rls-policies.sql');
     console.error('   3. Paste and click "Run"');
     console.error('');
