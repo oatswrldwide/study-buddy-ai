@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, Loader2, Bot, User, Plus, Menu } from "lucide-react";
-import { sendMessage, validateMessage } from "@/lib/gemini";
+import { sendMessage, validateMessage } from "@/lib/openrouter";
 import { db } from "@/lib/firebase";
 import {
   collection,
