@@ -92,8 +92,23 @@ const StudentPortal = () => {
 
   // Show subject/grade selector if not selected
   if (!selectedSubject || !selectedGrade) {
-    // Get available subjects (handle both old and new format)
-    const availableSubjects = studentData.subjects || (studentData.primary_subject ? [studentData.primary_subject] : []);
+    // All available subjects - not limited to signup selection
+    const allSubjects = [
+      "Mathematics",
+      "Physical Sciences",
+      "Life Sciences",
+      "English",
+      "Accounting",
+      "Mathematical Literacy",
+      "Business Studies",
+      "Economics",
+      "Afrikaans",
+      "History",
+      "Geography",
+      "Life Orientation",
+      "Information Technology",
+      "Computer Applications Technology",
+    ];
     
     return (
       <div className="h-screen flex items-center justify-center bg-[#343541] p-4">
@@ -118,7 +133,7 @@ const StudentPortal = () => {
                   <SelectValue placeholder="Choose a subject" />
                 </SelectTrigger>
                 <SelectContent>
-                  {availableSubjects.map((subject) => (
+                  {allSubjects.map((subject) => (
                     <SelectItem key={subject} value={subject}>
                       {subject}
                     </SelectItem>
@@ -173,8 +188,23 @@ const StudentPortal = () => {
     );
   }
 
-  // Get available subjects (handle both old and new format)
-  const availableSubjects = studentData.subjects || (studentData.primary_subject ? [studentData.primary_subject] : []);
+  // All available subjects - not limited to signup selection
+  const allSubjects = [
+    "Mathematics",
+    "Physical Sciences",
+    "Life Sciences",
+    "English",
+    "Accounting",
+    "Mathematical Literacy",
+    "Business Studies",
+    "Economics",
+    "Afrikaans",
+    "History",
+    "Geography",
+    "Life Orientation",
+    "Information Technology",
+    "Computer Applications Technology",
+  ];
 
   return (
     <div className="relative h-screen">
@@ -194,7 +224,7 @@ const StudentPortal = () => {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {availableSubjects.map((subject) => (
+                {allSubjects.map((subject) => (
                   <SelectItem key={subject} value={subject}>
                     {subject}
                   </SelectItem>
