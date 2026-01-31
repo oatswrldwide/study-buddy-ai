@@ -15,7 +15,7 @@ const FeaturesStudents = () => {
             <span className="text-gradient">Ace Your Exams</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Your personal AI tutor that's available 24/7, understands your curriculum, and helps you actually learn.
+            24/7 AI tutor for all your subjects.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ const FeaturesStudents = () => {
             ))}
           </div>
           <p className="text-center text-muted-foreground mt-6">
-            Whether it's Maths, Science, or Languages - we've got you covered for CAPS & IEB curriculum.
+            Full CAPS & IEB curriculum coverage.
           </p>
         </div>
 

@@ -5,8 +5,8 @@ export const studentsConfig = {
     badge: "12,000+ SA Students Improving Their Grades",
     headline: "Your AI Study Buddy for Matric Success",
     subheadline:
-      "Get homework help, exam prep & 24/7 tutoring for just R99/month. Designed for CAPS & IEB curriculum. Start your free week today!",
-    ctaPrimary: "Start Free Week",
+      "24/7 homework help and exam prep for R99/month. Start free!",
+    ctaPrimary: "Start Free Trial",
     ctaSecondary: "See Plans",
   },
 
@@ -38,7 +38,7 @@ export const studentsConfig = {
       icon: "MessageSquare",
       title: "AI Tutor 24/7",
       description:
-        "Get help anytime with your homework, assignments, and exam prep. Never study alone again. Available 24/7, even at 2am before your test!",
+        "Get instant homework help anytime. Never study alone again.",
       color: "accent",
       highlights: [
         "Instant explanations",
@@ -51,7 +51,7 @@ export const studentsConfig = {
       icon: "BookOpen",
       title: "All Your Subjects",
       description:
-        "From Maths and Science to Languages and Humanities. We cover everything in your CAPS or IEB curriculum.",
+        "Maths, Science, Languages & more. Full CAPS & IEB curriculum coverage.",
       color: "secondary",
       highlights: [
         "Mathematics",
@@ -66,7 +66,7 @@ export const studentsConfig = {
       icon: "TrendingUp",
       title: "Track Your Progress",
       description:
-        "See your improvement over time. Know your strong subjects and where to focus your energy for better results.",
+        "See your improvement over time and know where to focus.",
       color: "primary",
       highlights: [
         "Subject-by-subject tracking",
@@ -80,23 +80,23 @@ export const studentsConfig = {
   additionalFeatures: [
     {
       icon: "Clock",
-      title: "Exam Preparation",
-      description: "Focused help for trials, prelims, and finals. Past paper practice and topic reviews.",
+      title: "Exam Prep",
+      description: "Practice past papers and review key topics.",
     },
     {
       icon: "CheckCircle",
       title: "Homework Help",
-      description: "Stuck on homework? Get unstuck with explanations that help you understand, not just answers.",
+      description: "Get explanations that help you understand.",
     },
     {
       icon: "Smartphone",
-      title: "Works on Your Phone",
-      description: "Study anywhere, anytime. Works perfectly on your phone, tablet, or computer.",
+      title: "Mobile Friendly",
+      description: "Study anywhere on phone, tablet, or computer.",
     },
     {
       icon: "Award",
       title: "Proven Results",
-      description: "Students improve by an average of 45% after using StudyBuddy for 3 months.",
+      description: "45% average improvement in 3 months.",
     },
   ],
 
@@ -191,47 +191,31 @@ export const studentsConfig = {
   cta: {
     headline: "Ready to Improve Your Grades?",
     subheadline:
-      "Join 12,000+ South African students who are acing their exams with StudyBuddy. Start your free week today - no credit card needed!",
-    ctaPrimary: "Start Free Week",
+      "Join 12,000+ students improving their grades. Start free!",
+    ctaPrimary: "Start Free Trial",
     ctaSecondary: "See Pricing",
     benefits: [
       "Free for 7 days",
-      "No credit card required",
+      "No payment required",
       "Cancel anytime",
-      "Money-back guarantee",
     ],
   },
 
   faq: [
     {
-      question: "How is this different from just using ChatGPT?",
+      question: "Is it really free for a week?",
       answer:
-        "StudyBuddy is specifically designed for South African students. We're aligned with CAPS and IEB curriculum, we guide you to learn (not just give answers), and we track your progress across subjects. Plus, we're affordable at R99/month.",
+        "Yes! Start a free 7-day trial with full access. No payment required. If you love it, subscribe for R99/month.",
     },
     {
       question: "Will this help me with my matric exams?",
       answer:
-        "Absolutely! StudyBuddy is perfect for matric preparation. We help with past papers, explain difficult concepts, and provide focused exam prep. Many students improve by 30-40% in their weakest subjects.",
+        "Absolutely! We help with past papers, explain concepts, and provide exam prep. Students improve by 30-40% on average.",
     },
     {
-      question: "What if I need help in multiple subjects?",
+      question: "What subjects do you cover?",
       answer:
-        "One subscription covers ALL subjects - Maths, Sciences, Languages, Humanities, and more. Ask unlimited questions across any subject you're studying.",
-    },
-    {
-      question: "Can I use it on my phone?",
-      answer:
-        "Yes! StudyBuddy works perfectly on your phone, tablet, or computer. Study anywhere, anytime, even when you're on the go.",
-    },
-    {
-      question: "Is it really free for a week?",
-      answer:
-        "Yes! Start a free 7-day trial with full access to everything. No credit card required. If you love it (which you will), subscribe for just R99/month.",
-    },
-    {
-      question: "What if my parents want to see my progress?",
-      answer:
-        "With our Family Plan (R199/month), your parents get a dashboard to see your progress, time spent studying, and subjects you're working on.",
+        "All subjects - Maths, Sciences, Languages, Humanities, and more. One subscription covers everything you're studying.",
     },
   ],
 };

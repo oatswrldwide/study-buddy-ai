@@ -1,17 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle } from "lucide-react";
-import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import StudentSignupForm from "@/components/forms/StudentSignupForm";
+import { CheckCircle } from "lucide-react";
 import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
 import { studentsConfig } from "@/config/students";
 
 const CTAStudents = () => {
   const { cta } = studentsConfig;
-  const [showForm, setShowForm] = useState(false);
 
   return (
-    <>
     <section className="py-20 lg:py-32 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -31,14 +25,10 @@ const CTAStudents = () => {
               className="shadow-glow bg-accent hover:bg-accent/90 text-white"
               redirectTo="/student-portal"
             />
-            <Button variant="outline" size="xl" onClick={() => setShowForm(true)}>
-              {cta.ctaPrimary}
-              <ArrowRight className="w-5 h-5" />
-            </Button>
           </div>
 
           {/* Benefits */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             {cta.benefits.map((benefit, index) => (
               <div key={index} className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle className="w-5 h-5 text-accent" />
@@ -46,25 +36,9 @@ const CTAStudents = () => {
               </div>
             ))}
           </div>
-
-          {/* Trust Message */}
-          <p className="text-sm text-muted-foreground">
-            12,000+ students already improving their grades. Join them today!
-          </p>
         </div>
       </div>
     </section>
-
-    {/* Student Signup Form Dialog */}
-    <Dialog open={showForm} onOpenChange={setShowForm}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>Start Learning Today</DialogTitle>
-        </DialogHeader>
-        <StudentSignupForm onSuccess={() => setShowForm(false)} />
-      </DialogContent>
-    </Dialog>
-    </>
   );
 };
 

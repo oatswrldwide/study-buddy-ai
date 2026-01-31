@@ -130,17 +130,6 @@ const HeroStudents = () => {
               </div>
             </div>
 
-            {/* Quick Stats */}
-            <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1.5">
-                <Star className="w-4 h-4 fill-accent text-accent" />
-                <span className="font-medium">4.9/5</span>
-              </div>
-              <span className="text-border">•</span>
-              <div>12,000+ learners</div>
-              <span className="text-border">•</span>
-              <div className="text-accent font-medium">Free 7-day trial</div>
-            </div>
           </div>
 
           {/* Right Column - Content */}
@@ -151,42 +140,38 @@ const HeroStudents = () => {
               <span>{hero.badge}</span>
             </div>
 
-            {/* Main Heading - Reduced size and weight */}
+            {/* Main Heading */}
             <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-5">
               {hero.headline}
             </h1>
 
-            {/* Subheading */}
-            <p className="text-base md:text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
+            {/* Subheading - Simplified */}
+            <p className="text-lg text-muted-foreground max-w-xl mb-8">
               {hero.subheadline}
             </p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Single primary action */}
             <div className="flex flex-col sm:flex-row items-start gap-3 mb-8">
               <GoogleSignInButton 
                 size="lg" 
                 className="bg-accent hover:bg-accent/90 text-white shadow-sm"
                 redirectTo="/student-portal"
               />
-              <Button variant="outline" size="lg" className="border-2 border-border hover:bg-muted/50" onClick={() => setShowForm(true)}>
+              <Button variant="outline" size="lg" onClick={() => setShowForm(true)}>
                 {hero.ctaSecondary}
               </Button>
             </div>
 
-            {/* Feature Pills - More subtle */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
-                <BookOpen className="w-4 h-4 text-accent" />
-                <span className="text-sm text-foreground">All Matric Subjects</span>
+            {/* Quick Stats - Simplified */}
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <Star className="w-4 h-4 fill-accent text-accent" />
+                <span>12,000+ students</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
-                <Clock className="w-4 h-4 text-secondary" />
-                <span className="text-sm text-foreground">24/7 Available</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
-                <Smartphone className="w-4 h-4 text-primary" />
-                <span className="text-sm text-foreground">From R99/month</span>
-              </div>
+              <span>•</span>
+              <div className="text-accent font-medium">R99/month</div>
+              <span>•</span>
+              <div>All subjects</div>
             </div>
           </div>
         </div>
