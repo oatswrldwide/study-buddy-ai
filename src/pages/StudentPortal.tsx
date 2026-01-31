@@ -12,7 +12,8 @@ interface StudentData {
   full_name: string;
   email: string;
   grade: number;
-  subjects: string[];
+  subjects?: string[]; // Old format (array)
+  primary_subject?: string; // New format (single subject)
   school_name?: string;
 }
 
@@ -42,9 +43,12 @@ const StudentPortal = () => {
           const data = studentDoc.data() as StudentData;
           setStudentData(data);
           
+          // Handle both old (subjects array) and new (primary_subject string) formats
+          const availableSubjects = data.subjects || (data.primary_subject ? [data.primary_subject] : []);
+          
           // Set initial subject and grade from student data
-          if (data.subjects && data.subjects.length > 0) {
-            setSelectedSubject(data.subjects[0]);
+          if (availableSubjects.length > 0) {
+            setSelectedSubject(availableSubjects[0]);
           }
           if (data.grade) {
             setSelectedGrade(data.grade.toString());
@@ -97,6 +101,9 @@ const StudentPortal = () => {
 
   // Show subject/grade selector if not selected
   if (!selectedSubject || !selectedGrade) {
+    // Get available subjects (handle both old and new format)
+    const availableSubjects = studentData.subjects || (studentData.primary_subject ? [studentData.primary_subject] : []);
+    
     return (
       <div className="h-screen flex items-center justify-center bg-[#343541] p-4">
         <Card className="max-w-md w-full p-6">
@@ -120,7 +127,7 @@ const StudentPortal = () => {
                   <SelectValue placeholder="Choose a subject" />
                 </SelectTrigger>
                 <SelectContent>
-                  {studentData.subjects.map((subject) => (
+                  {availableSubjects.map((subject) => (
                     <SelectItem key={subject} value={subject}>
                       {subject}
                     </SelectItem>
@@ -175,6 +182,9 @@ const StudentPortal = () => {
     );
   }
 
+  // Get available subjects (handle both old and new format)
+  const availableSubjects = studentData.subjects || (studentData.primary_subject ? [studentData.primary_subject] : []);
+
   return (
     <div className="relative h-screen">
       {/* Header with student info and controls */}
@@ -193,7 +203,7 @@ const StudentPortal = () => {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {studentData.subjects.map((subject) => (
+                {availableSubjects.map((subject) => (
                   <SelectItem key={subject} value={subject}>
                     {subject}
                   </SelectItem>
