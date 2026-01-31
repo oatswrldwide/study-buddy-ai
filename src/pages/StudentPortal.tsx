@@ -43,16 +43,7 @@ const StudentPortal = () => {
           const data = studentDoc.data() as StudentData;
           setStudentData(data);
           
-          // Handle both old (subjects array) and new (primary_subject string) formats
-          const availableSubjects = data.subjects || (data.primary_subject ? [data.primary_subject] : []);
-          
-          // Set initial subject and grade from student data
-          if (availableSubjects.length > 0) {
-            setSelectedSubject(availableSubjects[0]);
-          }
-          if (data.grade) {
-            setSelectedGrade(data.grade.toString());
-          }
+          // Don't auto-select subject/grade - let user choose
         } else {
           setError("Student profile not found. Please contact support.");
         }
