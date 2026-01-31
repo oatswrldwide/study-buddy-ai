@@ -3,10 +3,6 @@
 
 const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY
 
-if (!apiKey) {
-  throw new Error('Missing OpenRouter API key')
-}
-
 // System prompt aligned with CAPS and IEB curriculum
 const SYSTEM_PROMPT = `You are StudyBuddy, an AI tutor specializing in South African CAPS and IEB curricula for grades 8-12.
 
@@ -61,6 +57,11 @@ export async function* sendMessage(
   userMessage: string,
   options: ChatOptions
 ): AsyncGenerator<string, void, unknown> {
+  // Check API key at runtime
+  if (!apiKey) {
+    throw new Error('OpenRouter API key is not configured. Please add VITE_OPENROUTER_API_KEY to your environment variables.')
+  }
+
   // Build messages array
   const messages = [
     {
@@ -144,6 +145,11 @@ export async function generateTitle(
   firstUserMessage: string,
   subject: string
 ): Promise<string> {
+  // Check API key at runtime
+  if (!apiKey) {
+    return `${subject} - ${firstUserMessage.substring(0, 30)}...`
+  }
+
   const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
     headers: {
