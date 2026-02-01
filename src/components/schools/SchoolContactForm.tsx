@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Send, CheckCircle } from "lucide-react";
-import emailjs from '@emailjs/browser';
 
 const SchoolContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -15,21 +14,25 @@ const SchoolContactForm = () => {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      // Send email using EmailJS
-      await emailjs.sendForm(
-        'service_qz9w8li',  // EmailJS service ID
-        'template_schools',  // EmailJS template ID
-        e.currentTarget,
-        'JGOVBcxNAE6pTm-7h'  // EmailJS public key
-      );
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-      setSubmitted(true);
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you within 24 hours.",
+    try {
+      const response = await fetch("https://getform.io/f/bkkgonwa", {
+        method: "POST",
+        body: formData,
       });
-      e.currentTarget.reset();
+
+      if (response.ok) {
+        setSubmitted(true);
+        toast({
+          title: "Message Sent!",
+          description: "We'll get back to you within 24 hours.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Failed to send");
+      }
     } catch (error) {
       toast({
         title: "Error",
