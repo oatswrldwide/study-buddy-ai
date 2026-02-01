@@ -155,7 +155,7 @@ const HeroStudents = () => {
               <GoogleSignInButton 
                 size="lg" 
                 className="bg-accent hover:bg-accent/90 text-white shadow-sm"
-                redirectTo="/student-portal"
+                createStudentProfile={true}
               />
               <Button variant="outline" size="lg" onClick={() => setShowForm(true)}>
                 {hero.ctaSecondary}

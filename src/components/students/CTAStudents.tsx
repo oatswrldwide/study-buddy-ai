@@ -23,7 +23,7 @@ const CTAStudents = () => {
               variant="default" 
               size="xl" 
               className="shadow-glow bg-accent hover:bg-accent/90 text-white"
-              redirectTo="/student-portal"
+              createStudentProfile={true}
             />
           </div>
 

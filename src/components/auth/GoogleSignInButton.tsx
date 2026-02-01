@@ -3,19 +3,23 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { db } from "@/lib/firebase";
+import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 
 interface GoogleSignInButtonProps {
   variant?: "default" | "outline";
   size?: "default" | "sm" | "lg" | "xl";
   className?: string;
   redirectTo?: string;
+  createStudentProfile?: boolean; // New prop to create student profile
 }
 
 const GoogleSignInButton = ({ 
   variant = "outline", 
   size = "lg",
   className = "",
-  redirectTo
+  redirectTo,
+  createStudentProfile = false
 }: GoogleSignInButtonProps) => {
   const { signInWithGoogle, user, role } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -37,14 +41,47 @@ const GoogleSignInButton = ({
         return;
       }
 
-      toast({
-        title: "Welcome!",
-        description: "Successfully signed in with Google",
-      });
+      // If createStudentProfile is true and we have a user, create/update student_signups doc
+      if (createStudentProfile && signInWithGoogle) {
+        // Wait a moment for auth to complete
+        setTimeout(async () => {
+          const currentUser = (await import("@/lib/firebase")).auth.currentUser;
+          if (currentUser) {
+            try {
+              const studentRef = doc(db, "student_signups", currentUser.uid);
+              const studentDoc = await getDoc(studentRef);
+              
+              // Only create if doesn't exist
+              if (!studentDoc.exists()) {
+                const [firstName, ...lastNameParts] = (currentUser.displayName || "Student").split(" ");
+                await setDoc(studentRef, {
+                  full_name: currentUser.displayName || "Student",
+                  email: currentUser.email,
+                  grade: 10, // Default grade, can be changed later
+                  primary_subject: "Mathematics", // Default subject
+                  created_at: serverTimestamp(),
+                  signup_method: "google",
+                });
+                console.log("✅ Created student profile for Google sign-in");
+              }
+              
+              // Navigate to student portal after profile is created
+              navigate("/student-portal");
+            } catch (err) {
+              console.error("Error creating student profile:", err);
+            }
+          }
+          setLoading(false);
+        }, 1000);
+      } else {
+        toast({
+          title: "Welcome!",
+          description: "Successfully signed in with Google",
+        });
+        setLoading(false);
+      }
 
-      // Don't navigate immediately - let the Login page or AuthContext handle it
-      // The useEffect in Login.tsx will redirect based on role once it's loaded
-      console.log("Google sign-in successful, waiting for role detection...");
+      console.log("Google sign-in successful");
       
     } catch (error) {
       console.error("Google sign-in error:", error);
