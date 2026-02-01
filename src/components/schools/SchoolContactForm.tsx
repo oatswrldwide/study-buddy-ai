@@ -18,7 +18,8 @@ const SchoolContactForm = () => {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://formspree.io/f/xbljelry", {
+      // Using Formspree's hashid endpoint
+      const response = await fetch("https://formspree.io/f/mkgnngno", {
         method: "POST",
         body: formData,
         headers: {
