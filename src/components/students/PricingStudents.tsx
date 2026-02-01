@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Sparkles } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import PricingCard from "@/components/shared/PricingCard";
@@ -24,23 +25,14 @@ const PricingStudents = () => {
             Choose Your{" "}
             <span className="text-gradient">Study Plan</span>
           </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            From free to full access. Pick what works for you. No long-term contracts. Cancel anytime.
+          <p className="text-lg text-muted-foreground mb-4">
+            Start with 5 free questions daily. Upgrade to unlimited for just R200/year!
           </p>
-
-          {/* Billing Toggle */}
-          <div className="flex justify-center">
-            <Tabs value={billingPeriod} onValueChange={(value) => setBillingPeriod(value as "monthly" | "annual")}>
-              <TabsList className="bg-card">
-                <TabsTrigger value="monthly">Monthly</TabsTrigger>
-                <TabsTrigger value="annual">
-                  Annual
-                  <span className="ml-2 text-xs bg-accent text-accent-foreground px-2 py-0.5 rounded-full">
-                    Save 20%
-                  </span>
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
+          
+          {/* Special Offer Banner */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-semibold mb-8 shadow-lg">
+            <Sparkles className="w-4 h-4" />
+            <span>Special Launch Offer - R200 for Full Year Access!</span>
           </div>
         </div>
 
@@ -58,12 +50,12 @@ const PricingStudents = () => {
 
         {/* Comparison Note */}
         <div className="mt-16 max-w-3xl mx-auto">
-          <div className="p-6 rounded-xl bg-card border border-border text-center">
+          <div className="p-6 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 text-center">
             <h3 className="font-bold text-foreground mb-2">
-              R99/month = less than a cup of coffee per week
+              R200/year = Just R16.67 per month!
             </h3>
             <p className="text-muted-foreground text-sm">
-              Compare to private tutors at R300-500/hour. StudyBuddy gives you unlimited help for a flat monthly fee.
+              Compare to private tutors at R300-500/hour. StudyBuddy gives you unlimited AI help 24/7 for an entire year.
             </p>
           </div>
         </div>

@@ -1,6 +1,5 @@
-import { CheckCircle, ArrowRight, Shield } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
-import { Button } from "@/components/ui/button";
 import { studentsConfig } from "@/config/students";
 
 const CTAStudents = () => {
@@ -18,45 +17,32 @@ const CTAStudents = () => {
             {cta.subheadline}
           </p>
 
-          {/* CTA Buttons - Clear Sign Up vs Sign In */}
-          <div className="mb-10">
-            {/* Sign Up Section */}
-            <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-8 mb-6 text-white">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div className="text-left">
-                  <div className="text-sm font-semibold uppercase tracking-wide mb-2 opacity-90">
-                    🎉 Special Launch Offer
-                  </div>
-                  <div className="text-3xl font-bold mb-2">
-                    R200<span className="text-lg">/year</span>
-                  </div>
-                  <div className="text-sm opacity-90">
-                    Unlimited questions • All subjects • Full year access
-                  </div>
-                </div>
-                <GoogleSignInButton 
-                  variant="default" 
-                  size="xl" 
-                  className="bg-white hover:bg-white/90 text-purple-600 shadow-lg"
-                  createStudentProfile={true}
-                />
-              </div>
-            </div>
-
-            {/* Sign In Link */}
+          {/* CTA Buttons - Differentiated */}
+          <div className="flex flex-col items-center justify-center gap-6 mb-10">
+            {/* Sign Up - New Users */}
             <div className="text-center">
-              <p className="text-muted-foreground mb-3">
-                Already have an account?
+              <GoogleSignInButton 
+                variant="default" 
+                size="xl" 
+                className="shadow-glow bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                createStudentProfile={true}
+              />
+              <p className="text-sm text-muted-foreground mt-2">
+                New student? Sign up and get 5 free questions daily
               </p>
-              <Button 
-                variant="outline" 
-                size="lg"
+            </div>
+            
+            {/* Sign In - Existing Users */}
+            <div className="text-center">
+              <button
                 onClick={() => window.location.href = '/login'}
+                className="px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-lg font-semibold transition-all"
               >
-                <Shield className="w-4 h-4 mr-2" />
-                Sign In to Your Account
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+                Already a Student? Sign In
+              </button>
+              <p className="text-sm text-muted-foreground mt-2">
+                Continue your learning journey
+              </p>
             </div>
           </div>
 
