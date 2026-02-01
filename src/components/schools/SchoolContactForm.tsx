@@ -18,8 +18,8 @@ const SchoolContactForm = () => {
     const formData = new FormData(form);
 
     try {
-      // Using Formspree's hashid endpoint
-      const response = await fetch("https://formspree.io/f/mkgnngno", {
+      // Using FormSubmit.co - no setup required, sends directly to email
+      const response = await fetch("https://formsubmit.co/ongezile.mqokeli@gmail.com", {
         method: "POST",
         body: formData,
         headers: {
