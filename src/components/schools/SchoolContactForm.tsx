@@ -10,40 +10,9 @@ const SchoolContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Let the form submit naturally to Formspree
     setLoading(true);
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitted(true);
-        toast({
-          title: "Message Sent!",
-          description: "We'll get back to you within 24 hours.",
-        });
-        form.reset();
-      } else {
-        throw new Error("Failed to send");
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
   };
 
   if (submitted) {
@@ -64,13 +33,12 @@ const SchoolContactForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Hidden fields for Web3Forms */}
-      <input type="hidden" name="access_key" value="9c0e8b4f-d4e5-4a85-b5c0-8e7f3a2d1c9b" />
-      <input type="hidden" name="subject" value="New School Inquiry from StudyBuddy" />
-      <input type="hidden" name="from_name" value="StudyBuddy Schools Form" />
-      <input type="hidden" name="to_email" value="ongezile.mqokeli@gmail.com" />
-      
+    <form 
+      action="https://formspree.io/f/xpwarnkg" 
+      method="POST"
+      onSubmit={handleSubmit} 
+      className="space-y-4"
+    >
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
