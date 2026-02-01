@@ -34,11 +34,12 @@ const SchoolContactForm = () => {
 
   return (
     <form 
-      action="https://formspree.io/f/xpwarnkg" 
+      action="https://public.herotofu.com/v1/8e7b0a20-e0f4-11ef-a448-a3e390a5b43f" 
       method="POST"
       onSubmit={handleSubmit} 
       className="space-y-4"
     >
+      <input type="hidden" name="_redirect" value="https://studybuddy.works/schools?success=true" />
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
