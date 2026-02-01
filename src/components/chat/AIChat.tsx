@@ -25,9 +25,18 @@ interface AIChatProps {
   grade: number;
   conversationId?: string;
   studentSignupId?: string;
+  hasPaid?: boolean;
+  onQuestionAsked?: () => Promise<void>;
 }
 
-const AIChat = ({ subject, grade, conversationId: initialConversationId, studentSignupId }: AIChatProps) => {
+const AIChat = ({ 
+  subject, 
+  grade, 
+  conversationId: initialConversationId, 
+  studentSignupId,
+  hasPaid = false,
+  onQuestionAsked,
+}: AIChatProps) => {
   const [conversationId, setConversationId] = useState<string | null>(initialConversationId || null);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -132,6 +141,11 @@ const AIChat = ({ subject, grade, conversationId: initialConversationId, student
     if (!validation.valid) {
       alert(validation.reason);
       return;
+    }
+
+    // Track question for free users
+    if (onQuestionAsked) {
+      await onQuestionAsked();
     }
 
     const userMessage: Message = {

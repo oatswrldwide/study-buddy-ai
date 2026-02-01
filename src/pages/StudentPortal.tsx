@@ -4,9 +4,10 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { LogOut, BookOpen, GraduationCap } from "lucide-react";
 import { db } from "@/lib/firebase";
-import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
+import YocoPaymentWall from "@/components/payment/YocoPaymentWall";
 
 interface StudentData {
   full_name: string;
@@ -15,6 +16,11 @@ interface StudentData {
   subjects?: string[]; // Old format (array)
   primary_subject?: string; // New format (single subject)
   school_name?: string;
+  status?: string; // 'trial' | 'active' | 'inactive'
+  payment_status?: string; // 'pending' | 'paid'
+  questions_today?: number; // Daily question count
+  last_question_date?: string; // Last question timestamp
+  subscription_end?: any; // Subscription expiry
 }
 
 const StudentPortal = () => {
@@ -24,6 +30,37 @@ const StudentPortal = () => {
   const [studentData, setStudentData] = useState<StudentData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [questionsRemaining, setQuestionsRemaining] = useState(5);
+
+  // Helper function to check if user has paid
+  const hasPaid = () => {
+    return studentData?.payment_status === "paid" && studentData?.status === "active";
+  };
+
+  // Helper function to check and reset daily questions
+  const checkDailyQuestions = (data: StudentData) => {
+    const today = new Date().toDateString();
+    const lastQuestionDate = data.last_question_date || "";
+    
+    if (lastQuestionDate !== today) {
+      // New day - reset questions
+      return 5;
+    }
+    return Math.max(0, 5 - (data.questions_today || 0));
+  };
+
+  // Handle payment success
+  const handlePaymentSuccess = async () => {
+    if (!user) return;
+    // Reload student data
+    const studentRef = doc(db, "student_signups", user.uid);
+    const studentDoc = await getDoc(studentRef);
+    if (studentDoc.exists()) {
+      const data = studentDoc.data() as StudentData;
+      setStudentData(data);
+      setQuestionsRemaining(checkDailyQuestions(data));
+    }
+  };
 
   useEffect(() => {
     const loadStudentData = async () => {
@@ -42,6 +79,10 @@ const StudentPortal = () => {
         if (studentDoc.exists()) {
           const data = studentDoc.data() as StudentData;
           setStudentData(data);
+          
+          // Initialize question tracking
+          const remaining = checkDailyQuestions(data);
+          setQuestionsRemaining(remaining);
           
           // Don't auto-select subject/grade - let user choose
         } else {
@@ -105,6 +146,11 @@ const StudentPortal = () => {
         </Card>
       </div>
     );
+  }
+
+  // Show payment wall if user is out of free questions and hasn't paid
+  if (!hasPaid() && questionsRemaining <= 0) {
+    return <YocoPaymentWall questionsRemaining={questionsRemaining} onPaymentSuccess={handlePaymentSuccess} />;
   }
 
   // Show subject/grade selector if not selected
@@ -234,14 +280,21 @@ const StudentPortal = () => {
               <p className="text-sm font-medium truncate max-w-[180px]">{studentData.full_name}</p>
               <p className="text-xs text-white/50">{selectedSubject} • Grade {selectedGrade}</p>
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleLogout}
-              className="bg-white/10 hover:bg-white/20 text-white px-2"
-            >
-              <LogOut className="w-4 h-4" />
-            </Button>
+            <div className="flex items-center gap-2">
+              {!hasPaid() && (
+                <div className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-medium">
+                  {questionsRemaining} left
+                </div>
+              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleLogout}
+                className="bg-white/10 hover:bg-white/20 text-white px-2"
+              >
+                <LogOut className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
           <Select value={selectedSubject} onValueChange={setSelectedSubject}>
             <SelectTrigger className="w-full bg-white/10 text-white border-white/20 h-9">
@@ -264,6 +317,11 @@ const StudentPortal = () => {
               <p className="text-sm font-medium">{studentData.full_name}</p>
               <p className="text-xs text-white/50">{selectedSubject} • Grade {selectedGrade}</p>
             </div>
+            {!hasPaid() && (
+              <div className="bg-purple-500/20 text-purple-300 px-3 py-1.5 rounded-full text-xs font-medium">
+                {questionsRemaining} questions left today
+              </div>
+            )}
           </div>
           
           <div className="flex items-center gap-2">
@@ -299,6 +357,21 @@ const StudentPortal = () => {
           subject={selectedSubject} 
           grade={parseInt(selectedGrade)} 
           studentSignupId={user?.uid}
+          hasPaid={hasPaid()}
+          onQuestionAsked={async () => {
+            if (!hasPaid() && user) {
+              // Decrement question count
+              const today = new Date().toDateString();
+              const studentRef = doc(db, "student_signups", user.uid);
+              
+              await updateDoc(studentRef, {
+                questions_today: (studentData?.questions_today || 0) + 1,
+                last_question_date: today,
+              });
+              
+              setQuestionsRemaining(prev => Math.max(0, prev - 1));
+            }
+          }}
         />
       </div>
     </div>
