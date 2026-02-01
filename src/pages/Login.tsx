@@ -12,24 +12,32 @@ const Login = () => {
   useEffect(() => {
     console.log("Login useEffect - user:", user, "role:", role);
     
-    if (user && role) {
-      console.log("Redirecting to dashboard for role:", role);
-      // Redirect logged-in users to their dashboard
-      switch (role) {
-        case "admin":
-          navigate("/admin/dashboard");
-          break;
-        case "school":
-          navigate("/school/dashboard");
-          break;
-        case "parent":
-          navigate("/parent/dashboard");
-          break;
-        case "student":
-          navigate("/student-portal");
-          break;
-        default:
-          navigate("/");
+    if (user) {
+      if (role) {
+        console.log("Redirecting to dashboard for role:", role);
+        // Redirect logged-in users to their dashboard
+        switch (role) {
+          case "admin":
+            navigate("/admin/dashboard");
+            break;
+          case "school":
+            navigate("/school/dashboard");
+            break;
+          case "parent":
+            navigate("/parent/dashboard");
+            break;
+          case "student":
+            navigate("/student-portal");
+            break;
+          default:
+            navigate("/");
+        }
+      } else if (!role && user.email) {
+        // User is logged in but has no role detected
+        // Assume they're a student (most common case) and redirect to student portal
+        // The portal will handle missing profile data
+        console.log("User logged in but no role detected - redirecting to student portal");
+        navigate("/student-portal");
       }
     }
   }, [user, role, navigate]);

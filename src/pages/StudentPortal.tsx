@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { LogOut, BookOpen, GraduationCap } from "lucide-react";
 import { db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
 
@@ -45,7 +45,24 @@ const StudentPortal = () => {
           
           // Don't auto-select subject/grade - let user choose
         } else {
-          setError("Student profile not found. Please contact support.");
+          // Profile doesn't exist - create a default one for Google sign-in users
+          console.log("No student profile found - creating default profile");
+          const defaultProfile: StudentData = {
+            full_name: user.displayName || user.email?.split('@')[0] || "Student",
+            email: user.email || "",
+            grade: 10,
+            primary_subject: "Mathematics",
+          };
+          
+          // Create the profile in Firestore
+          await setDoc(studentRef, {
+            ...defaultProfile,
+            created_at: serverTimestamp(),
+            signup_method: "google",
+          });
+          
+          setStudentData(defaultProfile);
+          console.log("✅ Created default student profile");
         }
       } catch (error) {
         console.error("Error loading student data:", error);
