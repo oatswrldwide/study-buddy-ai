@@ -51,11 +51,13 @@ const StudentPortal = () => {
     const today = new Date().toDateString();
     const lastQuestionDate = data.last_question_date || "";
     
+    // If it's a different day, reset to 5
     if (lastQuestionDate !== today) {
-      // New day - reset questions
       return 5;
     }
-    return Math.max(0, 5 - (data.questions_today || 0));
+    // Same day - return remaining questions based on today's usage
+    const questionsUsed = data.questions_today || 0;
+    return Math.max(0, 5 - questionsUsed);
   };
 
   // Handle payment success
@@ -87,6 +89,20 @@ const StudentPortal = () => {
 
         if (studentDoc.exists()) {
           const data = studentDoc.data() as StudentData;
+          
+          // Check if it's a new day and reset question count in Firestore
+          const today = new Date().toDateString();
+          const lastQuestionDate = data.last_question_date || "";
+          if (lastQuestionDate && lastQuestionDate !== today) {
+            // New day - reset the counter in Firestore
+            await updateDoc(studentRef, {
+              questions_today: 0,
+              last_question_date: today,
+            });
+            data.questions_today = 0;
+            data.last_question_date = today;
+          }
+          
           setStudentData(data);
           
           // Initialize question tracking

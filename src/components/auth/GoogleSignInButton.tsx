@@ -55,6 +55,7 @@ const GoogleSignInButton = ({
               
               // Only create if doesn't exist
               if (!studentDoc.exists()) {
+                const today = new Date().toDateString();
                 await setDoc(studentRef, {
                   full_name: currentUser.displayName || "Student",
                   email: currentUser.email,
@@ -64,7 +65,7 @@ const GoogleSignInButton = ({
                   signup_method: "google",
                   status: "trial",
                   questions_today: 0,
-                  last_question_date: "",
+                  last_question_date: today, // Set to today to prevent immediate reset
                 });
                 console.log("✅ Created student profile for Google sign-in");
                 
