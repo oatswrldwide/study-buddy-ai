@@ -31,6 +31,15 @@ const StudentPortal = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [questionsRemaining, setQuestionsRemaining] = useState(5);
+  const [showPaymentWall, setShowPaymentWall] = useState(false);
+
+  // Check URL params for upgrade intent
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('upgrade') === 'true') {
+      setShowPaymentWall(true);
+    }
+  }, []);
 
   // Helper function to check if user has paid
   const hasPaid = () => {
@@ -148,8 +157,8 @@ const StudentPortal = () => {
     );
   }
 
-  // Show payment wall if user is out of free questions and hasn't paid
-  if (!hasPaid() && questionsRemaining <= 0) {
+  // Show payment wall if user wants to upgrade OR is out of free questions and hasn't paid
+  if (showPaymentWall || (!hasPaid() && questionsRemaining <= 0)) {
     return <YocoPaymentWall questionsRemaining={questionsRemaining} onPaymentSuccess={handlePaymentSuccess} />;
   }
 

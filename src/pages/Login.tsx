@@ -13,6 +13,10 @@ const Login = () => {
     console.log("Login useEffect - user:", user, "role:", role);
     
     if (user) {
+      // Check if user wants to upgrade
+      const params = new URLSearchParams(window.location.search);
+      const wantsUpgrade = params.get('upgrade') === 'true';
+      
       if (role) {
         console.log("Redirecting to dashboard for role:", role);
         // Redirect logged-in users to their dashboard
@@ -27,7 +31,7 @@ const Login = () => {
             navigate("/parent/dashboard");
             break;
           case "student":
-            navigate("/student-portal");
+            navigate(wantsUpgrade ? "/student-portal?upgrade=true" : "/student-portal");
             break;
           default:
             navigate("/");
@@ -37,7 +41,7 @@ const Login = () => {
         // Assume they're a student (most common case) and redirect to student portal
         // The portal will handle missing profile data
         console.log("User logged in but no role detected - redirecting to student portal");
-        navigate("/student-portal");
+        navigate(wantsUpgrade ? "/student-portal?upgrade=true" : "/student-portal");
       }
     }
   }, [user, role, navigate]);

@@ -134,10 +134,14 @@ const GoogleSignInButton = ({
       
       {showPaymentPrompt && (
         <PaymentPromptModal
-          onClose={() => setShowPaymentPrompt(false)}
+          onClose={() => {
+            setShowPaymentPrompt(false);
+            navigate("/student-portal");
+          }}
           onUpgrade={() => {
             setShowPaymentPrompt(false);
-            // User will see payment wall when they hit question limit
+            // Navigate to portal where they'll see payment wall
+            navigate("/student-portal");
           }}
         />
       )}

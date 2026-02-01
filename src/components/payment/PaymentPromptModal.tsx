@@ -80,24 +80,23 @@ const PaymentPromptModal = ({ onClose, onUpgrade }: PaymentPromptModalProps) => 
         <div className="space-y-3">
           <Button
             onClick={() => {
-              onClose();
-              navigate("/student-portal");
+              onUpgrade();
             }}
             className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold"
             size="lg"
           >
-            Try Free Questions
+            Upgrade Now - R200/Year
           </Button>
           <Button
             onClick={() => {
-              onUpgrade();
+              onClose();
               navigate("/student-portal");
             }}
             variant="outline"
             className="w-full"
             size="lg"
           >
-            Upgrade Now - R200/Year
+            Try 5 Free Questions Daily
           </Button>
         </div>
 

@@ -165,6 +165,21 @@ const HeroStudents = () => {
                 </p>
               </div>
               
+              {/* Upgrade Button - Direct to Payment */}
+              <div>
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-lg w-full sm:w-auto"
+                  onClick={() => window.location.href = '/login?upgrade=true'}
+                >
+                  Upgrade Now - R200/Year
+                  <Sparkles className="w-4 h-4 ml-2" />
+                </Button>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Already have an account? Sign in and upgrade to unlimited
+                </p>
+              </div>
+              
               {/* Secondary CTA - Sign In (Existing Users) */}
               <div>
                 <Button 
@@ -177,7 +192,7 @@ const HeroStudents = () => {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 <p className="text-xs text-muted-foreground mt-2">
-                  Already have an account? Sign in to continue learning
+                  Continue with your free daily questions
                 </p>
               </div>
             </div>
