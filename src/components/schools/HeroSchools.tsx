@@ -73,8 +73,6 @@ const HeroSchools = () => {
             </div>
           </div>
 
-          </div>
-
           {/* Right Column - Contact Form */}
           <div className="relative">
             <div className="bg-white rounded-xl shadow-2xl border border-border p-8">
