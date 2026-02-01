@@ -150,26 +150,51 @@ const HeroStudents = () => {
               {hero.subheadline}
             </p>
 
-            {/* CTA Buttons - Single primary action */}
-            <div className="flex flex-col sm:flex-row items-start gap-3 mb-8">
-              <GoogleSignInButton 
-                size="lg" 
-                className="bg-accent hover:bg-accent/90 text-white shadow-sm"
-                createStudentProfile={true}
-              />
-              <Button variant="outline" size="lg" onClick={() => setShowForm(true)}>
-                {hero.ctaSecondary}
-              </Button>
+            {/* CTA Buttons - Separate Sign Up and Sign In */}
+            <div className="space-y-4 mb-8">
+              {/* Sign Up - Primary CTA with pricing */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <GoogleSignInButton 
+                    size="lg" 
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl transition-all"
+                    createStudentProfile={true}
+                  />
+                  <div className="bg-green-50 border-2 border-green-500 rounded-lg px-4 py-2">
+                    <div className="text-sm font-bold text-green-700">R200/year</div>
+                    <div className="text-xs text-green-600">Special Offer</div>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground pl-1">
+                  New user? Sign up above • 5 free questions daily or upgrade to unlimited
+                </p>
+              </div>
+
+              {/* Sign In - Secondary for existing users */}
+              <div className="pt-4 border-t border-border">
+                <p className="text-sm text-muted-foreground mb-3">
+                  Already have an account?
+                </p>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={() => window.location.href = '/login'}
+                  className="w-full sm:w-auto"
+                >
+                  <Shield className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+              </div>
             </div>
 
-            {/* Quick Stats - Simplified */}
+            {/* Quick Stats - Updated pricing */}
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1.5">
                 <Star className="w-4 h-4 fill-accent text-accent" />
                 <span>12,000+ students</span>
               </div>
               <span>•</span>
-              <div className="text-accent font-medium">R99/month</div>
+              <div className="text-purple-600 font-bold">R200/year</div>
               <span>•</span>
               <div>All subjects</div>
             </div>
