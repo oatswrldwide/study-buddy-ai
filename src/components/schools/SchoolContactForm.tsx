@@ -4,15 +4,41 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Send, CheckCircle } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 const SchoolContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // Let the form submit naturally to Formspree
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
+
+    try {
+      // Send email using EmailJS
+      await emailjs.sendForm(
+        'service_qz9w8li',  // EmailJS service ID
+        'template_schools',  // EmailJS template ID
+        e.currentTarget,
+        'JGOVBcxNAE6pTm-7h'  // EmailJS public key
+      );
+
+      setSubmitted(true);
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+      e.currentTarget.reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -33,13 +59,7 @@ const SchoolContactForm = () => {
   }
 
   return (
-    <form 
-      action="https://public.herotofu.com/v1/8e7b0a20-e0f4-11ef-a448-a3e390a5b43f" 
-      method="POST"
-      onSubmit={handleSubmit} 
-      className="space-y-4"
-    >
-      <input type="hidden" name="_redirect" value="https://studybuddy.works/schools?success=true" />
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
