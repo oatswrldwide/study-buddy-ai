@@ -209,8 +209,39 @@ const StudentPortal = () => {
   return (
     <div className="relative h-screen">
       {/* Header with student info and controls */}
-      <div className="absolute top-0 left-0 right-0 z-50 bg-[#343541] border-b border-white/10 px-4 py-2">
-        <div className="flex items-center justify-between">
+      <div className="absolute top-0 left-0 right-0 z-50 bg-[#343541] border-b border-white/10 px-3 sm:px-4 py-2">
+        {/* Mobile: Stacked layout */}
+        <div className="block sm:hidden space-y-2">
+          <div className="flex items-center justify-between">
+            <div className="text-white">
+              <p className="text-sm font-medium truncate max-w-[180px]">{studentData.full_name}</p>
+              <p className="text-xs text-white/50">{selectedSubject} • Grade {selectedGrade}</p>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleLogout}
+              className="bg-white/10 hover:bg-white/20 text-white px-2"
+            >
+              <LogOut className="w-4 h-4" />
+            </Button>
+          </div>
+          <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+            <SelectTrigger className="w-full bg-white/10 text-white border-white/20 h-9">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {allSubjects.map((subject) => (
+                <SelectItem key={subject} value={subject}>
+                  {subject}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Desktop: Horizontal layout */}
+        <div className="hidden sm:flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="text-white">
               <p className="text-sm font-medium">{studentData.full_name}</p>
@@ -245,8 +276,8 @@ const StudentPortal = () => {
         </div>
       </div>
       
-      {/* Chat interface with top padding for header */}
-      <div className="h-full pt-16">
+      {/* Chat interface with top padding for header - adjusted for mobile stacked header */}
+      <div className="h-full pt-20 sm:pt-16">
         <AIChat 
           subject={selectedSubject} 
           grade={parseInt(selectedGrade)} 
