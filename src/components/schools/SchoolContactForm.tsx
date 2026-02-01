@@ -18,16 +18,14 @@ const SchoolContactForm = () => {
     const formData = new FormData(form);
 
     try {
-      // Using FormSubmit.co - no setup required, sends directly to email
-      const response = await fetch("https://formsubmit.co/ongezile.mqokeli@gmail.com", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
-        headers: {
-          Accept: "application/json",
-        },
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
         setSubmitted(true);
         toast({
           title: "Message Sent!",
@@ -67,6 +65,12 @@ const SchoolContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Hidden fields for Web3Forms */}
+      <input type="hidden" name="access_key" value="9c0e8b4f-d4e5-4a85-b5c0-8e7f3a2d1c9b" />
+      <input type="hidden" name="subject" value="New School Inquiry from StudyBuddy" />
+      <input type="hidden" name="from_name" value="StudyBuddy Schools Form" />
+      <input type="hidden" name="to_email" value="ongezile.mqokeli@gmail.com" />
+      
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
