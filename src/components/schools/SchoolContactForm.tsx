@@ -32,3 +32,5 @@ const SchoolContactForm = () => {
     </div>
   );
 };
+
+export default SchoolContactForm;
