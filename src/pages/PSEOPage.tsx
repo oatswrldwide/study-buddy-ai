@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import type { PSEOPage } from '@/lib/pseo-types';
@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function PSEOPageTemplate() {
   const { slug } = useParams<{ slug: string }>();
@@ -187,7 +189,7 @@ export default function PSEOPageTemplate() {
         <meta property="og:title" content={page.metaTitle} />
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://studybuddyworks.com/${page.slug}`} />
+        <meta property="og:url" content={`https://studybuddy.works/${page.slug}`} />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -195,7 +197,7 @@ export default function PSEOPageTemplate() {
         <meta name="twitter:description" content={page.metaDescription} />
         
         {/* Canonical */}
-        <link rel="canonical" href={`https://studybuddyworks.com/${page.slug}`} />
+        <link rel="canonical" href={`https://studybuddy.works/${page.slug}`} />
         
         {/* Schema.org markup for AEO */}
         {schemaMarkup && (
@@ -213,106 +215,127 @@ export default function PSEOPageTemplate() {
         <meta property="article:modified_time" content={page.lastUpdated} />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
+        <Header />
+        
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-primary/10 to-background py-12">
-          <div className="container max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        <section className="relative bg-gradient-to-br from-primary via-secondary to-primary py-16 md:py-24">
+          <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:32px_32px]" />
+          <div className="container max-w-5xl relative">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
               {page.title}
             </h1>
             {page.quickAnswer && (
-              <div className="bg-card border-l-4 border-primary p-6 rounded-lg shadow-sm">
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {page.quickAnswer}
-                </p>
+              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 p-6 md:p-8 rounded-2xl shadow-xl">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
+                    {page.quickAnswer}
+                  </p>
+                </div>
               </div>
             )}
           </div>
         </section>
 
         {/* Main Content */}
-        <article className="container max-w-4xl py-12">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
+        <article className="container max-w-5xl py-12 md:py-16">
+          <div className="prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 max-w-none">
             <ReactMarkdown>{page.content}</ReactMarkdown>
           </div>
 
           {/* FAQ Section (AEO-optimized) */}
           {page.faqs && page.faqs.length > 0 && (
-            <div className="mt-12 bg-card p-8 rounded-lg border">
-              <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <div className="mt-16 bg-gradient-to-br from-gray-50 to-white p-8 md:p-12 rounded-2xl border border-gray-200 shadow-sm">
+              <h2 className="text-3xl font-bold mb-8 text-gray-900">Frequently Asked Questions</h2>
               <div className="space-y-6">
                 {page.faqs.map((faq, index) => (
-                  <div key={index} className="border-b last:border-0 pb-6 last:pb-0">
-                    <h3 className="text-lg font-semibold mb-2 flex items-start gap-2">
+                  <div key={index} className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                    <h3 className="text-lg font-semibold mb-3 flex items-start gap-3 text-gray-900">
                       <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                       {faq.question}
                     </h3>
-                    <p className="text-muted-foreground ml-7">{faq.answer}</p>
+                    <p className="text-gray-700 ml-8 leading-relaxed">{faq.answer}</p>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Citations (for AI engine credibility) */}
+          {/* CTA Section */}
+          <div className="mt-16 bg-gradient-to-br from-primary via-secondary to-primary text-white p-8 md:p-12 rounded-2xl text-center shadow-xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to Improve Your Grades?
+            </h2>
+            <p className="text-xl mb-8 opacity-95 max-w-2xl mx-auto">
+              Join thousands of South African students getting better results with StudyBuddy's 24/7 AI tutor
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                asChild
+                size="lg" 
+                className="bg-white text-primary hover:bg-gray-100 text-lg px-8 py-6 rounded-full font-semibold shadow-lg"
+              >
+                <Link to="/students-landing">
+                  Start Learning FREE
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button 
+                asChild
+                size="lg" 
+                variant="outline"
+                className="bg-white/10 hover:bg-white/20 text-white border-2 border-white text-lg px-8 py-6 rounded-full font-semibold"
+              >
+                <Link to="/students-landing#pricing">
+                  View Pricing
+                </Link>
+              </Button>
+            </div>
+            <p className="mt-6 text-base opacity-90">
+              ✓ FREE to start • ✓ No credit card required • ✓ Cancel anytime
+            </p>
+          </div>
+
+          {/* E-E-A-T Footer */}
+          {page.author && (
+            <div className="mt-12 pt-8 border-t border-gray-200">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm text-gray-600">
+                <div>
+                  <p className="font-semibold text-gray-900">Written by {page.author.name}</p>
+                  <p>{page.author.role}</p>
+                  {page.reviewedBy && (
+                    <p className="mt-1">Reviewed by {page.reviewedBy}</p>
+                  )}
+                </div>
+                <div className="text-right">
+                  <p>Last updated: {new Date(page.lastUpdated).toLocaleDateString('en-ZA', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}</p>
+                  {page.factChecked && (
+                    <p className="mt-1 text-primary font-semibold">✓ Fact-checked</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Citations */}
           {page.citations && page.citations.length > 0 && (
-            <div className="mt-8 text-sm text-muted-foreground">
-              <h3 className="font-semibold mb-2">Sources:</h3>
-              <ul className="list-disc list-inside space-y-1">
+            <div className="mt-8 text-sm text-gray-600 bg-gray-50 p-6 rounded-xl border border-gray-200">
+              <h3 className="font-semibold text-gray-900 mb-3">Sources & References:</h3>
+              <ul className="list-disc list-inside space-y-1.5 ml-2">
                 {page.citations.map((citation, index) => (
                   <li key={index}>{citation}</li>
                 ))}
               </ul>
             </div>
           )}
-
-          {/* CTA Section */}
-          <div className="mt-12 bg-gradient-to-r from-primary to-secondary text-primary-foreground p-8 rounded-lg text-center">
-            <h2 className="text-2xl font-bold mb-4">
-              Ready to Start Learning with AI?
-            </h2>
-            <p className="text-lg mb-6 opacity-90">
-              Join thousands of South African students improving their grades with StudyBuddy
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                variant="secondary" 
-                className="text-lg"
-                onClick={() => {
-                  trackCTAClick('bottom-cta-primary');
-                  window.location.href = '/students-landing';
-                }}
-              >
-                Start Free Trial
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="text-lg bg-white/10 hover:bg-white/20 text-white border-white"
-                onClick={() => {
-                  trackCTAClick('bottom-cta-secondary');
-                  window.location.href = '/students-landing#pricing';
-                }}
-              >
-                View Pricing
-              </Button>
-            </div>
-            <p className="mt-4 text-sm opacity-75">
-              No credit card required • Cancel anytime • R99/month unlimited
-            </p>
-          </div>
-
-          {/* Last Updated */}
-          <div className="mt-8 text-sm text-muted-foreground text-center">
-            Last updated: {new Date(page.lastUpdated).toLocaleDateString('en-ZA', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </div>
         </article>
+        
+        <Footer />
       </div>
     </>
   );
