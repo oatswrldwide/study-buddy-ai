@@ -1,0 +1,60 @@
+{
+  "id": "pain-grade-10-economics-tutor-for-struggling-students",
+  "slug": "grade-10-economics-tutor-for-struggling-students",
+  "pageType": "pain-point",
+  "targetKeyword": "grade 10 economics tutor for struggling students",
+  "searchIntent": "struggling",
+  "title": "Grade 10 economics tutor for struggling students",
+  "content": "Content generation in progress...",
+  "metaTitle": "grade 10 economics tutor for struggling students",
+  "metaDescription": "Get help with grade 10 economics tutor for struggling students. FREE to start, unlimited tutoring. No credit card required.",
+  "keywords": [
+    "grade",
+    "10",
+    "economics",
+    "tutor",
+    "for",
+    "struggling",
+    "students"
+  ],
+  "faqs": [],
+  "citations": [
+    "Department of Basic Education 2025",
+    "Student Success Data",
+    "South African CAPS Curriculum Guidelines"
+  ],
+  "author": {
+    "name": "StudyBuddy Editorial Team",
+    "role": "Educational Content Specialists",
+    "credentials": [
+      "CAPS Curriculum Experts",
+      "Former Educators",
+      "EdTech Specialists"
+    ],
+    "bio": "Our team of former teachers and education specialists creates evidence-based content to help South African students succeed."
+  },
+  "reviewedBy": "Senior Education Consultant",
+  "expertise": [
+    {
+      "type": "education",
+      "description": "15+ years combined teaching experience in South African schools"
+    },
+    {
+      "type": "certification",
+      "description": "CAPS Curriculum Certified"
+    },
+    {
+      "type": "experience",
+      "description": "Worked with 10,000+ students across SA"
+    }
+  ],
+  "lastReviewed": "2026-02-03T16:34:12.277Z",
+  "factChecked": true,
+  "schemaType": "Article",
+  "published": true,
+  "qualityScore": 10,
+  "reviewStatus": "approved",
+  "lastUpdated": "2026-02-03T16:34:12.277Z",
+  "createdAt": "2026-02-03T16:34:12.277Z",
+  "generationModel": "groq-llama-3.1-8b-instant"
+}

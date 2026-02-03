@@ -26,6 +26,9 @@ import ParentActivity from "./pages/parent/ParentActivity";
 import ParentPayments from "./pages/parent/ParentPayments";
 import ParentSettings from "./pages/parent/ParentSettings";
 import DemoCredentials from "./pages/DemoCredentials";
+import PSEOPage from "./pages/PSEOPage";
+import ContentReview from "./pages/admin/ContentReview";
+import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient();
 
@@ -33,11 +36,12 @@ const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
+        <HelmetProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
             <Route path="/" element={<MarketSelector />} />
             <Route path="/test" element={<TestPage />} />
             <Route path="/demo" element={<DemoCredentials />} />
@@ -89,6 +93,14 @@ const App = () => (
               element={
                 <ProtectedRoute allowedRoles={["admin"]}>
                   <PaymentsPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/admin/content-review" 
+              element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <ContentReview />
                 </ProtectedRoute>
               } 
             />
@@ -180,11 +192,16 @@ const App = () => (
                 </ProtectedRoute>
               } 
             />
+            
+            {/* pSEO Dynamic Routes - MUST BE BEFORE CATCH-ALL */}
+            <Route path="/:slug" element={<PSEOPage />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
+    </HelmetProvider>
     </AuthProvider>
   </QueryClientProvider>
   </ErrorBoundary>

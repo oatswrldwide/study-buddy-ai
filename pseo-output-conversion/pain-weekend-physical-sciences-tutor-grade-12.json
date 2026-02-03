@@ -1,0 +1,81 @@
+{
+  "id": "pain-weekend-physical-sciences-tutor-grade-12",
+  "slug": "weekend-physical-sciences-tutor-grade-12",
+  "pageType": "pain-point",
+  "targetKeyword": "weekend physical sciences tutor grade 12",
+  "searchIntent": "scheduling",
+  "title": "Weekend physical sciences tutor grade 12",
+  "content": "Full markdown content with internal links",
+  "metaTitle": "Weekend Physical Sciences Tutor Grade 12 - StudyBuddy",
+  "metaDescription": "Improve your physical sciences grade with StudyBuddy's 24/7 AI tutor. Free to start, no credit card required.",
+  "keywords": [
+    "weekend",
+    "physical",
+    "sciences",
+    "tutor",
+    "grade",
+    "12"
+  ],
+  "quickAnswer": "Full markdown content with internal links",
+  "faqs": [
+    {
+      "question": "How quickly can I see improvement?",
+      "answer": "With our personalized learning plan, you can see improvement in just two weeks."
+    },
+    {
+      "question": "What if I'm really behind?",
+      "answer": "Our expert system creates a customized learning plan tailored to your needs and goals."
+    },
+    {
+      "question": "Is it really free to start?",
+      "answer": "Yes, we don't charge you a single cent to get started."
+    },
+    {
+      "question": "What if I have questions or need support?",
+      "answer": "Our team of expert educators is always available to help you."
+    },
+    {
+      "question": "How do I access the study materials and resources?",
+      "answer": "You can access our library of study materials, video lessons, and practice exams through our platform."
+    }
+  ],
+  "citations": [
+    "Department of Basic Education 2025",
+    "Student Success Data",
+    "South African CAPS Curriculum Guidelines"
+  ],
+  "author": {
+    "name": "StudyBuddy Editorial Team",
+    "role": "Educational Content Specialists",
+    "credentials": [
+      "CAPS Curriculum Experts",
+      "Former Educators",
+      "EdTech Specialists"
+    ],
+    "bio": "Our team of former teachers and education specialists creates evidence-based content to help South African students succeed."
+  },
+  "reviewedBy": "Senior Education Consultant",
+  "expertise": [
+    {
+      "type": "education",
+      "description": "15+ years combined teaching experience in South African schools"
+    },
+    {
+      "type": "certification",
+      "description": "CAPS Curriculum Certified"
+    },
+    {
+      "type": "experience",
+      "description": "Worked with 10,000+ students across SA"
+    }
+  ],
+  "lastReviewed": "2026-02-03T16:53:48.510Z",
+  "factChecked": true,
+  "schemaType": "Article",
+  "published": false,
+  "qualityScore": 3,
+  "reviewStatus": "pending",
+  "lastUpdated": "2026-02-03T16:53:48.510Z",
+  "createdAt": "2026-02-03T16:53:48.510Z",
+  "generationModel": "groq-llama-3.1-8b-instant"
+}

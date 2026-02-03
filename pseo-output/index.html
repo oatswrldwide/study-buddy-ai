@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated pSEO Pages - Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        .markdown-body {
+            line-height: 1.6;
+        }
+        .markdown-body h1 { @apply text-3xl font-bold mt-6 mb-4; }
+        .markdown-body h2 { @apply text-2xl font-bold mt-5 mb-3; }
+        .markdown-body h3 { @apply text-xl font-semibold mt-4 mb-2; }
+        .markdown-body p { @apply mb-4; }
+        .markdown-body ul { @apply list-disc ml-6 mb-4; }
+        .markdown-body ol { @apply list-decimal ml-6 mb-4; }
+        .markdown-body table { @apply w-full border-collapse mb-4; }
+        .markdown-body th { @apply border border-gray-300 px-4 py-2 bg-gray-100 font-semibold; }
+        .markdown-body td { @apply border border-gray-300 px-4 py-2; }
+        .markdown-body code { @apply bg-gray-100 px-1 rounded text-sm; }
+        .markdown-body blockquote { @apply border-l-4 border-blue-500 pl-4 italic my-4; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <h1 class="text-4xl font-bold mb-8 text-center text-blue-600">Generated pSEO Pages Preview</h1>
+        
+        <div class="grid md:grid-cols-3 gap-4 mb-8">
+            <button onclick="loadPage('subject-mathematics-grade-10.json')" 
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow transition">
+                Mathematics Grade 10
+            </button>
+            <button onclick="loadPage('subject-mathematics-grade-12.json')" 
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow transition">
+                Mathematics Grade 12
+            </button>
+            <button onclick="loadPage('subject-physical-sciences-grade-10.json')" 
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow transition">
+                Physical Sciences Grade 10
+            </button>
+        </div>
+
+        <div id="content" class="bg-white rounded-lg shadow-lg p-8">
+            <p class="text-gray-500 text-center">Select a page above to view its content</p>
+        </div>
+    </div>
+
+    <script>
+        async function loadPage(filename) {
+            try {
+                const response = await fetch(filename);
+                const data = await response.json();
+                
+                const html = `
+                    <div class="mb-6 pb-6 border-b">
+                        <h1 class="text-3xl font-bold mb-2">${data.title}</h1>
+                        <div class="flex gap-4 text-sm text-gray-600 mb-4">
+                            <span class="bg-blue-100 px-3 py-1 rounded">Quality: ${data.qualityScore}/10</span>
+                            <span class="bg-green-100 px-3 py-1 rounded">${data.reviewStatus}</span>
+                            <span class="bg-purple-100 px-3 py-1 rounded">${data.pageType}</span>
+                        </div>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                            <p class="font-semibold">Meta Title:</p>
+                            <p class="text-sm">${data.metaTitle}</p>
+                            <p class="font-semibold mt-2">Meta Description:</p>
+                            <p class="text-sm">${data.metaDescription}</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${data.keywords.map(k => `<span class="bg-gray-200 px-2 py-1 rounded text-sm">${k}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="markdown-body prose max-w-none">
+                        ${marked.parse(data.content)}
+                    </div>
+
+                    ${data.faqs && data.faqs.length > 0 ? `
+                    <div class="mt-8 pt-8 border-t">
+                        <h2 class="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+                        ${data.faqs.map((faq, i) => `
+                            <div class="mb-4 bg-gray-50 p-4 rounded">
+                                <h3 class="font-semibold text-lg mb-2">${i + 1}. ${faq.question}</h3>
+                                <p class="text-gray-700">${faq.answer}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+
+                    ${data.citations && data.citations.length > 0 ? `
+                    <div class="mt-6 pt-6 border-t">
+                        <h3 class="font-semibold mb-2">Citations:</h3>
+                        <ul class="list-disc ml-6 text-sm text-gray-600">
+                            ${data.citations.map(c => `<li>${c}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+
+                    <div class="mt-6 pt-6 border-t text-sm text-gray-500">
+                        <p>Generated: ${new Date(data.createdAt).toLocaleString()}</p>
+                        <p>Model: ${data.generationModel}</p>
+                        <p>Slug: /${data.slug}</p>
+                    </div>
+                `;
+                
+                document.getElementById('content').innerHTML = html;
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                document.getElementById('content').innerHTML = `
+                    <div class="text-red-600 text-center p-8">
+                        <h2 class="text-xl font-bold mb-2">Error Loading Page</h2>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

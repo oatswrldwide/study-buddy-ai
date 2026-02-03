@@ -1,0 +1,71 @@
+
+> vite_react_shadcn_ts@0.0.0 pseo:high-conversion
+> tsx scripts/generate-high-conversion-content.ts --limit=5 --limit=350
+
+🔑 Using Groq API (Llama 3.1 70B)
+🎯 HIGH-CONVERSION Strategy: Bottom-of-funnel keywords
+
+⚠️  Firebase not configured - will save to JSON files
+
+
+🚀 HIGH-CONVERSION pSEO Generator
+
+📊 Keyword Strategy:
+  Total keywords: 256
+  Pain points: 108 (15-20% conversion)
+  Suburb-specific: 72 (12-18% conversion)
+  Exam prep: 60 (18-24% conversion)
+  Comparisons: 7 (25-35% conversion)
+  Pricing: 9 (22-30% conversion)
+
+🎯 Generating 5 pages...
+
+  🚨 Generating: failing mathematics grade 10 need help fast
+    → Pain point: urgent-help
+    → Uniqueness: 100.0%
+  ✅ Saved: pseo-output-conversion/pain-failing-mathematics-grade-10-need-help-fast.json
+
+  🚨 Generating: failing mathematics grade 11 need help fast
+    → Pain point: urgent-help
+    → Uniqueness: 34.2%
+    ⚠️  Low uniqueness (34.2% < 70%) - regenerating with more variation...
+  ✅ Saved: pseo-output-conversion/pain-failing-mathematics-grade-11-need-help-fast.json
+
+  🚨 Generating: failing mathematics grade 12 need help fast
+    → Pain point: urgent-help
+    → Uniqueness: 31.4%
+    ⚠️  Low uniqueness (31.4% < 70%) - regenerating with more variation...
+  ✅ Saved: pseo-output-conversion/pain-failing-mathematics-grade-12-need-help-fast.json
+
+  🚨 Generating: failing physical sciences grade 10 need help fast
+    → Pain point: urgent-help
+  ⏸️  Pausing 2s between batches (4 calls made)...
+    → Uniqueness: 41.5%
+    ⚠️  Low uniqueness (41.5% < 70%) - regenerating with more variation...
+  ✅ Saved: pseo-output-conversion/pain-failing-physical-sciences-grade-10-need-help-fast.json
+
+  🚨 Generating: failing physical sciences grade 11 need help fast
+    → Pain point: urgent-help
+    → Uniqueness: 34.2%
+    ⚠️  Low uniqueness (34.2% < 70%) - regenerating with more variation...
+  ✅ Saved: pseo-output-conversion/pain-failing-physical-sciences-grade-11-need-help-fast.json
+
+
+✅ Generation complete!
+
+📊 Results:
+  - Generated: 5 pages
+  - Low uniqueness: 3 pages (may need review)
+
+📈 Expected performance:
+  - Average conversion rate: 12-18% (vs 0.5-1% informational)
+  - 10-20x more sales from same traffic
+  - Better ranking for high-intent queries
+
+
+⚠️  NEXT STEPS:
+  1. Review pages in pseo-output-conversion/
+  2. Validate keywords have search volume
+  3. Add conversion tracking (Google Analytics)
+  4. Test 5-10 pages first before scaling to 350
+
