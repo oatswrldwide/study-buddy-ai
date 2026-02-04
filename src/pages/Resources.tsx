@@ -172,82 +172,123 @@ const Resources = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <BookOpen className="w-16 h-16 mx-auto mb-4" />
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                StudyBuddy Resources
-              </h1>
-              <p className="text-xl text-blue-100 mb-6">
-                Free study guides, exam breakdowns, and tutoring resources for South African students
-              </p>
-              <p className="text-lg text-blue-100">
-                {resources.length} resources available • CAPS curriculum aligned • Updated for 2026
-              </p>
+      <div className="min-h-screen bg-gray-50">
+        {/* Hero Header with Grid Pattern */}
+        <div className="bg-gradient-to-br from-primary via-primary/90 to-secondary text-white py-16 mb-8 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:32px_32px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="flex items-center gap-4 mb-6 justify-center flex-wrap">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-semibold border border-white/20">
+                <BookOpen className="w-4 h-4" />
+                <span>📚 {resources.length} Resources</span>
+              </div>
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-semibold border border-white/20">
+                <span>✓ CAPS Aligned</span>
+              </div>
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-semibold border border-white/20">
+                <span>🎯 Updated 2026</span>
+              </div>
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center">Study Resources</h1>
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto text-center">
+              Everything you need to succeed in your matric exams
+            </p>
           </div>
         </div>
 
-        {/* Search and Filter */}
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-              <div className="flex flex-col md:flex-row gap-4">
-                {/* Search */}
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    type="text"
-                    placeholder="Search resources..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
-                
-                {/* Category Filter */}
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-                >
-                  {categories.map(category => (
-                    <option key={category} value={category}>
-                      {category === 'all' ? 'All Categories' : category}
-                    </option>
-                  ))}
-                </select>
+        <div className="container mx-auto px-4 pb-12">
+          {/* Search and Filter with Enhanced Styling */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search resources..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-base"
+                />
               </div>
               
-              <div className="mt-4 text-sm text-gray-600">
-                Showing {filteredResources.length} of {resources.length} resources
-              </div>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="px-5 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-base font-medium transition-all min-w-[200px]"
+              >
+                {categories.map(category => (
+                  <option key={category} value={category}>
+                    {category === 'all' ? 'All Categories' : category}
+                  </option>
+                ))}
+              </select>
             </div>
+            
+            <div className="mt-4 flex items-center justify-between text-sm">
+              <span className="text-gray-600">
+                Showing <span className="font-semibold text-primary">{filteredResources.length}</span> of {resources.length} resources
+              </span>
+              {searchQuery && (
+                <button 
+                  onClick={() => setSearchQuery('')}
+                  className="text-primary hover:text-primary/80 font-medium transition-colors"
+                >
+                  Clear search
+                </button>
+              )}
+            </div>
+          </div>
 
-            {/* Resources Grid */}
+          {/* Resources Grid */}
+          <div className="min-h-[400px]">
             {loading ? (
-              <div className="text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-                <p className="mt-4 text-gray-600">Loading resources...</p>
+              <div className="text-center py-16 bg-white rounded-2xl shadow-lg border border-gray-100">
+                <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <p className="text-gray-600">Loading resources...</p>
+              </div>
+            ) : filteredResources.length === 0 ? (
+              <div className="text-center py-16 bg-white rounded-2xl shadow-lg border border-gray-100">
+                <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Search className="w-10 h-10 text-gray-400" />
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3">No resources found</h3>
+                <p className="text-gray-600 mb-6">Try adjusting your search or filter</p>
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory('all');
+                  }}
+                  className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-colors"
+                >
+                  Clear filters
+                </button>
               </div>
             ) : (
-              <div className="space-y-12">
+              <div className="space-y-8">
                 {Object.entries(groupedResources).sort().map(([category, items]) => (
-                  <div key={category} className="bg-white rounded-lg shadow-lg p-6">
-                    <div className="flex items-center gap-3 mb-6">
-                      {category === 'Urgent Help' && <AlertCircle className="w-6 h-6 text-red-600" />}
-                      {category === 'Exam Preparation' && <FileText className="w-6 h-6 text-orange-600" />}
-                      {category === 'Tutoring Services' && <GraduationCap className="w-6 h-6 text-blue-600" />}
-                      {category === 'Study Guides' && <BookOpen className="w-6 h-6 text-green-600" />}
-                      {category === 'Exam Breakdowns' && <FileText className="w-6 h-6 text-purple-600" />}
-                      {category === 'Parent Resources' && <GraduationCap className="w-6 h-6 text-indigo-600" />}
-                      {category === 'Comparisons' && <BookOpen className="w-6 h-6 text-teal-600" />}
+                  <div key={category} className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-gradient-to-br ${
+                        category === 'Urgent Help' ? 'from-red-500 to-red-600' :
+                        category === 'Exam Preparation' ? 'from-orange-500 to-orange-600' :
+                        category === 'Tutoring Services' ? 'from-blue-500 to-blue-600' :
+                        category === 'Study Guides' ? 'from-green-500 to-green-600' :
+                        category === 'Exam Breakdowns' ? 'from-purple-500 to-purple-600' :
+                        category === 'Parent Resources' ? 'from-indigo-500 to-indigo-600' :
+                        'from-teal-500 to-teal-600'
+                      }`}>
+                        {category === 'Urgent Help' && <AlertCircle className="w-5 h-5 text-white" />}
+                        {category === 'Exam Preparation' && <FileText className="w-5 h-5 text-white" />}
+                        {category === 'Tutoring Services' && <GraduationCap className="w-5 h-5 text-white" />}
+                        {category === 'Study Guides' && <BookOpen className="w-5 h-5 text-white" />}
+                        {category === 'Exam Breakdowns' && <FileText className="w-5 h-5 text-white" />}
+                        {category === 'Parent Resources' && <GraduationCap className="w-5 h-5 text-white" />}
+                        {category === 'Comparisons' && <BookOpen className="w-5 h-5 text-white" />}
+                      </div>
                       
                       <h2 className="text-2xl font-bold text-gray-900">{category}</h2>
-                      <span className="text-sm text-gray-500">({items.length})</span>
+                      <span className="ml-auto text-sm font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{items.length}</span>
                     </div>
                     
                     <div className="grid md:grid-cols-2 gap-4">
@@ -255,12 +296,12 @@ const Resources = () => {
                         <Link
                           key={resource.slug}
                           to={`/${resource.slug}`}
-                          className="block p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all group"
+                          className="block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition-all group bg-gradient-to-br from-white to-gray-50/50"
                         >
-                          <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                          <h3 className="font-semibold text-gray-900 group-hover:text-primary transition-colors mb-2 leading-snug">
                             {resource.title}
                           </h3>
-                          <p className="text-sm text-gray-500 mt-1">
+                          <p className="text-sm text-gray-500">
                             /{resource.slug}
                           </p>
                         </Link>
@@ -270,31 +311,32 @@ const Resources = () => {
                 ))}
               </div>
             )}
-
-            {/* No Results */}
-            {!loading && filteredResources.length === 0 && (
-              <div className="text-center py-12 bg-white rounded-lg shadow-lg">
-                <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No resources found</h3>
-                <p className="text-gray-600">Try adjusting your search or filter</p>
-              </div>
-            )}
           </div>
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12 mt-12">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-4">Need More Help?</h2>
-            <p className="text-xl text-blue-100 mb-6">
-              Get 24/7 AI tutoring support for all your subjects
-            </p>
-            <Link
-              to="/students"
-              className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-            >
-              Start Free Trial
-            </Link>
+        <div className="bg-gradient-to-r from-primary to-secondary text-white py-16 mt-12 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:32px_32px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Need More Help?</h2>
+              <p className="text-xl text-blue-100 mb-8">
+                Get 24/7 AI tutoring support for all your subjects
+              </p>
+              <Link
+                to="/students"
+                className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all hover:scale-105 shadow-xl text-lg"
+              >
+                Start Free Trial
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+              <p className="mt-6 text-sm text-blue-100">
+                ✓ FREE to start • ✓ No credit card required • ✓ Cancel anytime
+              </p>
+            </div>
           </div>
         </div>
       </div>
