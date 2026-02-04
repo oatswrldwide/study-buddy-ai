@@ -7,12 +7,6 @@ const footerLinks = {
     { label: "Security", href: "#" },
     { label: "Integrations", href: "#" },
   ],
-  Resources: [
-    { label: "All Resources", href: "/resources" },
-    { label: "Study Guides", href: "/resources" },
-    { label: "Exam Breakdowns", href: "/resources" },
-    { label: "Documentation", href: "#" },
-  ],
   Company: [
     { label: "About Us", href: "#" },
     { label: "Careers", href: "#" },
