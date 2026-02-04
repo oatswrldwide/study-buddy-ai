@@ -24,12 +24,12 @@ const HeroSchools = () => {
 
             {/* Main Heading */}
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
-              Empower Your Learners with AI
+              Your School's Branded AI Tutor Platform - Keep the Profit
             </h1>
 
             {/* Subheading */}
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed">
-              Give your school access to StudyBuddy AI - an intelligent tutoring platform that helps learners excel in their studies with 24/7 AI-powered support.
+              Get a custom branded website with your school's domain, logo & colors. Charge students R200+ per year, pay us R150 - keep the difference.
             </p>
 
             {/* Key Benefits */}
@@ -39,8 +39,8 @@ const HeroSchools = () => {
                   <Users className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Unlimited Students</h3>
-                  <p className="text-sm text-muted-foreground">School-wide access for all learners</p>
+                  <h3 className="font-semibold text-foreground mb-1">Custom Branded Website</h3>
+                  <p className="text-sm text-muted-foreground">Your domain, logo & colors</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -48,8 +48,8 @@ const HeroSchools = () => {
                   <BookOpen className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">All Subjects</h3>
-                  <p className="text-sm text-muted-foreground">Maths, Science, Languages & more</p>
+                  <h3 className="font-semibold text-foreground mb-1">R150 Per Student/Year</h3>
+                  <p className="text-sm text-muted-foreground">Charge R200+ and keep profit</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -57,8 +57,8 @@ const HeroSchools = () => {
                   <TrendingUp className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Track Progress</h3>
-                  <p className="text-sm text-muted-foreground">Admin dashboard with insights</p>
+                  <h3 className="font-semibold text-foreground mb-1">Live in 14 Days</h3>
+                  <p className="text-sm text-muted-foreground">From signup to branded platform</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -66,8 +66,8 @@ const HeroSchools = () => {
                   <Shield className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">POPIA Compliant</h3>
-                  <p className="text-sm text-muted-foreground">Secure & privacy-focused</p>
+                  <h3 className="font-semibold text-foreground mb-1">100 Student Minimum</h3>
+                  <p className="text-sm text-muted-foreground">We handle tech support</p>
                 </div>
               </div>
             </div>
@@ -78,11 +78,24 @@ const HeroSchools = () => {
             <div className="bg-white rounded-xl shadow-2xl border border-border p-8">
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-foreground mb-2">
-                  Get StudyBuddy for Your School
+                  Launch Your Branded Platform
                 </h2>
-                <p className="text-muted-foreground">
-                  Fill out the form below and we'll get back to you within 24 hours with pricing and implementation details.
+                <p className="text-muted-foreground mb-4">
+                  Click below to get started. We'll contact you within 24 hours to discuss your school's branding and launch timeline.
                 </p>
+                <div className="p-4 bg-primary/5 rounded-lg border border-primary/20 mb-4">
+                  <p className="text-sm text-foreground font-medium mb-2">How it works:</p>
+                  <ul className="text-xs text-muted-foreground space-y-1">
+                    <li>✓ You collect R200+ from each student</li>
+                    <li>✓ We bill you R150/student annually at enrollment</li>
+                    <li>✓ You keep the difference</li>
+                  </ul>
+                </div>
+                <div className="text-xs text-muted-foreground space-y-1">
+                  <p>• Minimum 100 students</p>
+                  <p>• Live within 14 days</p>
+                  <p>• We support students, you handle billing</p>
+                </div>
               </div>
               
               <SchoolContactForm />
