@@ -49,8 +49,21 @@ export default function PSEOPageTemplate() {
 
     const loadPage = async () => {
       try {
-        // Try different page type prefixes (pain, comp, price, subject, location)
-        const prefixes = ['pain', 'comp', 'price', 'subject', 'location', 'exam', 'suburb'];
+        // Try without prefix first (for grade-X, comp-, etc.)
+        try {
+          const response = await fetch(`/pseo-data/${slug}.json`);
+          if (response.ok) {
+            const data = await response.json();
+            setPage(data as PSEOPage);
+            setLoading(false);
+            return;
+          }
+        } catch (err) {
+          // Continue to try with prefixes
+        }
+        
+        // Try different page type prefixes if direct slug didn't work
+        const prefixes = ['pain', 'comp', 'price', 'subject', 'location', 'exam', 'suburb', 'grade'];
         
         for (const prefix of prefixes) {
           try {
@@ -58,6 +71,7 @@ export default function PSEOPageTemplate() {
             if (response.ok) {
               const data = await response.json();
               setPage(data as PSEOPage);
+              setLoading(false);
               return;
             }
           } catch (err) {
@@ -66,12 +80,7 @@ export default function PSEOPageTemplate() {
           }
         }
         
-        // If no prefix worked, try without prefix
-        const response = await fetch(`/pseo-data/${slug}.json`);
-        if (response.ok) {
-          const data = await response.json();
-          setPage(data as PSEOPage);
-        }
+        console.error('Page not found:', slug);
       } catch (error) {
         console.error('Error loading page:', error);
       } finally {
