@@ -194,6 +194,7 @@ const App = () => (
             />
             
             {/* pSEO Dynamic Routes - MUST BE BEFORE CATCH-ALL */}
+            <Route path="/pseo/:slug" element={<PSEOPage />} />
             <Route path="/:slug" element={<PSEOPage />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
