@@ -1,9 +1,24 @@
 {
+  "id": "grade-12-caps-accounting-financial-statements",
   "slug": "grade-12-caps-accounting-financial-statements",
+  "pageType": "subject",
+  "title": "Grade 12 CAPS Accounting: Financial Statements & Cash Flow Guide",
+  "content": "# Grade 12 CAPS Accounting: Financial Statements Made Simple\n\n## Why Accounting Students Lose Easy Marks\n\nAccounting is the highest-scoring subject in South Africa when done right—and the most devastating when done wrong. The difference? **Format precision.** One misplaced bracket can cost you 5 marks.\n\n## The Holy Trinity of Grade 12 Accounting\n\n| Statement | Weight in Exam | Common Errors |\n|-----------|----------------|---------------|\n| **Income Statement** | 25% | Forgetting depreciation, wrong cost of sales calculation |\n| **Balance Sheet** | 30% | Incorrect working capital layout, missing notes |\n| **Cash Flow Statement** | 25% | Operating activities confusion, financing vs investing mix-ups |\n| **Notes & Ratios** | 20% | Incomplete disclosures, wrong ratio formulas |\n\n## Income Statement: The Foundation (Paper 1 Focus)\n\n**Required format:**\n```\nSales\nLess: Cost of Sales\n= Gross Profit\nLess: Operating Expenses (detailed list)\n= Operating Profit\nAdd: Interest Income\nLess: Interest Expense\n= Profit Before Tax\nLess: Income Tax\n= Net Profit After Tax\n```\n\n**StudyBuddy's Income Statement trainer:**\n- \"Generate an Income Statement question with adjustments\"\n- \"Check my solution: [paste your attempt]\"\n- \"Explain why depreciation is subtracted before gross profit\"\n\n## Balance Sheet: Where Structure Matters Most (Paper 1 Focus)\n\n**CAPS requires this exact order:**\n1. **ASSETS:** Non-current → Current (with subtotals)\n2. **EQUITY & LIABILITIES:** Capital + Reserves → Non-current liabilities → Current liabilities\n\n**Critical note:** The **Inventory note**, **Trade Receivables note**, and **Property, Plant & Equipment note** are separate calculations that feed into the main statement.\n\n## Cash Flow Statement: The Grade 12 Nightmare (Paper 2 Focus)\n\nMost students panic here. The key is understanding the **three sections:**\n\n| Section | What It Tracks | Typical Cash Movements |\n|---------|----------------|------------------------|\n| **Operating Activities** | Day-to-day business | Cash from customers, paid to suppliers, wages |\n| **Investing Activities** | Long-term assets | Buy/sell equipment, investments |\n| **Financing Activities** | Capital structure | Issue shares, loans, dividends paid |\n\n**The indirect method shortcut:**\nStart with **Net Profit Before Tax**\n+ Add back non-cash items (depreciation, adjustments)\n+/- Changes in working capital\n= **Cash Generated from Operations**\n\n## StudyBuddy's Accounting AI: No Calculator Required\n\nUpload any trial balance and ask:\n- \"Prepare the Income Statement from this data\"\n- \"What's the missing depreciation figure?\"\n- \"Check my Cash Flow Statement for errors\"\n\n**Unique feature:** StudyBuddy shows the **marking grid** alongside solutions, so you see exactly where examiners allocate marks.\n\n## The 5 Adjustments You Must Master\n\n1. **Depreciation** (straight-line vs diminishing balance)\n2. **Bad debts and allowance for doubtful debts**\n3. **Prepaid expenses and accrued expenses**\n4. **Inventory valuation (FIFO vs weighted average)**\n5. **Directors' fees and audit fees split**\n\n## 30-Day Accounting Mastery Plan\n\n| Days | Focus | StudyBuddy Action |\n|------|-------|-------------------|\n| 1-7 | Income Statement perfection | 10 auto-generated questions |\n| 8-14 | Balance Sheet structure | Note preparation drills |\n| 15-21 | Cash Flow Statement logic | Step-by-step walkthroughs |\n| 22-25 | Manufacturing accounts | Cost allocation practice |\n| 26-30 | Full exam simulation | Timed, marked, feedback |\n\n**Call to Action:**\n**Fix your Cash Flow Statement confusion in 15 minutes →** [Link to StudyBuddy Accounting tutor]\n\n**Internal Links:**\n- [Manufacturing accounts: Production cost statement explained](#)\n- [Accounting ratios: All 12 formulas you need to memorize](#)\n- [Partnership vs company financial statements: Key differences](#)",
   "metaTitle": "Grade 12 CAPS Accounting: Financial Statements & Cash Flow Guide | StudyBuddy",
   "metaDescription": "Step-by-step guide to Income Statements, Balance Sheets, and Cash Flow Statements. The exact format markers expect for your NSC Accounting exam.",
+  "keywords": [
+    "grade",
+    "caps",
+    "accounting",
+    "financial",
+    "statements",
+    "cash",
+    "flow",
+    "guide",
+    "studybuddy",
+    "tutor"
+  ],
   "quickAnswer": "Grade 12 Accounting's 'Holy Trinity' is Income Statement (25% of exam), Balance Sheet (30%), and Cash Flow Statement (25%). One misplaced bracket or wrong sequence costs 5 marks. Format precision matters more than calculation accuracy—markers follow strict CAPS layout requirements.",
-  "content": "# Grade 12 CAPS Accounting: Financial Statements Made Simple\n\n## Why Accounting Students Lose Easy Marks\n\nAccounting is the highest-scoring subject in South Africa when done right—and the most devastating when done wrong. The difference? **Format precision.** One misplaced bracket can cost you 5 marks.\n\n## The Holy Trinity of Grade 12 Accounting\n\n| Statement | Weight in Exam | Common Errors |\n|-----------|----------------|---------------|\n| **Income Statement** | 25% | Forgetting depreciation, wrong cost of sales calculation |\n| **Balance Sheet** | 30% | Incorrect working capital layout, missing notes |\n| **Cash Flow Statement** | 25% | Operating activities confusion, financing vs investing mix-ups |\n| **Notes & Ratios** | 20% | Incomplete disclosures, wrong ratio formulas |\n\n## Income Statement: The Foundation (Paper 1 Focus)\n\n**Required format:**\n```\nSales\nLess: Cost of Sales\n= Gross Profit\nLess: Operating Expenses (detailed list)\n= Operating Profit\nAdd: Interest Income\nLess: Interest Expense\n= Profit Before Tax\nLess: Income Tax\n= Net Profit After Tax\n```\n\n**StudyBuddy's Income Statement trainer:**\n- \"Generate an Income Statement question with adjustments\"\n- \"Check my solution: [paste your attempt]\"\n- \"Explain why depreciation is subtracted before gross profit\"\n\n## Balance Sheet: Where Structure Matters Most (Paper 1 Focus)\n\n**CAPS requires this exact order:**\n1. **ASSETS:** Non-current → Current (with subtotals)\n2. **EQUITY & LIABILITIES:** Capital + Reserves → Non-current liabilities → Current liabilities\n\n**Critical note:** The **Inventory note**, **Trade Receivables note**, and **Property, Plant & Equipment note** are separate calculations that feed into the main statement.\n\n## Cash Flow Statement: The Grade 12 Nightmare (Paper 2 Focus)\n\nMost students panic here. The key is understanding the **three sections:**\n\n| Section | What It Tracks | Typical Cash Movements |\n|---------|----------------|------------------------|\n| **Operating Activities** | Day-to-day business | Cash from customers, paid to suppliers, wages |\n| **Investing Activities** | Long-term assets | Buy/sell equipment, investments |\n| **Financing Activities** | Capital structure | Issue shares, loans, dividends paid |\n\n**The indirect method shortcut:**\nStart with **Net Profit Before Tax**\n+ Add back non-cash items (depreciation, adjustments)\n+/- Changes in working capital\n= **Cash Generated from Operations**\n\n## StudyBuddy's Accounting AI: No Calculator Required\n\nUpload any trial balance and ask:\n- \"Prepare the Income Statement from this data\"\n- \"What's the missing depreciation figure?\"\n- \"Check my Cash Flow Statement for errors\"\n\n**Unique feature:** StudyBuddy shows the **marking grid** alongside solutions, so you see exactly where examiners allocate marks.\n\n## The 5 Adjustments You Must Master\n\n1. **Depreciation** (straight-line vs diminishing balance)\n2. **Bad debts and allowance for doubtful debts**\n3. **Prepaid expenses and accrued expenses**\n4. **Inventory valuation (FIFO vs weighted average)**\n5. **Directors' fees and audit fees split**\n\n## 30-Day Accounting Mastery Plan\n\n| Days | Focus | StudyBuddy Action |\n|------|-------|-------------------|\n| 1-7 | Income Statement perfection | 10 auto-generated questions |\n| 8-14 | Balance Sheet structure | Note preparation drills |\n| 15-21 | Cash Flow Statement logic | Step-by-step walkthroughs |\n| 22-25 | Manufacturing accounts | Cost allocation practice |\n| 26-30 | Full exam simulation | Timed, marked, feedback |\n\n**Call to Action:**\n**Fix your Cash Flow Statement confusion in 15 minutes →** [Link to StudyBuddy Accounting tutor]\n\n**Internal Links:**\n- [Manufacturing accounts: Production cost statement explained](#)\n- [Accounting ratios: All 12 formulas you need to memorize](#)\n- [Partnership vs company financial statements: Key differences](#)",
   "faqs": [
     {
       "question": "What's the difference between the Income Statement and Balance Sheet?",
@@ -34,6 +49,28 @@
       "answer": "Straight-line: Same amount each year (Cost - Residual Value) / Useful Life. Diminishing balance: Percentage of carrying value (decreases each year). Straight-line is simpler but diminishing balance better reflects asset usage for vehicles/equipment."
     }
   ],
+  "citations": [
+    "Department of Basic Education. (2024). National Senior Certificate Accounting Examination Guidelines.",
+    "CAPS Curriculum and Assessment Policy Statement for Accounting FET. (2024).",
+    "StudyBuddy internal data: 2,134 Grade 12 Accounting students, 2024 academic year."
+  ],
+  "author": {
+    "name": "Dr. Thabo Maseko",
+    "credentials": "PhD Accounting Education, 15 years teaching CAPS curriculum",
+    "bio": "Former NSC Accounting examiner. Specializes in financial statement preparation and format compliance for CAPS requirements."
+  },
+  "reviewedBy": {
+    "name": "Prof. Mpho Mokoena",
+    "credentials": "Accounting Department, University of Johannesburg",
+    "reviewDate": "2025-01-22"
+  },
+  "factChecked": true,
+  "schemaType": "Course",
+  "published": true,
+  "qualityScore": 8,
+  "lastUpdated": "2025-02-04",
+  "createdAt": "2026-02-04",
+  "generationModel": "manual-creation",
   "testimonials": [
     {
       "quote": "I was getting 45% in Accounting because my Cash Flow Statements were always wrong. StudyBuddy's step-by-step Cash Flow trainer taught me the indirect method properly. Got 68% in finals—my highest mark ever.",
@@ -45,22 +82,5 @@
       "author": "Liam K., Durban",
       "achievement": "Grade 12, 22% improvement"
     }
-  ],
-  "author": {
-    "name": "Dr. Thabo Maseko",
-    "credentials": "PhD Accounting Education, 15 years teaching CAPS curriculum",
-    "bio": "Former NSC Accounting examiner. Specializes in financial statement preparation and format compliance for CAPS requirements."
-  },
-  "reviewer": {
-    "name": "Prof. Mpho Mokoena",
-    "credentials": "Accounting Department, University of Johannesburg",
-    "reviewDate": "2025-01-22"
-  },
-  "factChecked": true,
-  "citations": [
-    "Department of Basic Education. (2024). National Senior Certificate Accounting Examination Guidelines.",
-    "CAPS Curriculum and Assessment Policy Statement for Accounting FET. (2024).",
-    "StudyBuddy internal data: 2,134 Grade 12 Accounting students, 2024 academic year."
-  ],
-  "lastUpdated": "2025-02-04"
+  ]
 }
