@@ -29,6 +29,7 @@ import DemoCredentials from "./pages/DemoCredentials";
 import PSEOPage from "./pages/PSEOPage";
 import BlogIndex from "./pages/BlogIndex";
 import ContentReview from "./pages/admin/ContentReview";
+import Resources from "./pages/Resources";
 import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient();
@@ -194,6 +195,9 @@ const App = () => (
                 </ProtectedRoute>
               } 
             />
+            
+            {/* Resources Page */}
+            <Route path="/resources" element={<Resources />} />
             
             {/* pSEO Dynamic Routes - MUST BE BEFORE CATCH-ALL */}
             <Route path="/pseo/:slug" element={<PSEOPage />} />
