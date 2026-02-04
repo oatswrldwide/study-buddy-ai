@@ -27,6 +27,7 @@ import ParentPayments from "./pages/parent/ParentPayments";
 import ParentSettings from "./pages/parent/ParentSettings";
 import DemoCredentials from "./pages/DemoCredentials";
 import PSEOPage from "./pages/PSEOPage";
+import BlogIndex from "./pages/BlogIndex";
 import ContentReview from "./pages/admin/ContentReview";
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/demo" element={<DemoCredentials />} />
             <Route path="/schools" element={<SchoolsLanding />} />
             <Route path="/students" element={<StudentsLanding />} />
+            <Route path="/resources" element={<BlogIndex />} />
             <Route path="/login" element={<Login />} />
             <Route 
               path="/portal" 

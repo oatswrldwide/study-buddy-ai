@@ -8,6 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const navLinks = [
+    { href: "/resources", label: "Resources", isRoute: true },
     { href: "#features", label: "Features" },
     { href: "#how-it-works", label: "How It Works" },
     { href: "#testimonials", label: "Testimonials" },
@@ -29,15 +30,25 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-muted-foreground hover:text-foreground font-medium transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => 
+            link.isRoute ? (
+              <button
+                key={link.href}
+                onClick={() => navigate(link.href)}
+                className="text-muted-foreground hover:text-foreground font-medium transition-colors duration-200"
+              >
+                {link.label}
+              </button>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-muted-foreground hover:text-foreground font-medium transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </div>
 
         {/* Desktop CTA */}
@@ -60,16 +71,29 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-background border-b border-border animate-fade-in">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-muted-foreground hover:text-foreground font-medium py-2 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.isRoute ? (
+                <button
+                  key={link.href}
+                  onClick={() => {
+                    navigate(link.href);
+                    setIsMenuOpen(false);
+                  }}
+                  className="text-muted-foreground hover:text-foreground font-medium py-2 transition-colors text-left"
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-muted-foreground hover:text-foreground font-medium py-2 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
             <div className="flex flex-col gap-2 pt-4 border-t border-border">
               <Button variant="ghost" className="w-full" onClick={() => navigate("/login")}>Log In</Button>
               <Button variant="hero" className="w-full" onClick={() => navigate("/students")}>Get Started Free</Button>
