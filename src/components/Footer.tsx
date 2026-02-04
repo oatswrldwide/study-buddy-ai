@@ -8,10 +8,10 @@ const footerLinks = {
     { label: "Integrations", href: "#" },
   ],
   Resources: [
+    { label: "All Resources", href: "/resources" },
+    { label: "Study Guides", href: "/resources" },
+    { label: "Exam Breakdowns", href: "/resources" },
     { label: "Documentation", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Case Studies", href: "#" },
-    { label: "Webinars", href: "#" },
   ],
   Company: [
     { label: "About Us", href: "#" },
