@@ -8,10 +8,9 @@ const Header = () => {
   const navigate = useNavigate();
 
   const navLinks = [
+    { href: "/schools", label: "For Schools", isRoute: true },
     { href: "/resources", label: "Resources", isRoute: true },
     { href: "#features", label: "Features" },
-    { href: "#how-it-works", label: "How It Works" },
-    { href: "#testimonials", label: "Testimonials" },
     { href: "#pricing", label: "Pricing" },
   ];
 

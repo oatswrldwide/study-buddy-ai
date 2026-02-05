@@ -70,9 +70,6 @@ const MarketSelector = () => {
                   Explore for Schools
                   <ArrowRight className="w-4 h-4" />
                 </Button>
-                <p className="text-xs text-muted-foreground mt-3 text-center">
-                  From R2,499/month • 14-day trial
-                </p>
               </div>
             </div>
 
