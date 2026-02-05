@@ -30,6 +30,9 @@ import PSEOPage from "./pages/PSEOPage";
 import BlogIndex from "./pages/BlogIndex";
 import ContentReview from "./pages/admin/ContentReview";
 import Resources from "./pages/Resources";
+import LocationPage from "./pages/LocationPage";
+import ProvincePage from "./pages/ProvincePage";
+import LocationsDirectory from "./pages/LocationsDirectory";
 import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient();
@@ -50,6 +53,9 @@ const App = () => (
             <Route path="/schools" element={<SchoolsLanding />} />
             <Route path="/students" element={<StudentsLanding />} />
             <Route path="/resources" element={<BlogIndex />} />
+            <Route path="/locations" element={<LocationsDirectory />} />
+            <Route path="/tutor/:slug" element={<LocationPage />} />
+            <Route path="/province/:slug" element={<ProvincePage />} />
             <Route path="/login" element={<Login />} />
             <Route 
               path="/portal" 
