@@ -1,8 +1,9 @@
 #!/usr/bin/env tsx
 /**
- * Generate sitemap.xml for all pSEO pages
+ * Generate sitemap.xml for all pSEO pages and location pages
  * 
  * Reads from JSON files in public/pseo-data or pseo-output-conversion
+ * AND from all location/province pages
  * 
  * Usage:
  *   npm run generate:sitemap
@@ -41,6 +42,12 @@ const staticPages: SitemapEntry[] = [
     lastmod: new Date().toISOString().split('T')[0],
     changefreq: 'weekly',
     priority: 0.9,
+  },
+  {
+    url: '/locations',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.8,
   },
 ];
 
@@ -97,6 +104,56 @@ async function main() {
   console.log('─'.repeat(60) + '\n');
 
   try {
+    const entries: SitemapEntry[] = [...staticPages];
+    const lastmod = new Date().toISOString().split('T')[0];
+
+    // Add location-based pages
+    console.log('📍 Adding location-based pages...\n');
+    
+    // Import location data
+    const locationsPath = path.join(process.cwd(), 'src/data/southAfricaLocations.ts');
+    if (fs.existsSync(locationsPath)) {
+      // Read and parse the TypeScript file to extract location data
+      const locationFileContent = fs.readFileSync(locationsPath, 'utf-8');
+      
+      // Extract all location slugs
+      const locationMatches = locationFileContent.matchAll(/slug: "([^"]+)"/g);
+      const locationSlugs = Array.from(locationMatches).map(match => match[1]);
+      
+      // Extract province slugs
+      const provinceMatches = locationFileContent.matchAll(/slug: "([a-z-]+)",\s*capital:/g);
+      const provinceSlugs = Array.from(provinceMatches).map(match => match[1]);
+      
+      // Major cities get higher priority
+      const majorCities = ['johannesburg', 'cape-town', 'durban', 'pretoria', 'port-elizabeth', 'bloemfontein'];
+      
+      // Add all location pages
+      locationSlugs.forEach(slug => {
+        const isMajorCity = majorCities.includes(slug);
+        entries.push({
+          url: `/tutor/${slug}`,
+          lastmod,
+          changefreq: 'monthly',
+          priority: isMajorCity ? 0.8 : 0.6,
+        });
+      });
+      
+      // Add all province pages
+      provinceSlugs.forEach(slug => {
+        entries.push({
+          url: `/province/${slug}`,
+          lastmod,
+          changefreq: 'monthly',
+          priority: 0.7,
+        });
+      });
+      
+      console.log(`   ✅ Added ${locationSlugs.length} location pages`);
+      console.log(`   ✅ Added ${provinceSlugs.length} province pages\n`);
+    } else {
+      console.log('   ⚠️  Location data not found, skipping location pages\n');
+    }
+
     // Check for JSON files in possible directories
     const possibleDirs = ['./public/pseo-data', './pseo-output-conversion'];
     let jsonDir = '';
@@ -110,11 +167,11 @@ async function main() {
     
     if (!jsonDir) {
       console.log('⚠️  No pSEO content directory found');
-      console.log('   Creating empty sitemap with static pages only\n');
-      const sitemap = generateSitemapXML(staticPages);
+      console.log('   Creating sitemap with static and location pages only\n');
+      const sitemap = generateSitemapXML(entries);
       fs.writeFileSync('./public/sitemap.xml', sitemap);
       console.log('✅ Sitemap generated: public/sitemap.xml');
-      console.log(`📊 Total URLs: ${staticPages.length}\n`);
+      console.log(`📊 Total URLs: ${entries.length}\n`);
       return;
     }
     
@@ -122,8 +179,6 @@ async function main() {
     
     const files = fs.readdirSync(jsonDir).filter(f => f.endsWith('.json'));
     console.log(`📄 Found ${files.length} pSEO pages\n`);
-    
-    const entries: SitemapEntry[] = [...staticPages];
     
     // Process each JSON file
     files.forEach(file => {
@@ -180,7 +235,9 @@ async function main() {
     console.log(`🌐 Base URL: ${BASE_URL}`);
     console.log(`📊 Total URLs: ${entries.length}`);
     console.log(`   - Static pages: ${staticPages.length}`);
-    console.log(`   - pSEO pages: ${entries.length - staticPages.length}`);
+    console.log(`   - Location pages: ~${entries.filter(e => e.url.startsWith('/tutor/')).length}`);
+    console.log(`   - Province pages: ~${entries.filter(e => e.url.startsWith('/province/')).length}`);
+    console.log(`   - pSEO pages: ${entries.length - staticPages.length - entries.filter(e => e.url.startsWith('/tutor/') || e.url.startsWith('/province/')).length}`);
     console.log();
     console.log('📤 Next step: Submit to Google Search Console');
     console.log('   https://search.google.com/search-console');

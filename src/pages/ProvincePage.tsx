@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -25,8 +26,33 @@ const ProvincePage = () => {
     );
   }
 
+  const schemaMarkup = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": `AI Tutoring Services in ${province.name}`,
+    "description": `Find StudyBuddy Works AI tutoring in ${locations.length}+ locations across ${province.name}. CAPS-aligned education support for South African students.`,
+    "url": `https://studybuddy.works/province/${province.slug}`,
+    "about": {
+      "@type": "EducationalOrganization",
+      "name": "StudyBuddy Works",
+      "description": "AI-powered tutoring for South African students"
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>AI Tutor in {province.name} - {locations.length}+ Locations | StudyBuddy Works</title>
+        <meta name="description" content={`Access AI tutoring across ${locations.length} towns and suburbs in ${province.name}. CAPS-aligned help for Grade 1-12 students. Find your local area and start learning today.`} />
+        <meta property="og:title" content={`AI Tutor in ${province.name} | StudyBuddy Works`} />
+        <meta property="og:description" content={`${locations.length}+ locations in ${province.name} offering AI tutoring services.`} />
+        <meta property="og:url" content={`https://studybuddy.works/province/${province.slug}`} />
+        <link rel="canonical" href={`https://studybuddy.works/province/${province.slug}`} />
+        <script type="application/ld+json">
+          {JSON.stringify(schemaMarkup)}
+        </script>
+      </Helmet>
+      
       <Header />
       
       <section className="bg-gradient-to-br from-primary/5 via-background to-secondary/5 section-padding">
