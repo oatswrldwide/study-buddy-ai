@@ -15,9 +15,12 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
     {
-      name: "copy-404",
+      name: "copy-404-for-spa",
       closeBundle() {
         try {
+          // Copy index.html to 404.html for GitHub Pages SPA routing
+          // GitHub Pages serves 404.html for any non-existent route
+          // Our index.html has the redirect handler to restore the correct URL
           copyFileSync("dist/index.html", "dist/404.html");
           console.log("✓ Copied index.html to 404.html for GitHub Pages SPA routing");
         } catch (err) {
