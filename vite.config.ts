@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import { copyFileSync } from "fs";
+import { existsSync } from "fs";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -15,16 +15,13 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
     {
-      name: "copy-404-for-spa",
+      name: "check-404-for-spa",
       closeBundle() {
-        try {
-          // Copy index.html to 404.html for GitHub Pages SPA routing
-          // GitHub Pages serves 404.html for any non-existent route
-          // Our index.html has the redirect handler to restore the correct URL
-          copyFileSync("dist/index.html", "dist/404.html");
-          console.log("✓ Copied index.html to 404.html for GitHub Pages SPA routing");
-        } catch (err) {
-          console.error("Failed to copy 404.html:", err);
+        // Check if 404.html exists in dist (copied from public folder)
+        if (existsSync("dist/404.html")) {
+          console.log("✓ 404.html found for GitHub Pages SPA routing");
+        } else {
+          console.warn("⚠️  No 404.html found - SPA routing may not work on GitHub Pages");
         }
       },
     },
