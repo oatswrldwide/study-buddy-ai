@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- GitHub Pages SPA redirect handler -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+    
     <!-- Primary Meta Tags -->
     <title>StudyBuddy Works - AI-Powered Learning Platform for Schools</title>
     <meta name="title" content="StudyBuddy Works - AI-Powered Learning Platform for Schools" />
