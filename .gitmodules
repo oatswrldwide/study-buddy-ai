@@ -1,0 +1,3 @@
+[submodule "seo-content"]
+	path = seo-content
+	url = https://github.com/oatswrldwide/studybuddy-south-africa.git
