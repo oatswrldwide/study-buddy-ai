@@ -1,5 +1,4 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -29,69 +28,8 @@ const LocationPage = () => {
 
   const subjects = ["Mathematics", "Physical Science", "Life Sciences", "English", "Afrikaans", "Accounting", "History", "Geography"];
 
-  // Schema markup for SEO
-  const schemaMarkup = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": `StudyBuddy Works - AI Tutor in ${location.name}`,
-    "description": `CAPS-aligned AI tutoring service for students in ${location.name}, ${location.province}. 24/7 homework help, exam prep, and personalized learning for grades 1-12.`,
-    "url": `https://studybuddy.works/tutor/${location.slug}`,
-    "areaServed": {
-      "@type": "City",
-      "name": location.name,
-      "containedInPlace": {
-        "@type": "State",
-        "name": location.province
-      }
-    },
-    "availableLanguage": ["English", "Afrikaans"],
-    "serviceType": "AI Tutoring",
-    "priceRange": "R99-R299",
-    "offers": {
-      "@type": "Offer",
-      "category": "Education",
-      "availabilityStarts": new Date().toISOString(),
-      "availableAtOrFrom": {
-        "@type": "Place",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": location.name,
-          "addressRegion": location.province,
-          "addressCountry": "ZA"
-        }
-      }
-    }
-  };
-
-  // Unique meta description based on location type
-  const getMetaDescription = () => {
-    const baseDesc = `Get 24/7 AI tutoring in ${location.name}, ${location.province}. CAPS-aligned help with Mathematics, Science, English & more for Grade 1-12 students`;
-    
-    if (location.type === 'city') {
-      return `${baseDesc}. Trusted by families across ${location.name} for homework help and exam prep.`;
-    } else if (location.type === 'township') {
-      return `Affordable AI tutoring for ${location.name} students. ${baseDesc}. Start your 7-day free trial today.`;
-    } else if (location.type === 'suburb') {
-      return `AI tutor for ${location.name} learners. ${baseDesc}. Sign up now and boost your grades.`;
-    }
-    return `${baseDesc}. Join students improving their grades with StudyBuddy Works.`;
-  };
-
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>AI Tutor in {location.name}, {location.province} | StudyBuddy Works</title>
-        <meta name="description" content={getMetaDescription()} />
-        <meta property="og:title" content={`AI Tutor in ${location.name} | StudyBuddy Works`} />
-        <meta property="og:description" content={getMetaDescription()} />
-        <meta property="og:url" content={`https://studybuddy.works/tutor/${location.slug}`} />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href={`https://studybuddy.works/tutor/${location.slug}`} />
-        <script type="application/ld+json">
-          {JSON.stringify(schemaMarkup)}
-        </script>
-      </Helmet>
-      
       <Header />
       
       {/* Hero */}
