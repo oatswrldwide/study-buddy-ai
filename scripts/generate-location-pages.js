@@ -19,10 +19,21 @@ const locationSlugs = [];
 let match;
 
 while ((match = locationUrlRegex.exec(sitemapContent)) !== null) {
-  locationSlugs.push(match[1]);
+  // Remove trailing slash if present
+  locationSlugs.push(match[1].replace(/\/$/, ''));
 }
 
-console.log(`Generating ${locationSlugs.length} location pages from sitemap...`);
+// Extract all /province/* URLs from sitemap
+const provinceUrlRegex = /<loc>https:\/\/studybuddy\.works\/province\/([^<]+)<\/loc>/g;
+const provinceSlugs = [];
+let provinceMatch;
+
+while ((provinceMatch = provinceUrlRegex.exec(sitemapContent)) !== null) {
+  // Remove trailing slash if present
+  provinceSlugs.push(provinceMatch[1].replace(/\/$/, ''));
+}
+
+console.log(`Generating ${locationSlugs.length} location pages and ${provinceSlugs.length} province pages from sitemap...`);
 
 // Create tutor directory in dist
 const tutorDir = path.join(__dirname, '../dist/tutor');
@@ -56,3 +67,34 @@ if (failed > 0) {
   console.log(`✗ Failed to generate ${failed} location pages`);
 }
 console.log(`  Located in: dist/tutor/[location]/index.html`);
+
+// Generate province pages
+const provinceDir = path.join(__dirname, '../dist/province');
+if (!fs.existsSync(provinceDir)) {
+  fs.mkdirSync(provinceDir, { recursive: true });
+}
+
+let provinceGenerated = 0;
+let provinceFailed = 0;
+
+for (const province of provinceSlugs) {
+  const provDir = path.join(provinceDir, province);
+  
+  try {
+    if (!fs.existsSync(provDir)) {
+      fs.mkdirSync(provDir, { recursive: true });
+    }
+    
+    fs.writeFileSync(path.join(provDir, 'index.html'), indexHtml);
+    provinceGenerated++;
+  } catch (error) {
+    console.error(`Failed to generate province ${province}:`, error.message);
+    provinceFailed++;
+  }
+}
+
+console.log(`✓ Successfully generated ${provinceGenerated} province pages`);
+if (provinceFailed > 0) {
+  console.log(`✗ Failed to generate ${provinceFailed} province pages`);
+}
+console.log(`  Located in: dist/province/[province]/index.html`);
