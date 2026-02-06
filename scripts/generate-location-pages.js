@@ -33,7 +33,20 @@ while ((provinceMatch = provinceUrlRegex.exec(sitemapContent)) !== null) {
   provinceSlugs.push(provinceMatch[1].replace(/\/$/, ''));
 }
 
-console.log(`Generating ${locationSlugs.length} location pages and ${provinceSlugs.length} province pages from sitemap...`);
+// Extract all other page URLs (students, resources, locations, schools, etc.)
+const pageUrlRegex = /<loc>https:\/\/studybuddy\.works\/([^<]+)<\/loc>/g;
+const pageSlugs = [];
+let pageMatch;
+
+while ((pageMatch = pageUrlRegex.exec(sitemapContent)) !== null) {
+  const slug = pageMatch[1].replace(/\/$/, '');
+  // Skip tutor and province pages (already handled above)
+  if (!slug.startsWith('tutor/') && !slug.startsWith('province/') && slug !== '') {
+    pageSlugs.push(slug);
+  }
+}
+
+console.log(`Generating ${locationSlugs.length} location pages, ${provinceSlugs.length} province pages, and ${pageSlugs.length} other pages from sitemap...`);
 
 // Create tutor directory in dist
 const tutorDir = path.join(__dirname, '../dist/tutor');
@@ -98,3 +111,31 @@ if (provinceFailed > 0) {
   console.log(`✗ Failed to generate ${provinceFailed} province pages`);
 }
 console.log(`  Located in: dist/province/[province]/index.html`);
+
+// Generate other pages (students, resources, locations, schools, etc.)
+const distDir = path.join(__dirname, '../dist');
+let pagesGenerated = 0;
+let pagesFailed = 0;
+
+for (const slug of pageSlugs) {
+  const pageDir = path.join(distDir, slug);
+  
+  try {
+    if (!fs.existsSync(pageDir)) {
+      fs.mkdirSync(pageDir, { recursive: true });
+    }
+    
+    fs.writeFileSync(path.join(pageDir, 'index.html'), indexHtml);
+    pagesGenerated++;
+  } catch (error) {
+    console.error(`Failed to generate page ${slug}:`, error.message);
+    pagesFailed++;
+  }
+}
+
+console.log(`✓ Successfully generated ${pagesGenerated} other pages`);
+if (pagesFailed > 0) {
+  console.log(`✗ Failed to generate ${pagesFailed} other pages`);
+}
+console.log(`  Located in: dist/[page]/index.html`);
+console.log(`\n🎉 Total: ${generated + provinceGenerated + pagesGenerated} pages generated`);
