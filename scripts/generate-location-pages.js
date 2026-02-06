@@ -9,20 +9,20 @@ const __dirname = path.dirname(__filename);
 const indexPath = path.join(__dirname, '../dist/index.html');
 const indexHtml = fs.readFileSync(indexPath, 'utf-8');
 
-// Major locations to pre-render (top 50 for SEO)
-const majorLocations = [
-  'johannesburg', 'pretoria', 'cape-town', 'durban', 'soweto', 'alexandra', 'tembisa',
-  'sandton', 'centurion', 'midrand', 'randburg', 'roodepoort', 'benoni', 'boksburg',
-  'germiston', 'kempton-park', 'alberton', 'springs', 'brakpan', 'edenvale', 'krugersdorp',
-  'vereeniging', 'vanderbijlpark', 'rosebank', 'bryanston', 'fourways', 'rivonia',
-  'hatfield', 'menlo-park', 'lynnwood', 'waterkloof', 'brooklyn-pretoria',
-  'mamelodi', 'atteridgeville', 'soshanguve', 'hammanskraal',
-  'constantia', 'camps-bay', 'sea-point', 'woodstock', 'observatory', 'claremont',
-  'umhlanga', 'chatsworth', 'phoenix', 'kwamashu', 'umlazi', 'pinetown',
-  'port-elizabeth', 'bloemfontein', 'polokwane', 'nelspruit'
-];
+// Read sitemap to get ALL location URLs
+const sitemapPath = path.join(__dirname, '../public/sitemap.xml');
+const sitemapContent = fs.readFileSync(sitemapPath, 'utf-8');
 
-console.log(`Generating ${majorLocations.length} location pages...`);
+// Extract all /tutor/* URLs from sitemap
+const locationUrlRegex = /<loc>https:\/\/studybuddy\.works\/tutor\/([^<]+)<\/loc>/g;
+const locationSlugs = [];
+let match;
+
+while ((match = locationUrlRegex.exec(sitemapContent)) !== null) {
+  locationSlugs.push(match[1]);
+}
+
+console.log(`Generating ${locationSlugs.length} location pages from sitemap...`);
 
 // Create tutor directory in dist
 const tutorDir = path.join(__dirname, '../dist/tutor');
@@ -32,7 +32,9 @@ if (!fs.existsSync(tutorDir)) {
 
 // Generate an index.html for each location
 let generated = 0;
-for (const location of majorLocations) {
+let failed = 0;
+
+for (const location of locationSlugs) {
   const locationDir = path.join(tutorDir, location);
   
   try {
@@ -45,8 +47,12 @@ for (const location of majorLocations) {
     generated++;
   } catch (error) {
     console.error(`Failed to generate ${location}:`, error.message);
+    failed++;
   }
 }
 
 console.log(`✓ Successfully generated ${generated} location pages`);
+if (failed > 0) {
+  console.log(`✗ Failed to generate ${failed} location pages`);
+}
 console.log(`  Located in: dist/tutor/[location]/index.html`);
