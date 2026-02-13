@@ -40,30 +40,29 @@ jobs:
           echo "studybuddy.works" > seo-repo/CNAME
           
           # Create or update README
-          cat > seo-repo/README.md << 'EOF'
-# StudyBuddy South Africa - SEO Landing Pages
-
-**Live Site**: https://studybuddy.works
-
-This repository contains programmatic SEO (pSEO) content for StudyBuddy AI.
-
-## Content Structure
-
-- **Subject Pages**: Mathematics, Physical Sciences, Life Sciences by grade
-- **Pain Point Pages**: Targeted landing pages for specific student problems
-- **Comparison Pages**: AI tutor vs traditional tutoring
-
-## Deployment
-
-- Content is automatically synced from the main study-buddy-ai repository
-- Deployed to GitHub Pages at studybuddy.works
-- Updates happen on every push to main branch
-
-## Manual Testing
-
-Visit: https://studybuddy.works
-
-EOF
+          cat > seo-repo/README.md << 'EOFREADME'
+          # StudyBuddy South Africa - SEO Landing Pages
+          
+          Live Site: https://studybuddy.works
+          
+          This repository contains programmatic SEO content for StudyBuddy AI.
+          
+          ## Content Structure
+          
+          - Subject Pages: Mathematics, Physical Sciences, Life Sciences by grade
+          - Pain Point Pages: Targeted landing pages for specific student problems
+          - Comparison Pages: AI tutor vs traditional tutoring
+          
+          ## Deployment
+          
+          - Content is automatically synced from the main study-buddy-ai repository
+          - Deployed to GitHub Pages at studybuddy.works
+          - Updates happen on every push to main branch
+          
+          ## Manual Testing
+          
+          Visit: https://studybuddy.works
+          EOFREADME
       
       - name: Commit and push to SEO repository
         working-directory: seo-repo
