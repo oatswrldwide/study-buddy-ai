@@ -57,10 +57,20 @@ export interface ChatMessage {
   content: string
 }
 
+export interface ExamContext {
+  subject: string;
+  paperType: string;
+  year: number;
+  session: string;
+  paperNumber: number;
+  fileName: string;
+}
+
 export interface ChatOptions {
   subject: string
   grade: number
   conversationHistory?: ChatMessage[]
+  examContext?: ExamContext
 }
 
 /**
@@ -87,7 +97,9 @@ export async function* sendMessage(
     })) || []),
     {
       role: 'user',
-      content: `[Subject: ${options.subject}, Grade: ${options.grade}]\n\n${userMessage}`,
+      content: options.examContext
+        ? `[Context: Student is working with ${options.examContext.subject} ${options.examContext.paperType === 'exam' ? 'Exam Paper' : 'Memorandum'} ${options.examContext.paperNumber}, ${options.examContext.session} ${options.examContext.year}, Grade: ${options.grade}]\n\nThe student has attached this past exam paper and wants to work through it. Help them understand the questions, concepts, and solutions. Be specific to this exam paper context.\n\nStudent question: ${userMessage}`
+        : `[Subject: ${options.subject}, Grade: ${options.grade}]\n\n${userMessage}`,
     },
   ]
 

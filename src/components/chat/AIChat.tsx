@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Send, Loader2, Bot, User, Plus, Menu } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Send, Loader2, Bot, User, Plus, Menu, FileText, X } from "lucide-react";
 import { sendMessage, validateMessage } from "@/lib/openrouter";
 import { db } from "@/lib/firebase";
 import {
@@ -13,6 +14,7 @@ import {
   increment,
   serverTimestamp,
 } from "firebase/firestore";
+import type { ExamPaper } from "@/data/examPapers";
 
 interface Message {
   role: "user" | "assistant";
@@ -27,6 +29,8 @@ interface AIChatProps {
   studentSignupId?: string;
   hasPaid?: boolean;
   onQuestionAsked?: () => Promise<void>;
+  attachedExam?: ExamPaper | null;
+  onRemoveExam?: () => void;
 }
 
 const AIChat = ({ 
@@ -36,12 +40,16 @@ const AIChat = ({
   studentSignupId,
   hasPaid = false,
   onQuestionAsked,
+  attachedExam,
+  onRemoveExam,
 }: AIChatProps) => {
   const [conversationId, setConversationId] = useState<string | null>(initialConversationId || null);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: `Hi! I'm your StudyBuddy tutor for ${subject}. I'm here to help you understand concepts through guided questions. What would you like to learn about today?`,
+      content: attachedExam 
+        ? `Hi! I'm your StudyBuddy tutor. I can see you've attached the ${attachedExam.subject} ${attachedExam.paper_type === 'exam' ? 'exam paper' : 'memorandum'} from ${attachedExam.session} ${attachedExam.year}. I'm ready to help you understand the questions, explain concepts, or work through problems. What would you like to explore?`
+        : `Hi! I'm your StudyBuddy tutor for ${subject}. I'm here to help you understand concepts through guided questions. What would you like to learn about today?`,
       timestamp: new Date(),
     },
   ]);
@@ -179,12 +187,20 @@ const AIChat = ({
 
       // Stream the response
       const stream = sendMessage(input, {
-        subject,
+        subject: attachedExam ? attachedExam.subject : subject,
         grade,
         conversationHistory: messages.map((m) => ({
           role: m.role,
           content: m.content,
         })),
+        examContext: attachedExam ? {
+          subject: attachedExam.subject,
+          paperType: attachedExam.paper_type,
+          year: attachedExam.year,
+          session: attachedExam.session,
+          paperNumber: attachedExam.paper_number,
+          fileName: attachedExam.file_name,
+        } : undefined,
       });
 
       for await (const chunk of stream) {
@@ -281,17 +297,38 @@ const AIChat = ({
             >
               <Menu className="w-5 h-5" />
             </Button>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-1">
               <div className="w-8 h-8 rounded-full bg-[#10a37f] flex items-center justify-center">
                 <Bot className="w-5 h-5 text-white" />
               </div>
-              <div>
+              <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-white text-sm">StudyBuddy</h3>
                 <p className="text-xs text-white/50">
-                  {subject} • Grade {grade}
+                  {attachedExam ? attachedExam.subject : subject} • Grade {grade}
                 </p>
               </div>
             </div>
+            
+            {/* Attached Exam Badge */}
+            {attachedExam && (
+              <Badge 
+                variant="secondary" 
+                className="flex items-center gap-2 bg-blue-500/20 text-blue-300 border-blue-500/30"
+              >
+                <FileText className="h-3 w-3" />
+                <span className="text-xs">
+                  {attachedExam.paper_type === 'exam' ? 'Paper' : 'Memo'} {attachedExam.paper_number}
+                </span>
+                {onRemoveExam && (
+                  <button
+                    onClick={onRemoveExam}
+                    className="ml-1 hover:text-white transition-colors"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                )}
+              </Badge>
+            )}
           </div>
         </div>
 

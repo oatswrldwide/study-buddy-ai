@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import AIChat from "@/components/chat/AIChat";
+import ExamBrowser from "@/components/exams/ExamBrowser";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { LogOut, BookOpen, GraduationCap } from "lucide-react";
+import { LogOut, BookOpen, GraduationCap, FileText, MessageSquare } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import YocoPaymentWall from "@/components/payment/YocoPaymentWall";
+import type { ExamPaper } from "@/data/examPapers";
 
 interface StudentData {
   full_name: string;
@@ -32,6 +35,8 @@ const StudentPortal = () => {
   const [error, setError] = useState<string | null>(null);
   const [questionsRemaining, setQuestionsRemaining] = useState(5);
   const [showPaymentWall, setShowPaymentWall] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>("chat");
+  const [attachedExam, setAttachedExam] = useState<ExamPaper | null>(null);
 
   // Check URL params for upgrade intent
   useEffect(() => {
@@ -40,6 +45,17 @@ const StudentPortal = () => {
       setShowPaymentWall(true);
     }
   }, []);
+
+  // Handler for chatting with an exam
+const handleChatWithExam = (exam: ExamPaper) => {
+    setAttachedExam(exam);
+    setActiveTab("chat");
+  };
+
+  // Handler for removing attached exam
+  const handleRemoveExam = () => {
+    setAttachedExam(null);
+  };
 
   // Helper function to check if user has paid
   const hasPaid = () => {
@@ -321,6 +337,21 @@ const StudentPortal = () => {
               </Button>
             </div>
           </div>
+          
+          {/* Mobile Tab Switcher */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="w-full bg-white/10">
+              <TabsTrigger value="chat" className="flex-1 data-[state=active]:bg-white/20 text-white">
+                <MessageSquare className="w-4 h-4 mr-1" />
+                Chat
+              </TabsTrigger>
+              <TabsTrigger value="exams" className="flex-1 data-[state=active]:bg-white/20 text-white">
+                <FileText className="w-4 h-4 mr-1" />
+                Exams
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+          
           <Select value={selectedSubject} onValueChange={setSelectedSubject}>
             <SelectTrigger className="w-full bg-white/10 text-white border-white/20 h-9">
               <SelectValue />
@@ -350,6 +381,20 @@ const StudentPortal = () => {
           </div>
           
           <div className="flex items-center gap-2">
+            {/* Tab Switcher */}
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="mr-2">
+              <TabsList className="bg-white/10">
+                <TabsTrigger value="chat" className="data-[state=active]:bg-white/20 text-white">
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  Chat
+                </TabsTrigger>
+                <TabsTrigger value="exams" className="data-[state=active]:bg-white/20 text-white">
+                  <FileText className="w-4 h-4 mr-2" />
+                  Exam Papers
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+
             <Select value={selectedSubject} onValueChange={setSelectedSubject}>
               <SelectTrigger className="w-[180px] bg-white/10 text-white border-white/20">
                 <SelectValue />
@@ -376,28 +421,39 @@ const StudentPortal = () => {
         </div>
       </div>
       
-      {/* Chat interface with top padding for header - adjusted for mobile stacked header */}
+      {/* Content area with tabs - adjusted for mobile stacked header */}
       <div className="h-full pt-20 sm:pt-16">
-        <AIChat 
-          subject={selectedSubject} 
-          grade={parseInt(selectedGrade)} 
-          studentSignupId={user?.uid}
-          hasPaid={hasPaid()}
-          onQuestionAsked={async () => {
-            if (!hasPaid() && user) {
-              // Decrement question count
-              const today = new Date().toDateString();
-              const studentRef = doc(db, "student_signups", user.uid);
-              
-              await updateDoc(studentRef, {
-                questions_today: (studentData?.questions_today || 0) + 1,
-                last_question_date: today,
-              });
-              
-              setQuestionsRemaining(prev => Math.max(0, prev - 1));
-            }
-          }}
-        />
+        {activeTab === "chat" ? (
+          <AIChat 
+            subject={selectedSubject} 
+            grade={parseInt(selectedGrade)} 
+            studentSignupId={user?.uid}
+            hasPaid={hasPaid()}
+            attachedExam={attachedExam}
+            onRemoveExam={handleRemoveExam}
+            onQuestionAsked={async () => {
+              if (!hasPaid() && user) {
+                // Decrement question count
+                const today = new Date().toDateString();
+                const studentRef = doc(db, "student_signups", user.uid);
+                
+                await updateDoc(studentRef, {
+                  questions_today: (studentData?.questions_today || 0) + 1,
+                  last_question_date: today,
+                });
+                
+                setQuestionsRemaining(prev => Math.max(0, prev - 1));
+              }
+            }}
+          />
+        ) : (
+          <div className="h-full overflow-auto bg-background p-4">
+            <ExamBrowser 
+              onChatWithExam={handleChatWithExam}
+              selectedGrade={parseInt(selectedGrade)}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
