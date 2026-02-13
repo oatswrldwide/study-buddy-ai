@@ -50,12 +50,14 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
 
   // Load exam papers on mount
   useEffect(() => {
+    console.log('ExamBrowser: Loading exam papers...');
     loadExamPapers().then(papers => {
+      console.log('ExamBrowser: Loaded', papers.length, 'papers');
       setAllPapers(papers);
       applyFilters(papers, searchQuery, selectedSubject, selectedYear, selectedSession, gradeFilter);
       setLoading(false);
     }).catch(err => {
-      console.error('Failed to load exam papers:', err);
+      console.error('ExamBrowser: Failed to load exam papers:', err);
       setLoading(false);
     });
   }, []);
@@ -73,6 +75,7 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
     session: string,
     grade: number
   ) => {
+    console.log('ExamBrowser: Applying filters -', { totalPapers: papers.length, grade, subject, year, session, search });
     let filtered = papers.filter(p => p.grade === grade);
 
     // Subject filter
@@ -101,6 +104,7 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
     }
 
     const grouped = groupExamsBySubject(filtered);
+    console.log('ExamBrowser: Filtered to', filtered.length, 'papers in', grouped.length, 'subjects');
     setFilteredGroups(grouped);
   };
 
@@ -118,7 +122,25 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
           <p className="text-muted-foreground">Loading exam papers...</p>
+          <p className="text-xs text-muted-foreground mt-2">Loading from /exam-papers/exam_papers_index.json</p>
         </div>
+      </div>
+    );
+  }
+
+  if (allPapers.length === 0 && !loading) {
+    return (
+      <div className="flex items-center justify-center p-12">
+        <Card className="p-8 text-center max-w-md">
+          <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+          <h3 className="text-lg font-semibold mb-2">No Exam Papers Found</h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            The exam papers index could not be loaded. Check browser console for errors.
+          </p>
+          <Button onClick={() => window.location.reload()}>
+            Reload Page
+          </Button>
+        </Card>
       </div>
     );
   }

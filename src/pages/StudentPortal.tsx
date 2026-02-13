@@ -51,11 +51,6 @@ const StudentPortal = () => {
     console.log('Chat with exam clicked:', exam.subject, exam.file_name);
     setAttachedExam(exam);
     setActiveTab("chat");
-    
-    // Visual feedback
-    setTimeout(() => {
-      alert(`Exam attached! You can now ask questions about ${exam.subject} ${exam.paper_type === 'exam' ? 'Paper' : 'Memo'} ${exam.paper_number} (${exam.session} ${exam.year})`);
-    }, 100);
   };
 
   // Handler for removing attached exam
