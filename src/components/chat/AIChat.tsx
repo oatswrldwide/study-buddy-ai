@@ -59,6 +59,19 @@ const AIChat = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  // Reset messages when exam is attached/removed
+  useEffect(() => {
+    setMessages([
+      {
+        role: "assistant",
+        content: attachedExam 
+          ? `Hi! I'm your StudyBuddy tutor. I can see you've attached the ${attachedExam.subject} ${attachedExam.paper_type === 'exam' ? 'exam paper' : 'memorandum'} from ${attachedExam.session} ${attachedExam.year}. I'm ready to help you understand the questions, explain concepts, or work through problems. What would you like to explore?`
+          : `Hi! I'm your StudyBuddy tutor for ${subject}. I'm here to help you understand concepts through guided questions. What would you like to learn about today?`,
+        timestamp: new Date(),
+      },
+    ]);
+  }, [attachedExam, subject]);
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);

@@ -286,7 +286,10 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => onChatWithExam(paper)}
+                            onClick={() => {
+                              console.log('Chat button clicked for:', paper.subject, paper.file_name);
+                              onChatWithExam(paper);
+                            }}
                             title="Chat with this exam"
                           >
                             <MessageSquare className="h-4 w-4" />
