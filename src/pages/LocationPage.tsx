@@ -1,17 +1,29 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { getLocationBySlug, getNearbyLocations } from "@/data/southAfricaLocations";
 import { getLocationContent, getDefaultLocationContent, hasEnhancedContent } from "@/data/locationContent";
-import { BookOpen, CheckCircle, GraduationCap, MapPin, Sparkles, TrendingUp, Users, School } from "lucide-react";
+import { getPopularSubjectExams, type ExamSubjectGroup } from "@/data/examPapers";
+import { BookOpen, CheckCircle, GraduationCap, MapPin, Sparkles, TrendingUp, Users, School, FileText, Download } from "lucide-react";
 
 const LocationPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const location = getLocationBySlug(slug || "");
   const nearbyLocations = getNearbyLocations(slug || "", 6);
+  const [examPapers, setExamPapers] = useState<ExamSubjectGroup[]>([]);
+
+  // Load exam papers on mount
+  useEffect(() => {
+    getPopularSubjectExams(6).then(papers => {
+      setExamPapers(papers);
+    }).catch(err => {
+      console.error('Failed to load exam papers:', err);
+    });
+  }, []);
 
   if (!location) {
     return (
@@ -152,6 +164,76 @@ const LocationPage = () => {
           </section>
         )}
 
+        {/* Exam Papers Section */}
+        {examPapers.length > 0 && (
+          <section className="py-12 md:py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <div className="container max-w-6xl mx-auto px-4">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-1.5 text-sm font-medium text-blue-700 mb-4">
+                  <FileText className="h-4 w-4" />
+                  Free Past Papers & Memos
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold mb-3">
+                  NSC Exam Papers for {location.name} Students
+                </h2>
+                <p className="text-gray-600 max-w-2xl mx-auto">
+                  Access past NSC exam papers and memorandums for practice. Perfect preparation for students in {location.name}.
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {examPapers.map((subjectGroup, index) => (
+                  <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start gap-3">
+                        <BookOpen className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+                        <div>
+                          <h3 className="font-semibold text-lg mb-1">{subjectGroup.subject}</h3>
+                          <p className="text-sm text-gray-600">
+                            Grade 12 • {subjectGroup.latestYear}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-600">Available Papers:</span>
+                        <span className="font-semibold">{subjectGroup.paperCount}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-600">Latest Year:</span>
+                        <span className="font-semibold">{subjectGroup.latestYear}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="pt-4 border-t border-gray-100">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full group"
+                        onClick={() => navigate('/students')}
+                      >
+                        <Download className="h-4 w-4 mr-2 group-hover:animate-bounce" />
+                        Access Papers
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="text-center mt-8">
+                <p className="text-sm text-gray-600 mb-4">
+                  Over 500+ exam papers and memorandums available across all subjects
+                </p>
+                <Button variant="default" onClick={() => navigate('/students')}>
+                  Sign Up to Access All Papers
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Benefits Section */}
         <section className="py-12 md:py-16 bg-gray-50">
           <div className="container max-w-6xl mx-auto px-4">
@@ -166,7 +248,7 @@ const LocationPage = () => {
                 { icon: BookOpen, title: "All Subjects", desc: "Mathematics, Sciences, Languages, and more - all included" },
                 { icon: TrendingUp, title: "Instant Help", desc: "Get detailed explanations immediately, no waiting for appointments" },
                 { icon: Users, title: "Affordable", desc: "Just R99/month - less than a single tutoring session" },
-                { icon: GraduationCap, title: "Exam Prep", desc: "Practice questions and strategies for NSC and school exams" }
+                { icon: FileText, title: "Free Past Papers", desc: "Access 500+ NSC exam papers and memos for practice" }
               ].map((benefit, i) => (
                 <div key={i} className="flex items-start gap-4 bg-white p-6 rounded-lg border border-gray-200">
                   <benefit.icon className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
