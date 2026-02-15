@@ -1,12 +1,13 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { getProvinceBySlug, getLocationsByProvince } from "@/data/southAfricaLocations";
-import { MapPin } from "lucide-react";
+import { MapPin, BookOpen, School } from "lucide-react";
 
 const ProvincePage = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const province = getProvinceBySlug(slug || "");
   const locations = getLocationsByProvince(slug || "");
 
@@ -37,6 +38,28 @@ const ProvincePage = () => {
           <p className="text-lg text-muted-foreground max-w-2xl">
             StudyBuddy Works provides CAPS-aligned AI tutoring across {locations.length} towns and suburbs in {province.name}. Find your local area below.
           </p>
+        </div>
+      </section>
+
+      <section className="py-8 border-y border-border bg-muted/30">
+        <div className="container-wide">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Button variant="outline" size="sm" onClick={() => navigate("/students")}>
+              <BookOpen className="h-4 w-4 mr-2" />
+              Get AI Tutoring
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate("/resources")}>
+              📚 Study Resources
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate("/locations")}>
+              <MapPin className="h-4 w-4 mr-2" />
+              All Locations
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate("/schools")}>
+              <School className="h-4 w-4 mr-2" />
+              For Schools
+            </Button>
+          </div>
         </div>
       </section>
 

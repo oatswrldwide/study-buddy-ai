@@ -107,6 +107,42 @@ const LocationPage = () => {
           </div>
         </section>
 
+        {/* Quick Links Section */}
+        <section className="py-8 bg-gradient-to-br from-amber-50/50 to-white border-y border-gray-200">
+          <div className="container max-w-6xl mx-auto px-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => navigate("/resources")}
+              >
+                📚 Study Guides & Resources
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => navigate("/locations")}
+              >
+                📍 Browse All Locations
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => navigate(`/province/${location.province.toLowerCase().replace(/\\s+/g, '-')}`)}
+              >
+                🗺️ All {location.province} Tutors
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => navigate("/schools")}
+              >
+                🏫 For Schools
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* Local Context Section */}
         {content.localContext && (
           <section className="py-12 md:py-16">

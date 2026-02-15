@@ -26,14 +26,13 @@ import ParentActivity from "./pages/parent/ParentActivity";
 import ParentPayments from "./pages/parent/ParentPayments";
 import ParentSettings from "./pages/parent/ParentSettings";
 import DemoCredentials from "./pages/DemoCredentials";
-import PSEOPage from "./pages/PSEOPage";
 import BlogIndex from "./pages/BlogIndex";
 import ContentReview from "./pages/admin/ContentReview";
-import Resources from "./pages/Resources";
 import LocationPage from "./pages/LocationPage";
 import ProvincePage from "./pages/ProvincePage";
 import LocationsDirectory from "./pages/LocationsDirectory";
 import { HelmetProvider } from 'react-helmet-async';
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +45,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <ScrollToTop />
               <Routes>
             <Route path="/" element={<MarketSelector />} />
             <Route path="/test" element={<TestPage />} />

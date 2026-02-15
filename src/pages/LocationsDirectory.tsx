@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { provinces, getTotalLocationCount } from "@/data/southAfricaLocations";
-import { MapPin } from "lucide-react";
+import { MapPin, BookOpen, School } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const LocationsDirectory = () => {
   const totalLocations = getTotalLocationCount();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -16,9 +19,24 @@ const LocationsDirectory = () => {
           <h1 className="font-display text-3xl md:text-4xl font-bold text-center mb-4">
             AI Tutoring in {totalLocations}+ South African Locations
           </h1>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
             Find StudyBuddy Works AI tutoring in your town or suburb. CAPS-aligned learning for every student.
           </p>
+          
+          {/* Quick Links */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            <Button variant="outline" size="sm" onClick={() => navigate("/students")}>
+              <BookOpen className="h-4 w-4 mr-2" />
+              Get AI Tutoring
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate("/resources")}>
+              📚 Study Resources
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate("/schools")}>
+              <School className="h-4 w-4 mr-2" />
+              For Schools
+            </Button>
+          </div>
 
           {provinces.map((province) => (
             <div key={province.slug} className="mb-12">

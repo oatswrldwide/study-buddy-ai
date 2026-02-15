@@ -1,23 +1,24 @@
 import { BookOpen, Twitter, Linkedin, Youtube, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const footerLinks = {
   Product: [
-    { label: "Features", href: "#features" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Security", href: "#" },
-    { label: "Integrations", href: "#" },
+    { label: "For Students", href: "/students", isRoute: true },
+    { label: "For Schools", href: "/schools", isRoute: true },
+    { label: "Find a Tutor", href: "/locations", isRoute: true },
+    { label: "Try Demo", href: "/demo", isRoute: true },
+  ],
+  Resources: [
+    { label: "Learning Resources", href: "/resources", isRoute: true },
+    { label: "Subject Guides", href: "/resources", isRoute: true },
+    { label: "Exam Papers", href: "/students#exam-papers", isRoute: true },
+    { label: "Study Tips", href: "/resources", isRoute: true },
   ],
   Company: [
-    { label: "About Us", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Contact", href: "#" },
-    { label: "Press", href: "#" },
-  ],
-  Legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "FERPA Compliance", href: "#" },
-    { label: "COPPA Compliance", href: "#" },
+    { label: "About Us", href: "/", isRoute: true },
+    { label: "Login", href: "/login", isRoute: true },
+    { label: "Contact", href: "/schools#contact", isRoute: true },
+    { label: "Support", href: "/resources", isRoute: true },
   ],
 };
 
@@ -70,12 +71,21 @@ const Footer = () => {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-                    >
-                      {link.label}
-                    </a>
+                    {link.isRoute ? (
+                      <Link
+                        to={link.href}
+                        className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

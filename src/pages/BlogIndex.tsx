@@ -179,10 +179,34 @@ const BlogIndex = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Study Resources & Guides
               </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
                 Comprehensive CAPS-aligned study guides, exam breakdowns, and expert advice 
                 for South African matric students. All resources are free and regularly updated.
               </p>
+              
+              {/* Quick Navigation Links */}
+              <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+                <Link to="/students">
+                  <Button variant="outline" size="sm">
+                    🎓 Get AI Tutoring
+                  </Button>
+                </Link>
+                <Link to="/locations">
+                  <Button variant="outline" size="sm">
+                    📍 Find Local Tutors
+                  </Button>
+                </Link>
+                <Link to="/schools">
+                  <Button variant="outline" size="sm">
+                    🏫 For Schools
+                  </Button>
+                </Link>
+                <Link to="/demo">
+                  <Button variant="outline" size="sm">
+                    🎮 Try Demo
+                  </Button>
+                </Link>
+              </div>
             </div>
 
             {/* Stats */}

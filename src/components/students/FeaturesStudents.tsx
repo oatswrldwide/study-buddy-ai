@@ -1,9 +1,12 @@
 import { studentsConfig } from "@/config/students";
 import * as LucideIcons from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const FeaturesStudents = () => {
   const { features, additionalFeatures, subjects } = studentsConfig;
+  const navigate = useNavigate();
 
   return (
     <section id="features" className="py-20 lg:py-32 bg-background">
@@ -96,6 +99,21 @@ const FeaturesStudents = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Cross-promotion Links */}
+        <div className="mt-16 text-center">
+          <p className="text-muted-foreground mb-4">
+            Explore more resources to help you succeed
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Button variant="outline" size="sm" onClick={() => navigate("/resources")}>
+              📖 Free Study Guides
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate("/locations")}>
+              📍 Find Tutors Near You
+            </Button>
+          </div>
         </div>
       </div>
     </section>

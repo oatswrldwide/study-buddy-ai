@@ -1,7 +1,10 @@
 import { Globe, Palette, UserCircle, MessageSquare, LayoutDashboard, HeadphonesIcon } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const WhatsIncluded = () => {
+  const navigate = useNavigate();
   const features = [
     {
       icon: Globe,
@@ -160,6 +163,24 @@ const WhatsIncluded = () => {
                 <p className="text-2xl font-bold text-primary">14 Days</p>
                 <p className="text-sm text-muted-foreground">Average launch time</p>
               </div>
+            </div>
+          </div>
+
+          {/* Cross-promotion */}
+          <div className="mt-8 text-center">
+            <p className="text-sm text-muted-foreground mb-4">
+              Want to see how students will use the platform?
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Button variant="outline" size="sm" onClick={() => navigate("/students")}>
+                View Student Experience
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => navigate("/locations")}>
+                Find Tutors in Your Area
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => navigate("/resources")}>
+                Browse Study Resources
+              </Button>
             </div>
           </div>
         </div>

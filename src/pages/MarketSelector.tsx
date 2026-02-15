@@ -121,8 +121,33 @@ const MarketSelector = () => {
             </div>
           </div>
 
+          {/* Quick Links */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => navigate("/resources")}
+            >
+              📚 Browse Learning Resources
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => navigate("/locations")}
+            >
+              📍 Find Tutors in Your Area
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => navigate("/demo")}
+            >
+              🎮 Try Demo
+            </Button>
+          </div>
+
           {/* Trust Indicators */}
-          <div className="text-center">
+          <div className="text-center mt-8">
             <p className="text-sm text-muted-foreground mb-4">
               Trusted by 50+ schools and 12,000+ learners across South Africa
             </p>
