@@ -6,12 +6,27 @@ import RevenueCalculator from "@/components/schools/RevenueCalculator";
 import { Button } from "@/components/ui/button";
 import { BookOpen, MapPin, FileText } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const SchoolsLanding = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="min-h-screen">
+    <>
+      <Helmet>
+        <title>AI Tutoring Platform for Schools | StudyBuddy Works - White Label Solution</title>
+        <meta name="description" content="Launch your school's branded AI tutoring platform in 14 days. Custom domain, logo, and colors. Charge R200+, pay R150 per student per year. Keep the profit. 100 student minimum." />
+        <meta name="keywords" content="school AI platform, white label tutoring, branded AI tutor, school revenue, CAPS tutoring platform, South African schools" />
+        <meta property="og:title" content="AI Tutoring Platform for Schools | StudyBuddy Works" />
+        <meta property="og:description" content="Launch your school's branded AI tutoring platform. Custom domain, your logo, keep the profit. Live in 14 days." />
+        <meta property="og:url" content="https://studybuddy.works/schools" />
+        <meta property="og:type" content="website" />
+        <meta property="twitter:title" content="AI Tutoring Platform for Schools | StudyBuddy Works" />
+        <meta property="twitter:description" content="Launch your school's branded AI tutoring platform. Custom domain, your logo, keep the profit." />
+        <meta property="twitter:url" content="https://studybuddy.works/schools" />
+        <link rel="canonical" href="https://studybuddy.works/schools" />
+      </Helmet>
+      <main className="min-h-screen">
       <HeaderSchools />
       <HeroSchools />
       <WhatsIncluded />
@@ -61,7 +76,8 @@ const SchoolsLanding = () => {
       </section>
       
       <Footer />
-    </main>
+      </main>
+    </>
   );
 };
 

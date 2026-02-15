@@ -1,12 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { BookOpen, GraduationCap, School, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const MarketSelector = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white">
+    <>
+      <Helmet>
+        <title>StudyBuddy Works | AI-Powered Tutoring for Students & Schools in South Africa</title>
+        <meta name="description" content="Choose your path: Students get 24/7 AI tutoring for R99/month. Schools launch branded platforms and keep the profit. CAPS-aligned education for South Africa." />
+        <meta name="keywords" content="AI tutoring South Africa, CAPS tutoring, student learning platform, school AI platform, online education South Africa" />
+        <meta property="og:title" content="StudyBuddy Works | AI-Powered Tutoring for Students & Schools" />
+        <meta property="og:description" content="AI tutoring for South African students and schools. CAPS-aligned, affordable, accessible." />
+        <meta property="og:url" content="https://studybuddy.works/" />
+        <meta property="og:type" content="website" />
+        <meta property="twitter:title" content="StudyBuddy Works | AI-Powered Tutoring for Students & Schools" />
+        <meta property="twitter:description" content="AI tutoring for South African students and schools. CAPS-aligned, affordable, accessible." />
+        <meta property="twitter:url" content="https://studybuddy.works/" />
+        <link rel="canonical" href="https://studybuddy.works/" />
+      </Helmet>
+      <div className="min-h-screen flex items-center justify-center bg-white">
       {/* Subtle background */}
       <div className="absolute inset-0 bg-gradient-to-b from-amber-50/30 via-white to-white" />
 
@@ -165,7 +180,8 @@ const MarketSelector = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

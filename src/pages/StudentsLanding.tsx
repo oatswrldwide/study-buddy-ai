@@ -10,12 +10,27 @@ import { studentsConfig } from "@/config/students";
 import { Button } from "@/components/ui/button";
 import { School, MapPin, FileText, BookOpen } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const StudentsLanding = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="min-h-screen">
+    <>
+      <Helmet>
+        <title>24/7 AI Tutor for Students | StudyBuddy Works - R99/Month CAPS-Aligned</title>
+        <meta name="description" content="Get 24/7 AI tutoring for all subjects. CAPS-aligned homework help, exam prep, and personalized learning for R99/month. Try free for 7 days. Perfect for matric students across South Africa." />
+        <meta name="keywords" content="AI tutor South Africa, CAPS tutoring, homework help, matric tutoring, exam preparation, online tutor, affordable tutoring, 24/7 study help" />
+        <meta property="og:title" content="24/7 AI Tutor for Students | StudyBuddy Works" />
+        <meta property="og:description" content="Get 24/7 AI tutoring for all subjects. CAPS-aligned, R99/month, 7-day free trial. Perfect for matric students." />
+        <meta property="og:url" content="https://studybuddy.works/students" />
+        <meta property="og:type" content="website" />
+        <meta property="twitter:title" content="24/7 AI Tutor for Students | StudyBuddy Works" />
+        <meta property="twitter:description" content="Get 24/7 AI tutoring for all subjects. CAPS-aligned, R99/month, 7-day free trial." />
+        <meta property="twitter:url" content="https://studybuddy.works/students" />
+        <link rel="canonical" href="https://studybuddy.works/students" />
+      </Helmet>
+      <main className="min-h-screen">
       <Header />
       <HeroStudents />
       <FeaturesStudents />
@@ -85,7 +100,8 @@ const StudentsLanding = () => {
         description="Got questions? We've got answers!"
       />
       <Footer />
-    </main>
+      </main>
+    </>
   );
 };
 
