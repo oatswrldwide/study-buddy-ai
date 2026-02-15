@@ -7,7 +7,14 @@ const __dirname = path.dirname(__filename);
 
 // Read the built index.html
 const indexPath = path.join(__dirname, '../dist/index.html');
-const indexHtml = fs.readFileSync(indexPath, 'utf-8');
+let indexHtml = fs.readFileSync(indexPath, 'utf-8');
+
+// Remove the SPA redirect handler from the template
+// This prevents redirect errors in Google Search Console
+indexHtml = indexHtml.replace(
+  /<!-- GitHub Pages SPA redirect handler -->[\s\S]*?<\/script>/,
+  '<!-- Static page - no redirect needed -->'
+);
 
 // Read sitemap to get ALL location URLs
 const sitemapPath = path.join(__dirname, '../public/sitemap.xml');
@@ -48,6 +55,39 @@ while ((pageMatch = pageUrlRegex.exec(sitemapContent)) !== null) {
 
 console.log(`Generating ${locationSlugs.length} location pages, ${provinceSlugs.length} province pages, and ${pageSlugs.length} other pages from sitemap...`);
 
+// Helper function to create location-specific HTML
+function customizeHtmlForLocation(html, slug, type = 'tutor') {
+  // Format the location name from slug (e.g., "cape-town" -> "Cape Town")
+  const locationName = slug.split('-').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ');
+  
+  const title = type === 'tutor' 
+    ? `AI Tutor in ${locationName} | StudyBuddy Works - CAPS Curriculum Support`
+    : `AI Tutoring in ${locationName} | StudyBuddy Works`;
+    
+  const description = type === 'tutor'
+    ? `Get personalized, CAPS-aligned AI tutoring in ${locationName}. 24/7 homework help, exam preparation, and subject support for R99/month. Try free!`
+    : `Find AI tutoring services across ${locationName}. CAPS-aligned learning support for all students.`;
+    
+  const canonicalUrl = `https://studybuddy.works/${type}/${slug}`;
+  
+  // Replace generic meta tags with location-specific ones
+  let customHtml = html
+    .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+    .replace(/(<meta name="title" content=").*?(")/, `$1${title}$2`)
+    .replace(/(<meta name="description" content=").*?(")/, `$1${description}$2`)
+    .replace(/(<meta property="og:title" content=").*?(")/, `$1${title}$2`)
+    .replace(/(<meta property="og:description" content=").*?(")/, `$1${description}$2`)
+    .replace(/(<meta property="twitter:title" content=").*?(")/, `$1${title}$2`)
+    .replace(/(<meta property="twitter:description" content=").*?(")/, `$1${description}$2`)
+    .replace(/(<link rel="canonical" href=").*?(")/, `$1${canonicalUrl}$2`)
+    .replace(/(<meta property="og:url" content=").*?(")/, `$1${canonicalUrl}$2`)
+    .replace(/(<meta property="twitter:url" content=").*?(")/, `$1${canonicalUrl}$2`);
+  
+  return customHtml;
+}
+
 // Create tutor directory in dist
 const tutorDir = path.join(__dirname, '../dist/tutor');
 if (!fs.existsSync(tutorDir)) {
@@ -66,8 +106,9 @@ for (const location of locationSlugs) {
       fs.mkdirSync(locationDir, { recursive: true });
     }
     
-    // Write index.html (copy of main index.html)
-    fs.writeFileSync(path.join(locationDir, 'index.html'), indexHtml);
+    // Write customized index.html for this location
+    const customHtml = customizeHtmlForLocation(indexHtml, location, 'tutor');
+    fs.writeFileSync(path.join(locationDir, 'index.html'), customHtml);
     generated++;
   } catch (error) {
     console.error(`Failed to generate ${location}:`, error.message);
@@ -98,7 +139,9 @@ for (const province of provinceSlugs) {
       fs.mkdirSync(provDir, { recursive: true });
     }
     
-    fs.writeFileSync(path.join(provDir, 'index.html'), indexHtml);
+    // Write customized index.html for this province
+    const customHtml = customizeHtmlForLocation(indexHtml, province, 'province');
+    fs.writeFileSync(path.join(provDir, 'index.html'), customHtml);
     provinceGenerated++;
   } catch (error) {
     console.error(`Failed to generate province ${province}:`, error.message);
@@ -125,6 +168,7 @@ for (const slug of pageSlugs) {
       fs.mkdirSync(pageDir, { recursive: true });
     }
     
+    // For regular pages, just use the base HTML without redirect handler
     fs.writeFileSync(path.join(pageDir, 'index.html'), indexHtml);
     pagesGenerated++;
   } catch (error) {
