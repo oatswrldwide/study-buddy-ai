@@ -109,8 +109,9 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
   };
 
   const handleDownload = (paper: ExamPaper) => {
-    // Open the file URL in a new tab for download
-    window.open(paper.file_url, '_blank');
+    // Use local_path if available, otherwise fallback to external file_url
+    const downloadUrl = paper.local_path ? `/${paper.local_path}` : paper.file_url;
+    window.open(downloadUrl, '_blank');
   };
 
   const years = Array.from(new Set(allPapers.map(p => p.year))).sort((a, b) => b - a);
