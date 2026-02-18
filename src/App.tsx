@@ -31,6 +31,9 @@ import ContentReview from "./pages/admin/ContentReview";
 import LocationPage from "./pages/LocationPage";
 import ProvincePage from "./pages/ProvincePage";
 import LocationsDirectory from "./pages/LocationsDirectory";
+import About from "./pages/About";
+import HowItWorks from "./pages/HowItWorks";
+import PseoArticlePage from "./pages/PseoArticlePage";
 import { HelmetProvider } from 'react-helmet-async';
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -54,6 +57,8 @@ const App = () => (
             <Route path="/students" element={<StudentsLanding />} />
             <Route path="/resources" element={<BlogIndex />} />
             <Route path="/locations" element={<LocationsDirectory />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/tutor/:slug" element={<LocationPage />} />
             <Route path="/province/:slug" element={<ProvincePage />} />
             <Route path="/login" element={<Login />} />
@@ -202,6 +207,8 @@ const App = () => (
               } 
             />
             
+            {/* pSEO article pages — must be last before catch-all */}
+            <Route path="/:slug" element={<PseoArticlePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

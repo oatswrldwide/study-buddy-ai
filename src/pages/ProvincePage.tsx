@@ -1,7 +1,9 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { getProvinceBySlug, getLocationsByProvince } from "@/data/southAfricaLocations";
 import { MapPin, BookOpen, School } from "lucide-react";
 
@@ -27,8 +29,52 @@ const ProvincePage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <>
+      <Helmet>
+        <title>AI Tutoring in {province.name} | StudyBuddy Works - CAPS-Aligned</title>
+        <meta name="description" content={`Find AI tutoring in ${locations.length} towns and suburbs across ${province.name}. 24/7 CAPS-aligned support for R99/month. Browse all locations below.`} />
+        <link rel="canonical" href={`https://studybuddy.works/province/${slug}`} />
+        <meta property="og:title" content={`AI Tutoring in ${province.name} | StudyBuddy Works`} />
+        <meta property="og:description" content={`CAPS-aligned AI tutoring available across ${locations.length} locations in ${province.name}.`} />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://studybuddy.works/" },
+            { "@type": "ListItem", "position": 2, "name": "Locations", "item": "https://studybuddy.works/locations" },
+            { "@type": "ListItem", "position": 3, "name": province.name, "item": `https://studybuddy.works/province/${slug}` }
+          ]
+        })}</script>
+      </Helmet>
+
+      <div className="min-h-screen flex flex-col">
+        <Header />
+
+        {/* Breadcrumb Navigation */}
+        <div className="bg-muted/30 border-b border-border">
+          <div className="container-wide py-3">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/locations">Locations</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{province.name}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </div>
       
       <section className="bg-gradient-to-br from-primary/5 via-background to-secondary/5 section-padding">
         <div className="container-wide">
@@ -88,6 +134,7 @@ const ProvincePage = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 

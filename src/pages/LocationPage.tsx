@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { getLocationBySlug, getNearbyLocations } from "@/data/southAfricaLocations";
 import { getLocationContent, getDefaultLocationContent, hasEnhancedContent } from "@/data/locationContent";
 import { getPopularSubjectExams, type ExamSubjectGroup } from "@/data/examPapers";
@@ -58,11 +59,52 @@ const LocationPage = () => {
         <meta property="og:description" content={`24/7 CAPS-aligned tutoring for students in ${location.name}. Affordable, personalized learning support.`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://studybuddy.works/tutor/${slug}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://studybuddy.works/" },
+            { "@type": "ListItem", "position": 2, "name": "Locations", "item": "https://studybuddy.works/locations" },
+            { "@type": "ListItem", "position": 3, "name": location.province, "item": `https://studybuddy.works/province/${location.provinceSlug}` },
+            { "@type": "ListItem", "position": 4, "name": location.name, "item": `https://studybuddy.works/tutor/${slug}` }
+          ]
+        })}</script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
         <Header />
-        
+
+        {/* Breadcrumb Navigation */}
+        <div className="bg-muted/30 border-b border-border">
+          <div className="container max-w-6xl mx-auto px-4 py-3">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/locations">Locations</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to={`/province/${location.provinceSlug}`}>{location.province}</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{location.name}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </div>
+
         {/* Hero */}
         <section className="bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-12 md:py-20">
           <div className="container max-w-6xl mx-auto px-4">
@@ -347,6 +389,20 @@ const LocationPage = () => {
             </div>
           </section>
         )}
+
+        {/* Province Link Section */}
+        <section className="py-10 md:py-12 border-t border-border">
+          <div className="container max-w-6xl mx-auto px-4 text-center">
+            <p className="text-muted-foreground mb-4">
+              Looking for AI tutoring in other areas of {location.province}?
+            </p>
+            <Button variant="outline" asChild>
+              <Link to={`/province/${location.provinceSlug}`}>
+                View All {location.province} Tutoring Locations
+              </Link>
+            </Button>
+          </div>
+        </section>
 
         {/* CTA */}
         <section className="py-16 md:py-20 bg-primary text-white">

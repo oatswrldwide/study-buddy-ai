@@ -8,8 +8,8 @@ import CTAStudents from "@/components/students/CTAStudents";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { studentsConfig } from "@/config/students";
 import { Button } from "@/components/ui/button";
-import { School, MapPin, FileText, BookOpen } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { School, MapPin, FileText, BookOpen, TrendingUp } from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const StudentsLanding = () => {
@@ -94,6 +94,60 @@ const StudentsLanding = () => {
       <PricingStudents />
       <TestimonialsStudents />
       <CTAStudents />
+
+      {/* Popular Resources Section */}
+      <section className="py-12 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">
+                Get Help Fast
+              </h2>
+              <p className="text-muted-foreground">
+                Struggling with a specific subject? These guides can help you right now.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Link
+                to="/pain-failing-mathematics-grade-12-need-help-fast"
+                className="bg-background p-6 border border-border rounded-xl hover:border-primary hover:shadow-md transition-all group"
+              >
+                <TrendingUp className="w-8 h-8 text-primary mb-3" />
+                <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">Failing Maths Grade 12?</h3>
+                <p className="text-sm text-muted-foreground">
+                  Get instant help 24/7. Turn your grades around fast with step-by-step explanations.
+                </p>
+              </Link>
+              <Link
+                to="/pain-failing-physical-sciences-grade-12-need-help-fast"
+                className="bg-background p-6 border border-border rounded-xl hover:border-primary hover:shadow-md transition-all group"
+              >
+                <BookOpen className="w-8 h-8 text-primary mb-3" />
+                <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">Struggling with Physical Sciences?</h3>
+                <p className="text-sm text-muted-foreground">
+                  Master chemistry and physics with our CAPS-aligned AI tutor.
+                </p>
+              </Link>
+              <Link
+                to="/pain-failing-accounting-grade-10-need-help-fast"
+                className="bg-background p-6 border border-border rounded-xl hover:border-primary hover:shadow-md transition-all group"
+              >
+                <FileText className="w-8 h-8 text-primary mb-3" />
+                <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">Accounting Giving You Trouble?</h3>
+                <p className="text-sm text-muted-foreground">
+                  Get step-by-step help with financial statements, ledgers, and more.
+                </p>
+              </Link>
+            </div>
+            <div className="text-center mt-8">
+              <Button variant="outline" asChild>
+                <Link to="/resources">View All Study Resources</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <FAQAccordion 
         items={studentsConfig.faq}
         title="Frequently Asked Questions"

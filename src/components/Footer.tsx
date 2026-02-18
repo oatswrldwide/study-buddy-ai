@@ -15,10 +15,10 @@ const footerLinks = {
     { label: "Study Tips", href: "/resources", isRoute: true },
   ],
   Company: [
-    { label: "About Us", href: "/", isRoute: true },
+    { label: "About Us", href: "/about", isRoute: true },
+    { label: "How It Works", href: "/how-it-works", isRoute: true },
     { label: "Login", href: "/login", isRoute: true },
     { label: "Contact", href: "/schools#contact", isRoute: true },
-    { label: "Support", href: "/resources", isRoute: true },
   ],
 };
 
