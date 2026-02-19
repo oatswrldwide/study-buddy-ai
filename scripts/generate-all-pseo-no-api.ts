@@ -821,6 +821,8 @@ async function main() {
       TARGET_GRADES.flatMap(grade => [
         { keyword: `failing ${subject.toLowerCase()} grade ${grade} need help fast`, subject, grade },
         { keyword: `grade ${grade} ${subject.toLowerCase()} tutor for struggling students`, subject, grade },
+        { keyword: `weekend ${subject.toLowerCase()} tutor grade ${grade}`, subject, grade },
+        { keyword: `best tutor for my child grade ${grade} ${subject.toLowerCase()}`, subject, grade },
       ])
     ),
     ...HIGH_DEMAND_SUBJECTS.flatMap(subject => [
@@ -828,6 +830,7 @@ async function main() {
       { keyword: `last minute ${subject.toLowerCase()} help matric finals`, subject },
       { keyword: `urgent ${subject.toLowerCase()} tutoring matric exams 2026`, subject },
       { keyword: `24/7 ${subject.toLowerCase()} help for matric students`, subject },
+      { keyword: `how to pass matric ${subject.toLowerCase()} in 3 months`, subject },
     ]),
   ];
 
