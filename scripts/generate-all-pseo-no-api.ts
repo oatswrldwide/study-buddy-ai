@@ -78,20 +78,20 @@ function addInternalLinksToMarkdown(markdown: string, subject?: string, grade?: 
   // Define key phrases to link based on context
   const linkMappings: Array<{phrase: RegExp, url: string, replacement: string}> = [
     // Core CTA links
-    { phrase: /\bFREE to start\b/gi, url: '/students-landing', replacement: '[FREE to start](/students-landing)' },
-    { phrase: /\bGet FREE AI tutoring\b/gi, url: '/students-landing', replacement: '[Get FREE AI tutoring](/students-landing)' },
-    { phrase: /\bget help\b/gi, url: '/students-landing', replacement: '[get help](/students-landing)' },
+    { phrase: /\bFREE to start\b/gi, url: '/students', replacement: '[FREE to start](/students)' },
+    { phrase: /\bGet FREE AI tutoring\b/gi, url: '/students', replacement: '[Get FREE AI tutoring](/students)' },
+    { phrase: /\bget help\b/gi, url: '/students', replacement: '[get help](/students)' },
     
     // How it works
     { phrase: /\bhow (?:it|StudyBuddy) works\b/gi, url: '/how-it-works', replacement: '[how it works](/how-it-works)' },
     { phrase: /\bour methodology\b/gi, url: '/how-it-works', replacement: '[our methodology](/how-it-works)' },
     
     // Comparison pages
-    { phrase: /\bAI tutor(?:ing)?\b/gi, url: '/pseo/ai-tutor-vs-traditional-tutor-which-is-better', replacement: '[AI tutor](/pseo/ai-tutor-vs-traditional-tutor-which-is-better)' },
-    { phrase: /\btraditional tutor(?:ing|s)?\b/gi, url: '/pseo/ai-tutor-vs-traditional-tutor-which-is-better', replacement: '[traditional tutoring](/pseo/ai-tutor-vs-traditional-tutor-which-is-better)' },
+    { phrase: /\bAI tutor(?:ing)?\b/gi, url: '/ai-tutor-vs-traditional-tutor-which-is-better', replacement: '[AI tutor](/ai-tutor-vs-traditional-tutor-which-is-better)' },
+    { phrase: /\btraditional tutor(?:ing|s)?\b/gi, url: '/ai-tutor-vs-traditional-tutor-which-is-better', replacement: '[traditional tutoring](/ai-tutor-vs-traditional-tutor-which-is-better)' },
     
     // Pricing pages
-    { phrase: /\baffordable tutor(?:ing)?\b/gi, url: '/pseo/affordable-matric-tutoring-under-r100-per-month', replacement: '[affordable tutoring](/pseo/affordable-matric-tutoring-under-r100-per-month)' },
+    { phrase: /\baffordable tutor(?:ing)?\b/gi, url: '/affordable-matric-tutoring-under-r100-per-month', replacement: '[affordable tutoring](/affordable-matric-tutoring-under-r100-per-month)' },
   ];
   
   // Add subject and grade specific links if available
@@ -101,16 +101,16 @@ function addInternalLinksToMarkdown(markdown: string, subject?: string, grade?: 
     // Link to exam prep
     linkMappings.push({
       phrase: new RegExp(`\\bexam prep(?:aration)?\\b`, 'gi'),
-      url: `/pseo/how-to-ace-${subjectLower}-matric-exams`,
-      replacement: `[exam preparation](/pseo/how-to-ace-${subjectLower}-matric-exams)`
+      url: `/how-to-ace-${subjectLower}-matric-exams`,
+      replacement: `[exam preparation](/how-to-ace-${subjectLower}-matric-exams)`
     });
     
     // Link to other grades
     TARGET_GRADES.filter(g => g !== grade).slice(0, 1).forEach(g => {
       linkMappings.push({
         phrase: new RegExp(`\\bGrade ${g}\\b`, 'g'),
-        url: `/pseo/grade-${g}-${subjectLower}-tutor-for-struggling-students`,
-        replacement: `[Grade ${g}](/pseo/grade-${g}-${subjectLower}-tutor-for-struggling-students)`
+        url: `/grade-${g}-${subjectLower}-tutor-for-struggling-students`,
+        replacement: `[Grade ${g}](/grade-${g}-${subjectLower}-tutor-for-struggling-students)`
       });
     });
   }
@@ -282,14 +282,14 @@ StudyBuddy helps with Mathematics, Physical Sciences, Life Sciences, English, Ac
 
 ## How to Get Started (2 Minutes)
 
-1. **Visit** [StudyBuddy](/students-landing)
+1. **Visit** [StudyBuddy](/students)
 2. **Sign Up FREE** - Just your email, no payment info
 3. **Ask Your First Question** - About anything you're stuck on
 4. **See Improvement** - Most students see results within 2 weeks
 
 **No credit card. No commitment. No cost. Just better grades.**
 
-[Start FREE Now - No Credit Card Required](/students-landing)
+[Start FREE Now - No Credit Card Required](/students)
 
 ## FAQ: Your Questions Answered
 
@@ -543,7 +543,7 @@ ${!subject ? `### General Exam Strategies
 
 ## Getting Started (Start NOW)
 
-1. **Sign Up FREE** at [StudyBuddy](/students-landing)
+1. **Sign Up FREE** at [StudyBuddy](/students)
 2. **Upload a Past Paper** - Start with one you found difficult
 3. **Work Through With AI Help** - Get unstuck immediately
 4. **Review Marking Memo** - Understand the marking logic
@@ -551,7 +551,7 @@ ${!subject ? `### General Exam Strategies
 
 **No credit card. No commitment. No cost. Just better exam results.**
 
-[Start Exam Prep FREE - No Credit Card](/students-landing)
+[Start Exam Prep FREE - No Credit Card](/students)
 
 ## FAQ: Last-Minute Exam Questions
 
@@ -754,7 +754,7 @@ Students from all ${suburb} schools use StudyBuddy:
 
 **Start from anywhere in ${suburb} - home, library, coffee shop, anywhere with internet**
 
-[Start FREE Now - ${suburb} Students](/students-landing)
+[Start FREE Now - ${suburb} Students](/students)
 
 ## Compare: Traditional ${suburb} Tutors vs StudyBuddy
 
@@ -816,7 +816,7 @@ Parents love StudyBuddy because:
 
 ## Getting Started in ${suburb}
 
-1. Visit [StudyBuddy](/students-landing) from anywhere in ${suburb}
+1. Visit [StudyBuddy](/students) from anywhere in ${suburb}
 2. Sign up FREE (email only, no payment)
 3. Start asking questions immediately
 4. See improvement within 2 weeks
@@ -854,7 +854,7 @@ Perfect! StudyBuddy is available 24/7. Stuck on homework at 8 PM? Get help immed
 **Last Updated**: ${new Date().toISOString().split('T')[0]}  
 **Reviewed by**: Education Specialist (${city} Region)  
 
-Learn more about [tutoring in ${city}](/tutoring/${city.toLowerCase().replace(/\s+/g, '-')}).`;
+Learn more about [tutoring in ${city}](/tutor/${city.toLowerCase().replace(/\s+/g, '-')}).`;
 
   // Add internal links to markdown before conversion
   const linkedMarkdown = addInternalLinksToMarkdown(content, subject, grade);
