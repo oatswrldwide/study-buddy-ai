@@ -49,6 +49,24 @@ const staticPages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: 0.8,
   },
+  {
+    url: '/about',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'monthly',
+    priority: 0.7,
+  },
+  {
+    url: '/how-it-works',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'monthly',
+    priority: 0.7,
+  },
+  {
+    url: '/resources',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
 ];
 
 /**

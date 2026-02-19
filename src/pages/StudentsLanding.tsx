@@ -109,7 +109,7 @@ const StudentsLanding = () => {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Link
-                to="/pain-failing-mathematics-grade-12-need-help-fast"
+                to="/failing-mathematics-grade-12-need-help-fast"
                 className="bg-background p-6 border border-border rounded-xl hover:border-primary hover:shadow-md transition-all group"
               >
                 <TrendingUp className="w-8 h-8 text-primary mb-3" />
@@ -119,7 +119,7 @@ const StudentsLanding = () => {
                 </p>
               </Link>
               <Link
-                to="/pain-failing-physical-sciences-grade-12-need-help-fast"
+                to="/failing-physical-sciences-grade-12-need-help-fast"
                 className="bg-background p-6 border border-border rounded-xl hover:border-primary hover:shadow-md transition-all group"
               >
                 <BookOpen className="w-8 h-8 text-primary mb-3" />
@@ -129,7 +129,7 @@ const StudentsLanding = () => {
                 </p>
               </Link>
               <Link
-                to="/pain-failing-accounting-grade-10-need-help-fast"
+                to="/failing-accounting-grade-10-need-help-fast"
                 className="bg-background p-6 border border-border rounded-xl hover:border-primary hover:shadow-md transition-all group"
               >
                 <FileText className="w-8 h-8 text-primary mb-3" />
