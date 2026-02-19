@@ -179,7 +179,7 @@ export default function SEOPage() {
               <Card className="mt-12 p-8 bg-gradient-to-r from-primary/10 to-accent/10 text-center">
                 <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
                 <p className="text-lg text-foreground/80 mb-6">
-                  Join 12,000+ South African students improving their grades with AI-powered tutoring.
+                  Join South African students improving their grades with AI-powered tutoring.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Button size="lg" onClick={() => window.location.href = '/students'}>

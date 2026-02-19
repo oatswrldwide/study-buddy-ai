@@ -199,11 +199,6 @@ const HeroStudents = () => {
 
             {/* Quick Stats - Updated Pricing */}
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1.5">
-                <Star className="w-4 h-4 fill-accent text-accent" />
-                <span>12,000+ students</span>
-              </div>
-              <span>•</span>
               <div className="text-accent font-semibold text-base">R200/year 🎉</div>
               <span>•</span>
               <div>5 free daily questions</div>

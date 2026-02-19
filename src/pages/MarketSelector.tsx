@@ -164,7 +164,7 @@ const MarketSelector = () => {
           {/* Trust Indicators */}
           <div className="text-center mt-8">
             <p className="text-sm text-muted-foreground mb-4">
-              Trusted by 50+ schools and 12,000+ learners across South Africa
+              Trusted by schools and learners across South Africa
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
