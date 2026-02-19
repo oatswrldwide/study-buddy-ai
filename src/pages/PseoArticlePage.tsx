@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -344,11 +342,9 @@ const PseoArticlePage = () => {
             prose-th:bg-muted prose-th:p-3 prose-th:text-left prose-th:font-semibold
             prose-td:p-3 prose-td:border prose-td:border-border
             prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-foreground">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {cleanedContent}
-            </ReactMarkdown>
-          </article>
+            prose-strong:text-foreground"
+            dangerouslySetInnerHTML={{ __html: cleanedContent }}
+          />
 
           {/* FAQs */}
           {page.faqs && page.faqs.length > 0 && (

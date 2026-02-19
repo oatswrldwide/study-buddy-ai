@@ -63,6 +63,102 @@ function getVariationIndex(keyword: string, max: number): number {
 }
 
 /**
+ * Generate slug from text
+ */
+function generateSlug(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+}
+
+/**
+ * Insert internal links into markdown content before HTML conversion
+ */
+function addInternalLinksToMarkdown(markdown: string, subject?: string, grade?: number): string {
+  let result = markdown;
+  
+  // Define key phrases to link based on context
+  const linkMappings: Array<{phrase: RegExp, url: string, replacement: string}> = [
+    // Core CTA links
+    { phrase: /\bFREE to start\b/gi, url: '/students-landing', replacement: '[FREE to start](/students-landing)' },
+    { phrase: /\bGet FREE AI tutoring\b/gi, url: '/students-landing', replacement: '[Get FREE AI tutoring](/students-landing)' },
+    { phrase: /\bget help\b/gi, url: '/students-landing', replacement: '[get help](/students-landing)' },
+    
+    // How it works
+    { phrase: /\bhow (?:it|StudyBuddy) works\b/gi, url: '/how-it-works', replacement: '[how it works](/how-it-works)' },
+    { phrase: /\bour methodology\b/gi, url: '/how-it-works', replacement: '[our methodology](/how-it-works)' },
+    
+    // Comparison pages
+    { phrase: /\bAI tutor(?:ing)?\b/gi, url: '/pseo/ai-tutor-vs-traditional-tutor-which-is-better', replacement: '[AI tutor](/pseo/ai-tutor-vs-traditional-tutor-which-is-better)' },
+    { phrase: /\btraditional tutor(?:ing|s)?\b/gi, url: '/pseo/ai-tutor-vs-traditional-tutor-which-is-better', replacement: '[traditional tutoring](/pseo/ai-tutor-vs-traditional-tutor-which-is-better)' },
+    
+    // Pricing pages
+    { phrase: /\baffordable tutor(?:ing)?\b/gi, url: '/pseo/affordable-matric-tutoring-under-r100-per-month', replacement: '[affordable tutoring](/pseo/affordable-matric-tutoring-under-r100-per-month)' },
+  ];
+  
+  // Add subject and grade specific links if available
+  if (subject && grade) {
+    const subjectLower = subject.toLowerCase().replace(/\s+/g, '-');
+    
+    // Link to exam prep
+    linkMappings.push({
+      phrase: new RegExp(`\\bexam prep(?:aration)?\\b`, 'gi'),
+      url: `/pseo/how-to-ace-${subjectLower}-matric-exams`,
+      replacement: `[exam preparation](/pseo/how-to-ace-${subjectLower}-matric-exams)`
+    });
+    
+    // Link to other grades
+    TARGET_GRADES.filter(g => g !== grade).slice(0, 1).forEach(g => {
+      linkMappings.push({
+        phrase: new RegExp(`\\bGrade ${g}\\b`, 'g'),
+        url: `/pseo/grade-${g}-${subjectLower}-tutor-for-struggling-students`,
+        replacement: `[Grade ${g}](/pseo/grade-${g}-${subjectLower}-tutor-for-struggling-students)`
+      });
+    });
+  }
+  
+  // Apply links (only first occurrence of each to avoid over-linking)
+  linkMappings.forEach(link => {
+    if (!result.includes(`](${link.url})`)) { // Don't add if already linked
+      result = result.replace(link.phrase, link.replacement);
+    }
+  });
+  
+  return result;
+}
+
+/**
+ * Convert markdown to HTML
+ */
+function markdownToHtml(markdown: string): string {
+  return markdown
+    // Links (must be done before headers to avoid conflicts)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    // Headers
+    .replace(/^### (.*?)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.*?)$/gm, '<h2>$1</h2>')
+    // Bold text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Lists - convert markdown lists to HTML
+    .replace(/^- (.*?)$/gm, '<li>$1</li>')
+    // Wrap consecutive <li> in <ul>
+    .replace(/(<li>.*?<\/li>\n?)+/gs, (match) => `<ul>\n${match}</ul>\n`)
+    // Tables - basic support
+    .replace(/\|(.+)\|/g, (match, content) => {
+      const cells = content.split('|').map((c: string) => c.trim()).filter((c: string) => c);
+      return `<tr>${cells.map((c: string) => `<td>${c}</td>`).join('')}</tr>`;
+    })
+    // Paragraphs - wrap non-tagged content
+    .split('\n\n')
+    .map(para => {
+      para = para.trim();
+      if (!para) return '';
+      // Don't wrap if already has HTML tags
+      if (para.match(/^<(h[123]|ul|table|div|section)/)) return para;
+      return `<p>${para}</p>`;
+    })
+    .join('\n\n');
+}
+
+/**
  * Generate pain-point page content
  */
 function generatePainPointContent(keyword: string, subject?: string, grade?: number): PSEOPage {
@@ -233,6 +329,12 @@ Absolutely! StudyBuddy is excellent for exam prep. Practice with past paper ques
 
 Learn more about [our team](/about) and [our methodology](/how-it-works).`;
 
+  // Add internal links to markdown before conversion
+  const linkedMarkdown = addInternalLinksToMarkdown(content, subject, grade);
+  
+  // Convert markdown to HTML
+  const htmlContent = markdownToHtml(linkedMarkdown);
+
   return {
     id: `pain-${slug}`,
     slug,
@@ -240,7 +342,7 @@ Learn more about [our team](/about) and [our methodology](/how-it-works).`;
     targetKeyword: keyword,
     searchIntent: 'urgent-help',
     title: keyword.charAt(0).toUpperCase() + keyword.slice(1),
-    content,
+    content: htmlContent,
     metaTitle: `${keyword.charAt(0).toUpperCase() + keyword.slice(1)} | StudyBuddy FREE Help`,
     metaDescription: `${keyword}? Get FREE 24/7 AI tutoring. No credit card required. ${testimonial.improvement} improvement in ${testimonial.timeframe}. Start now!`,
     keywords: keyword.split(' '),
@@ -485,6 +587,12 @@ Yes! Study at 11 PM? 3 AM? Sunday morning? StudyBuddy is always available. Perfe
 
 Learn more about [our exam prep methodology](/how-it-works).`;
 
+  // Add internal links to markdown before conversion
+  const linkedMarkdown = addInternalLinksToMarkdown(content, subject, grade);
+  
+  // Convert markdown to HTML
+  const htmlContent = markdownToHtml(linkedMarkdown);
+
   return {
     id: `exam-${slug}`,
     slug,
@@ -492,7 +600,7 @@ Learn more about [our exam prep methodology](/how-it-works).`;
     targetKeyword: keyword,
     searchIntent: 'exam-prep',
     title: keyword.charAt(0).toUpperCase() + keyword.slice(1),
-    content,
+    content: htmlContent,
     metaTitle: `${keyword.charAt(0).toUpperCase() + keyword.slice(1)} | FREE Exam Prep`,
     metaDescription: `${keyword}? Get FREE 24/7 exam prep help. Past papers, marking memos, exam techniques. ${testimonial.improvement} improvement possible. Start now!`,
     keywords: keyword.split(' '),
@@ -748,6 +856,12 @@ Perfect! StudyBuddy is available 24/7. Stuck on homework at 8 PM? Get help immed
 
 Learn more about [tutoring in ${city}](/tutoring/${city.toLowerCase().replace(/\s+/g, '-')}).`;
 
+  // Add internal links to markdown before conversion
+  const linkedMarkdown = addInternalLinksToMarkdown(content, subject, grade);
+  
+  // Convert markdown to HTML
+  const htmlContent = markdownToHtml(linkedMarkdown);
+
   return {
     id: `suburb-${slug}`,
     slug,
@@ -755,7 +869,7 @@ Learn more about [tutoring in ${city}](/tutoring/${city.toLowerCase().replace(/\
     targetKeyword: keyword,
     searchIntent: 'local-tutoring',
     title: subject ? `${subject} Tutor ${suburb} ${gradeText}` : `Tutoring ${suburb} Matric Students`,
-    content,
+    content: htmlContent,
     metaTitle: `${subject ? `${subject} Tutor` : 'Tutoring'} in ${suburb} ${gradeText} | FREE StudyBuddy`,
     metaDescription: `${subject ? `${subject} tutor` : 'Tutoring'} in ${suburb} for ${gradeText}. FREE online help, no travel needed. Save R20K-R30K/year vs local tutors. ${testimonial.improvement} improvement.`,
     keywords: keyword.split(' '),
