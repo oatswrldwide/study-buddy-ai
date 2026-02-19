@@ -12,7 +12,10 @@
       "tutor",
       "vs",
       "traditional",
-      "tutor"
+      "tutor",
+      "which",
+      "is",
+      "better"
     ]
   },
   {
@@ -28,7 +31,8 @@
       "economics",
       "help",
       "for",
-      "matric"
+      "matric",
+      "students"
     ]
   },
   {
@@ -44,7 +48,10 @@
       "tutor",
       "for",
       "my",
-      "child"
+      "child",
+      "grade",
+      "12",
+      "economics"
     ]
   },
   {
@@ -60,7 +67,11 @@
       "tutor",
       "for",
       "my",
-      "child"
+      "child",
+      "grade",
+      "12",
+      "physical",
+      "sciences"
     ]
   },
   {
@@ -76,7 +87,9 @@
       "accounting",
       "grade",
       "10",
-      "need"
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -92,7 +105,9 @@
       "accounting",
       "grade",
       "11",
-      "need"
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -108,7 +123,9 @@
       "economics",
       "grade",
       "11",
-      "need"
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -124,7 +141,9 @@
       "economics",
       "grade",
       "12",
-      "need"
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -140,7 +159,9 @@
       "english",
       "grade",
       "10",
-      "need"
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -156,7 +177,9 @@
       "english",
       "grade",
       "11",
-      "need"
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -172,7 +195,10 @@
       "life",
       "sciences",
       "grade",
-      "10"
+      "10",
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -188,7 +214,10 @@
       "life",
       "sciences",
       "grade",
-      "11"
+      "11",
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -204,7 +233,9 @@
       "mathematics",
       "grade",
       "10",
-      "need"
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -220,7 +251,9 @@
       "mathematics",
       "grade",
       "11",
-      "need"
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -236,7 +269,9 @@
       "mathematics",
       "grade",
       "12",
-      "need"
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -252,7 +287,10 @@
       "physical",
       "sciences",
       "grade",
-      "10"
+      "10",
+      "need",
+      "help",
+      "fast"
     ]
   },
   {
@@ -268,7 +306,9 @@
       "10",
       "economics",
       "tutor",
-      "for"
+      "for",
+      "struggling",
+      "students"
     ]
   },
   {
@@ -284,7 +324,10 @@
       "10",
       "life",
       "sciences",
-      "tutor"
+      "tutor",
+      "for",
+      "struggling",
+      "students"
     ]
   },
   {
@@ -300,7 +343,10 @@
       "10",
       "physical",
       "sciences",
-      "tutor"
+      "tutor",
+      "for",
+      "struggling",
+      "students"
     ]
   },
   {
@@ -316,7 +362,9 @@
       "11",
       "accounting",
       "tutor",
-      "for"
+      "for",
+      "struggling",
+      "students"
     ]
   },
   {
@@ -332,7 +380,10 @@
       "11",
       "life",
       "sciences",
-      "tutor"
+      "tutor",
+      "for",
+      "struggling",
+      "students"
     ]
   },
   {
@@ -348,7 +399,10 @@
       "11",
       "physical",
       "sciences",
-      "tutor"
+      "tutor",
+      "for",
+      "struggling",
+      "students"
     ]
   },
   {
@@ -364,7 +418,9 @@
       "12",
       "economics",
       "tutor",
-      "for"
+      "for",
+      "struggling",
+      "students"
     ]
   },
   {
@@ -380,7 +436,9 @@
       "12",
       "english",
       "tutor",
-      "for"
+      "for",
+      "struggling",
+      "students"
     ]
   },
   {
@@ -396,7 +454,8 @@
       "to",
       "ace",
       "accounting",
-      "matric"
+      "matric",
+      "exams"
     ]
   },
   {
@@ -412,7 +471,10 @@
       "to",
       "pass",
       "matric",
-      "accounting"
+      "accounting",
+      "in",
+      "3",
+      "months"
     ]
   },
   {
@@ -428,7 +490,11 @@
       "to",
       "pass",
       "matric",
-      "physical"
+      "physical",
+      "sciences",
+      "in",
+      "3",
+      "months"
     ]
   },
   {
@@ -444,7 +510,8 @@
       "minute",
       "accounting",
       "help",
-      "matric"
+      "matric",
+      "finals"
     ]
   },
   {
@@ -460,7 +527,8 @@
       "minute",
       "economics",
       "help",
-      "matric"
+      "matric",
+      "finals"
     ]
   },
   {
@@ -476,7 +544,8 @@
       "minute",
       "mathematics",
       "help",
-      "matric"
+      "matric",
+      "finals"
     ]
   },
   {
@@ -492,7 +561,9 @@
       "minute",
       "physical",
       "sciences",
-      "help"
+      "help",
+      "matric",
+      "finals"
     ]
   },
   {
@@ -508,7 +579,9 @@
       "with",
       "economics",
       "how",
-      "to"
+      "to",
+      "improve",
+      "quickly"
     ]
   },
   {
@@ -524,7 +597,9 @@
       "with",
       "english",
       "how",
-      "to"
+      "to",
+      "improve",
+      "quickly"
     ]
   },
   {
@@ -540,7 +615,9 @@
       "with",
       "mathematics",
       "how",
-      "to"
+      "to",
+      "improve",
+      "quickly"
     ]
   },
   {
@@ -556,7 +633,8 @@
       "english",
       "tutoring",
       "matric",
-      "exams"
+      "exams",
+      "2026"
     ]
   },
   {
@@ -572,7 +650,9 @@
       "physical",
       "sciences",
       "tutoring",
-      "matric"
+      "matric",
+      "exams",
+      "2026"
     ]
   },
   {
@@ -620,7 +700,8 @@
       "life",
       "sciences",
       "tutor",
-      "grade"
+      "grade",
+      "11"
     ]
   },
   {
@@ -652,7 +733,8 @@
       "physical",
       "sciences",
       "tutor",
-      "grade"
+      "grade",
+      "11"
     ]
   },
   {
@@ -668,7 +750,8 @@
       "physical",
       "sciences",
       "tutor",
-      "grade"
+      "grade",
+      "12"
     ]
   }
 ]
