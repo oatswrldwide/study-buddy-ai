@@ -2,7 +2,7 @@
 
 export const studentsConfig = {
   hero: {
-    badge: "12,000+ SA Students Improving Their Grades",
+    badge: "SA Students Improving Their Grades",
     headline: "Your AI Study Buddy for Matric Success",
     subheadline:
       "24/7 homework help and exam prep for R99/month. Start free!",
@@ -11,11 +11,6 @@ export const studentsConfig = {
   },
 
   stats: [
-    {
-      value: "12,000+",
-      label: "Students",
-      description: "Using StudyBuddy daily",
-    },
     {
       value: "45%",
       label: "Improvement",
@@ -191,7 +186,7 @@ export const studentsConfig = {
   cta: {
     headline: "Ready to Improve Your Grades?",
     subheadline:
-      "Join 12,000+ students improving their grades. Start free!",
+      "Start improving your grades today. Start free!",
     ctaPrimary: "Start Free Trial",
     ctaSecondary: "See Pricing",
     benefits: [

@@ -84,10 +84,6 @@ const TestimonialsStudents = () => {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8">
             <div>
-              <div className="text-3xl font-bold text-primary">12,000+</div>
-              <div className="text-sm text-muted-foreground">Active Students</div>
-            </div>
-            <div>
               <div className="text-3xl font-bold text-secondary">45%</div>
               <div className="text-sm text-muted-foreground">Avg. Grade Improvement</div>
             </div>

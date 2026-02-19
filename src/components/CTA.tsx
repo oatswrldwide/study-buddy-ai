@@ -23,7 +23,7 @@ const CTA = () => {
             <span className="text-gradient">Your School's AI Journey?</span>
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Join 500+ schools using StudyBuddy Works to embrace AI responsibly while improving learning outcomes.
+            Join schools using StudyBuddy Works to embrace AI responsibly while improving learning outcomes.
           </p>
 
           {/* CTA Buttons */}

@@ -2,7 +2,7 @@
 
 export const schoolsConfig = {
   hero: {
-    badge: "Trusted by 50+ South African Schools",
+    badge: "Trusted by South African Schools",
     headline: "Take Control of AI in Your Classroom",
     subheadline:
       "Monitor usage, ensure academic integrity, and empower teachers with actionable insights. Built specifically for South African schools.",
@@ -11,16 +11,6 @@ export const schoolsConfig = {
   },
 
   stats: [
-    {
-      value: "50+",
-      label: "SA Schools",
-      description: "Trust StudyBuddy Works",
-    },
-    {
-      value: "10,000+",
-      label: "Students",
-      description: "Learning with AI",
-    },
     {
       value: "35%",
       label: "Improvement",

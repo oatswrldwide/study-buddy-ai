@@ -155,7 +155,7 @@ const HowItWorks = () => {
           <div className="container max-w-3xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Try It?</h2>
             <p className="text-lg text-white/90 mb-8">
-              Join 12,000+ South African students who are already improving their grades with AI tutoring.
+              Join South African students who are already improving their grades with AI tutoring.
               Start your free 7-day trial today—no credit card required.
             </p>
             <div className="flex flex-wrap justify-center gap-4">

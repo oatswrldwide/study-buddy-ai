@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Heart, Users, Sparkles, BookOpen, TrendingUp } from "lucide-react";
+import { GraduationCap, Heart, Sparkles, BookOpen, TrendingUp } from "lucide-react";
 
 const About = () => {
   return (
@@ -55,7 +55,6 @@ const About = () => {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: Users, label: "12,000+", sublabel: "Students Helped" },
                   { icon: GraduationCap, label: "759", sublabel: "Cities & Towns" },
                   { icon: BookOpen, label: "500+", sublabel: "Exam Papers" },
                   { icon: TrendingUp, label: "87%", sublabel: "Pass Rate" },
