@@ -20,6 +20,11 @@
     "pseo:pain-points": "tsx scripts/generate-high-conversion-content.ts --type=pain-point --limit=20",
     "pseo:comparisons": "tsx scripts/generate-high-conversion-content.ts --type=comparison --limit=10",
     "pseo:pricing": "tsx scripts/generate-high-conversion-content.ts --type=pricing --limit=10",
+    "pseo:sync": "tsx scripts/sync-pseo-pages.ts",
+    "pseo:status": "tsx scripts/generate-all-remaining-pseo.ts",
+    "pseo:generate-templates": "tsx scripts/generate-pseo-templates.ts",
+    "pseo:all-no-api": "tsx scripts/generate-pseo-templates.ts && tsx scripts/sync-pseo-pages.ts",
+    "pseo:generate-all-no-api": "tsx scripts/generate-all-pseo-no-api.ts",
     "validate:keywords": "tsx scripts/validate-keywords.ts"
   },
   "dependencies": {
