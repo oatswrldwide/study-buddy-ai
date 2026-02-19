@@ -137,7 +137,7 @@ Absolutely! Many successful students:
 
 No commitment. No risk. Just better grades.
 
-[Start Free Trial - No Credit Card Required](/students-landing)
+[Start Free Trial - No Credit Card Required](/students)
 
 ## FAQ
 
@@ -363,14 +363,14 @@ We use AI technology that scales to help thousands of students simultaneously. T
 
 ## Getting Started (2 Minutes)
 
-1. **Visit** [StudyBuddy](/students-landing)
+1. **Visit** [StudyBuddy](/students)
 2. **Sign Up** - Email only, no payment info
 3. **Start Learning** - Ask your first question
 4. **See Results** - Most students improve within 2 weeks
 
 **No credit card. No commitment. No catch. Just better grades.**
 
-[Start FREE Now - No Credit Card Required](/students-landing)
+[Start FREE Now - No Credit Card Required](/students)
 
 ## FAQ About Pricing
 

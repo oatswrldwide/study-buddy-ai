@@ -81,7 +81,7 @@ function generateInternalLinks(keyword: string, pageType: string): string[] {
     links.push('[Compare tutoring options](/ai-tutor-vs-traditional-tutor-which-is-better)');
     links.push('[See pricing](/affordable-matric-tutoring-under-r100-per-month)');
   } else if (pageType === 'comparison') {
-    links.push('[Start free trial](/students-landing)');
+    links.push('[Start free trial](/students)');
     links.push('[View all subjects](/subjects)');
   } else if (pageType === 'pricing') {
     links.push('[How it works](/how-it-works)');
