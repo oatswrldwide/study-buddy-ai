@@ -116,13 +116,17 @@ async function main() {
       // Read and parse the TypeScript file to extract location data
       const locationFileContent = fs.readFileSync(locationsPath, 'utf-8');
       
-      // Extract all location slugs
-      const locationMatches = locationFileContent.matchAll(/slug: "([^"]+)"/g);
-      const locationSlugs = Array.from(locationMatches).map(match => match[1]);
-      
-      // Extract province slugs
+      // Extract province slugs first (to exclude them from locations)
       const provinceMatches = locationFileContent.matchAll(/slug: "([a-z-]+)",\s*capital:/g);
       const provinceSlugs = Array.from(provinceMatches).map(match => match[1]);
+      
+      // Extract location slugs (from locations array, not from province definitions)
+      // Match slugs that are inside locations array
+      const locationMatches = locationFileContent.matchAll(/{ name: "[^"]+", slug: "([^"]+)", type:/g);
+      const allLocationSlugs = Array.from(locationMatches).map(match => match[1]);
+      
+      // Filter out province slugs from location slugs to avoid duplicates
+      const locationSlugs = allLocationSlugs.filter(slug => !provinceSlugs.includes(slug));
       
       // Major cities get higher priority
       const majorCities = ['johannesburg', 'cape-town', 'durban', 'pretoria', 'port-elizabeth', 'bloemfontein'];
