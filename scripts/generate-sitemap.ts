@@ -117,11 +117,14 @@ async function main() {
       const locationFileContent = fs.readFileSync(locationsPath, 'utf-8');
       
       // Extract province slugs first (to exclude them from locations)
-      const provinceMatches = locationFileContent.matchAll(/slug: "([a-z-]+)",\s*capital:/g);
+      // Province slugs are defined with format: slug: "slug-name", capital: "City"
+      // Using [^"]+ to match any characters except quotes for maximum flexibility
+      const provinceMatches = locationFileContent.matchAll(/slug: "([^"]+)",\s*capital:/g);
       const provinceSlugs = Array.from(provinceMatches).map(match => match[1]);
       
       // Extract location slugs (from locations array, not from province definitions)
-      // Match slugs that are inside locations array
+      // Match slugs that are inside location objects: { name: "...", slug: "...", type: ...}
+      // This pattern is specific to the location object structure
       const locationMatches = locationFileContent.matchAll(/{ name: "[^"]+", slug: "([^"]+)", type:/g);
       const allLocationSlugs = Array.from(locationMatches).map(match => match[1]);
       
