@@ -22,6 +22,8 @@
     "pseo:pricing": "tsx scripts/generate-high-conversion-content.ts --type=pricing --limit=10",
     "pseo:sync": "tsx scripts/sync-pseo-pages.ts",
     "pseo:status": "tsx scripts/generate-all-remaining-pseo.ts",
+    "pseo:generate-templates": "tsx scripts/generate-pseo-templates.ts",
+    "pseo:all-no-api": "tsx scripts/generate-pseo-templates.ts && tsx scripts/sync-pseo-pages.ts",
     "validate:keywords": "tsx scripts/validate-keywords.ts"
   },
   "dependencies": {
