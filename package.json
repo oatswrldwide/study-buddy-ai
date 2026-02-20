@@ -28,7 +28,8 @@
     "validate:keywords": "tsx scripts/validate-keywords.ts",
     "research:keywords": "tsx scripts/research-keywords-google.ts",
     "generate:landing-pages": "tsx scripts/generate-landing-pages.ts",
-    "demo:keyword-research": "tsx scripts/demo-keyword-research.ts"
+    "demo:keyword-research": "tsx scripts/demo-keyword-research.ts",
+    "generate:100-keywords": "node scripts/generate-100-keywords.cjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
