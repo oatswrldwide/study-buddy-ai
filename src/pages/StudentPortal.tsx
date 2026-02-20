@@ -23,7 +23,7 @@ interface StudentData {
   payment_status?: string; // 'pending' | 'paid'
   questions_today?: number; // Daily question count
   last_question_date?: string; // Last question timestamp
-  subscription_end?: any; // Subscription expiry
+  subscription_end?: string | null; // Subscription expiry
 }
 
 const StudentPortal = () => {

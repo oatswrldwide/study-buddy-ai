@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { db } from "@/lib/firebase";
 import { collection, query, where, orderBy, getDocs, doc, updateDoc } from "firebase/firestore";
 import AdminLayout from "@/components/admin/AdminLayout";
@@ -37,11 +37,7 @@ const SchoolLeadsPage = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    loadLeads();
-  }, [filter]);
-
-  const loadLeads = async () => {
+  const loadLeads = useCallback(async () => {
     setLoading(true);
     try {
       const leadsRef = collection(db, "school_leads");
@@ -64,7 +60,11 @@ const SchoolLeadsPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    loadLeads();
+  }, [loadLeads]);
 
   const updateStatus = async (id: string, newStatus: string) => {
     try {
