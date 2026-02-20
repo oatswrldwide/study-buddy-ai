@@ -27,7 +27,8 @@
     "pseo:generate-all-no-api": "tsx scripts/generate-all-pseo-no-api.ts",
     "validate:keywords": "tsx scripts/validate-keywords.ts",
     "research:keywords": "tsx scripts/research-keywords-google.ts",
-    "generate:landing-pages": "tsx scripts/generate-landing-pages.ts"
+    "generate:landing-pages": "tsx scripts/generate-landing-pages.ts",
+    "demo:keyword-research": "tsx scripts/demo-keyword-research.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
