@@ -111,7 +111,19 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
   const handleDownload = (paper: ExamPaper) => {
     // Use local_path if available, otherwise fallback to external file_url
     const downloadUrl = paper.local_path ? `/${paper.local_path}` : paper.file_url;
-    window.open(downloadUrl, '_blank');
+    
+    // Create a temporary anchor element to trigger download
+    // This works better on mobile than window.open()
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = paper.file_name;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const years = Array.from(new Set(allPapers.map(p => p.year))).sort((a, b) => b - a);
