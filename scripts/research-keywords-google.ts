@@ -19,6 +19,13 @@ const GOOGLE_ADS_CONFIG = {
 
 const CUSTOMER_ID = process.env.GOOGLE_ADS_CUSTOMER_ID || '';
 
+// High commercial intent keywords for prioritization
+const HIGH_INTENT_WORDS = [
+  'buy', 'price', 'cost', 'affordable', 'cheap', 
+  'best', 'review', 'vs', 'comparison', 
+  'tutor', 'help', 'struggling', 'failing'
+];
+
 // Validate configuration
 function validateConfig(): boolean {
   const missing: string[] = [];
@@ -199,8 +206,7 @@ function prioritizeKeywords(ideas: KeywordIdea[]): KeywordIdea[] {
     
     // Commercial intent indicators (check keyword text)
     const keyword = idea.keyword.toLowerCase();
-    const highIntentWords = ['buy', 'price', 'cost', 'affordable', 'cheap', 'best', 'review', 'vs', 'comparison', 'tutor', 'help', 'struggling', 'failing'];
-    const hasHighIntent = highIntentWords.some(word => keyword.includes(word));
+    const hasHighIntent = HIGH_INTENT_WORDS.some(word => keyword.includes(word));
     if (hasHighIntent) score += 30;
     
     return { ...idea, priority: score };

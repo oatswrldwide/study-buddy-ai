@@ -314,7 +314,7 @@ async function main() {
     for (let i = 0; i < Math.min(limit, research.ideas.length); i++) {
       const keyword = research.ideas[i];
       
-      console.log(`\n[$${i + 1}/${limit}] Processing: "${keyword.keyword}"`);
+      console.log(`\n[#${i + 1}/${limit}] Processing: "${keyword.keyword}"`);
       console.log(`   Search Volume: ${keyword.avgMonthlySearches}/month`);
       console.log(`   Competition: ${keyword.competition}`);
       
