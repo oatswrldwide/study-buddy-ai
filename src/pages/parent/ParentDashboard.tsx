@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ParentLayout from "@/components/parent/ParentLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,16 +10,22 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { differenceInDays } from "date-fns";
 
+interface ChildStudent {
+  id: string;
+  full_name: string;
+  grade: number | string;
+  curriculum: string;
+  status: string;
+  subjects?: string;
+  trial_ends_at?: string | null;
+}
+
 const ParentDashboard = () => {
   const { user } = useAuth();
-  const [children, setChildren] = useState<any[]>([]);
+  const [children, setChildren] = useState<ChildStudent[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadChildren();
-  }, [user]);
-
-  const loadChildren = async () => {
+  const loadChildren = useCallback(async () => {
     if (!user?.email) return;
 
     try {
@@ -30,7 +36,7 @@ const ParentDashboard = () => {
       const data = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
-      }));
+      })) as ChildStudent[];
       
       setChildren(data);
     } catch (error) {
@@ -38,7 +44,11 @@ const ParentDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    loadChildren();
+  }, [loadChildren]);
 
   const getStatusColor = (status: string) => {
     switch (status) {

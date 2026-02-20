@@ -78,15 +78,16 @@ const StudentSignupForm = ({ onSuccess, onClose }: StudentSignupFormProps) => {
       setTimeout(() => {
         onSuccess?.();
       }, 2000);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Form submission error:", error);
       
       // Show user-friendly error messages
-      if (error.code === 'auth/email-already-in-use') {
+      const code = (error as { code?: string }).code;
+      if (code === 'auth/email-already-in-use') {
         alert("This email is already registered. Please log in instead.");
-      } else if (error.code === 'auth/weak-password') {
+      } else if (code === 'auth/weak-password') {
         alert("Password is too weak. Please use at least 6 characters.");
-      } else if (error.code === 'auth/invalid-email') {
+      } else if (code === 'auth/invalid-email') {
         alert("Invalid email address. Please check and try again.");
       } else {
         alert("There was an error creating your account. Please try again.");
