@@ -29,6 +29,15 @@ const StudentsLanding = () => {
         <meta property="twitter:description" content="Get 24/7 AI tutoring for all subjects. CAPS-aligned, R99/month, 7-day free trial." />
         <meta property="twitter:url" content="https://studybuddy.works/students" />
         <link rel="canonical" href="https://studybuddy.works/students" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: studentsConfig.faq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        })}</script>
       </Helmet>
       <main className="min-h-screen">
       <Header />
