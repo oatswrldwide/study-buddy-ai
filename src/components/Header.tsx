@@ -10,6 +10,7 @@ const Header = () => {
   const navLinks = [
     { href: "/students", label: "For Students", isRoute: true },
     { href: "/schools", label: "For Schools", isRoute: true },
+    { href: "/courses", label: "Courses", isRoute: true },
     { href: "/resources", label: "Resources", isRoute: true },
     { href: "/locations", label: "Find a Tutor", isRoute: true },
   ];
