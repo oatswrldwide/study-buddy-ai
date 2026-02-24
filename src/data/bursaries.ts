@@ -9,6 +9,8 @@ export interface Bursary {
   applicationUrl: string;
   websiteUrl: string;
   active: boolean;
+  /** Provinces where this bursary is specifically available. Absent or empty = nationwide. */
+  provinces?: string[];
 }
 
 export const BURSARY_FIELDS = [
@@ -656,6 +658,7 @@ export const BURSARIES: Bursary[] = [
     applicationUrl: "https://www.randwater.co.za/CorporateInfo/Pages/Bursaries.aspx",
     websiteUrl: "https://www.randwater.co.za/CorporateInfo/Pages/Bursaries.aspx",
     active: true,
+    provinces: ["Gauteng", "Free State"],
   },
   {
     id: "prasa-bursary",
@@ -914,6 +917,7 @@ export const BURSARIES: Bursary[] = [
     applicationUrl: "https://www.westerncape.gov.za/dept/health/bursaries",
     websiteUrl: "https://www.westerncape.gov.za/dept/health/bursaries",
     active: true,
+    provinces: ["Western Cape"],
   },
   {
     id: "kzn-doh-bursary",
@@ -928,6 +932,7 @@ export const BURSARIES: Bursary[] = [
     applicationUrl: "https://www.kznhealth.gov.za/bursary.asp",
     websiteUrl: "https://www.kznhealth.gov.za/bursary.asp",
     active: true,
+    provinces: ["KwaZulu-Natal"],
   },
   {
     id: "hwseta-bursary",
@@ -1236,6 +1241,7 @@ export const BURSARIES: Bursary[] = [
     applicationUrl: "https://www.capetown.gov.za/work%20and%20business/find-a-job/bursaries",
     websiteUrl: "https://www.capetown.gov.za/work%20and%20business/find-a-job/bursaries",
     active: true,
+    provinces: ["Western Cape"],
   },
   {
     id: "ethekwini-bursary",
@@ -1250,6 +1256,7 @@ export const BURSARIES: Bursary[] = [
     applicationUrl: "https://www.durban.gov.za/City_Government/Human_Capital/Pages/Bursaries.aspx",
     websiteUrl: "https://www.durban.gov.za/City_Government/Human_Capital/Pages/Bursaries.aspx",
     active: true,
+    provinces: ["KwaZulu-Natal"],
   },
   {
     id: "city-of-johannesburg-bursary",
@@ -1264,6 +1271,7 @@ export const BURSARIES: Bursary[] = [
     applicationUrl: "https://www.joburg.org.za/jobs/Pages/Bursaries.aspx",
     websiteUrl: "https://www.joburg.org.za/jobs/Pages/Bursaries.aspx",
     active: true,
+    provinces: ["Gauteng"],
   },
   {
     id: "wrseta-bursary",
@@ -1308,3 +1316,15 @@ export const BURSARIES: Bursary[] = [
     active: true,
   },
 ];
+
+/**
+ * Returns bursaries relevant to a specific province.
+ * Province-specific bursaries for that province come first, then nationwide bursaries.
+ */
+export function getBursariesForProvince(province: string, limit = 6): Bursary[] {
+  const specific = BURSARIES.filter(
+    (b) => b.provinces && b.provinces.includes(province)
+  );
+  const national = BURSARIES.filter((b) => !b.provinces || b.provinces.length === 0);
+  return [...specific, ...national].slice(0, limit);
+}

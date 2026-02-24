@@ -8,7 +8,8 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { getLocationBySlug, getNearbyLocations } from "@/data/southAfricaLocations";
 import { getLocationContent, getDefaultLocationContent, hasEnhancedContent } from "@/data/locationContent";
 import { getPopularSubjectExams, type ExamSubjectGroup } from "@/data/examPapers";
-import { BookOpen, CheckCircle, GraduationCap, MapPin, Sparkles, TrendingUp, Users, School, FileText, Download } from "lucide-react";
+import { getBursariesForProvince, BURSARIES } from "@/data/bursaries";
+import { BookOpen, CheckCircle, GraduationCap, MapPin, Sparkles, TrendingUp, Users, School, FileText, Download, ExternalLink } from "lucide-react";
 
 const LocationPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -47,6 +48,8 @@ const LocationPage = () => {
   const hasRichContent = hasEnhancedContent(slug || "");
 
   const defaultSubjects = ["Mathematics", "Physical Science", "Life Sciences", "English", "Afrikaans", "Accounting", "History", "Geography"];
+
+  const localBursaries = getBursariesForProvince(location.province, 6);
 
   return (
     <>
@@ -412,6 +415,76 @@ const LocationPage = () => {
                     </p>
                   </div>
                 ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Bursaries Section */}
+        {localBursaries.length > 0 && (
+          <section className="py-12 md:py-16">
+            <div className="container max-w-6xl mx-auto px-4">
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold">
+                    Bursaries for {location.province} Students
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Active bursaries available to students in {location.name} and across {location.province}.
+                  </p>
+                </div>
+                <Link
+                  to="/bursaries"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline shrink-0"
+                >
+                  View all {BURSARIES.length}+ bursaries
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {localBursaries.map((bursary) => (
+                  <div
+                    key={bursary.id}
+                    className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 hover:shadow-md hover:border-primary/40 transition-all"
+                  >
+                    <div>
+                      <span className="inline-block text-xs font-medium text-primary bg-primary/10 px-2.5 py-1 rounded-full mb-2">
+                        {bursary.field}
+                      </span>
+                      {bursary.provinces && bursary.provinces.length > 0 && (
+                        <span className="inline-block ml-2 text-xs font-medium text-orange-700 bg-orange-100 px-2.5 py-1 rounded-full mb-2">
+                          {bursary.provinces.join(" · ")} only
+                        </span>
+                      )}
+                      <h3 className="font-semibold text-gray-900">{bursary.name}</h3>
+                      <p className="text-xs text-gray-500 mt-0.5">{bursary.provider}</p>
+                    </div>
+                    <p className="text-sm text-gray-600 line-clamp-2 flex-1">{bursary.description}</p>
+                    <div className="flex items-start gap-2 text-sm text-gray-600">
+                      <GraduationCap className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                      <span className="line-clamp-1">{bursary.value}</span>
+                    </div>
+                    <a
+                      href={bursary.applicationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline mt-auto"
+                    >
+                      Apply / Learn More
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 text-center">
+                <Button variant="outline" asChild>
+                  <Link to="/bursaries">
+                    <GraduationCap className="w-4 h-4 mr-2" />
+                    Browse All South African Bursaries
+                  </Link>
+                </Button>
               </div>
             </div>
           </section>

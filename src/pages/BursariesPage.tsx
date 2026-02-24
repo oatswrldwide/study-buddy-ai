@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
   Search,
@@ -17,6 +18,7 @@ import {
   Scale,
   Building2,
   Palette,
+  MapPin,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -279,6 +281,43 @@ const BursariesPage = () => {
                   </div>
                 </div>
               ))}
+          </div>
+        </section>
+
+        {/* Province interlink section */}
+        <section className="container mx-auto px-4 pb-12">
+          <div className="max-w-5xl mx-auto bg-white rounded-2xl border p-8">
+            <div className="flex items-center gap-2 mb-2">
+              <MapPin className="w-5 h-5 text-primary" />
+              <h2 className="text-xl font-bold">Browse Bursaries &amp; Tutoring by Province</h2>
+            </div>
+            <p className="text-sm text-muted-foreground mb-6">
+              Bursary availability can vary by province — especially for government and municipal
+              bursaries. Select your province below to see bursaries relevant to your area and find
+              AI-powered tutoring support while you prepare your applications.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+              {[
+                { name: "Gauteng", slug: "gauteng" },
+                { name: "Western Cape", slug: "western-cape" },
+                { name: "KwaZulu-Natal", slug: "kwazulu-natal" },
+                { name: "Eastern Cape", slug: "eastern-cape" },
+                { name: "Free State", slug: "free-state" },
+                { name: "Mpumalanga", slug: "mpumalanga" },
+                { name: "Limpopo", slug: "limpopo" },
+                { name: "North West", slug: "north-west" },
+                { name: "Northern Cape", slug: "northern-cape" },
+              ].map((prov) => (
+                <Link
+                  key={prov.slug}
+                  to={`/province/${prov.slug}`}
+                  className="flex items-center gap-2 text-sm font-medium px-3 py-2.5 rounded-lg border border-gray-200 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all"
+                >
+                  <MapPin className="w-3.5 h-3.5 shrink-0" />
+                  {prov.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 
