@@ -54,6 +54,22 @@ const HowItWorks = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://studybuddy.works/how-it-works" />
         <link rel="canonical" href="https://studybuddy.works/how-it-works" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          "name": "How to Use StudyBuddy Works AI Tutoring",
+          "description": "Get 24/7 CAPS-aligned AI tutoring for South African students in 5 simple steps.",
+          "totalTime": "PT5M",
+          "supply": [],
+          "tool": [{ "@type": "HowToTool", "name": "Internet-connected device (phone, tablet, or computer)" }],
+          "step": steps.map((s, i) => ({
+            "@type": "HowToStep",
+            "position": i + 1,
+            "name": s.title,
+            "text": s.desc,
+            "url": `https://studybuddy.works/how-it-works#step-${i + 1}`,
+          })),
+        })}</script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

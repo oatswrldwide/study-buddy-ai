@@ -178,4 +178,32 @@ export const schoolsConfig = {
       "Cancel anytime",
     ],
   },
+
+  faq: [
+    {
+      question: "How quickly can our school go live?",
+      answer:
+        "Most schools are live within 14 days. We handle the setup, custom domain, branding, and onboarding. You focus on your students.",
+    },
+    {
+      question: "What does the school platform cost?",
+      answer:
+        "R150 per student per year with a minimum of 100 students. You set your own price — schools typically charge R200+ per student and keep the difference.",
+    },
+    {
+      question: "Can we use our own school branding?",
+      answer:
+        "Yes. You get a fully white-label platform with your school's logo, colors, and custom domain. Students see your brand, not ours.",
+    },
+    {
+      question: "Is the platform POPIA compliant?",
+      answer:
+        "Yes. StudyBuddy Works is fully compliant with South Africa's POPIA (Protection of Personal Information Act). Student data is kept private and secure.",
+    },
+    {
+      question: "What subjects and grades are covered?",
+      answer:
+        "All major CAPS subjects for Grades 10, 11, and 12 (Matric), including Mathematics, Physical Sciences, Life Sciences, English, Afrikaans, Accounting, History, and more.",
+    },
+  ],
 };

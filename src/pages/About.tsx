@@ -16,6 +16,32 @@ const About = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://studybuddy.works/about" />
         <link rel="canonical" href="https://studybuddy.works/about" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "url": "https://studybuddy.works/about",
+          "name": "About StudyBuddy Works",
+          "description": "StudyBuddy Works is a CAPS-aligned AI tutoring platform built to make quality education accessible to every South African student.",
+          "mainEntity": {
+            "@type": "EducationalOrganization",
+            "name": "StudyBuddy Works",
+            "url": "https://studybuddy.works",
+            "foundingDate": "2024",
+            "foundingLocation": "South Africa",
+            "description": "CAPS-aligned AI tutoring platform providing 24/7 homework help and exam preparation for South African students in Grades 10–12.",
+            "mission": "To close the educational gap in South Africa by making 24/7, CAPS-aligned AI tutoring available to every student.",
+            "areaServed": { "@type": "Country", "name": "South Africa" },
+            "numberOfEmployees": { "@type": "QuantitativeValue", "value": 10 },
+            "knowsAbout": [
+              "CAPS curriculum",
+              "South African education",
+              "AI tutoring",
+              "Matric exam preparation",
+              "Mathematics tutoring",
+              "Physical Sciences tutoring"
+            ]
+          }
+        })}</script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

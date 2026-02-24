@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Helmet } from "react-helmet-async";
 
 interface FAQItem {
   question: string;
@@ -14,11 +15,30 @@ interface FAQAccordionProps {
   items: FAQItem[];
   title?: string;
   description?: string;
+  /** Emit FAQPage JSON-LD schema for AEO. Defaults to true. */
+  schema?: boolean;
 }
 
-const FAQAccordion = ({ items, title, description }: FAQAccordionProps) => {
+const FAQAccordion = ({ items, title, description, schema = true }: FAQAccordionProps) => {
+  const faqSchema = schema && items.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: items.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      }
+    : null;
+
   return (
     <section className="py-20 lg:py-32 bg-background">
+      {faqSchema && (
+        <Helmet>
+          <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        </Helmet>
+      )}
       <div className="container mx-auto px-4">
         {/* Section Header */}
         {(title || description) && (

@@ -69,6 +69,59 @@ const LocationPage = () => {
             { "@type": "ListItem", "position": 4, "name": location.name, "item": `https://studybuddy.works/tutor/${slug}` }
           ]
         })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "EducationalOrganization",
+          "name": `StudyBuddy Works – AI Tutoring in ${location.name}`,
+          "url": `https://studybuddy.works/tutor/${slug}`,
+          "description": `24/7 CAPS-aligned AI tutoring for students in ${location.name}, ${location.province}. Homework help and matric exam preparation for R99/month.`,
+          "areaServed": {
+            "@type": "City",
+            "name": location.name,
+            "containedInPlace": { "@type": "AdministrativeArea", "name": location.province }
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "AI Tutoring",
+            "itemListElement": [{
+              "@type": "Offer",
+              "name": `AI Tutor in ${location.name}`,
+              "price": "99",
+              "priceCurrency": "ZAR",
+              "description": `CAPS-aligned AI tutoring in ${location.name} — 24/7, all subjects, 7-day free trial`
+            }]
+          }
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": `Is there an AI tutor available in ${location.name}?`,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": `Yes. StudyBuddy Works provides 24/7 CAPS-aligned AI tutoring to students in ${location.name}, ${location.province}. Students can sign up for R99/month with a 7-day free trial.`
+              }
+            },
+            {
+              "@type": "Question",
+              "name": `What subjects does the AI tutor in ${location.name} cover?`,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": `The AI tutor covers all major CAPS subjects including Mathematics, Physical Sciences, Life Sciences, English, Afrikaans, Accounting, History, and Geography for Grades 10–12.`
+              }
+            },
+            {
+              "@type": "Question",
+              "name": `How much does AI tutoring in ${location.name} cost?`,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": `StudyBuddy Works costs R99/month with a 7-day free trial and no credit card required. That's less than the cost of a single hour with a traditional tutor (R350–R500/hour).`
+              }
+            }
+          ]
+        })}</script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

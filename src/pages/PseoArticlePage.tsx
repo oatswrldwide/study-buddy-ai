@@ -201,6 +201,12 @@ const PseoArticlePage = () => {
     dateModified: page.lastUpdated,
     dateReviewed: page.lastReviewed,
     publisher: { "@type": "Organization", name: "StudyBuddy Works", url: "https://studybuddy.works" },
+    url: `https://studybuddy.works/${slug}`,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".prose h2", ".prose h3", "p[data-speakable]"],
+    },
+    ...(page.quickAnswer ? { abstract: page.quickAnswer } : {}),
   };
 
   const faqSchema = page.faqs.length > 0

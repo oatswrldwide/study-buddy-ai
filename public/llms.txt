@@ -1,0 +1,67 @@
+# StudyBuddy Works - llms.txt
+# This file helps AI assistants understand and cite this site accurately.
+# Standard: https://llmstxt.org
+
+> StudyBuddy Works is a CAPS-aligned AI tutoring platform for South African students (Grades 10–12). It offers 24/7 homework help and exam preparation for R99/month, with a 7-day free trial and no credit card required.
+
+## Overview
+
+StudyBuddy Works provides affordable, personalized AI tutoring aligned with South Africa's CAPS (Curriculum and Assessment Policy Statement) and IEB curricula. The platform serves students, parents, and schools across all nine South African provinces.
+
+**Key facts:**
+- Price: R99/month for students (unlimited subjects, 24/7 access)
+- School licensing: R150 per student per year (white-label)
+- Free trial: 7 days, no credit card required
+- Coverage: 759 towns and cities across South Africa
+- Subjects: Mathematics, Physical Sciences, Life Sciences, English, Afrikaans, Accounting, History, Geography, Business Studies, Economics
+- Grades: 10, 11, and 12 (Matric)
+- Curriculum: CAPS-aligned and IEB-compatible
+
+## Core Pages
+
+- [Home](https://studybuddy.works/): AI-powered learning platform overview for schools and students
+- [For Students](https://studybuddy.works/students): 24/7 AI tutoring, pricing, exam papers, and free trial sign-up
+- [For Schools](https://studybuddy.works/schools): White-label AI tutoring platform for South African schools
+- [How It Works](https://studybuddy.works/how-it-works): Step-by-step guide to using StudyBuddy Works
+- [About Us](https://studybuddy.works/about): Mission, values, and team behind StudyBuddy Works
+- [Locations](https://studybuddy.works/locations): AI tutoring available in 759 South African towns and cities
+- [Resources](https://studybuddy.works/resources): CAPS-aligned study guides and past exam papers
+
+## Study Resources & Guides
+
+- [Resources Index](https://studybuddy.works/resources): Browse all CAPS-aligned study guides, articles, and exam resources
+
+### Subject Help Pages (Examples)
+- [Failing Maths Grade 12](https://studybuddy.works/pain-failing-mathematics-grade-12-need-help-fast): Urgent help for Grade 12 Mathematics students
+- [Physical Sciences Help](https://studybuddy.works/pain-failing-physical-sciences-grade-12-need-help-fast): Grade 12 Physical Sciences support
+- [Accounting Help](https://studybuddy.works/pain-failing-accounting-grade-10-need-help-fast): Grade 10 Accounting support
+
+## Frequently Asked Questions
+
+**What is StudyBuddy Works?**
+StudyBuddy Works is a CAPS-aligned AI tutoring platform that provides 24/7 homework help and exam preparation for South African students in Grades 10–12.
+
+**How much does it cost?**
+R99/month for students with unlimited access to all subjects. A 7-day free trial is available with no credit card required.
+
+**Which subjects are covered?**
+All major CAPS subjects: Mathematics, Physical Sciences, Life Sciences, English, Afrikaans, Accounting, History, Geography, Business Studies, and Economics.
+
+**Is it aligned to the South African curriculum?**
+Yes. All AI responses are aligned to CAPS (Curriculum and Assessment Policy Statement) and are IEB-compatible.
+
+**Can schools use StudyBuddy Works?**
+Yes. Schools get a white-label branded platform for R150 per student per year, with their own custom domain, logo, and colors. Minimum 100 students.
+
+**What provinces and towns are covered?**
+StudyBuddy Works serves students in all 9 South African provinces across 759 towns and cities.
+
+**Is there a free trial?**
+Yes. Students get a 7-day free trial with full access. No credit card required.
+
+## Contact & Legal
+
+- Website: https://studybuddy.works
+- Country: South Africa
+- Data protection: POPIA compliant
+- Sitemap: https://studybuddy.works/sitemap.xml

@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, MapPin, FileText } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import FAQAccordion from "@/components/shared/FAQAccordion";
+import { schoolsConfig } from "@/config/schools";
 
 const SchoolsLanding = () => {
   const navigate = useNavigate();
@@ -25,6 +27,15 @@ const SchoolsLanding = () => {
         <meta property="twitter:description" content="Launch your school's branded AI tutoring platform. Custom domain, your logo, keep the profit." />
         <meta property="twitter:url" content="https://studybuddy.works/schools" />
         <link rel="canonical" href="https://studybuddy.works/schools" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: schoolsConfig.faq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        })}</script>
       </Helmet>
       <main className="min-h-screen">
       <HeaderSchools />
@@ -75,6 +86,13 @@ const SchoolsLanding = () => {
         </div>
       </section>
       
+      <FAQAccordion
+        items={schoolsConfig.faq}
+        title="Frequently Asked Questions"
+        description="Everything you need to know about bringing StudyBuddy to your school."
+        schema={false}
+      />
+
       <Footer />
       </main>
     </>
