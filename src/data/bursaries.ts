@@ -54,8 +54,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; minimum 70% average in Grade 12 Maths and Physical Science; studying Engineering, Chemistry, Geology or Metallurgy.",
     value: "Full tuition, accommodation, books and a monthly stipend",
-    applicationUrl: "https://www.sasol.com/careers/bursaries",
-    websiteUrl: "https://www.sasol.com/careers/bursaries",
+    applicationUrl: "https://www.sasolbursaries.com",
+    websiteUrl: "https://www.sasolbursaries.com",
     active: true,
   },
   {
@@ -110,8 +110,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; studying Mining, Geological, Electrical, Mechanical or Civil Engineering.",
     value: "Full tuition plus allowances",
-    applicationUrl: "https://www.debeersgroup.com/careers/bursaries",
-    websiteUrl: "https://www.debeersgroup.com/careers/bursaries",
+    applicationUrl: "https://www.debeersgroup.com/careers",
+    websiteUrl: "https://www.debeersgroup.com/careers",
     active: true,
   },
   {
@@ -153,8 +153,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens who are Black African or Coloured; pursuing a CA(SA) qualification at a SAICA-accredited university; minimum 70% for Maths and English.",
     value: "Full tuition, accommodation, meals, books, and a monthly allowance",
-    applicationUrl: "https://www.saica.co.za/thuthuka-bursary-fund",
-    websiteUrl: "https://www.saica.co.za/thuthuka-bursary-fund",
+    applicationUrl: "https://www.thuthukabursaryfund.co.za",
+    websiteUrl: "https://www.thuthukabursaryfund.co.za",
     active: true,
   },
   {
@@ -251,8 +251,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; studying towards a CA(SA) qualification or BCom Accounting; strong academic and leadership record.",
     value: "Tuition and a monthly study allowance",
-    applicationUrl: "https://www.pwc.co.za/en/careers/students/bursaries.html",
-    websiteUrl: "https://www.pwc.co.za/en/careers/students/bursaries.html",
+    applicationUrl: "https://www.pwc.co.za/en/careers/learners/learners-bursaries.html",
+    websiteUrl: "https://www.pwc.co.za/en/careers/learners/learners-bursaries.html",
     active: true,
   },
   // ── Information Technology ────────────────────────────────────────────────
@@ -367,8 +367,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; studying towards a B.Ed or PGCE at an accredited SA university; commitment to teach in a public school for the same number of years as the bursary period.",
     value: "Full tuition, accommodation, meals, books and a monthly allowance",
-    applicationUrl: "https://www.funzalushaka.doe.gov.za/",
-    websiteUrl: "https://www.funzalushaka.doe.gov.za/",
+    applicationUrl: "https://www.eservices.gov.za",
+    websiteUrl: "https://www.education.gov.za/Programmes/FunzaLushaka.aspx",
     active: true,
   },
   {
@@ -381,7 +381,7 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens or permanent residents; registered for a full-time postgraduate degree at an accredited SA university; strong academic record.",
     value: "Annual stipend and research support",
-    applicationUrl: "https://www.nrf.ac.za/opportunities/",
+    applicationUrl: "https://nrfconnect.nrf.ac.za",
     websiteUrl: "https://www.nrf.ac.za/opportunities/",
     active: true,
   },
@@ -495,8 +495,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; studying Mining Engineering, Metallurgy, Mine Survey, Geology or Rock Engineering at a public SA university.",
     value: "Tuition and study materials",
-    applicationUrl: "https://www.mqa.org.za/bursaries",
-    websiteUrl: "https://www.mqa.org.za/bursaries",
+    applicationUrl: "https://mqa.org.za/bursaries",
+    websiteUrl: "https://mqa.org.za/bursaries",
     active: true,
   },
   // ── Agriculture & Environment ─────────────────────────────────────────────
@@ -555,7 +555,7 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; household income below R350 000 per year; studying at a public university or TVET college; not receiving another government bursary.",
     value: "Full tuition, accommodation, meals, transport and book allowances",
-    applicationUrl: "https://www.nsfas.org.za/content/apply.html",
+    applicationUrl: "https://my.nsfas.org.za",
     websiteUrl: "https://www.nsfas.org.za",
     active: true,
   },
@@ -625,8 +625,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens from historically disadvantaged backgrounds; studying Actuarial Science, Finance, BCom, Mathematics or related fields.",
     value: "Tuition and a monthly living allowance",
-    applicationUrl: "https://www.oldmutualfoundation.co.za/bursaries",
-    websiteUrl: "https://www.oldmutualfoundation.co.za/bursaries",
+    applicationUrl: "https://www.oldmutual.co.za/careers/bursaries/",
+    websiteUrl: "https://www.oldmutual.co.za/careers/bursaries/",
     active: true,
   },
   {
@@ -639,8 +639,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; studying Engineering, Finance, IT, Geology or related fields; strong academic performance.",
     value: "Full tuition, accommodation and a monthly stipend",
-    applicationUrl: "https://www.angloamerican.com/careers/bursaries",
-    websiteUrl: "https://www.angloamerican.com/careers/bursaries",
+    applicationUrl: "https://southafrica.angloamerican.com/careers/graduates-and-bursaries",
+    websiteUrl: "https://southafrica.angloamerican.com/careers/graduates-and-bursaries",
     active: true,
   },
 
@@ -1004,8 +1004,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; studying Mining, Metallurgical, Mechanical, Electrical or Chemical Engineering at a public SA university.",
     value: "Full tuition, accommodation and a monthly allowance",
-    applicationUrl: "https://www.angloplat.com/sustainability/education/bursaries",
-    websiteUrl: "https://www.angloplat.com/sustainability/education/bursaries",
+    applicationUrl: "https://southafrica.angloamerican.com/careers/graduates-and-bursaries",
+    websiteUrl: "https://southafrica.angloamerican.com/careers/graduates-and-bursaries",
     active: true,
   },
   {
@@ -1018,8 +1018,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; studying Mining, Metallurgical, Electrical, Mechanical or Chemical Engineering; strong matric results in Maths and Science.",
     value: "Tuition, accommodation and a monthly allowance",
-    applicationUrl: "https://www.arm.co.za/sustainability/education/bursaries",
-    websiteUrl: "https://www.arm.co.za/sustainability/education/bursaries",
+    applicationUrl: "https://www.arm.co.za/careers",
+    websiteUrl: "https://www.arm.co.za/careers",
     active: true,
   },
   {
@@ -1224,8 +1224,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens in Grade 11 or 12, or first-year university students; demonstrated entrepreneurial thinking, academic excellence and leadership; any field of study.",
     value: "Full tuition, accommodation, meals, books and a living allowance for the full degree",
-    applicationUrl: "https://www.allangrayorbis.org/fellowships/",
-    websiteUrl: "https://www.allangrayorbis.org/fellowships/",
+    applicationUrl: "https://www.allangrayorbis.org",
+    websiteUrl: "https://www.allangrayorbis.org",
     active: true,
   },
   {
@@ -1238,8 +1238,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; preferably residing in Cape Town; studying Civil/Electrical Engineering, IT, Finance, Urban Planning, Social Work or other disciplines relevant to the City.",
     value: "Tuition and a monthly allowance",
-    applicationUrl: "https://www.capetown.gov.za/work%20and%20business/find-a-job/bursaries",
-    websiteUrl: "https://www.capetown.gov.za/work%20and%20business/find-a-job/bursaries",
+    applicationUrl: "https://www.capetown.gov.za/work-and-business/find-a-job/bursaries",
+    websiteUrl: "https://www.capetown.gov.za/work-and-business/find-a-job/bursaries",
     active: true,
     provinces: ["Western Cape"],
   },
