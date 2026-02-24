@@ -49,6 +49,12 @@ const staticPages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: 0.8,
   },
+  {
+    url: '/bursaries',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.8,
+  },
 ];
 
 /**
