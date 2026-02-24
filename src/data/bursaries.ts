@@ -266,8 +266,8 @@ export const BURSARIES: Bursary[] = [
     eligibility:
       "South African citizens; studying Computer Science, Information Systems, IT Engineering or related ICT fields.",
     value: "Tuition, books and a monthly allowance",
-    applicationUrl: "https://www.dimensiondata.com/en-za/careers/graduates/bursaries",
-    websiteUrl: "https://www.dimensiondata.com/en-za/careers/graduates/bursaries",
+    applicationUrl: "https://za.ntt.com/careers",
+    websiteUrl: "https://za.ntt.com/careers",
     active: true,
   },
   {

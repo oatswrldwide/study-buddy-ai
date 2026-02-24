@@ -465,15 +465,26 @@ const LocationPage = () => {
                       <GraduationCap className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                       <span className="line-clamp-1">{bursary.value}</span>
                     </div>
-                    <a
-                      href={bursary.applicationUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline mt-auto"
-                    >
-                      Apply / Learn More
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+                    <div className="flex flex-col gap-1 mt-auto">
+                      <a
+                        href={bursary.applicationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                      >
+                        Apply / Learn More
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                      <a
+                        href={`https://www.google.com/search?q=${encodeURIComponent(bursary.name + " " + bursary.provider + " application 2025")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-primary hover:underline"
+                      >
+                        Search if link is broken
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
                   </div>
                 ))}
               </div>

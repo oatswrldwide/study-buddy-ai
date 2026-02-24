@@ -86,7 +86,7 @@ const BursaryCard = ({ bursary }: { bursary: Bursary }) => (
         <p className="text-xs text-muted-foreground">{bursary.value}</p>
       </div>
 
-      <div className="mt-auto pt-2">
+      <div className="mt-auto pt-2 flex flex-col gap-1">
         <a
           href={bursary.applicationUrl}
           target="_blank"
@@ -95,6 +95,15 @@ const BursaryCard = ({ bursary }: { bursary: Bursary }) => (
         >
           Apply / Learn More
           <ExternalLink className="w-3.5 h-3.5" />
+        </a>
+        <a
+          href={`https://www.google.com/search?q=${encodeURIComponent(bursary.name + " " + bursary.provider + " application 2025")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary hover:underline"
+        >
+          Search if link is broken
+          <ExternalLink className="w-3 h-3" />
         </a>
       </div>
     </CardContent>
