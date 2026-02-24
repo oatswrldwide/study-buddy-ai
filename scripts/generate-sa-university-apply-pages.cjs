@@ -1491,18 +1491,22 @@ async function main() {
     console.log(`✅ Generated: ${slug}`);
     created++;
 
-    // Add to index if not already present
+    // Upsert index entry (add or update)
+    const indexEntry = {
+      slug,
+      title: page.metaTitle,
+      description: page.metaDescription,
+      pageType: page.pageType,
+      published: true,
+      qualityScore: 9,
+      lastUpdated: TODAY,
+      keywords: page.keywords.slice(0, 6),
+    };
     if (!existingSlugs.has(slug)) {
-      newEntries.push({
-        slug,
-        title: page.metaTitle,
-        description: page.metaDescription,
-        pageType: page.pageType,
-        published: true,
-        qualityScore: 9,
-        lastUpdated: TODAY,
-        keywords: page.keywords.slice(0, 6),
-      });
+      newEntries.push(indexEntry);
+    } else {
+      const idx = existingIndex.findIndex(e => e.slug === slug);
+      if (idx !== -1) existingIndex[idx] = indexEntry;
     }
   }
 
