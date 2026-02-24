@@ -20,6 +20,8 @@ export const BURSARY_FIELDS = [
   "Law & Justice",
   "Mining & Resources",
   "Agriculture & Environment",
+  "Built Environment & Construction",
+  "Arts & Creative Industries",
   "Social Sciences",
   "General / Multiple Fields",
 ] as const;
@@ -637,6 +639,672 @@ export const BURSARIES: Bursary[] = [
     value: "Full tuition, accommodation and a monthly stipend",
     applicationUrl: "https://www.angloamerican.com/careers/bursaries",
     websiteUrl: "https://www.angloamerican.com/careers/bursaries",
+    active: true,
+  },
+
+  // ── Engineering & Technology (additional) ────────────────────────────────
+  {
+    id: "rand-water-bursary",
+    name: "Rand Water Bursary",
+    provider: "Rand Water",
+    field: "Engineering & Technology",
+    description:
+      "Rand Water offers bursaries to engineering and science students to develop skills for South Africa's water sector and ensure water security.",
+    eligibility:
+      "South African citizens; studying Civil, Chemical, Electrical or Mechanical Engineering, or Chemistry/Microbiology at a recognised SA university.",
+    value: "Full tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.randwater.co.za/CorporateInfo/Pages/Bursaries.aspx",
+    websiteUrl: "https://www.randwater.co.za/CorporateInfo/Pages/Bursaries.aspx",
+    active: true,
+  },
+  {
+    id: "prasa-bursary",
+    name: "PRASA Bursary",
+    provider: "Passenger Rail Agency of South Africa (PRASA)",
+    field: "Engineering & Technology",
+    description:
+      "PRASA funds bursaries for engineering students to build capability for rail and public transport infrastructure in South Africa.",
+    eligibility:
+      "South African citizens; studying Electrical, Mechanical, Civil or Electronic Engineering; commitment to work for PRASA after graduation.",
+    value: "Tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.prasa.com/careers/bursaries",
+    websiteUrl: "https://www.prasa.com/careers/bursaries",
+    active: true,
+  },
+  {
+    id: "acsa-bursary",
+    name: "ACSA Bursary",
+    provider: "Airports Company South Africa (ACSA)",
+    field: "Engineering & Technology",
+    description:
+      "ACSA awards bursaries to engineering and built-environment students to develop the skills needed for airport infrastructure and operations.",
+    eligibility:
+      "South African citizens; studying Civil, Electrical, Mechanical or Industrial Engineering, or Quantity Surveying; strong academic record.",
+    value: "Tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.airports.co.za/careers/bursaries",
+    websiteUrl: "https://www.airports.co.za/careers/bursaries",
+    active: true,
+  },
+  {
+    id: "telkom-bursary",
+    name: "Telkom Bursary",
+    provider: "Telkom",
+    field: "Engineering & Technology",
+    description:
+      "Telkom offers bursaries to engineering and IT students to grow talent for South Africa's telecommunications and technology sector.",
+    eligibility:
+      "South African citizens; studying Electrical/Electronic Engineering, Computer Science, IT or related disciplines; minimum 65% in Grade 12 Maths and Science.",
+    value: "Tuition, books and a monthly stipend",
+    applicationUrl: "https://www.telkom.co.za/today/careers/bursaries",
+    websiteUrl: "https://www.telkom.co.za/today/careers/bursaries",
+    active: true,
+  },
+  {
+    id: "merseta-bursary",
+    name: "MERSETA Bursary",
+    provider: "Manufacturing, Engineering and Related Services SETA (MERSETA)",
+    field: "Engineering & Technology",
+    description:
+      "MERSETA provides bursaries for students in manufacturing, engineering and related services to address critical skills shortages in the sector.",
+    eligibility:
+      "South African citizens; studying Mechanical, Electrical, Industrial or Manufacturing Engineering or related trades at a public SA university or TVET college.",
+    value: "Tuition and study materials",
+    applicationUrl: "https://www.merseta.org.za/skills-development/bursaries/",
+    websiteUrl: "https://www.merseta.org.za/skills-development/bursaries/",
+    active: true,
+  },
+  {
+    id: "chieta-bursary",
+    name: "CHIETA Bursary",
+    provider: "Chemical Industries Education and Training Authority (CHIETA)",
+    field: "Engineering & Technology",
+    description:
+      "CHIETA funds bursaries for students in the chemical, petroleum, plastics and pharmaceutical industries to meet sector skills needs.",
+    eligibility:
+      "South African citizens; studying Chemical Engineering, Chemistry, Pharmacy, Petrochemical Engineering or related fields at an accredited SA institution.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.chieta.org.za/bursaries",
+    websiteUrl: "https://www.chieta.org.za/bursaries",
+    active: true,
+  },
+  {
+    id: "petro-sa-bursary",
+    name: "PetroSA Bursary",
+    provider: "PetroSA (South African National Oil Company)",
+    field: "Engineering & Technology",
+    description:
+      "PetroSA offers bursaries for engineering and geoscience students to develop skills for the South African oil and gas industry.",
+    eligibility:
+      "South African citizens; studying Chemical, Mechanical, Electrical or Petroleum Engineering, or Geology/Geophysics; minimum 65% in Maths and Science.",
+    value: "Full tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.petrosa.co.za/careers/bursaries",
+    websiteUrl: "https://www.petrosa.co.za/careers/bursaries",
+    active: true,
+  },
+
+  // ── Finance & Accounting (additional) ────────────────────────────────────
+  {
+    id: "ey-bursary",
+    name: "EY South Africa Bursary",
+    provider: "Ernst & Young (EY) South Africa",
+    field: "Finance & Accounting",
+    description:
+      "EY SA offers bursaries to accounting and finance students who show academic excellence and the potential to become future chartered accountants.",
+    eligibility:
+      "South African citizens; studying BCom Accounting or equivalent CA(SA) pathway at an accredited SA university; minimum 65% in all subjects.",
+    value: "Tuition and a monthly study allowance",
+    applicationUrl: "https://www.ey.com/en_za/careers/students/bursary",
+    websiteUrl: "https://www.ey.com/en_za/careers/students/bursary",
+    active: true,
+  },
+  {
+    id: "sanlam-bursary",
+    name: "Sanlam Bursary",
+    provider: "Sanlam",
+    field: "Finance & Accounting",
+    description:
+      "Sanlam offers bursaries to support students in finance, actuarial science and mathematics, with the aim of building South Africa's financial services talent.",
+    eligibility:
+      "South African citizens from previously disadvantaged backgrounds; studying Actuarial Science, Finance, Mathematics or BCom at a recognised SA university.",
+    value: "Tuition and a monthly living allowance",
+    applicationUrl: "https://www.sanlam.co.za/about/corporate-information/social-responsibility/bursaries",
+    websiteUrl: "https://www.sanlam.co.za/about/corporate-information/social-responsibility/bursaries",
+    active: true,
+  },
+  {
+    id: "investec-bursary",
+    name: "Investec Bursary",
+    provider: "Investec",
+    field: "Finance & Accounting",
+    description:
+      "Investec provides bursaries to exceptional students in finance, accounting and engineering, coupled with mentorship and vacation work programmes.",
+    eligibility:
+      "South African citizens; studying BCom Accounting, Finance, Actuarial Science, Engineering or related fields; strong academic and leadership record.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.investec.com/en_za/welcome-to-investec/careers/students/bursary.html",
+    websiteUrl: "https://www.investec.com/en_za/welcome-to-investec/careers/students/bursary.html",
+    active: true,
+  },
+  {
+    id: "liberty-bursary",
+    name: "Liberty Group Bursary",
+    provider: "Liberty Group",
+    field: "Finance & Accounting",
+    description:
+      "Liberty offers bursaries to actuarial science and finance students to help develop talent for the South African insurance and investment sector.",
+    eligibility:
+      "South African citizens; studying Actuarial Science, Finance, Statistics or related fields; strong performance in Mathematics.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.liberty.co.za/about-us/careers/bursaries",
+    websiteUrl: "https://www.liberty.co.za/about-us/careers/bursaries",
+    active: true,
+  },
+  {
+    id: "bdo-bursary",
+    name: "BDO South Africa Bursary",
+    provider: "BDO South Africa",
+    field: "Finance & Accounting",
+    description:
+      "BDO SA awards bursaries to BCom Accounting students, providing mentorship and guaranteed vacation work as part of the programme.",
+    eligibility:
+      "South African citizens; studying BCom Accounting towards CA(SA) qualification; minimum 65% average.",
+    value: "Tuition and a vacation work allowance",
+    applicationUrl: "https://www.bdo.co.za/en-za/careers/students/bursaries",
+    websiteUrl: "https://www.bdo.co.za/en-za/careers/students/bursaries",
+    active: true,
+  },
+  {
+    id: "grant-thornton-bursary",
+    name: "Grant Thornton Bursary",
+    provider: "Grant Thornton South Africa",
+    field: "Finance & Accounting",
+    description:
+      "Grant Thornton SA funds bursaries for accounting students, with recipients gaining practical work experience through structured vacation programmes.",
+    eligibility:
+      "South African citizens; studying BCom Accounting or equivalent; strong academic record and leadership potential.",
+    value: "Tuition and a vacation work allowance",
+    applicationUrl: "https://www.grantthornton.co.za/careers/students/bursaries/",
+    websiteUrl: "https://www.grantthornton.co.za/careers/students/bursaries/",
+    active: true,
+  },
+
+  // ── Information Technology (additional) ──────────────────────────────────
+  {
+    id: "telkom-foundation-ict-bursary",
+    name: "Telkom Foundation ICT Bursary",
+    provider: "Telkom Foundation",
+    field: "Information Technology",
+    description:
+      "The Telkom Foundation focuses specifically on ICT and computer science bursaries to grow South Africa's digital talent pipeline, especially from underprivileged backgrounds.",
+    eligibility:
+      "South African citizens from financially disadvantaged backgrounds; studying Computer Science, Information Systems, Software Engineering or IT-related fields.",
+    value: "Tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://foundation.telkom.co.za/bursaries",
+    websiteUrl: "https://foundation.telkom.co.za/bursaries",
+    active: true,
+  },
+  {
+    id: "bcx-bursary",
+    name: "BCX Bursary",
+    provider: "BCX (Business Connexion)",
+    field: "Information Technology",
+    description:
+      "BCX awards bursaries to IT and computer science students to build skills for South Africa's technology services industry.",
+    eligibility:
+      "South African citizens; studying Computer Science, Information Technology, Software Engineering or related fields at an accredited SA university.",
+    value: "Tuition and a monthly stipend",
+    applicationUrl: "https://www.bcx.co.za/careers/bursaries",
+    websiteUrl: "https://www.bcx.co.za/careers/bursaries",
+    active: true,
+  },
+  {
+    id: "sap-bursary",
+    name: "SAP South Africa Bursary",
+    provider: "SAP South Africa",
+    field: "Information Technology",
+    description:
+      "SAP SA offers bursaries and internships to IT and software engineering students, with a strong focus on enterprise technology skills.",
+    eligibility:
+      "South African citizens; studying Computer Science, Information Systems, Software Engineering or Business Informatics at a recognised SA university.",
+    value: "Tuition and study materials",
+    applicationUrl: "https://www.sap.com/africa/about/careers/student-programs.html",
+    websiteUrl: "https://www.sap.com/africa/about/careers/student-programs.html",
+    active: true,
+  },
+
+  // ── Health Sciences (additional) ──────────────────────────────────────────
+  {
+    id: "netcare-bursary",
+    name: "Netcare Bursary",
+    provider: "Netcare",
+    field: "Health Sciences",
+    description:
+      "Netcare offers bursaries to nursing and allied health students with the expectation that recipients will join Netcare hospitals after qualifying.",
+    eligibility:
+      "South African citizens; studying Nursing (B Cur or equivalent), Pharmacy, Physiotherapy, Occupational Therapy or related Allied Health Sciences; commitment to work at Netcare after graduation.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.netcare.co.za/careers/bursaries",
+    websiteUrl: "https://www.netcare.co.za/careers/bursaries",
+    active: true,
+  },
+  {
+    id: "life-healthcare-bursary",
+    name: "Life Healthcare Bursary",
+    provider: "Life Healthcare",
+    field: "Health Sciences",
+    description:
+      "Life Healthcare provides bursaries to nursing and allied health science students, supporting the development of healthcare professionals for private hospitals.",
+    eligibility:
+      "South African citizens; studying Nursing, Physiotherapy, Occupational Therapy or other Allied Health disciplines; commitment to work for Life Healthcare after graduation.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.lifehealthcare.co.za/working-with-us/bursaries",
+    websiteUrl: "https://www.lifehealthcare.co.za/working-with-us/bursaries",
+    active: true,
+  },
+  {
+    id: "western-cape-doh-bursary",
+    name: "Western Cape Department of Health Bursary",
+    provider: "Western Cape Department of Health",
+    field: "Health Sciences",
+    description:
+      "The Western Cape DoH funds bursaries for health science students in exchange for a bond of service at Western Cape public health facilities.",
+    eligibility:
+      "South African citizens preferably residing in the Western Cape; studying Medicine, Nursing, Pharmacy, Radiography, Physiotherapy or Allied Health Sciences; commitment to public health service.",
+    value: "Full tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.westerncape.gov.za/dept/health/bursaries",
+    websiteUrl: "https://www.westerncape.gov.za/dept/health/bursaries",
+    active: true,
+  },
+  {
+    id: "kzn-doh-bursary",
+    name: "KwaZulu-Natal Department of Health Bursary",
+    provider: "KwaZulu-Natal Department of Health",
+    field: "Health Sciences",
+    description:
+      "The KZN DoH offers bursaries to health science students who commit to working in KwaZulu-Natal public health facilities after graduation.",
+    eligibility:
+      "South African citizens preferably from KwaZulu-Natal; studying Nursing, Medicine, Pharmacy, Physiotherapy, Radiography or other health science disciplines; bond of service required.",
+    value: "Tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.kznhealth.gov.za/bursary.asp",
+    websiteUrl: "https://www.kznhealth.gov.za/bursary.asp",
+    active: true,
+  },
+  {
+    id: "hwseta-bursary",
+    name: "HWSETA Bursary",
+    provider: "Health and Welfare Sector Education and Training Authority (HWSETA)",
+    field: "Health Sciences",
+    description:
+      "HWSETA funds bursaries for students in the health, social development and welfare sectors to address critical skills gaps.",
+    eligibility:
+      "South African citizens; studying Nursing, Social Work, Occupational Therapy, Pharmacy, or related Health and Welfare disciplines at an accredited SA institution.",
+    value: "Tuition and study materials",
+    applicationUrl: "https://www.hwseta.org.za/bursaries/",
+    websiteUrl: "https://www.hwseta.org.za/bursaries/",
+    active: true,
+  },
+
+  // ── Education (additional) ────────────────────────────────────────────────
+  {
+    id: "zenex-bursary",
+    name: "Zenex Foundation Bursary",
+    provider: "Zenex Foundation",
+    field: "Education",
+    description:
+      "The Zenex Foundation supports student teachers through bursaries, with a focus on improving Maths and Science teacher quality in South African schools.",
+    eligibility:
+      "South African citizens; studying B.Ed or PGCE with a specialisation in Mathematics, Physical Science or Technology education at an accredited SA university.",
+    value: "Tuition and study materials",
+    applicationUrl: "https://www.zenexfoundation.org.za/bursaries",
+    websiteUrl: "https://www.zenexfoundation.org.za/bursaries",
+    active: true,
+  },
+  {
+    id: "etdp-seta-bursary",
+    name: "ETDP SETA Bursary",
+    provider: "Education, Training and Development Practices SETA (ETDP SETA)",
+    field: "Education",
+    description:
+      "ETDP SETA provides bursaries for students in education, training and development to improve the quality of practitioners in the sector.",
+    eligibility:
+      "South African citizens; studying B.Ed, Education Management, Adult Education, Early Childhood Development or related education qualifications.",
+    value: "Tuition and study materials",
+    applicationUrl: "https://www.etdpseta.org.za/bursaries",
+    websiteUrl: "https://www.etdpseta.org.za/bursaries",
+    active: true,
+  },
+
+  // ── Mining & Resources (additional) ──────────────────────────────────────
+  {
+    id: "gold-fields-bursary",
+    name: "Gold Fields Bursary",
+    provider: "Gold Fields",
+    field: "Mining & Resources",
+    description:
+      "Gold Fields offers bursaries to engineering and mining students to develop skills for its South African gold mining operations.",
+    eligibility:
+      "South African citizens; studying Mining, Metallurgical, Electrical or Mechanical Engineering; preference for candidates from mining communities.",
+    value: "Full tuition, accommodation and a monthly stipend",
+    applicationUrl: "https://www.goldfields.com/careers/bursaries",
+    websiteUrl: "https://www.goldfields.com/careers/bursaries",
+    active: true,
+  },
+  {
+    id: "amplats-bursary",
+    name: "Anglo American Platinum (Amplats) Bursary",
+    provider: "Anglo American Platinum (Amplats)",
+    field: "Mining & Resources",
+    description:
+      "Amplats provides bursaries for engineering and mining students to build a pipeline of skills for the platinum mining industry.",
+    eligibility:
+      "South African citizens; studying Mining, Metallurgical, Mechanical, Electrical or Chemical Engineering at a public SA university.",
+    value: "Full tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.angloplat.com/sustainability/education/bursaries",
+    websiteUrl: "https://www.angloplat.com/sustainability/education/bursaries",
+    active: true,
+  },
+  {
+    id: "arm-bursary",
+    name: "African Rainbow Minerals (ARM) Bursary",
+    provider: "African Rainbow Minerals (ARM)",
+    field: "Mining & Resources",
+    description:
+      "ARM awards bursaries to mining and engineering students to grow capability across its diversified mining operations.",
+    eligibility:
+      "South African citizens; studying Mining, Metallurgical, Electrical, Mechanical or Chemical Engineering; strong matric results in Maths and Science.",
+    value: "Tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.arm.co.za/sustainability/education/bursaries",
+    websiteUrl: "https://www.arm.co.za/sustainability/education/bursaries",
+    active: true,
+  },
+  {
+    id: "northam-platinum-bursary",
+    name: "Northam Platinum Bursary",
+    provider: "Northam Platinum",
+    field: "Mining & Resources",
+    description:
+      "Northam Platinum provides bursaries to mining and engineering students to develop talent for the platinum group metals industry.",
+    eligibility:
+      "South African citizens; studying Mining Engineering, Metallurgy, Mechanical or Electrical Engineering at an accredited SA university.",
+    value: "Full tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.northam.co.za/careers/bursaries",
+    websiteUrl: "https://www.northam.co.za/careers/bursaries",
+    active: true,
+  },
+
+  // ── Agriculture & Environment (additional) ───────────────────────────────
+  {
+    id: "arc-bursary",
+    name: "Agricultural Research Council (ARC) Bursary",
+    provider: "Agricultural Research Council (ARC)",
+    field: "Agriculture & Environment",
+    description:
+      "The ARC funds bursaries for postgraduate students in agriculture and related natural sciences to advance South Africa's agricultural research capacity.",
+    eligibility:
+      "South African citizens; registered for a postgraduate degree in Agriculture, Plant Pathology, Animal Science, Food Science, Soil Science or related disciplines at an accredited SA university.",
+    value: "Annual stipend and research support",
+    applicationUrl: "https://www.arc.agric.za/Pages/Bursaries.aspx",
+    websiteUrl: "https://www.arc.agric.za/Pages/Bursaries.aspx",
+    active: true,
+  },
+  {
+    id: "afgri-bursary",
+    name: "AFGRI Bursary",
+    provider: "AFGRI Group",
+    field: "Agriculture & Environment",
+    description:
+      "AFGRI offers bursaries to agriculture and agri-business students to build skills for the commercial agricultural sector in South Africa.",
+    eligibility:
+      "South African citizens; studying Agriculture, Agronomy, Agricultural Economics, Food Technology or Agribusiness Management.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.afgri.co.za/bursaries",
+    websiteUrl: "https://www.afgri.co.za/bursaries",
+    active: true,
+  },
+  {
+    id: "sappi-forestry-bursary",
+    name: "Sappi Forestry Bursary",
+    provider: "Sappi South Africa",
+    field: "Agriculture & Environment",
+    description:
+      "Sappi funds bursaries specifically for forestry and forest science students to develop skills for the sustainable forestry sector.",
+    eligibility:
+      "South African citizens; studying Forestry Science, Conservation Ecology, Environmental Management or Silviculture at an accredited SA university.",
+    value: "Tuition, accommodation and a monthly stipend",
+    applicationUrl: "https://www.sappi.com/careers/bursaries",
+    websiteUrl: "https://www.sappi.com/careers/bursaries",
+    active: true,
+  },
+
+  // ── Built Environment & Construction ─────────────────────────────────────
+  {
+    id: "cidb-bursary",
+    name: "CIDB Bursary",
+    provider: "Construction Industry Development Board (CIDB)",
+    field: "Built Environment & Construction",
+    description:
+      "The CIDB offers bursaries to students in the construction and built environment disciplines to develop skills for South Africa's infrastructure development.",
+    eligibility:
+      "South African citizens; studying Civil Engineering, Quantity Surveying, Architecture, Building Science, Construction Management or related built-environment fields.",
+    value: "Tuition and study materials",
+    applicationUrl: "https://www.cidb.org.za/bursaries",
+    websiteUrl: "https://www.cidb.org.za/bursaries",
+    active: true,
+  },
+  {
+    id: "sacap-bursary",
+    name: "SACAP Bursary",
+    provider: "South African Council for the Architectural Profession (SACAP)",
+    field: "Built Environment & Construction",
+    description:
+      "SACAP provides bursaries to architecture and built-environment students to encourage diversity and excellence in the architectural profession.",
+    eligibility:
+      "South African citizens from previously disadvantaged backgrounds; studying Architecture, Architectural Technology or Interior Architecture at an accredited SA institution.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.sacapsa.com/bursaries",
+    websiteUrl: "https://www.sacapsa.com/bursaries",
+    active: true,
+  },
+  {
+    id: "ppc-bursary",
+    name: "PPC Cement Bursary",
+    provider: "PPC Limited",
+    field: "Built Environment & Construction",
+    description:
+      "PPC Limited offers bursaries to civil engineering and construction management students to support infrastructure skills development in South Africa.",
+    eligibility:
+      "South African citizens; studying Civil Engineering, Construction Management, Quantity Surveying or related built-environment fields.",
+    value: "Tuition, accommodation and a monthly allowance",
+    applicationUrl: "https://www.ppc.co.za/careers/bursaries",
+    websiteUrl: "https://www.ppc.co.za/careers/bursaries",
+    active: true,
+  },
+  {
+    id: "asaqs-bursary",
+    name: "ASAQS Bursary",
+    provider: "Association of South African Quantity Surveyors (ASAQS)",
+    field: "Built Environment & Construction",
+    description:
+      "ASAQS funds bursaries to quantity surveying students to promote and grow the profession across South Africa.",
+    eligibility:
+      "South African citizens; enrolled for a Quantity Surveying degree at an accredited SA university; demonstrated financial need and academic merit.",
+    value: "Partial tuition subsidy",
+    applicationUrl: "https://www.asaqs.co.za/bursaries",
+    websiteUrl: "https://www.asaqs.co.za/bursaries",
+    active: true,
+  },
+
+  // ── Arts & Creative Industries ────────────────────────────────────────────
+  {
+    id: "nac-bursary",
+    name: "National Arts Council Bursary",
+    provider: "National Arts Council of South Africa (NAC)",
+    field: "Arts & Creative Industries",
+    description:
+      "The NAC provides bursaries to South African artists and arts students to develop talent in the visual arts, performing arts, literature and craft sectors.",
+    eligibility:
+      "South African citizens; pursuing formal studies or structured training in Visual Arts, Music, Dance, Theatre, Literature, Craft or related creative disciplines.",
+    value: "Tuition and a study allowance",
+    applicationUrl: "https://www.nac.org.za/bursary-programme/",
+    websiteUrl: "https://www.nac.org.za/bursary-programme/",
+    active: true,
+  },
+  {
+    id: "nfvf-bursary",
+    name: "NFVF Bursary",
+    provider: "National Film and Video Foundation (NFVF)",
+    field: "Arts & Creative Industries",
+    description:
+      "The NFVF funds bursaries for South African film and television students to develop creative and technical talent for the local screen industry.",
+    eligibility:
+      "South African citizens; studying Film Production, Screenwriting, Directing, Cinematography, Animation, Post-Production or related screen-industry disciplines.",
+    value: "Tuition and a monthly stipend",
+    applicationUrl: "https://www.nfvf.co.za/bursaries",
+    websiteUrl: "https://www.nfvf.co.za/bursaries",
+    active: true,
+  },
+  {
+    id: "sabc-foundation-bursary",
+    name: "SABC Education Bursary",
+    provider: "South African Broadcasting Corporation (SABC)",
+    field: "Arts & Creative Industries",
+    description:
+      "The SABC offers bursaries for broadcasting, journalism and media production students to build skills for the public broadcasting sector.",
+    eligibility:
+      "South African citizens; studying Journalism, Broadcasting, Media Production, Communication or Film Studies at a recognised SA institution.",
+    value: "Tuition and study materials",
+    applicationUrl: "https://www.sabc.co.za/sabc/bursaries/",
+    websiteUrl: "https://www.sabc.co.za/sabc/bursaries/",
+    active: true,
+  },
+
+  // ── Social Sciences (additional) ─────────────────────────────────────────
+  {
+    id: "hsrc-bursary",
+    name: "HSRC Bursary",
+    provider: "Human Sciences Research Council (HSRC)",
+    field: "Social Sciences",
+    description:
+      "The HSRC offers postgraduate bursaries in social sciences to develop South Africa's research capacity in areas such as poverty, education, health and democracy.",
+    eligibility:
+      "South African citizens; registered for an Honours, Masters or Doctoral degree in Social Sciences, Economics, Psychology, Sociology, Political Science or related fields at a public SA university.",
+    value: "Annual stipend and research support",
+    applicationUrl: "https://www.hsrc.ac.za/en/departments/bursaries",
+    websiteUrl: "https://www.hsrc.ac.za/en/departments/bursaries",
+    active: true,
+  },
+  {
+    id: "lgseta-bursary",
+    name: "LGSETA Bursary",
+    provider: "Local Government Sector Education and Training Authority (LGSETA)",
+    field: "Social Sciences",
+    description:
+      "LGSETA funds bursaries for students in local government and public administration to improve skills in municipal service delivery.",
+    eligibility:
+      "South African citizens; studying Public Administration, Local Government Management, Town Planning, Urban Studies or related fields.",
+    value: "Tuition and study materials",
+    applicationUrl: "https://www.lgseta.org.za/bursaries",
+    websiteUrl: "https://www.lgseta.org.za/bursaries",
+    active: true,
+  },
+
+  // ── General / Multiple Fields (additional) ───────────────────────────────
+  {
+    id: "allan-gray-orbis-fellowship",
+    name: "Allan Gray Orbis Foundation Fellowship",
+    provider: "Allan Gray Orbis Foundation",
+    field: "General / Multiple Fields",
+    description:
+      "The Allan Gray Orbis Foundation Fellowship is one of South Africa's most prestigious awards, supporting exceptional young South Africans who have entrepreneurial potential across any field of study.",
+    eligibility:
+      "South African citizens in Grade 11 or 12, or first-year university students; demonstrated entrepreneurial thinking, academic excellence and leadership; any field of study.",
+    value: "Full tuition, accommodation, meals, books and a living allowance for the full degree",
+    applicationUrl: "https://www.allangrayorbis.org/fellowships/",
+    websiteUrl: "https://www.allangrayorbis.org/fellowships/",
+    active: true,
+  },
+  {
+    id: "city-of-cape-town-bursary",
+    name: "City of Cape Town Bursary",
+    provider: "City of Cape Town",
+    field: "General / Multiple Fields",
+    description:
+      "The City of Cape Town offers bursaries across a range of disciplines to build skills for municipal service delivery, with a bond of service after graduation.",
+    eligibility:
+      "South African citizens; preferably residing in Cape Town; studying Civil/Electrical Engineering, IT, Finance, Urban Planning, Social Work or other disciplines relevant to the City.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.capetown.gov.za/work%20and%20business/find-a-job/bursaries",
+    websiteUrl: "https://www.capetown.gov.za/work%20and%20business/find-a-job/bursaries",
+    active: true,
+  },
+  {
+    id: "ethekwini-bursary",
+    name: "eThekwini Municipality Bursary",
+    provider: "eThekwini Municipality (Durban)",
+    field: "General / Multiple Fields",
+    description:
+      "eThekwini Municipality awards bursaries across engineering, finance, IT and social services to grow capacity for municipal service delivery in KwaZulu-Natal.",
+    eligibility:
+      "South African citizens preferably residing in eThekwini; studying Engineering, Finance, IT, Town Planning, Social Work or other municipal disciplines.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.durban.gov.za/City_Government/Human_Capital/Pages/Bursaries.aspx",
+    websiteUrl: "https://www.durban.gov.za/City_Government/Human_Capital/Pages/Bursaries.aspx",
+    active: true,
+  },
+  {
+    id: "city-of-johannesburg-bursary",
+    name: "City of Johannesburg Bursary",
+    provider: "City of Johannesburg",
+    field: "General / Multiple Fields",
+    description:
+      "The City of Joburg provides bursaries to students in disciplines relevant to municipal operations, with the expectation that recipients will contribute to city development.",
+    eligibility:
+      "South African citizens preferably residing in Johannesburg; studying Civil Engineering, Electrical Engineering, Urban Planning, Finance, IT or related fields.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.joburg.org.za/jobs/Pages/Bursaries.aspx",
+    websiteUrl: "https://www.joburg.org.za/jobs/Pages/Bursaries.aspx",
+    active: true,
+  },
+  {
+    id: "wrseta-bursary",
+    name: "W&RSETA Bursary",
+    provider: "Wholesale and Retail Sector Education and Training Authority (W&RSETA)",
+    field: "General / Multiple Fields",
+    description:
+      "W&RSETA funds bursaries in retail management, supply chain and commerce for students who intend to build careers in the wholesale and retail sector.",
+    eligibility:
+      "South African citizens; studying Retail Management, Supply Chain Management, Logistics, Commerce or related fields at an accredited SA institution.",
+    value: "Tuition and study materials",
+    applicationUrl: "https://www.wrseta.org.za/bursaries",
+    websiteUrl: "https://www.wrseta.org.za/bursaries",
+    active: true,
+  },
+  {
+    id: "samsa-bursary",
+    name: "SAMSA Bursary",
+    provider: "South African Maritime Safety Authority (SAMSA)",
+    field: "General / Multiple Fields",
+    description:
+      "SAMSA provides bursaries for maritime studies to develop skills for the South African shipping, fishing and coastal management sectors.",
+    eligibility:
+      "South African citizens; studying Maritime Studies, Nautical Science, Marine Engineering or Ocean Sciences at an accredited SA institution.",
+    value: "Tuition and a monthly allowance",
+    applicationUrl: "https://www.samsa.org.za/bursaries",
+    websiteUrl: "https://www.samsa.org.za/bursaries",
+    active: true,
+  },
+  {
+    id: "momentum-bursary",
+    name: "Momentum Metropolitan Bursary",
+    provider: "Momentum Metropolitan",
+    field: "General / Multiple Fields",
+    description:
+      "Momentum Metropolitan offers bursaries in actuarial science, finance and mathematics to support transformation in the financial services sector.",
+    eligibility:
+      "South African citizens from previously disadvantaged backgrounds; studying Actuarial Science, Finance, Mathematics, Statistics or BCom at a recognised SA university.",
+    value: "Tuition and a monthly living allowance",
+    applicationUrl: "https://www.momentummetropolitan.co.za/careers/bursaries",
+    websiteUrl: "https://www.momentummetropolitan.co.za/careers/bursaries",
     active: true,
   },
 ];

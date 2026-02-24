@@ -15,11 +15,12 @@ import {
   Globe,
   BookOpen,
   Scale,
+  Building2,
+  Palette,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { BURSARIES, BURSARY_FIELDS, type Bursary } from "@/data/bursaries";
@@ -33,6 +34,8 @@ const FIELD_ICONS: Record<string, React.ReactNode> = {
   "Law & Justice": <Scale className="w-4 h-4" />,
   "Mining & Resources": <HardHat className="w-4 h-4" />,
   "Agriculture & Environment": <Leaf className="w-4 h-4" />,
+  "Built Environment & Construction": <Building2 className="w-4 h-4" />,
+  "Arts & Creative Industries": <Palette className="w-4 h-4" />,
   "Social Sciences": <Heart className="w-4 h-4" />,
   "General / Multiple Fields": <Globe className="w-4 h-4" />,
 };
@@ -46,6 +49,8 @@ const FIELD_COLORS: Record<string, string> = {
   "Law & Justice": "bg-indigo-100 text-indigo-700 border-indigo-200",
   "Mining & Resources": "bg-orange-100 text-orange-700 border-orange-200",
   "Agriculture & Environment": "bg-emerald-100 text-emerald-700 border-emerald-200",
+  "Built Environment & Construction": "bg-stone-100 text-stone-700 border-stone-200",
+  "Arts & Creative Industries": "bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200",
   "Social Sciences": "bg-pink-100 text-pink-700 border-pink-200",
   "General / Multiple Fields": "bg-gray-100 text-gray-700 border-gray-200",
 };
