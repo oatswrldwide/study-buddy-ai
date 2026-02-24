@@ -86,7 +86,7 @@ const BursaryCard = ({ bursary }: { bursary: Bursary }) => (
         <p className="text-xs text-muted-foreground">{bursary.value}</p>
       </div>
 
-      <div className="mt-auto pt-2">
+      <div className="mt-auto pt-2 flex flex-col gap-1">
         <a
           href={bursary.applicationUrl}
           target="_blank"
@@ -95,6 +95,15 @@ const BursaryCard = ({ bursary }: { bursary: Bursary }) => (
         >
           Apply / Learn More
           <ExternalLink className="w-3.5 h-3.5" />
+        </a>
+        <a
+          href={`https://www.google.com/search?q=${encodeURIComponent(bursary.name + " " + bursary.provider + " application 2025")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary hover:underline"
+        >
+          Search if link is broken
+          <ExternalLink className="w-3 h-3" />
         </a>
       </div>
     </CardContent>
@@ -281,6 +290,85 @@ const BursariesPage = () => {
                   </div>
                 </div>
               ))}
+          </div>
+        </section>
+
+        {/* Bursary Databases & Resources */}
+        <section className="container mx-auto px-4 pb-12">
+          <div className="max-w-5xl mx-auto bg-white rounded-2xl border p-8">
+            <div className="flex items-center gap-2 mb-2">
+              <BookOpen className="w-5 h-5 text-primary" />
+              <h2 className="text-xl font-bold">Bursary Databases &amp; Search Portals</h2>
+            </div>
+            <p className="text-sm text-muted-foreground mb-6">
+              Can't find what you're looking for above? These free South African bursary databases
+              list hundreds of additional opportunities updated throughout the year.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {[
+                {
+                  name: "AllBursaries.co.za",
+                  url: "https://allbursaries.co.za",
+                  desc: "Comprehensive bursary database",
+                },
+                {
+                  name: "Bursaries.co.za",
+                  url: "https://bursaries.co.za",
+                  desc: "Updated bursary listings",
+                },
+                {
+                  name: "ZABursaries.co.za",
+                  url: "https://www.zabursaries.co.za",
+                  desc: "SA bursary portal",
+                },
+                {
+                  name: "GoStudy.co.za",
+                  url: "https://www.gostudy.co.za",
+                  desc: "Bursary search engine",
+                },
+                {
+                  name: "CareersPortal Bursaries",
+                  url: "https://www.careersportal.co.za",
+                  desc: "Career & bursary info",
+                },
+                {
+                  name: "EduUpstairs Bursaries",
+                  url: "https://www.edupstairs.org",
+                  desc: "Bursary listings & guides",
+                },
+                {
+                  name: "SA Bursaries",
+                  url: "https://www.sabursaries.co.za",
+                  desc: "Bursary database",
+                },
+                {
+                  name: "Feenix Crowdfunding",
+                  url: "https://www.feenix.org",
+                  desc: "Student fundraising platform",
+                },
+                {
+                  name: "ISFAP",
+                  url: "https://www.isfap.org.za",
+                  desc: "Missing-middle student funding",
+                },
+              ].map((resource) => (
+                <a
+                  key={resource.url}
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:border-primary hover:bg-primary/5 transition-all group"
+                >
+                  <ExternalLink className="w-4 h-4 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                  <div>
+                    <p className="text-sm font-semibold text-foreground group-hover:text-primary">
+                      {resource.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{resource.desc}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 

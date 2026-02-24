@@ -85,6 +85,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://studybuddy.works/bursaries</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://studybuddy.works/tutor/johannesburg</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
