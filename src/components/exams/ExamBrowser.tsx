@@ -108,10 +108,32 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
     setFilteredGroups(grouped);
   };
 
-  const handleDownload = (paper: ExamPaper) => {
-    // Use local_path if available, otherwise fallback to external file_url
-    const downloadUrl = paper.local_path ? `/${paper.local_path}` : paper.file_url;
-    
+  const handleDownload = async (paper: ExamPaper) => {
+    // Build URL, falling back to external if local is unavailable
+    let downloadUrl: string;
+    if (paper.local_path) {
+      // Encode path so spaces and special characters work as a URL
+      const encodedPath = paper.local_path
+        .split('/')
+        .map(encodeURIComponent)
+        .join('/');
+      const localUrl = `/${encodedPath}`;
+
+      // Verify the file is reachable before using the local URL
+      try {
+        const res = await fetch(localUrl, { method: 'HEAD' });
+        downloadUrl = res.ok ? localUrl : paper.file_url;
+        if (!res.ok) {
+          console.warn('Local exam file unavailable, falling back to external URL:', localUrl);
+        }
+      } catch (err) {
+        console.warn('Could not reach local exam file, falling back to external URL:', localUrl, err);
+        downloadUrl = paper.file_url;
+      }
+    } else {
+      downloadUrl = paper.file_url;
+    }
+
     // Create a temporary anchor element to trigger download
     // This works better on mobile than window.open()
     const link = document.createElement('a');
@@ -119,7 +141,7 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
     link.download = paper.file_name;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    
+
     // Append to body, click, and remove
     document.body.appendChild(link);
     link.click();
