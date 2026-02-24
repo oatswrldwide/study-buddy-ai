@@ -11,6 +11,7 @@ const footerLinks = {
   Resources: [
     { label: "Learning Resources", href: "/resources", isRoute: true },
     { label: "Subject Guides", href: "/resources", isRoute: true },
+    { label: "Bursaries", href: "/bursaries", isRoute: true },
     { label: "Exam Papers", href: "/students#exam-papers", isRoute: true },
     { label: "Study Tips", href: "/resources", isRoute: true },
   ],
