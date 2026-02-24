@@ -631,7 +631,7 @@ const APSCalculator = () => {
                 <Link to="/students">Start Free Trial</Link>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
-                <Link to="/resources">Browse Study Resources</Link>
+                <Link to="/courses">Explore Course Requirements</Link>
               </Button>
             </div>
           </div>

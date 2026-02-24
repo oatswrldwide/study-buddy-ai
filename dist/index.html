@@ -60,24 +60,66 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     
-    <!-- Structured Data -->
+    <!-- Structured Data: WebSite with SearchAction (AEO: Sitelinks Search Box) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "StudyBuddy Works",
+      "url": "https://studybuddy.works",
+      "description": "CAPS-aligned AI tutoring platform for South African students. 24/7 homework help, exam preparation, and personalized learning support.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://studybuddy.works/resources?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Structured Data: EducationalOrganization (AEO/GEO: Knowledge Panel) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "StudyBuddy Works",
+      "alternateName": "StudyBuddy",
       "url": "https://studybuddy.works",
-      "description": "CAPS-aligned AI tutoring platform for South African students. 24/7 homework help, exam preparation, and personalized learning support.",
+      "logo": "https://studybuddy.works/favicon.ico",
+      "image": "https://studybuddy.works/og-image.svg",
+      "description": "CAPS-aligned AI tutoring platform for South African students. 24/7 homework help, exam preparation, and personalized learning support for Grades 10–12.",
       "address": {
         "@type": "PostalAddress",
-        "addressCountry": "ZA"
+        "addressCountry": "ZA",
+        "addressRegion": "South Africa"
       },
-      "areaServed": "South Africa",
-      "offers": {
-        "@type": "Offer",
-        "price": "99",
-        "priceCurrency": "ZAR",
-        "description": "Monthly AI tutoring subscription"
+      "areaServed": {
+        "@type": "Country",
+        "name": "South Africa"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI Tutoring Plans",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Student Monthly Plan",
+            "price": "99",
+            "priceCurrency": "ZAR",
+            "description": "Unlimited 24/7 AI tutoring for all CAPS subjects",
+            "eligibleRegion": "ZA"
+          },
+          {
+            "@type": "Offer",
+            "name": "School Annual License",
+            "price": "150",
+            "priceCurrency": "ZAR",
+            "description": "Per student per year white-label school platform",
+            "eligibleRegion": "ZA"
+          }
+        ]
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -86,12 +128,99 @@
         "bestRating": "5",
         "worstRating": "1"
       },
-      "educationalCredentialAwarded": "CAPS Curriculum Support"
+      "sameAs": [
+        "https://studybuddy.works"
+      ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-Cbq53mgM.js"></script>
+
+    <!-- Structured Data: SoftwareApplication (AEO: App Knowledge Panel) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "StudyBuddy Works",
+      "applicationCategory": "EducationApplication",
+      "operatingSystem": "Web, iOS, Android",
+      "url": "https://studybuddy.works",
+      "description": "AI-powered CAPS-aligned tutoring for South African students. Ask questions, get instant step-by-step answers, and prepare for matric exams.",
+      "offers": {
+        "@type": "Offer",
+        "price": "99",
+        "priceCurrency": "ZAR",
+        "priceValidUntil": "2027-12-31",
+        "description": "Monthly subscription — 7-day free trial, no credit card required"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "2500",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "featureList": [
+        "24/7 AI tutoring for all CAPS subjects",
+        "Grades 10, 11 and 12 (Matric) support",
+        "500+ past NSC exam papers",
+        "Step-by-step homework explanations",
+        "CAPS and IEB curriculum aligned",
+        "Available in 759 South African towns"
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage (AEO: Featured Snippet / People Also Ask) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is StudyBuddy Works?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "StudyBuddy Works is a CAPS-aligned AI tutoring platform for South African students in Grades 10–12. It provides 24/7 homework help and exam preparation for R99/month with a 7-day free trial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does StudyBuddy Works cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "StudyBuddy Works costs R99 per month for students, with unlimited access to all CAPS subjects and a 7-day free trial. No credit card is required to start."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which subjects does StudyBuddy cover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "StudyBuddy covers all major CAPS subjects including Mathematics, Physical Sciences, Life Sciences, English, Afrikaans, Accounting, History, Geography, Business Studies, and Economics for Grades 10–12."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is StudyBuddy Works aligned to the South African curriculum?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. StudyBuddy Works is fully aligned to the CAPS (Curriculum and Assessment Policy Statement) and is also compatible with the IEB curriculum."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can schools use StudyBuddy Works?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Schools can get a white-label branded platform for R150 per student per year, with their own custom domain, logo, and school colors. Minimum 100 students. The platform can be live in 14 days."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-DW-jw2yT.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/vendor-D3ioWXWk.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-aNAVEUng.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DeSWYYjW.css">
   </head>
   <body>
     <div id="root"></div>
