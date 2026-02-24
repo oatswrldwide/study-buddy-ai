@@ -8,7 +8,7 @@ import CTAStudents from "@/components/students/CTAStudents";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { studentsConfig } from "@/config/students";
 import { Button } from "@/components/ui/button";
-import { School, MapPin, FileText, BookOpen, TrendingUp } from "lucide-react";
+import { School, MapPin, FileText, BookOpen, TrendingUp, Calculator } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
@@ -46,7 +46,7 @@ const StudentsLanding = () => {
               Access comprehensive study resources, find local tutoring, and connect with your school
             </p>
           </div>
-          <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
             <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-lg border border-primary/20 hover:shadow-lg transition-shadow">
               <FileText className="w-10 h-10 text-primary mb-3" />
               <h3 className="font-bold text-lg mb-2">Subject Guides</h3>
@@ -85,6 +85,16 @@ const StudentsLanding = () => {
               </p>
               <Button variant="outline" size="sm" onClick={() => navigate("/schools")} className="w-full">
                 Learn More
+              </Button>
+            </div>
+            <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-lg border border-primary/20 hover:shadow-lg transition-shadow">
+              <Calculator className="w-10 h-10 text-primary mb-3" />
+              <h3 className="font-bold text-lg mb-2">APS Calculator</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Check your university eligibility and what-if scenarios.
+              </p>
+              <Button variant="outline" size="sm" onClick={() => navigate("/aps-calculator")} className="w-full">
+                Calculate APS
               </Button>
             </div>
           </div>

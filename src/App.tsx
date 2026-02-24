@@ -34,6 +34,7 @@ import LocationsDirectory from "./pages/LocationsDirectory";
 import About from "./pages/About";
 import HowItWorks from "./pages/HowItWorks";
 import PseoArticlePage from "./pages/PseoArticlePage";
+import APSCalculator from "./pages/APSCalculator";
 import { HelmetProvider } from 'react-helmet-async';
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/locations" element={<LocationsDirectory />} />
             <Route path="/about" element={<About />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
+            <Route path="/aps-calculator" element={<APSCalculator />} />
             <Route path="/tutor/:slug" element={<LocationPage />} />
             <Route path="/province/:slug" element={<ProvincePage />} />
             <Route path="/login" element={<Login />} />
