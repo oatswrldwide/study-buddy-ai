@@ -19,6 +19,8 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppAssistanceBanner from "@/components/shared/WhatsAppAssistanceBanner";
+import WhatsAppPricingOffers from "@/components/shared/WhatsAppPricingOffers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -249,6 +251,12 @@ const CoursesPage = () => {
           </div>
         </section>
 
+        {/* School Application Assistance */}
+        <WhatsAppPricingOffers
+          variant="school"
+          heading="School Application Assistance — R600"
+        />
+
         {/* Info Section */}
         <section className="container mx-auto px-4 pb-16">
           <div className="max-w-3xl mx-auto">
@@ -276,6 +284,12 @@ const CoursesPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Application Assistance */}
+        <WhatsAppAssistanceBanner
+          heading="Need Help Choosing or Applying to University?"
+          description="Get free 1-on-1 assistance — I'll personally guide you through your university application, help you pick the right courses and institutions, and make sure your documents are in order."
+        />
 
         <Footer />
       </div>
