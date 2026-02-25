@@ -43,6 +43,7 @@ function getCategoryConfig(entry: IndexEntry): CategoryConfig {
   const { pageType, slug, keywords = [] } = entry;
   const all = [slug, ...keywords].join(' ').toLowerCase();
 
+  if (pageType === 'guide' && all.match(/study.guide|matric.finals/)) return { label: 'Matric Study Guides', icon: BookOpen };
   if (pageType === 'comparison') return { label: 'Comparisons', icon: TrendingUp };
   if (all.match(/mathematic|maths/)) return { label: 'Mathematics', icon: Calculator };
   if (all.match(/physical.science|chemistry|physics/)) return { label: 'Sciences', icon: Beaker };
@@ -54,6 +55,7 @@ function getCategoryConfig(entry: IndexEntry): CategoryConfig {
 }
 
 const CATEGORY_ORDER = [
+  'Matric Study Guides',
   'Get Help Fast',
   'Mathematics',
   'Sciences',
@@ -202,35 +204,51 @@ const BlogIndex = () => {
                 {sortedCategories.map((category) => {
                   const entries = categorized[category];
                   const { icon: Icon } = getCategoryConfig(entries[0]);
+                  const isFeatured = category === 'Matric Study Guides';
 
                   return (
                     <div key={category} className="mb-12">
                       <div className="flex items-center gap-3 mb-6">
-                        <Icon className="w-6 h-6 text-primary" />
+                        <Icon className={`w-6 h-6 ${isFeatured ? 'text-green-600' : 'text-primary'}`} />
                         <h2 className="text-2xl font-bold text-gray-900">{category}</h2>
                         <span className="text-sm text-muted-foreground">
                           ({entries.length})
                         </span>
+                        {isFeatured && (
+                          <span className="text-xs font-semibold bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                            Comprehensive
+                          </span>
+                        )}
                         <div className="flex-1 h-px bg-gray-200" />
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className={`grid grid-cols-1 ${isFeatured ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-4`}>
                         {entries.map((entry) => (
                           <Link
                             key={entry.slug}
                             to={`/${entry.slug}`}
-                            className="group bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md hover:border-primary transition-all duration-200"
+                            className={`group rounded-xl p-5 hover:shadow-md transition-all duration-200 ${
+                              isFeatured
+                                ? 'bg-gradient-to-br from-green-50 to-white border border-green-200 hover:border-green-400'
+                                : 'bg-white border border-gray-200 hover:border-primary'
+                            }`}
                           >
                             <div className="flex items-start justify-between gap-3">
                               <div className="flex-1 min-w-0">
-                                <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors mb-1.5 line-clamp-2">
+                                <h3 className={`text-base font-semibold transition-colors mb-1.5 line-clamp-2 ${
+                                  isFeatured
+                                    ? 'text-gray-900 group-hover:text-green-700'
+                                    : 'text-gray-900 group-hover:text-primary'
+                                }`}>
                                   {entry.title}
                                 </h3>
                                 <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">
                                   {entry.description}
                                 </p>
                               </div>
-                              <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0 mt-0.5" />
+                              <ChevronRight className={`w-5 h-5 group-hover:translate-x-1 transition-all flex-shrink-0 mt-0.5 ${
+                                isFeatured ? 'text-green-400 group-hover:text-green-600' : 'text-gray-400 group-hover:text-primary'
+                              }`} />
                             </div>
                           </Link>
                         ))}
