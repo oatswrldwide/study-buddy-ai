@@ -266,10 +266,221 @@ export const locationContentData: Record<string, LocationContent> = {
       schools: '95+',
       successRate: '90%'
     }
-  }
+  },
+  'gqeberha': {
+    slug: 'gqeberha',
+    localContext: {
+      title: 'Education in Gqeberha (Port Elizabeth)',
+      content: 'Gqeberha (formerly Port Elizabeth) is the Eastern Cape\'s largest city and a major educational hub for the province. Students across the Nelson Mandela Bay municipality face the challenges of a province historically under-resourced in education, making access to quality tutoring a priority. The city\'s schools serve diverse communities from the northern areas to the southern suburbs, all following the national CAPS curriculum. Our AI tutor provides Gqeberha students with consistent, high-quality academic support regardless of which school they attend — bridging the gap between classroom instruction and individual understanding.',
+    },
+    education: {
+      title: 'Why Gqeberha Students Choose StudyBuddy Works',
+      content: 'Gqeberha students preparing for matric exams often struggle to find affordable, qualified private tutors, particularly for specialist subjects like Physical Sciences and Mathematics. Our AI tutor provides instant help across all CAPS subjects for just R99/month — less than the cost of a single tutoring session. Students from schools in Kariega, Uitenhage, and across Nelson Mandela Bay use our platform to catch up on difficult concepts, prepare for NSC exams, and complete homework assignments confidently. Many students in Gqeberha aim for places at Nelson Mandela University (NMU) or other universities, and we help them achieve the marks needed for acceptance.',
+    },
+    popularSubjects: [
+      { subject: 'Mathematics', description: 'Full CAPS Mathematics support for Grade 10-12, including NSC exam preparation for Paper 1 and Paper 2.' },
+      { subject: 'Physical Sciences', description: 'Step-by-step Physics and Chemistry explanations aligned to CAPS and NSC exam requirements.' },
+      { subject: 'Life Sciences', description: 'Clear explanations for all biology topics from cellular processes to evolution and ecology.' },
+      { subject: 'English First Additional Language', description: 'Improve reading, writing, and literature skills for CAPS English FAL.' },
+      { subject: 'Accounting', description: 'From basic principles to advanced financial statements and analysis.' },
+      { subject: 'IsiXhosa', description: 'Support for IsiXhosa Home Language and First Additional Language students.' }
+    ],
+    faqs: [
+      {
+        question: 'Can I use StudyBuddy Works for schools in Nelson Mandela Bay?',
+        answer: 'Yes! All schools in Gqeberha and the Nelson Mandela Bay municipality follow the national CAPS curriculum. Our AI tutor is specifically built for CAPS, so it works for students at any school in the area.'
+      },
+      {
+        question: 'Is this helpful for students aiming for Nelson Mandela University?',
+        answer: 'Absolutely. NMU has specific admission requirements for many programmes. Our AI tutor helps Grade 11 and 12 students achieve the marks needed for their chosen faculty — especially in Mathematics, Physical Sciences, and Life Sciences.'
+      },
+      {
+        question: 'How affordable is AI tutoring compared to private tutors in Gqeberha?',
+        answer: 'Private tutors in Gqeberha typically charge R200-R350 per hour. StudyBuddy Works costs R99/month for unlimited tutoring across all subjects, 24/7. That\'s significantly more affordable and accessible.'
+      },
+      {
+        question: 'Can students in areas outside central Gqeberha use this?',
+        answer: 'Yes — students anywhere in Nelson Mandela Bay, from Kariega to Uitenhage to Motherwell, can access our AI tutor on any device with an internet connection or mobile data.'
+      }
+    ],
+    stats: { students: '380+', schools: '60+', successRate: '89%' }
+  },
+  'pietermaritzburg': {
+    slug: 'pietermaritzburg',
+    localContext: {
+      title: 'Education in Pietermaritzburg',
+      content: 'Pietermaritzburg, the capital of KwaZulu-Natal, has a rich educational heritage with some of the province\'s oldest and most respected schools. Students here benefit from a city that has historically prioritised education, with strong public and private school options. The city\'s proximity to UKZN\'s Pietermaritzburg campus means many students are aiming for direct local university entry. Our AI tutor helps Pietermaritzburg students across the Msunduzi municipality — from suburban schools to township schools — with 24/7 CAPS-aligned tutoring that fits their schedules and budgets.',
+    },
+    education: {
+      title: 'Why Pietermaritzburg Students Choose StudyBuddy Works',
+      content: 'Pietermaritzburg students face the dual challenge of meeting high academic standards while navigating the realities of a city with significant socioeconomic diversity. Our AI tutor levels the playing field by giving every student — regardless of their school\'s resources — access to instant, personalised academic support. Grade 11 and 12 students preparing for NSC exams find particular value in our unlimited practice questions and step-by-step explanations. Students aiming for UKZN, Wits, or other universities use our platform throughout the year to maintain the marks needed for their chosen courses.',
+    },
+    popularSubjects: [
+      { subject: 'Mathematics', description: 'Complete CAPS Mathematics support for Grade 8-12 NSC exam preparation.' },
+      { subject: 'Physical Sciences', description: 'Physics and Chemistry explanations with practical examples and past paper practice.' },
+      { subject: 'Life Sciences', description: 'All biology topics covered with clear, detailed explanations and diagram support.' },
+      { subject: 'IsiZulu Home Language', description: 'Support for IsiZulu HL students with grammar, comprehension, and literature.' },
+      { subject: 'Accounting', description: 'Financial statements, reconciliations, and analysis questions explained step by step.' },
+      { subject: 'History', description: 'Source-based questions, essay writing, and exam technique for CAPS History.' }
+    ],
+    faqs: [
+      {
+        question: 'Does this work for KZN schools in Pietermaritzburg?',
+        answer: 'Yes — the KZN Department of Education follows the national CAPS curriculum, which is exactly what our AI tutor covers. It works for students at any school in the Msunduzi municipality.'
+      },
+      {
+        question: 'Can I use this to prepare for UKZN entry?',
+        answer: 'Absolutely. UKZN\'s Pietermaritzburg campus has specific APS requirements for different programmes. Our AI tutor helps Grade 11 and 12 students achieve the marks they need in key subjects like Mathematics, Sciences, and Accounting.'
+      },
+      {
+        question: 'What about load shedding?',
+        answer: 'Our platform is optimised for mobile use. During load shedding, you can use mobile data on your phone to access the AI tutor. The text-based interface uses minimal data, making it practical even on prepaid mobile data.'
+      },
+      {
+        question: 'Is there a free trial?',
+        answer: 'Yes! All new students get a free trial to explore the platform with no credit card required. See how it helps your specific subjects before committing to R99/month.'
+      }
+    ],
+    stats: { students: '420+', schools: '55+', successRate: '91%' }
+  },
+  'bloemfontein': {
+    slug: 'bloemfontein',
+    localContext: {
+      title: 'Education in Bloemfontein',
+      content: 'Bloemfontein, the judicial capital of South Africa and capital of the Free State, has a strong educational tradition with a mix of Afrikaans and English medium schools. The city is home to the University of the Free State (UFS) and Mangaung municipality students often target this institution alongside UNISA. Our AI tutor supports Bloemfontein students studying in both Afrikaans and English mediums, covering all CAPS subjects with clear explanations that help students excel in the demanding Free State provincial exams.',
+    },
+    education: {
+      title: 'Why Bloemfontein Students Choose StudyBuddy Works',
+      content: 'Bloemfontein students benefit from our AI tutor\'s ability to explain concepts in clear, accessible English regardless of their language of instruction at school. Many students from Afrikaans-medium schools in Bloemfontein use the platform to strengthen their English alongside their academic subjects — a dual benefit for NSC preparation. Students targeting UFS medicine, engineering, or law degrees use our platform throughout Grade 11 and 12 to maintain the high marks required for these competitive programmes. The R99/month cost is significantly more affordable than private tutoring in Bloemfontein, where qualified tutors often charge R250-R400 per hour.',
+    },
+    popularSubjects: [
+      { subject: 'Mathematics', description: 'Full CAPS Mathematics for Grade 8-12, with Paper 1 and Paper 2 exam preparation.' },
+      { subject: 'Physical Sciences', description: 'Physics and Chemistry support aligned to CAPS and NSC exam formats.' },
+      { subject: 'Afrikaans Eerste Addisionele Taal', description: 'Help with Afrikaans FAL grammar, comprehension, and essay writing.' },
+      { subject: 'Life Sciences', description: 'Clear explanations for biology topics across all CAPS grades.' },
+      { subject: 'Accounting', description: 'Financial accounting support from basic principles to advanced financial statements.' },
+      { subject: 'English Home Language', description: 'Literature analysis, essay writing, and language skills for English HL students.' }
+    ],
+    faqs: [
+      {
+        question: 'Does StudyBuddy Works help Afrikaans-medium school students in Bloemfontein?',
+        answer: 'Yes. While our AI tutor communicates in English, it fully covers the CAPS curriculum followed by all schools in Bloemfontein, including Afrikaans-medium schools like Brandwag and Grey College. The academic content is the same regardless of the language of instruction.'
+      },
+      {
+        question: 'Can this help with University of the Free State admission requirements?',
+        answer: 'Absolutely. UFS has specific APS (Admission Point Score) requirements for competitive programmes like medicine and law. Our AI tutor helps Grade 11 and 12 students achieve the marks they need in key subjects.'
+      },
+      {
+        question: 'Is the pricing affordable for Bloemfontein families?',
+        answer: 'Yes. At R99/month for unlimited access across all subjects and all students in the household, StudyBuddy Works is significantly more affordable than traditional tutoring in Bloemfontein, which typically costs R250-R400 per hour.'
+      }
+    ],
+    stats: { students: '310+', schools: '45+', successRate: '90%' }
+  },
+  'polokwane': {
+    slug: 'polokwane',
+    localContext: {
+      title: 'Education in Polokwane',
+      content: 'Polokwane (formerly Pietersburg) is the capital and largest city of Limpopo, serving as the educational hub for the province. Limpopo students face some of the most significant educational resource challenges in South Africa, with large class sizes and limited access to quality private tutoring. Our AI tutor provides Polokwane students and those across Limpopo with equal access to high-quality, CAPS-aligned academic support — affordable, available 24/7, and tailored to each student\'s needs.',
+    },
+    education: {
+      title: 'Why Polokwane Students Choose StudyBuddy Works',
+      content: 'In Limpopo, where qualified private tutors are scarce and expensive, our AI tutor is a lifeline for students preparing for NSC exams. Many Grade 11 and 12 students in Polokwane and the surrounding areas use our platform to supplement inadequate classroom resources and to prepare for matric exams that determine their futures. Students targeting the University of Limpopo (UL), Wits, or other universities use StudyBuddy to achieve the marks needed for university acceptance. Our platform is optimised for mobile use, ensuring that load shedding and limited data access don\'t prevent Limpopo students from studying.',
+    },
+    popularSubjects: [
+      { subject: 'Mathematics', description: 'CAPS-aligned Mathematics support for all Grades 8-12, including NSC exam preparation.' },
+      { subject: 'Physical Sciences', description: 'Physics and Chemistry help with worked examples and past paper practice.' },
+      { subject: 'Life Sciences', description: 'Biology explanations covering cells, genetics, ecosystems, and evolution.' },
+      { subject: 'English First Additional Language', description: 'Reading comprehension, essay writing, and language skills for FAL students.' },
+      { subject: 'Sesotho sa Leboa (Sepedi)', description: 'Support for Sepedi Home Language students in Limpopo.' },
+      { subject: 'Accounting', description: 'Step-by-step accounting from basic principles to complex financial statements.' }
+    ],
+    faqs: [
+      {
+        question: 'Does StudyBuddy Works work for Limpopo schools?',
+        answer: 'Yes — all South African schools follow the national CAPS curriculum, including schools in Polokwane and across Limpopo. Our content is fully aligned with what students learn in every Limpopo school.'
+      },
+      {
+        question: 'What if internet is unreliable in my area?',
+        answer: 'Our platform is optimised for mobile data and works on slower connections. Text-based AI tutoring uses minimal data compared to video content, making it practical on mobile data — even during load shedding when WiFi routers are off.'
+      },
+      {
+        question: 'Can this help me get into university from Limpopo?',
+        answer: 'Absolutely. Many Limpopo students use StudyBuddy Works to achieve the marks needed for entry into the University of Limpopo, Wits, UP, and UNISA. Consistent study using our platform makes a measurable difference in matric results.'
+      }
+    ],
+    stats: { students: '280+', schools: '50+', successRate: '88%' }
+  },
+  'centurion': {
+    slug: 'centurion',
+    localContext: {
+      title: 'Education in Centurion',
+      content: 'Centurion lies between Pretoria and Johannesburg, positioned at the heart of the Tshwane metropolitan area. With a rapidly growing suburban population, Centurion\'s schools serve students from diverse backgrounds with strong academic aspirations. The area has both well-established Afrikaans-medium schools and English-medium options. Students here face competitive academic environments and often aim for entry into the University of Pretoria (UP) and other top institutions. Our AI tutor gives Centurion students round-the-clock access to the academic support they need to compete at the highest level.',
+    },
+    education: {
+      title: 'Why Centurion Students Choose StudyBuddy Works',
+      content: 'Centurion students benefit from our AI tutor\'s 24/7 availability — essential in a suburb where school, sport, and extracurricular schedules leave little time for fixed tutoring appointments. Many families in Centurion pay R350-R500/hour for private tutors; our platform provides the same (or better) academic support for R99/month with no scheduling constraints. Students from schools like Hoërskool Centurion and Lyttelton Manor use our platform throughout the year for homework help, test preparation, and final exam practice. Grade 11 students particularly benefit from the unlimited practice questions that help them prepare for the crucial year that determines university conditional offers.',
+    },
+    popularSubjects: [
+      { subject: 'Mathematics', description: 'Full CAPS Mathematics for Grades 8-12, covering Paper 1 and Paper 2 with NSC exam strategies.' },
+      { subject: 'Physical Sciences', description: 'Complete Physics and Chemistry support with step-by-step solutions and exam techniques.' },
+      { subject: 'Afrikaans Eerste Addisionele Taal', description: 'Afrikaans FAL support for grammar, comprehension, and literature analysis.' },
+      { subject: 'Accounting', description: 'Financial statements, budgets, and all CAPS Accounting topics explained clearly.' },
+      { subject: 'Life Sciences', description: 'All biology topics from cellular processes to ecology and evolution.' },
+      { subject: 'English Home Language', description: 'Literature essays, language skills, and writing techniques for English HL students.' }
+    ],
+    faqs: [
+      {
+        question: 'Does this work for Afrikaans-medium schools in Centurion?',
+        answer: 'Yes — all South African schools, including Afrikaans-medium schools in Centurion, follow the CAPS curriculum. Our AI tutor communicates in English but covers all CAPS content, making it effective for students from any medium of instruction.'
+      },
+      {
+        question: 'Can Centurion students use this to prepare for University of Pretoria admission?',
+        answer: 'Absolutely. UP has specific APS requirements for different faculties. Our platform helps Centurion students in Grade 11 and 12 achieve the marks needed for their chosen UP programme — especially in Mathematics, Sciences, and Accounting.'
+      },
+      {
+        question: 'How does this compare to private tutors in Centurion?',
+        answer: 'Private tutors in Centurion typically charge R350-R500/hour. StudyBuddy Works costs R99/month for unlimited 24/7 access across all subjects for every student in your household. That\'s better value by any measure.'
+      }
+    ],
+    stats: { students: '650+', schools: '70+', successRate: '92%' }
+  },
+  'sandton': {
+    slug: 'sandton',
+    localContext: {
+      title: 'Education in Sandton',
+      content: 'Sandton is South Africa\'s financial capital and one of Gauteng\'s most affluent suburbs. Students here attend some of the country\'s most prestigious private and independent schools, with strong emphasis on academic excellence and university preparation. Despite the resources available, Sandton students face intense academic pressure, demanding extracurricular schedules, and the challenge of managing study time around sports, arts, and social commitments. Our AI tutor helps Sandton students get targeted, immediate academic support without disrupting their packed schedules.',
+    },
+    education: {
+      title: 'Why Sandton Students Choose StudyBuddy Works',
+      content: 'Even in a well-resourced suburb like Sandton, traditional tutoring has limitations: fixed times, high costs (R400-R700/hour for specialist tutors), and transport time through Sandton\'s notorious traffic. Our AI tutor is available the moment a student is ready — midnight before a test, 5 AM before school, or during a lunch break. Students from Crawford, St Stithians, Bryanston High, and Northcliff High use our platform to supplement classroom learning and get instant answers to specific questions. Grade 12 students preparing for NSC exams use it for unlimited past paper practice and step-by-step explanations that no textbook provides.',
+    },
+    popularSubjects: [
+      { subject: 'Mathematics', description: 'Advanced CAPS Mathematics support including calculus, Euclidean geometry, and exam strategies for top marks.' },
+      { subject: 'Physical Sciences', description: 'In-depth Physics and Chemistry explanations with worked past paper examples.' },
+      { subject: 'Accounting', description: 'Advanced financial statements, company accounts, and ratio analysis for Grade 12.' },
+      { subject: 'English Home Language', description: 'Literature analysis, sophisticated essay writing, and advanced language skills.' },
+      { subject: 'Life Sciences', description: 'Complete biology coverage including genetics, evolution, and human physiology.' },
+      { subject: 'Economics', description: 'Macro and microeconomics with South African examples and essay writing techniques.' }
+    ],
+    faqs: [
+      {
+        question: 'Is AI tutoring suitable for top students in Sandton?',
+        answer: 'Yes — AI tutoring benefits all students, including high achievers. Top students use it for deeper understanding beyond the classroom, to get instant answers to advanced questions, and to maximise their marks in borderline topics. It\'s also far more time-efficient than scheduled tutoring sessions.'
+      },
+      {
+        question: 'How does R99/month compare to Sandton tutoring rates?',
+        answer: 'Private tutors in Sandton typically charge R400-R700/hour. At R99/month for unlimited 24/7 access across all subjects, StudyBuddy Works offers exceptional value — even for families where cost is not the primary concern.'
+      },
+      {
+        question: 'Can this help with IEB exams as well as NSC?',
+        answer: 'Yes. While our content is specifically aligned to the CAPS curriculum, the academic content of IEB exams closely follows CAPS requirements. Students from IEB schools (like Crawford College and Reddam) find our explanations directly applicable to their exams.'
+      }
+    ],
+    stats: { students: '580+', schools: '45+', successRate: '94%' }
+  },
 };
 
-// Get content for a specific location, or return default content
 export const getLocationContent = (slug: string): LocationContent | null => {
   return locationContentData[slug] || null;
 };
@@ -284,32 +495,36 @@ export const getDefaultLocationContent = (locationName: string, provinceName: st
   return {
     localContext: {
       title: `Education in ${locationName}`,
-      content: `Students in ${locationName}, ${provinceName} face the same CAPS curriculum challenges as learners across South Africa. Our AI tutor provides personalized, 24/7 support to help ${locationName} students excel in their studies. Whether you're preparing for exams, completing homework, or building foundational knowledge, StudyBuddy Works adapts to your learning pace and style. Access quality tutoring from anywhere in ${locationName} without the cost and time commitment of traditional tutors.`
+      content: `Students in ${locationName}, ${provinceName} follow the same CAPS curriculum as learners across South Africa. Our AI tutor provides personalised, 24/7 support to help ${locationName} students excel — whether you're preparing for exams, working through homework, or catching up on missed lessons. Traditional tutors in ${provinceName} typically charge R300–R500 per hour and require fixed appointments. StudyBuddy Works gives you the same quality academic support for just R99/month, available any time from your phone or computer.`
     },
     education: {
-      title: `Why ${locationName} Students Choose StudyBuddy Works`,
-      content: `Our AI tutor offers ${locationName} students unlimited access to comprehensive CAPS curriculum support across all subjects from Grade 8-12. Get instant help with Mathematics, Physical Sciences, Life Sciences, languages, and more - all for just R99 per month. No more waiting for tutor appointments or struggling alone with difficult concepts. Study anytime, anywhere, and get detailed explanations that help you truly understand the material.`
+      title: `AI Tutoring for ${locationName} Students`,
+      content: `${locationName} students get unlimited access to comprehensive CAPS-aligned tutoring across all subjects from Grade 8–12. Get instant help with Mathematics, Physical Sciences, Life Sciences, Accounting, English, and more. Our AI tutor adapts to your level, explains concepts in plain language, and gives you unlimited practice questions — no scheduling, no travel, no waiting. Whether you attend a public school, a model C school, or a private school in ${locationName}, the curriculum is the same and our support is relevant to you.`
     },
     popularSubjects: [
-      { subject: 'Mathematics', description: 'Complete CAPS Mathematics support for Grades 8-12' },
-      { subject: 'Physical Sciences', description: 'Master Physics and Chemistry with step-by-step guidance' },
-      { subject: 'Life Sciences', description: 'Understand biological concepts with clear explanations' },
-      { subject: 'English FAL', description: 'Improve language skills and exam techniques' },
-      { subject: 'Accounting', description: 'Learn accounting principles and financial statements' },
-      { subject: 'Mathematical Literacy', description: 'Build practical mathematical skills' }
+      { subject: 'Mathematics', description: 'Complete CAPS Mathematics support for Grades 8–12 — algebra, calculus, trigonometry, geometry, and NSC exam preparation' },
+      { subject: 'Physical Sciences', description: 'Step-by-step Physics and Chemistry explanations with past paper practice for NSC exams' },
+      { subject: 'Life Sciences', description: 'Clear biology explanations from cell biology to genetics, evolution, and ecology' },
+      { subject: 'English First Additional Language', description: 'Improve comprehension, essay writing, literature analysis, and grammar for CAPS English FAL' },
+      { subject: 'Accounting', description: 'Financial statements, reconciliations, and ratio analysis explained step by step' },
+      { subject: 'Mathematical Literacy', description: 'Build practical mathematical skills for everyday applications and NSC exams' }
     ],
     faqs: [
       {
-        question: `How does the AI tutor help ${locationName} students?`,
-        answer: `Our AI tutor is specifically designed for the South African CAPS curriculum taught in ${locationName} schools. It provides instant, personalized explanations for any topic, unlimited practice questions, and 24/7 availability to support your learning journey.`
+        question: `Is there an AI tutor available for students in ${locationName}?`,
+        answer: `Yes. StudyBuddy Works provides 24/7 CAPS-aligned AI tutoring to students in ${locationName}, ${provinceName}. You can sign up for R99/month with a free trial — no credit card required. The platform works on any device with internet access.`
       },
       {
-        question: 'How much does it cost?',
-        answer: 'Just R99 per month for unlimited access to all subjects, all grades (8-12). No hidden fees, no per-hour charges. Cancel anytime.'
+        question: `What subjects does the AI tutor cover for ${locationName} students?`,
+        answer: `All major CAPS subjects for Grades 8–12: Mathematics, Physical Sciences, Life Sciences, English (HL and FAL), Afrikaans, Accounting, Business Studies, Economics, History, Geography, and more.`
       },
       {
-        question: 'Can I try it before subscribing?',
-        answer: 'Yes! We offer a free trial so you can explore the platform and see how it helps with your studies before committing to a subscription.'
+        question: `How much does AI tutoring in ${locationName} cost?`,
+        answer: `StudyBuddy Works costs R99/month with a 7-day free trial and no credit card required. That's less than the cost of a single hour with a traditional tutor (R300–R500/hour), but with unlimited 24/7 access.`
+      },
+      {
+        question: `Does this work for all schools in ${locationName}?`,
+        answer: `Yes — all South African schools follow the CAPS curriculum, so our content is relevant for every school in ${locationName}, whether public, model C, or private.`
       }
     ]
   };

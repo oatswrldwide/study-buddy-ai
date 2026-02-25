@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
@@ -13,7 +13,6 @@ import { BookOpen, CheckCircle, GraduationCap, MapPin, Sparkles, TrendingUp, Use
 
 const LocationPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
   const location = getLocationBySlug(slug || "");
   const nearbyLocations = getNearbyLocations(slug || "", 6);
   const [examPapers, setExamPapers] = useState<ExamSubjectGroup[]>([]);
@@ -198,8 +197,8 @@ const LocationPage = () => {
                 </div>
               )}
               
-              <Button variant="default" size="lg" onClick={() => navigate("/students")}>
-                Start Learning in {location.name}
+              <Button variant="default" size="lg" asChild>
+                <Link to="/students">Start Learning in {location.name}</Link>
               </Button>
             </div>
           </div>
@@ -209,33 +208,17 @@ const LocationPage = () => {
         <section className="py-8 bg-gradient-to-br from-amber-50/50 to-white border-y border-gray-200">
           <div className="container max-w-6xl mx-auto px-4">
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => navigate("/resources")}
-              >
-                📚 Study Guides & Resources
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/resources">📚 Study Guides &amp; Resources</Link>
               </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => navigate("/locations")}
-              >
-                📍 Browse All Locations
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/locations">📍 Browse All Locations</Link>
               </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => navigate(`/province/${location.province.toLowerCase().replace(/\\s+/g, '-')}`)}
-              >
-                🗺️ All {location.province} Tutors
+              <Button variant="outline" size="sm" asChild>
+                <Link to={`/province/${location.provinceSlug}`}>🗺️ All {location.province} Tutors</Link>
               </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => navigate("/schools")}
-              >
-                🏫 For Schools
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/schools">🏫 For Schools</Link>
               </Button>
             </div>
           </div>
@@ -342,14 +325,11 @@ const LocationPage = () => {
                     </div>
                     
                     <div className="pt-4 border-t border-gray-100">
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="w-full group"
-                        onClick={() => navigate('/students')}
-                      >
-                        <Download className="h-4 w-4 mr-2 group-hover:animate-bounce" />
-                        Access Papers
+                      <Button variant="outline" size="sm" className="w-full group" asChild>
+                        <Link to="/students">
+                          <Download className="h-4 w-4 mr-2 group-hover:animate-bounce" />
+                          Access Papers
+                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -360,8 +340,8 @@ const LocationPage = () => {
                 <p className="text-sm text-gray-600 mb-4">
                   Over 500+ exam papers and memorandums available across all subjects
                 </p>
-                <Button variant="default" onClick={() => navigate('/students')}>
-                  Sign Up to Access All Papers
+                <Button variant="default" asChild>
+                  <Link to="/students">Sign Up to Access All Papers</Link>
                 </Button>
               </div>
             </div>
@@ -550,8 +530,8 @@ const LocationPage = () => {
             <p className="text-lg text-white/90 mb-8">
               Join hundreds of students across {location.province} who are improving their grades with AI tutoring. Try it free—no credit card required.
             </p>
-            <Button variant="secondary" size="lg" onClick={() => navigate("/students")} className="bg-white text-primary hover:bg-gray-100">
-              Get Started Free
+            <Button variant="secondary" size="lg" asChild className="bg-white text-primary hover:bg-gray-100">
+              <Link to="/students">Get Started Free</Link>
             </Button>
           </div>
         </section>
