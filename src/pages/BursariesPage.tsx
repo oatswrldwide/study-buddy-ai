@@ -19,6 +19,8 @@ import {
   Building2,
   Palette,
   MapPin,
+  Calculator,
+  ChevronRight,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -460,6 +462,54 @@ const BursariesPage = () => {
           heading="Need Help Applying for a Bursary?"
           description="Get free 1-on-1 guidance — I'll personally walk you through the bursary application process, help you choose the right bursaries, and review your documents."
         />
+
+        {/* Related Tools */}
+        <section className="container mx-auto px-4 pb-16">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-xl font-bold mb-6 text-center">Related Tools &amp; Resources</h2>
+            <div className="grid sm:grid-cols-3 gap-5">
+              <Link
+                to="/aps-calculator"
+                className="group bg-white p-6 rounded-xl border border-border hover:border-primary hover:shadow-lg transition-all"
+              >
+                <Calculator className="w-9 h-9 text-primary mb-3" />
+                <h3 className="font-bold text-base mb-1 group-hover:text-primary transition-colors">APS Calculator</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Calculate your Admission Point Score to check bursary and university eligibility.
+                </p>
+                <span className="text-primary text-sm font-semibold flex items-center gap-1">
+                  Calculate APS <ChevronRight className="w-4 h-4" />
+                </span>
+              </Link>
+              <Link
+                to="/courses"
+                className="group bg-white p-6 rounded-xl border border-border hover:border-accent hover:shadow-lg transition-all"
+              >
+                <GraduationCap className="w-9 h-9 text-accent mb-3" />
+                <h3 className="font-bold text-base mb-1 group-hover:text-accent transition-colors">University Courses</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Browse APS requirements and entry criteria for popular SA university courses.
+                </p>
+                <span className="text-accent text-sm font-semibold flex items-center gap-1">
+                  Browse courses <ChevronRight className="w-4 h-4" />
+                </span>
+              </Link>
+              <Link
+                to="/students"
+                className="group bg-white p-6 rounded-xl border border-border hover:border-primary hover:shadow-lg transition-all"
+              >
+                <BookOpen className="w-9 h-9 text-primary mb-3" />
+                <h3 className="font-bold text-base mb-1 group-hover:text-primary transition-colors">AI Tutor</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Improve your marks with 24/7 CAPS-aligned AI tutoring — from R99/month.
+                </p>
+                <span className="text-primary text-sm font-semibold flex items-center gap-1">
+                  Start free trial <ChevronRight className="w-4 h-4" />
+                </span>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         <Footer />
       </div>

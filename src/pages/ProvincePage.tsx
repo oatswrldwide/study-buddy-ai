@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,7 +9,6 @@ import { MapPin, BookOpen, School } from "lucide-react";
 
 const ProvincePage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
   const province = getProvinceBySlug(slug || "");
   const locations = getLocationsByProvince(slug || "");
 
@@ -90,20 +89,26 @@ const ProvincePage = () => {
       <section className="py-8 border-y border-border bg-muted/30">
         <div className="container-wide">
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Button variant="outline" size="sm" onClick={() => navigate("/students")}>
-              <BookOpen className="h-4 w-4 mr-2" />
-              Get AI Tutoring
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/students">
+                <BookOpen className="h-4 w-4 mr-2" />
+                Get AI Tutoring
+              </Link>
             </Button>
-            <Button variant="outline" size="sm" onClick={() => navigate("/resources")}>
-              📚 Study Resources
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/resources">📚 Study Resources</Link>
             </Button>
-            <Button variant="outline" size="sm" onClick={() => navigate("/locations")}>
-              <MapPin className="h-4 w-4 mr-2" />
-              All Locations
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/locations">
+                <MapPin className="h-4 w-4 mr-2" />
+                All Locations
+              </Link>
             </Button>
-            <Button variant="outline" size="sm" onClick={() => navigate("/schools")}>
-              <School className="h-4 w-4 mr-2" />
-              For Schools
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/schools">
+                <School className="h-4 w-4 mr-2" />
+                For Schools
+              </Link>
             </Button>
           </div>
         </div>
