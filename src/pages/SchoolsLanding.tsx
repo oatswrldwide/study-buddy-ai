@@ -8,6 +8,7 @@ import { BookOpen, MapPin, FileText } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import WhatsAppPricingOffers from "@/components/shared/WhatsAppPricingOffers";
 import { schoolsConfig } from "@/config/schools";
 
 const SchoolsLanding = () => {
@@ -86,11 +87,23 @@ const SchoolsLanding = () => {
         </div>
       </section>
       
+      {/* School Application Pricing */}
+      <WhatsAppPricingOffers
+        variant="school"
+        heading="Need Help With School Applications? — R600"
+      />
+
       <FAQAccordion
         items={schoolsConfig.faq}
         title="Frequently Asked Questions"
         description="Everything you need to know about bringing StudyBuddy to your school."
         schema={false}
+      />
+
+      {/* School Application Assistance Pricing */}
+      <WhatsAppPricingOffers
+        variant="school"
+        heading="School Application Assistance — R600"
       />
 
       <Footer />

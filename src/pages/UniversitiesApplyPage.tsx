@@ -14,6 +14,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppAssistanceBanner from "@/components/shared/WhatsAppAssistanceBanner";
+import WhatsAppPricingOffers from "@/components/shared/WhatsAppPricingOffers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -432,6 +433,12 @@ const UniversitiesApplyPage = () => {
           </div>
         </section>
 
+        {/* School Application Pricing */}
+        <WhatsAppPricingOffers
+          variant="school"
+          heading="School Application Assistance — R600"
+        />
+
         {/* Search & Filter */}
         <section className="container mx-auto px-4 pb-8">
           <div className="max-w-5xl mx-auto space-y-4">
@@ -587,6 +594,9 @@ const UniversitiesApplyPage = () => {
             </div>
           </div>
         </section>
+
+        {/* School Application Pricing (mid-page) */}
+        <WhatsAppPricingOffers variant="school" />
 
         {/* Application Assistance */}
         <WhatsAppAssistanceBanner
