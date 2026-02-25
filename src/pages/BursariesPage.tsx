@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppAssistanceBanner from "@/components/shared/WhatsAppAssistanceBanner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -443,6 +444,12 @@ const BursariesPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Application Assistance */}
+        <WhatsAppAssistanceBanner
+          heading="Need Help Applying for a Bursary?"
+          description="Get free 1-on-1 guidance — I'll personally walk you through the bursary application process, help you choose the right bursaries, and review your documents."
+        />
 
         <Footer />
       </div>

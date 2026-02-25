@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppAssistanceBanner from "@/components/shared/WhatsAppAssistanceBanner";
 
 const provinces = [
   { name: "Gauteng", slug: "gauteng" },
@@ -497,6 +498,11 @@ const MarketSelector = () => {
               ))}
             </div>
           </div>
+        </section>
+
+        {/* ── Application Assistance ── */}
+        <section className="py-6 bg-background">
+          <WhatsAppAssistanceBanner />
         </section>
 
         {/* ── Final CTA ── */}
