@@ -10,12 +10,10 @@ import WhatsAppPricingOffers from "@/components/shared/WhatsAppPricingOffers";
 import { studentsConfig } from "@/config/students";
 import { Button } from "@/components/ui/button";
 import { School, MapPin, FileText, BookOpen, TrendingUp, Calculator } from "lucide-react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const StudentsLanding = () => {
-  const navigate = useNavigate();
-
   return (
     <>
       <Helmet>
@@ -63,8 +61,8 @@ const StudentsLanding = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 CAPS-aligned guides for all major subjects and grades.
               </p>
-              <Button variant="outline" size="sm" onClick={() => navigate("/resources")} className="w-full">
-                Browse Guides
+              <Button variant="outline" size="sm" asChild className="w-full">
+                <Link to="/resources">Browse Guides</Link>
               </Button>
             </div>
             <div className="bg-gradient-to-br from-accent/5 to-accent/10 p-6 rounded-lg border border-accent/20 hover:shadow-lg transition-shadow">
@@ -73,8 +71,8 @@ const StudentsLanding = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Past papers and memos for effective exam preparation.
               </p>
-              <Button variant="outline" size="sm" onClick={() => navigate("/resources")} className="w-full">
-                View Papers
+              <Button variant="outline" size="sm" asChild className="w-full">
+                <Link to="/resources">View Papers</Link>
               </Button>
             </div>
             <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-lg border border-primary/20 hover:shadow-lg transition-shadow">
@@ -83,8 +81,8 @@ const StudentsLanding = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Find AI tutoring in your town or suburb.
               </p>
-              <Button variant="outline" size="sm" onClick={() => navigate("/locations")} className="w-full">
-                Find Tutors
+              <Button variant="outline" size="sm" asChild className="w-full">
+                <Link to="/locations">Find Tutors</Link>
               </Button>
             </div>
             <div className="bg-gradient-to-br from-accent/5 to-accent/10 p-6 rounded-lg border border-accent/20 hover:shadow-lg transition-shadow">
@@ -93,8 +91,8 @@ const StudentsLanding = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Does your school want a branded platform?
               </p>
-              <Button variant="outline" size="sm" onClick={() => navigate("/schools")} className="w-full">
-                Learn More
+              <Button variant="outline" size="sm" asChild className="w-full">
+                <Link to="/schools">Learn More</Link>
               </Button>
             </div>
             <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-lg border border-primary/20 hover:shadow-lg transition-shadow">
@@ -103,8 +101,8 @@ const StudentsLanding = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Check your university eligibility and what-if scenarios.
               </p>
-              <Button variant="outline" size="sm" onClick={() => navigate("/aps-calculator")} className="w-full">
-                Calculate APS
+              <Button variant="outline" size="sm" asChild className="w-full">
+                <Link to="/aps-calculator">Calculate APS</Link>
               </Button>
             </div>
           </div>

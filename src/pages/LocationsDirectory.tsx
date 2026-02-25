@@ -4,11 +4,9 @@ import Footer from "@/components/Footer";
 import { provinces, getTotalLocationCount } from "@/data/southAfricaLocations";
 import { MapPin, BookOpen, School } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 
 const LocationsDirectory = () => {
   const totalLocations = getTotalLocationCount();
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -25,16 +23,20 @@ const LocationsDirectory = () => {
           
           {/* Quick Links */}
           <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-            <Button variant="outline" size="sm" onClick={() => navigate("/students")}>
-              <BookOpen className="h-4 w-4 mr-2" />
-              Get AI Tutoring
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/students">
+                <BookOpen className="h-4 w-4 mr-2" />
+                Get AI Tutoring
+              </Link>
             </Button>
-            <Button variant="outline" size="sm" onClick={() => navigate("/resources")}>
-              📚 Study Resources
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/resources">📚 Study Resources</Link>
             </Button>
-            <Button variant="outline" size="sm" onClick={() => navigate("/schools")}>
-              <School className="h-4 w-4 mr-2" />
-              For Schools
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/schools">
+                <School className="h-4 w-4 mr-2" />
+                For Schools
+              </Link>
             </Button>
           </div>
 
