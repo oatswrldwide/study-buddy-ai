@@ -6,6 +6,7 @@ import PricingStudents from "@/components/students/PricingStudents";
 import TestimonialsStudents from "@/components/students/TestimonialsStudents";
 import CTAStudents from "@/components/students/CTAStudents";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import WhatsAppPricingOffers from "@/components/shared/WhatsAppPricingOffers";
 import { studentsConfig } from "@/config/students";
 import { Button } from "@/components/ui/button";
 import { School, MapPin, FileText, BookOpen, TrendingUp, Calculator } from "lucide-react";
@@ -172,6 +173,19 @@ const StudentsLanding = () => {
         title="Frequently Asked Questions"
         description="Got questions? We've got answers!"
       />
+
+      {/* Bursary Application Assistance Pricing */}
+      <WhatsAppPricingOffers
+        variant="bursary"
+        heading="Need Help With Bursary Applications?"
+      />
+
+      {/* School Application Assistance Pricing */}
+      <WhatsAppPricingOffers
+        variant="school"
+        heading="Need Help With School Applications?"
+      />
+
       <Footer />
       </main>
     </>
