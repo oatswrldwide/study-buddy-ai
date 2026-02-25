@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Calculator, Share2, Download, TrendingUp, GraduationCap, BookOpen, Info, ChevronDown, ChevronUp, CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppAssistanceBanner from "@/components/shared/WhatsAppAssistanceBanner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -636,6 +637,12 @@ const APSCalculator = () => {
             </div>
           </div>
         </section>
+
+        {/* Application Assistance */}
+        <WhatsAppAssistanceBanner
+          heading="Not Sure Where to Apply?"
+          description="Get free 1-on-1 help — I'll use your APS score to help you find the right universities and courses, and personally guide you through your application step by step."
+        />
 
         <Footer />
       </div>
