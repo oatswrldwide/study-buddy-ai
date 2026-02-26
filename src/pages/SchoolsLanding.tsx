@@ -8,22 +8,21 @@ import { BookOpen, MapPin, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import WhatsAppPricingOffers from "@/components/shared/WhatsAppPricingOffers";
 import { schoolsConfig } from "@/config/schools";
 
 const SchoolsLanding = () => {
   return (
     <>
       <Helmet>
-        <title>AI Tutoring Platform for Schools | StudyBuddy Works - White Label Solution</title>
-        <meta name="description" content="Launch your school's branded AI tutoring platform in 14 days. Custom domain, logo, and colors. Charge R200+, pay R150 per student per year. Keep the profit. 100 student minimum." />
-        <meta name="keywords" content="school AI platform, white label tutoring, branded AI tutor, school revenue, CAPS tutoring platform, South African schools" />
+        <title>AI Tutoring Platform for Schools | StudyBuddy Works — CAPS-Aligned, White-Label Solution</title>
+        <meta name="description" content="Give every student a personal AI tutor under your school's brand. CAPS-aligned, POPIA compliant, fully managed. Deployed in 14 days. R150 per student per year. 100 student minimum." />
+        <meta name="keywords" content="school AI platform, white label tutoring, branded AI tutor, CAPS aligned AI, POPIA compliant, South African schools, student outcomes" />
         <meta property="og:title" content="AI Tutoring Platform for Schools | StudyBuddy Works" />
-        <meta property="og:description" content="Launch your school's branded AI tutoring platform. Custom domain, your logo, keep the profit. Live in 14 days." />
+        <meta property="og:description" content="CAPS-aligned AI tutoring platform, white-labelled for your school. Deployed in 14 days. Proven to improve student outcomes." />
         <meta property="og:url" content="https://studybuddy.works/schools" />
         <meta property="og:type" content="website" />
         <meta property="twitter:title" content="AI Tutoring Platform for Schools | StudyBuddy Works" />
-        <meta property="twitter:description" content="Launch your school's branded AI tutoring platform. Custom domain, your logo, keep the profit." />
+        <meta property="twitter:description" content="CAPS-aligned AI tutoring platform, white-labelled for your school. Deployed in 14 days." />
         <meta property="twitter:url" content="https://studybuddy.works/schools" />
         <link rel="canonical" href="https://studybuddy.works/schools" />
         <script type="application/ld+json">{JSON.stringify({
@@ -41,20 +40,20 @@ const SchoolsLanding = () => {
       <HeroSchools />
       <WhatsIncluded />
       <RevenueCalculator />
-      
-      {/* Cross-Linking Section */}
+
+      {/* Further Resources */}
       <section className="py-12 bg-gradient-to-br from-amber-50/30 to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-              Explore More Resources
+              Supporting Resources
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
                 <BookOpen className="w-10 h-10 text-primary mb-3" />
-                <h3 className="font-bold text-lg mb-2">For Students</h3>
+                <h3 className="font-bold text-lg mb-2">Student Experience</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  See how students use StudyBuddy for 24/7 homework help and exam prep.
+                  See exactly what students experience when using the AI tutoring platform.
                 </p>
                 <Button variant="outline" size="sm" asChild className="w-full">
                   <Link to="/students">View Student Portal</Link>
@@ -64,7 +63,7 @@ const SchoolsLanding = () => {
                 <FileText className="w-10 h-10 text-primary mb-3" />
                 <h3 className="font-bold text-lg mb-2">Learning Resources</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Browse our comprehensive CAPS-aligned subject guides and study materials.
+                  Browse our CAPS-aligned subject guides, past papers, and study materials.
                 </p>
                 <Button variant="outline" size="sm" asChild className="w-full">
                   <Link to="/resources">Browse Resources</Link>
@@ -72,36 +71,24 @@ const SchoolsLanding = () => {
               </div>
               <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
                 <MapPin className="w-10 h-10 text-primary mb-3" />
-                <h3 className="font-bold text-lg mb-2">Find Local Tutors</h3>
+                <h3 className="font-bold text-lg mb-2">Locations Served</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Discover AI tutoring available in your town or suburb across South Africa.
+                  See the towns and provinces where StudyBuddy is already supporting students.
                 </p>
                 <Button variant="outline" size="sm" asChild className="w-full">
-                  <Link to="/locations">Find Tutors</Link>
+                  <Link to="/locations">View Locations</Link>
                 </Button>
               </div>
             </div>
           </div>
         </div>
       </section>
-      
-      {/* School Application Pricing */}
-      <WhatsAppPricingOffers
-        variant="school"
-        heading="Need Help With School Applications? — R600"
-      />
 
       <FAQAccordion
         items={schoolsConfig.faq}
         title="Frequently Asked Questions"
-        description="Everything you need to know about bringing StudyBuddy to your school."
+        description="Everything school leaders need to know about bringing StudyBuddy to your school."
         schema={false}
-      />
-
-      {/* School Application Assistance Pricing */}
-      <WhatsAppPricingOffers
-        variant="school"
-        heading="School Application Assistance — R600"
       />
 
       <Footer />

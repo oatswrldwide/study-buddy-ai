@@ -1,10 +1,9 @@
-import { Globe, Palette, UserCircle, MessageSquare, LayoutDashboard, HeadphonesIcon } from "lucide-react";
+import { Globe, Palette, UserCircle, MessageSquare, LayoutDashboard, HeadphonesIcon, Shield } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const WhatsIncluded = () => {
-  const navigate = useNavigate();
   const features = [
     {
       icon: Globe,
@@ -15,31 +14,37 @@ const WhatsIncluded = () => {
     {
       icon: Palette,
       title: "Complete Branding",
-      description: "School logo, custom color scheme, and branded design throughout the entire platform",
-      highlight: "Your colors, your logo"
+      description: "School logo, custom colour scheme, and branded design throughout the entire platform",
+      highlight: "Your colours, your logo"
     },
     {
       icon: UserCircle,
       title: "Branded Student Login",
-      description: "Custom login page featuring your school's branding - students see your school, not StudyBuddy",
-      highlight: "White-labeled login"
+      description: "Custom login page featuring your school's branding — students experience your school, not StudyBuddy",
+      highlight: "White-labelled login"
     },
     {
       icon: MessageSquare,
-      title: "Personalized AI Tutors",
-      description: "Each student gets their own AI tutor branded with your school's identity and values",
-      highlight: "Per-student customization"
+      title: "CAPS-Aligned AI Tutors",
+      description: "Each student gets a personal AI tutor aligned with the South African CAPS and IEB curriculum",
+      highlight: "CAPS & IEB aligned"
     },
     {
       icon: LayoutDashboard,
       title: "School Admin Dashboard",
-      description: "Comprehensive dashboard to manage students, monitor usage, and track learning progress",
-      highlight: "Full admin control"
+      description: "Comprehensive dashboard to manage students, monitor usage, and track academic progress",
+      highlight: "Full admin visibility"
+    },
+    {
+      icon: Shield,
+      title: "POPIA Compliance & Security",
+      description: "Student data is encrypted and managed in full compliance with South Africa's POPIA legislation",
+      highlight: "Enterprise-grade security"
     },
     {
       icon: HeadphonesIcon,
-      title: "Student Tech Support",
-      description: "We handle all student technical support - you focus on billing and administration",
+      title: "Dedicated Technical Support",
+      description: "We handle all student-facing technical queries so your staff can focus on education and administration",
       highlight: "Support included"
     }
   ];
@@ -55,10 +60,10 @@ const WhatsIncluded = () => {
               <span>Complete White-Label Solution</span>
             </div>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What's Included in Your Branded Platform
+              Everything Your School Needs — Fully Managed
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to launch your school's own AI tutoring platform in 14 days
+              A complete, enterprise-ready AI tutoring platform deployed under your school's brand in 14 days
             </p>
           </div>
 
@@ -86,33 +91,33 @@ const WhatsIncluded = () => {
           {/* Additional Details */}
           <div className="grid md:grid-cols-2 gap-6">
             <Card className="p-6 bg-gradient-to-br from-primary/5 to-orange-50/30 border-primary/20">
-              <h3 className="text-lg font-bold text-foreground mb-3">You Handle</h3>
+              <h3 className="text-lg font-bold text-foreground mb-3">School's Responsibilities</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-0.5">✓</span>
-                  <span>Student billing & payment collection</span>
+                  <span>Annual technology levy collection &amp; student billing</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-0.5">✓</span>
-                  <span>School administration & enrollment</span>
+                  <span>Student enrolment &amp; school administration</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-0.5">✓</span>
-                  <span>Setting your own student pricing (R200+ minimum)</span>
+                  <span>Setting your school's annual technology levy (R200+ recommended)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-0.5">✓</span>
-                  <span>Keeping the profit margin</span>
+                  <span>Governing body approval &amp; parent communication</span>
                 </li>
               </ul>
             </Card>
 
             <Card className="p-6 bg-gradient-to-br from-green-50 to-emerald-50/30 border-green-200">
-              <h3 className="text-lg font-bold text-foreground mb-3">We Handle</h3>
+              <h3 className="text-lg font-bold text-foreground mb-3">Our Responsibilities</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="text-green-600 mt-0.5">✓</span>
-                  <span>All technical infrastructure & hosting</span>
+                  <span>All technical infrastructure, hosting &amp; security</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-600 mt-0.5">✓</span>
@@ -120,11 +125,11 @@ const WhatsIncluded = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-600 mt-0.5">✓</span>
-                  <span>AI tutor technology & updates</span>
+                  <span>AI tutoring technology, CAPS/IEB updates &amp; improvements</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-600 mt-0.5">✓</span>
-                  <span>Platform maintenance & security</span>
+                  <span>POPIA compliance, platform maintenance &amp; SLA</span>
                 </li>
               </ul>
             </Card>
@@ -169,17 +174,17 @@ const WhatsIncluded = () => {
           {/* Cross-promotion */}
           <div className="mt-8 text-center">
             <p className="text-sm text-muted-foreground mb-4">
-              Want to see how students will use the platform?
+              Want to see how students will experience the platform?
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <Button variant="outline" size="sm" onClick={() => navigate("/students")}>
-                View Student Experience
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/students">View Student Experience</Link>
               </Button>
-              <Button variant="outline" size="sm" onClick={() => navigate("/locations")}>
-                Find Tutors in Your Area
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/locations">Find Tutors in Your Area</Link>
               </Button>
-              <Button variant="outline" size="sm" onClick={() => navigate("/resources")}>
-                Browse Study Resources
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/resources">Browse Study Resources</Link>
               </Button>
             </div>
           </div>
