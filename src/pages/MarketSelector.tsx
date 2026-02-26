@@ -114,6 +114,37 @@ const MarketSelector = () => {
             "query-input": "required name=search_term_string",
           },
         })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "What is StudyBuddy Works?",
+              acceptedAnswer: { "@type": "Answer", text: "StudyBuddy Works is a CAPS-aligned AI tutoring platform for South African students in Grades 10–12. It provides 24/7 homework help and exam preparation for R99/month with a 7-day free trial." },
+            },
+            {
+              "@type": "Question",
+              name: "How much does StudyBuddy Works cost?",
+              acceptedAnswer: { "@type": "Answer", text: "StudyBuddy Works costs R99 per month for students, with unlimited access to all CAPS subjects and a 7-day free trial. No credit card is required to start." },
+            },
+            {
+              "@type": "Question",
+              name: "Which subjects does StudyBuddy cover?",
+              acceptedAnswer: { "@type": "Answer", text: "StudyBuddy covers all major CAPS subjects including Mathematics, Physical Sciences, Life Sciences, English, Afrikaans, Accounting, History, Geography, Business Studies, and Economics for Grades 10–12." },
+            },
+            {
+              "@type": "Question",
+              name: "Is StudyBuddy Works aligned to the South African curriculum?",
+              acceptedAnswer: { "@type": "Answer", text: "Yes. StudyBuddy Works is fully aligned to the CAPS (Curriculum and Assessment Policy Statement) and is also compatible with the IEB curriculum." },
+            },
+            {
+              "@type": "Question",
+              name: "Can schools use StudyBuddy Works?",
+              acceptedAnswer: { "@type": "Answer", text: "Yes. Schools can get a white-label branded platform for R150 per student per year, with their own custom domain, logo, and school colors. Minimum 100 students. The platform can be live in 14 days." },
+            },
+          ],
+        })}</script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
