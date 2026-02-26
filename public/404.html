@@ -45,13 +45,16 @@
     <script>
       // Single Page Apps for GitHub Pages
       // https://github.com/rafgraph/spa-github-pages
-      // Store the current path and redirect to index.html
-      (function() {
-        var path = location.pathname + location.search + location.hash;
-        sessionStorage.setItem('redirect', path);
-        // Immediate redirect for SPA routing
-        location.replace('/' + location.search + location.hash);
-      })();
+      // Encode the path into the query string so the index.html can decode it
+      // without relying on sessionStorage (which crawlers don't preserve).
+      (function(l) {
+        var encodedPath = l.pathname.slice(1).replace(/&/g, '~and~');
+        var encodedSearch = l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '';
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/?/' + encodedPath + encodedSearch + l.hash
+        );
+      }(window.location));
     </script>
   </head>
   <body>
