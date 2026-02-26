@@ -78,6 +78,14 @@ const CoursesPage = () => {
         <link rel="canonical" href="https://studybuddy.works/courses" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://studybuddy.works/" },
+            { "@type": "ListItem", position: 2, name: "Courses", item: "https://studybuddy.works/courses" },
+          ],
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
           "@type": "ItemList",
           name: "Popular SA University Courses 2025",
           description: "Compare APS requirements and fees for popular courses at South African universities",

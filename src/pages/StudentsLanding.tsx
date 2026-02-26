@@ -30,6 +30,14 @@ const StudentsLanding = () => {
         <link rel="canonical" href="https://studybuddy.works/students" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://studybuddy.works/" },
+            { "@type": "ListItem", position: 2, name: "Students", item: "https://studybuddy.works/students" },
+          ],
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: studentsConfig.faq.map((item) => ({
             "@type": "Question",

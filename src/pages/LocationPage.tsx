@@ -92,6 +92,13 @@ const LocationPage = () => {
               "priceCurrency": "ZAR",
               "description": `CAPS-aligned AI tutoring in ${location.name} — 24/7, all subjects, 7-day free trial`
             }]
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "2500",
+            "bestRating": "5",
+            "worstRating": "1"
           }
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
