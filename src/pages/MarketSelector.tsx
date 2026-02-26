@@ -555,6 +555,9 @@ const MarketSelector = () => {
               <Link to="/bursaries" className="hover:text-primary-foreground transition-colors underline underline-offset-2">
                 Find Bursaries
               </Link>
+              <Link to="/high-school-scholarships" className="hover:text-primary-foreground transition-colors underline underline-offset-2">
+                High School Scholarships
+              </Link>
               <Link to="/aps-calculator" className="hover:text-primary-foreground transition-colors underline underline-offset-2">
                 APS Calculator
               </Link>
