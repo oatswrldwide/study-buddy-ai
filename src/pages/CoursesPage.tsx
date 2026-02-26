@@ -16,6 +16,7 @@ import {
   FlaskConical,
   Building2,
   Brain,
+  Award,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -290,6 +291,26 @@ const CoursesPage = () => {
           heading="Need Help Choosing or Applying to University?"
           description="Get free 1-on-1 assistance — I'll personally guide you through your university application, help you pick the right courses and institutions, and make sure your documents are in order."
         />
+
+        {/* Bursaries cross-link */}
+        <section className="container mx-auto px-4 pb-16">
+          <div className="max-w-5xl mx-auto bg-gradient-to-r from-accent/10 to-primary/10 rounded-2xl border p-8">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="flex-1">
+                <h2 className="text-xl font-bold mb-2">Need funding for your studies?</h2>
+                <p className="text-muted-foreground text-sm">
+                  Browse our complete database of South African bursaries — government, corporate, and field-specific. Find NSFAS, Funza Lushaka, and hundreds more.
+                </p>
+              </div>
+              <Link to="/bursaries">
+                <Button size="lg" className="gap-2 shrink-0">
+                  <Award className="w-5 h-5" />
+                  Find Bursaries
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         <Footer />
       </div>

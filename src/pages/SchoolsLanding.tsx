@@ -5,15 +5,13 @@ import WhatsIncluded from "@/components/schools/WhatsIncluded";
 import RevenueCalculator from "@/components/schools/RevenueCalculator";
 import { Button } from "@/components/ui/button";
 import { BookOpen, MapPin, FileText } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import WhatsAppPricingOffers from "@/components/shared/WhatsAppPricingOffers";
 import { schoolsConfig } from "@/config/schools";
 
 const SchoolsLanding = () => {
-  const navigate = useNavigate();
-
   return (
     <>
       <Helmet>
@@ -58,8 +56,8 @@ const SchoolsLanding = () => {
                 <p className="text-sm text-muted-foreground mb-4">
                   See how students use StudyBuddy for 24/7 homework help and exam prep.
                 </p>
-                <Button variant="outline" size="sm" onClick={() => navigate("/students")} className="w-full">
-                  View Student Portal
+                <Button variant="outline" size="sm" asChild className="w-full">
+                  <Link to="/students">View Student Portal</Link>
                 </Button>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
@@ -68,8 +66,8 @@ const SchoolsLanding = () => {
                 <p className="text-sm text-muted-foreground mb-4">
                   Browse our comprehensive CAPS-aligned subject guides and study materials.
                 </p>
-                <Button variant="outline" size="sm" onClick={() => navigate("/resources")} className="w-full">
-                  Browse Resources
+                <Button variant="outline" size="sm" asChild className="w-full">
+                  <Link to="/resources">Browse Resources</Link>
                 </Button>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
@@ -78,8 +76,8 @@ const SchoolsLanding = () => {
                 <p className="text-sm text-muted-foreground mb-4">
                   Discover AI tutoring available in your town or suburb across South Africa.
                 </p>
-                <Button variant="outline" size="sm" onClick={() => navigate("/locations")} className="w-full">
-                  Find Tutors
+                <Button variant="outline" size="sm" asChild className="w-full">
+                  <Link to="/locations">Find Tutors</Link>
                 </Button>
               </div>
             </div>

@@ -218,6 +218,32 @@ const LocationPage = () => {
                 <Link to={`/province/${location.provinceSlug}`}>🗺️ All {location.province} Tutors</Link>
               </Button>
               <Button variant="outline" size="sm" asChild>
+              <Button 
+                variant="outline" 
+                size="sm"
+                asChild
+              >
+                <Link to="/resources">📚 Study Guides &amp; Resources</Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                asChild
+              >
+                <Link to="/locations">📍 Browse All Locations</Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                asChild
+              >
+                <Link to={`/province/${location.provinceSlug}`}>🗺️ All {location.province} Tutors</Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                asChild
+              >
                 <Link to="/schools">🏫 For Schools</Link>
               </Button>
             </div>
@@ -326,6 +352,12 @@ const LocationPage = () => {
                     
                     <div className="pt-4 border-t border-gray-100">
                       <Button variant="outline" size="sm" className="w-full group" asChild>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full group"
+                        asChild
+                      >
                         <Link to="/students">
                           <Download className="h-4 w-4 mr-2 group-hover:animate-bounce" />
                           Access Papers
