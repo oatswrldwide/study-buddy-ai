@@ -2,24 +2,34 @@
 
 export const schoolsConfig = {
   hero: {
-    badge: "Trusted by South African Schools",
-    headline: "Take Control of AI in Your Classroom",
+    badge: "Purpose-Built for South African Schools",
+    headline: "Equip Every Student with a Personal AI Tutor — Under Your School's Brand",
     subheadline:
-      "Monitor usage, ensure academic integrity, and empower teachers with actionable insights. Built specifically for South African schools.",
-    ctaPrimary: "Schedule Demo",
-    ctaSecondary: "View Pricing",
+      "A fully managed, CAPS-aligned AI tutoring platform, white-labelled for your school. Deployed in 14 days. POPIA compliant. Proven results.",
+    ctaPrimary: "Request a Demo",
+    ctaSecondary: "Download Overview",
   },
 
   stats: [
     {
       value: "35%",
-      label: "Improvement",
-      description: "In pass rates",
+      label: "Avg. Improvement",
+      description: "In student pass rates",
     },
     {
       value: "99.9%",
-      label: "Uptime",
-      description: "Reliable platform",
+      label: "Uptime SLA",
+      description: "Enterprise-grade reliability",
+    },
+    {
+      value: "14 Days",
+      label: "Go-Live",
+      description: "From sign-up to branded platform",
+    },
+    {
+      value: "POPIA",
+      label: "Compliant",
+      description: "Student data fully protected",
     },
   ],
 
@@ -166,16 +176,16 @@ export const schoolsConfig = {
   ],
 
   cta: {
-    headline: "Ready to Transform Your School's AI Journey?",
+    headline: "Ready to Elevate Learning at Your School?",
     subheadline:
-      "Join 50+ South African schools using StudyBuddy Works to embrace AI responsibly while improving learning outcomes.",
-    ctaPrimary: "Schedule Demo",
-    ctaSecondary: "Start Free Trial",
+      "Join South African schools using StudyBuddy Works to deliver measurable academic outcomes, reduce teacher workload, and embrace AI responsibly.",
+    ctaPrimary: "Request a Demo",
+    ctaSecondary: "Download Overview",
     benefits: [
-      "14-day free trial",
-      "No credit card required",
-      "Setup in under 10 minutes",
-      "Cancel anytime",
+      "POPIA compliant — student data fully protected",
+      "Full CAPS & IEB curriculum alignment",
+      "Dedicated onboarding & ongoing support",
+      "No long-term contract required",
     ],
   },
 
@@ -183,27 +193,37 @@ export const schoolsConfig = {
     {
       question: "How quickly can our school go live?",
       answer:
-        "Most schools are live within 14 days. We handle the setup, custom domain, branding, and onboarding. You focus on your students.",
+        "Most schools are live within 14 days. We handle the technical setup, custom domain, branding, and staff onboarding — so your team can focus entirely on students.",
     },
     {
-      question: "What does the school platform cost?",
+      question: "What is the platform fee?",
       answer:
-        "R150 per student per year with a minimum of 100 students. You set your own price — schools typically charge R200+ per student and keep the difference.",
+        "The platform is licensed at R150 per student per year, with a minimum of 100 students. Schools typically recover this cost through a modest annual technology levy charged to families — keeping the platform financially self-sustaining.",
     },
     {
       question: "Can we use our own school branding?",
       answer:
-        "Yes. You get a fully white-label platform with your school's logo, colors, and custom domain. Students see your brand, not ours.",
+        "Yes. You receive a fully white-labelled platform — your domain, your logo, your colour scheme. Students experience your brand, reinforcing trust and school identity.",
     },
     {
       question: "Is the platform POPIA compliant?",
       answer:
-        "Yes. StudyBuddy Works is fully compliant with South Africa's POPIA (Protection of Personal Information Act). Student data is kept private and secure.",
+        "Yes. StudyBuddy Works is fully compliant with South Africa's Protection of Personal Information Act (POPIA). Student data is encrypted, never sold, and stored securely in line with regulatory requirements.",
     },
     {
       question: "What subjects and grades are covered?",
       answer:
-        "All major CAPS subjects for Grades 10, 11, and 12 (Matric), including Mathematics, Physical Sciences, Life Sciences, English, Afrikaans, Accounting, History, and more.",
+        "All major CAPS subjects for Grades 10, 11, and 12 (Matric), including Mathematics, Physical Sciences, Life Sciences, English, Afrikaans, Accounting, History, and more. IEB curriculum support is also included.",
+    },
+    {
+      question: "How does the platform support academic integrity?",
+      answer:
+        "The AI is designed to teach, not to complete work for students. It uses a Socratic method — guiding students to arrive at answers themselves — and includes usage monitoring tools for teachers and administrators.",
+    },
+    {
+      question: "What support is provided to the school?",
+      answer:
+        "Every school receives a dedicated onboarding manager, staff training sessions, and ongoing technical support. Student-facing technical queries are handled entirely by our team, freeing up school staff.",
     },
   ],
 };
