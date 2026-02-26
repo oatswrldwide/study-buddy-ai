@@ -27,6 +27,14 @@ const SchoolsLanding = () => {
         <link rel="canonical" href="https://studybuddy.works/schools" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://studybuddy.works/" },
+            { "@type": "ListItem", position: 2, name: "Schools", item: "https://studybuddy.works/schools" },
+          ],
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: schoolsConfig.faq.map((item) => ({
             "@type": "Question",
