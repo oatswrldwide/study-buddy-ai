@@ -42,6 +42,32 @@
       "answer": "For your application to AFDA, you will need: a certified copy of your ID, certified copies of your Grade 11 and/or Grade 12 results, proof of residence, and any programme-specific requirements (portfolio for arts, HPAT scores for health sciences, etc.). All documents should be certified within 3 months of the application date."
     }
   ],
+  "steps": [
+    {
+      "name": "Check Programme Requirements",
+      "text": "Before applying, confirm the specific APS requirements and subject prerequisites for your chosen programme at https://www.afda.co.za. Some programmes require specific subjects (e.g., Mathematics for Engineering, Life Sciences for Medicine)."
+    },
+    {
+      "name": "Gather Your Documents",
+      "text": "You will need: a certified copy of your ID, certified copies of your Grade 11 and/or Grade 12 results, proof of residence, and any programme-specific requirements (portfolio for arts, HPAT scores for health sciences, etc.)."
+    },
+    {
+      "name": "Apply Online",
+      "text": "Visit the AFDA online application portal at https://www.afda.co.za/apply. Create an account, complete the application form, upload your documents, and pay the application fee of R500 application fee."
+    },
+    {
+      "name": "Submit Before the Deadline",
+      "text": "Applications open in March and close on September 30 (interview-based; early application strongly recommended). Apply as early as possible — popular programmes fill up quickly."
+    },
+    {
+      "name": "Accept Your Offer",
+      "text": "Once you receive a conditional or unconditional offer from AFDA, accept it within the specified timeframe (usually 2–4 weeks). You may need to pay a registration deposit to secure your place."
+    },
+    {
+      "name": "Register for Your Programme",
+      "text": "After accepting your offer, complete the formal registration process in January (or mid-year for Semester 2 programmes). Bring original and certified copies of all documents."
+    }
+  ],
   "citations": [
     "AFDA (The South African School of Motion Picture Medium and Live Performance) Official Website: https://www.afda.co.za",
     "Department of Higher Education and Training (DHET)",
@@ -70,13 +96,13 @@
       "description": "Registered with the South African Institute for Higher Education"
     }
   ],
-  "lastReviewed": "2026-02-24T04:19:09.623Z",
+  "lastReviewed": "2026-02-26T21:20:42.734Z",
   "factChecked": true,
   "schemaType": "HowTo",
   "published": true,
   "qualityScore": 9,
   "reviewStatus": "approved",
-  "lastUpdated": "2026-02-24T04:19:09.623Z",
-  "createdAt": "2026-02-24T04:19:09.623Z",
+  "lastUpdated": "2026-02-26T21:20:42.734Z",
+  "createdAt": "2026-02-26T21:20:42.734Z",
   "generationModel": "sa-university-apply-pages-v1"
 }
