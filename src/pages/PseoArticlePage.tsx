@@ -33,6 +33,11 @@ interface PseoAuthor {
   bio?: string;
 }
 
+interface PseoStep {
+  name: string;
+  text: string;
+}
+
 interface PseoPage {
   slug: string;
   pageType: string;
@@ -42,6 +47,8 @@ interface PseoPage {
   content: string;
   quickAnswer?: string;
   faqs: PseoFAQ[];
+  steps?: PseoStep[];
+  schemaType?: string;
   author?: PseoAuthor;
   reviewedBy?: string;
   factChecked?: boolean;
@@ -223,10 +230,25 @@ const PseoArticlePage = () => {
       }
     : null;
 
+  const howToSchema = page.schemaType === "HowTo" && page.steps && page.steps.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: page.metaTitle,
+        description: page.metaDescription,
+        step: page.steps.map((s, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: s.name,
+          text: s.text,
+        })),
+      }
+    : null;
+
   return (
     <>
       <Helmet>
-        <title>{page.metaTitle} | StudyBuddy Works</title>
+        <title>{page.metaTitle}</title>
         <meta name="description" content={page.metaDescription} />
         <meta name="robots" content="index, follow, max-snippet:-1" />
         <link rel="canonical" href={`https://studybuddy.works/${slug}`} />
@@ -239,6 +261,9 @@ const PseoArticlePage = () => {
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         {faqSchema && (
           <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        )}
+        {howToSchema && (
+          <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
         )}
       </Helmet>
 

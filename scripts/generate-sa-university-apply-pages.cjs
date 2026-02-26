@@ -1375,6 +1375,36 @@ ${isPublic ? `<p><strong>NSFAS (National Student Financial Aid Scheme):</strong>
   return content;
 }
 
+function generateSteps(uni) {
+  const isDistance = uni.type.toLowerCase().includes('distance');
+  return [
+    {
+      name: 'Check Programme Requirements',
+      text: `Before applying, confirm the specific APS requirements and subject prerequisites for your chosen programme at ${uni.website}. Some programmes require specific subjects (e.g., Mathematics for Engineering, Life Sciences for Medicine).`,
+    },
+    {
+      name: 'Gather Your Documents',
+      text: `You will need: a certified copy of your ID, certified copies of your Grade 11 and/or Grade 12 results, proof of residence, and any programme-specific requirements (portfolio for arts, HPAT scores for health sciences, etc.).`,
+    },
+    {
+      name: 'Apply Online',
+      text: `Visit the ${uni.shortName} online application portal at ${uni.applyPortal}. Create an account, complete the application form, upload your documents, and pay the application fee of ${uni.applicationFee}.`,
+    },
+    {
+      name: 'Submit Before the Deadline',
+      text: `Applications ${isDistance ? `open in ${uni.applyOpen} with intake in ${uni.applyClose}` : `open in ${uni.applyOpen} and close on ${uni.applyClose}`}. Apply as early as possible — popular programmes fill up quickly.`,
+    },
+    {
+      name: 'Accept Your Offer',
+      text: `Once you receive a conditional or unconditional offer from ${uni.shortName}, accept it within the specified timeframe (usually 2–4 weeks). You may need to pay a registration deposit to secure your place.`,
+    },
+    {
+      name: 'Register for Your Programme',
+      text: `After accepting your offer, complete the formal registration process in January (or mid-year for Semester 2 programmes). Bring original and certified copies of all documents.`,
+    },
+  ];
+}
+
 function generateFaqs(uni) {
   const isPublic = !uni.type.toLowerCase().includes('private');
   return [
@@ -1430,6 +1460,7 @@ async function main() {
 
     const content = generateContent(uni);
     const faqs = generateFaqs(uni);
+    const steps = generateSteps(uni);
 
     const page = {
       id: `university-apply-${slug}`,
@@ -1454,6 +1485,7 @@ async function main() {
       ],
       quickAnswer: `To apply to ${uni.name}, visit ${uni.applyPortal}, pay the ${uni.applicationFee} application fee, and submit your documents before ${uni.applyClose}. Minimum APS is ${uni.apsMin} for most programmes.`,
       faqs,
+      steps,
       citations: [
         `${uni.name} Official Website: ${uni.website}`,
         'Department of Higher Education and Training (DHET)',
