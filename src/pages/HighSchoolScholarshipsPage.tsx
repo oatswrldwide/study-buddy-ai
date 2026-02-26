@@ -14,6 +14,7 @@ import {
   MapPin,
   ChevronRight,
   Calculator,
+  MessageCircle,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -299,26 +300,56 @@ const HighSchoolScholarshipsPage = () => {
 
             {/* Grouped layout */}
             {filteredScholarships.length > 0 &&
-              Object.entries(grouped).map(([cat, scholarships]) => (
-                <div key={cat} className="mb-12">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span
-                      className={`inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-full border ${
-                        CATEGORY_COLORS[cat] ?? "bg-gray-100 text-gray-700"
-                      }`}
-                    >
-                      {CATEGORY_ICONS[cat]}
-                      {cat}
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      {scholarships.length} scholarship{scholarships.length === 1 ? "" : "s"}
-                    </span>
+              Object.entries(grouped).map(([cat, scholarships], groupIndex) => (
+                <div key={cat}>
+                  <div className="mb-12">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span
+                        className={`inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-full border ${
+                          CATEGORY_COLORS[cat] ?? "bg-gray-100 text-gray-700"
+                        }`}
+                      >
+                        {CATEGORY_ICONS[cat]}
+                        {cat}
+                      </span>
+                      <span className="text-sm text-muted-foreground">
+                        {scholarships.length} scholarship{scholarships.length === 1 ? "" : "s"}
+                      </span>
+                    </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                      {scholarships.map((s) => (
+                        <ScholarshipCard key={s.id} scholarship={s} />
+                      ))}
+                    </div>
                   </div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {scholarships.map((s) => (
-                      <ScholarshipCard key={s.id} scholarship={s} />
-                    ))}
-                  </div>
+
+                  {/* Inline WhatsApp assistance nudge — shown after the first category when browsing all */}
+                  {groupIndex === 0 && activeCategory === "All" && !search && (
+                    <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-5 mb-12">
+                      <div className="shrink-0 w-12 h-12 rounded-xl bg-green-600/10 flex items-center justify-center">
+                        <MessageCircle className="w-6 h-6 text-green-600" />
+                      </div>
+                      <div className="flex-1 text-center sm:text-left">
+                        <p className="font-bold text-foreground">Not sure which scholarship to apply for?</p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          Get free 1-on-1 WhatsApp guidance — I'll help you shortlist the right scholarships for your situation and prepare a strong application.
+                        </p>
+                      </div>
+                      <Button
+                        asChild
+                        className="bg-green-600 hover:bg-green-700 text-white font-bold gap-2 shrink-0"
+                      >
+                        <a
+                          href="https://wa.me/27680187300?text=Hi!%20I%20need%20free%20help%20finding%20a%20high%20school%20scholarship%20to%20apply%20for."
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <MessageCircle className="w-4 h-4" />
+                          Get Free Help
+                        </a>
+                      </Button>
+                    </div>
+                  )}
                 </div>
               ))}
           </div>

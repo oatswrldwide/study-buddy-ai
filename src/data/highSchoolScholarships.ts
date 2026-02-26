@@ -44,8 +44,8 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "SANRAL offers scholarships to Grade 8–12 learners, covering tuition, books, stationery and uniforms.",
     eligibility: "Grade 8–12 learners with good academic results.",
     coverage: "Tuition, books, stationery and uniforms",
-    applicationUrl: "https://www.nra.co.za",
-    closingDate: "30 September 2025",
+    applicationUrl: "https://www.sanral.co.za",
+    closingDate: "30 September annually",
   },
   {
     id: "allan-gray-orbis-hs",
@@ -57,7 +57,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
     eligibility: "Grade 6 learners (entering Grade 8 in 2027) who demonstrate entrepreneurial potential.",
     coverage: "Full high school scholarship",
     applicationUrl: "https://www.allangrayorbis.org",
-    closingDate: "15 September 2025",
+    closingDate: "15 September annually",
   },
   {
     id: "ssp-hs",
@@ -80,7 +80,6 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
     eligibility: "Grade 8 (2027 intake) learners.",
     coverage: "School fees and related costs",
     applicationUrl: "https://studytrust.org.za/kmf-high-school-scholarship/",
-    closingDate: "30 April 2025",
   },
   {
     id: "sbf-hs",
@@ -91,8 +90,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Supports Grade 6 learners (entering Grade 8 in 2027) in the Cape Town Metropole area.",
     eligibility: "Grade 6 learners entering Grade 8 in 2027 in the Cape Town Metropole.",
     coverage: "High school fees",
-    applicationUrl: "https://www.zabursaries.co.za",
-    closingDate: "22 August 2025",
+    applicationUrl: "https://www.zabursaries.co.za/high-school-scholarships-south-africa/",
     provinces: ["Western Cape"],
   },
   {
@@ -104,8 +102,8 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Awards scholarships to Grades 8–11 learners demonstrating academic or sporting excellence.",
     eligibility: "Grades 8–11 learners with academic or sporting excellence.",
     coverage: "School fees",
-    applicationUrl: "https://www.zabursaries.co.za",
-    closingDate: "15 September 2025",
+    applicationUrl: "https://www.zabursaries.co.za/high-school-scholarships-south-africa/",
+    closingDate: "15 September annually",
   },
   {
     id: "african-scholars-fund-hs",
@@ -116,7 +114,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Reaches 2,300+ students annually through targeted support for Grade 8–9 learners at partner schools.",
     eligibility: "Grade 8–9 learners at partner schools.",
     coverage: "School fees and learning materials",
-    applicationUrl: "https://www.zabursaries.co.za",
+    applicationUrl: "https://www.zabursaries.co.za/high-school-scholarships-south-africa/",
     closingDate: "15 September annually",
   },
   {
@@ -140,8 +138,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Supports Grade 8 (2026) learners at Cape Town partner schools.",
     eligibility: "Grade 8 (2026) learners at Cape Town partner schools.",
     coverage: "Full school fees",
-    applicationUrl: "https://www.zabursaries.co.za",
-    closingDate: "30 October 2024",
+    applicationUrl: "https://www.zabursaries.co.za/high-school-scholarships-south-africa/",
     provinces: ["Western Cape"],
   },
   {
@@ -153,7 +150,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Open to any public high school learner in South Africa who demonstrates leadership potential.",
     eligibility: "Any public high school learner in South Africa.",
     coverage: "School fees",
-    applicationUrl: "https://www.zabursaries.co.za",
+    applicationUrl: "https://www.madleadership.org",
   },
   {
     id: "saili-hs",
@@ -164,7 +161,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Targets Grade 8 learners in the Western Cape with a focus on Mathematics & Science.",
     eligibility: "Grade 8 learners (Western Cape) with strong Maths & Science results.",
     coverage: "School fees",
-    applicationUrl: "https://www.zabursaries.co.za",
+    applicationUrl: "https://www.zabursaries.co.za/high-school-scholarships-south-africa/",
     provinces: ["Western Cape"],
   },
   {
@@ -199,7 +196,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Full boarding school scholarship for female Grade 8–9 learners with high academic and leadership potential in Gauteng.",
     eligibility: "Female Grade 8–9 learners with academic and leadership excellence.",
     coverage: "Full boarding school scholarship",
-    applicationUrl: "https://www.zabursaries.co.za",
+    applicationUrl: "https://www.owla.co.za",
     provinces: ["Gauteng"],
   },
 
@@ -215,7 +212,6 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
     coverage: "School fees",
     applicationUrl:
       "https://www.zabursaries.co.za/engineering-bursaries-south-africa/barberton-mines-high-school-scholarship/",
-    closingDate: "27 December 2024",
     provinces: ["Mpumalanga"],
   },
   {
@@ -272,7 +268,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships for learners in communities near Anglo American's South African operations.",
     eligibility: "Learners in communities near Anglo American operations.",
     coverage: "School fees and materials",
-    applicationUrl: "https://www.angloamerican.com",
+    applicationUrl: "https://www.angloamerican.com/sustainability/people/education",
   },
   {
     id: "sibanye-stillwater-hs",
@@ -283,7 +279,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Community scholarship programme supporting local high school learners near Sibanye-Stillwater operations.",
     eligibility: "Local community learners near Sibanye-Stillwater operations.",
     coverage: "School fees",
-    applicationUrl: "https://www.sibanyestillwater.com",
+    applicationUrl: "https://www.sibanyestillwater.com/sustainability/society/communities/",
   },
   {
     id: "petra-diamonds-hs",
@@ -294,7 +290,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Supports high school learners in the Northern Cape near Petra Diamonds operations.",
     eligibility: "Northern Cape learners near Petra Diamonds operations.",
     coverage: "School fees",
-    applicationUrl: "https://www.petradiamonds.com",
+    applicationUrl: "https://www.petradiamonds.com/sustainability/social/communities/",
     provinces: ["Northern Cape"],
   },
   {
@@ -306,7 +302,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships for high school learners from mining communities in De Beers's operational areas.",
     eligibility: "High school learners from De Beers mining communities.",
     coverage: "School fees and study costs",
-    applicationUrl: "https://www.debeersgroup.com",
+    applicationUrl: "https://www.debeersgroup.com/building-forever/our-journey/education",
   },
   {
     id: "south32-hs",
@@ -317,7 +313,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "South32 provides scholarships to high school learners from communities near its operations.",
     eligibility: "High school learners near South32 operations.",
     coverage: "School fees",
-    applicationUrl: "https://www.south32.net",
+    applicationUrl: "https://www.south32.net/sustainability/communities",
   },
   {
     id: "enel-green-power-hs",
@@ -344,7 +340,6 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
     eligibility: "Disadvantaged black South African boys entering Grade 8.",
     coverage: "Full tuition and boarding",
     applicationUrl: "https://www.stjohnscollege.co.za/admissions/scholarships/centenary-scholarship",
-    closingDate: "30 January 2026",
     provinces: ["Gauteng"],
   },
   {
@@ -393,7 +388,6 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
     eligibility: "Grade 8 learners with exceptional academic, sporting or cultural achievements.",
     coverage: "Partial to full tuition",
     applicationUrl: "https://www.dainferncollege.co.za/high-school-scholarships-bursaries/",
-    closingDate: "28 February 2025",
     provinces: ["Gauteng"],
   },
   {
@@ -406,7 +400,6 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
     eligibility: "Grade 8 (2027) learners with strong academic results.",
     coverage: "Partial tuition",
     applicationUrl: "https://www.steyncityschool.co.za/scholarships/",
-    closingDate: "22 February 2026",
     provinces: ["Gauteng"],
   },
   {
@@ -442,7 +435,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Merit scholarships for Grade 8 boys entering Bishops (Diocesan College) in Cape Town.",
     eligibility: "Grade 8 boys with excellent academic records.",
     coverage: "Partial to full tuition",
-    applicationUrl: "https://www.bishops.org.za",
+    applicationUrl: "https://www.bishops.org.za/admissions",
     provinces: ["Western Cape"],
   },
   {
@@ -454,7 +447,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships for Grade 8 girls entering St Cyprian's School in Cape Town.",
     eligibility: "Grade 8 girls with strong academic results.",
     coverage: "Partial tuition",
-    applicationUrl: "https://www.stcyprians.co.za",
+    applicationUrl: "https://www.stcyprians.co.za/admissions",
     provinces: ["Western Cape"],
   },
   {
@@ -466,7 +459,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships for Grade 8–12 girls demonstrating academic or co-curricular excellence at Roedean SA.",
     eligibility: "Grade 8–12 girls with excellent academic or co-curricular records.",
     coverage: "Partial tuition",
-    applicationUrl: "https://www.roedean.co.za",
+    applicationUrl: "https://www.roedean.co.za/admissions",
     provinces: ["Gauteng"],
   },
   {
@@ -478,7 +471,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Merit scholarships for girls entering St Mary's School in Johannesburg.",
     eligibility: "Girls with outstanding academic achievements.",
     coverage: "Partial tuition",
-    applicationUrl: "https://www.stmarys.co.za",
+    applicationUrl: "https://www.stmarys.co.za/admissions",
     provinces: ["Gauteng"],
   },
   {
@@ -490,7 +483,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships for Grade 8 learners entering Kingswood College in Grahamstown (Makhanda).",
     eligibility: "Grade 8 learners with strong academic records.",
     coverage: "Partial to full tuition",
-    applicationUrl: "https://www.kingswoodcollege.com",
+    applicationUrl: "https://www.kingswoodcollege.com/admissions",
     provinces: ["Eastern Cape"],
   },
   {
@@ -502,7 +495,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Merit scholarships for Grade 8 boys entering Hilton College in KwaZulu-Natal.",
     eligibility: "Grade 8 boys with excellent academic, sporting or cultural records.",
     coverage: "Partial to full tuition and boarding",
-    applicationUrl: "https://www.hiltoncollege.com",
+    applicationUrl: "https://www.hiltoncollege.com/admissions",
     provinces: ["KwaZulu-Natal"],
   },
   {
@@ -514,7 +507,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Merit and needs-based scholarships for girls at St John's DSG in Pietermaritzburg.",
     eligibility: "Girls with outstanding academic and co-curricular records.",
     coverage: "Partial tuition",
-    applicationUrl: "https://www.stjohnsdsg.com",
+    applicationUrl: "https://www.stjohnsdsg.com/admissions",
     provinces: ["KwaZulu-Natal"],
   },
   {
@@ -526,7 +519,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships for girls entering Epworth School in Pietermaritzburg.",
     eligibility: "Girls with strong academic or sporting achievements.",
     coverage: "Partial tuition",
-    applicationUrl: "https://www.epworth.co.za",
+    applicationUrl: "https://www.epworth.co.za/admissions",
     provinces: ["KwaZulu-Natal"],
   },
   {
@@ -538,7 +531,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships for girls entering The Wykeham Collegiate in Pietermaritzburg.",
     eligibility: "Girls with strong academic or co-curricular records.",
     coverage: "Partial tuition",
-    applicationUrl: "https://www.twc.co.za",
+    applicationUrl: "https://www.twc.co.za/admissions",
     provinces: ["KwaZulu-Natal"],
   },
   {
@@ -550,7 +543,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Merit and needs-based scholarships for girls at Durban Girls' College.",
     eligibility: "Girls with excellent academic records.",
     coverage: "Partial tuition",
-    applicationUrl: "https://www.dgc.co.za",
+    applicationUrl: "https://www.dgc.co.za/admissions",
     provinces: ["KwaZulu-Natal"],
   },
   {
@@ -562,7 +555,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Merit scholarships for boys entering Maritzburg College in Pietermaritzburg.",
     eligibility: "Boys with outstanding academic or sporting achievements.",
     coverage: "Partial tuition",
-    applicationUrl: "https://www.maritzburgcollege.co.za",
+    applicationUrl: "https://www.maritzburgcollege.co.za/admissions",
     provinces: ["KwaZulu-Natal"],
   },
   {
@@ -574,7 +567,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships for boys at Kearsney College in Botha's Hill, KwaZulu-Natal.",
     eligibility: "Boys with strong academic or co-curricular records.",
     coverage: "Partial to full tuition and boarding",
-    applicationUrl: "https://www.kearsney.com",
+    applicationUrl: "https://www.kearsney.com/admissions",
     provinces: ["KwaZulu-Natal"],
   },
   {
@@ -586,7 +579,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Merit and bursary scholarships for learners at St Stithians College in Johannesburg.",
     eligibility: "Learners with outstanding academic, sporting or cultural records.",
     coverage: "Partial to full tuition",
-    applicationUrl: "https://www.stithian.co.za",
+    applicationUrl: "https://www.stithian.co.za/admissions",
     provinces: ["Gauteng"],
   },
   {
@@ -633,7 +626,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships at various Curro campuses for learners who cannot afford private school fees.",
     eligibility: "Learners with demonstrated academic potential who cannot afford private school fees.",
     coverage: "Full or partial tuition",
-    applicationUrl: "https://www.curro.co.za",
+    applicationUrl: "https://www.curro.co.za/bursaries",
   },
 
   // ── Specialized & Foundation ──────────────────────────────────────────────
@@ -646,7 +639,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarships for Grade 8–10 learners with special needs including dyslexia, ADHD and autism.",
     eligibility: "Grade 8–10 learners with special learning needs (dyslexia, ADHD, autism).",
     coverage: "School fees",
-    applicationUrl: "https://www.zabursaries.co.za",
+    applicationUrl: "https://www.zabursaries.co.za/high-school-scholarships-south-africa/",
   },
   {
     id: "siyandisa-hs",
@@ -657,7 +650,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Supports Grade 12 learners with exceptional academic potential.",
     eligibility: "Grade 12 learners with strong academic records.",
     coverage: "School fees and study materials",
-    applicationUrl: "https://www.zabursaries.co.za",
+    applicationUrl: "https://www.zabursaries.co.za/high-school-scholarships-south-africa/",
   },
   {
     id: "aisct-hs",
@@ -668,8 +661,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "Scholarship for Grade 9 learners at the American International School of Cape Town.",
     eligibility: "Grade 9 learners with strong academic results.",
     coverage: "Partial to full tuition",
-    applicationUrl: "https://www.zabursaries.co.za",
-    closingDate: "15 January 2025",
+    applicationUrl: "https://www.aisct.org.za",
     provinces: ["Western Cape"],
   },
   {
@@ -681,7 +673,7 @@ export const HIGH_SCHOOL_SCHOLARSHIPS: HighSchoolScholarship[] = [
       "An annual bursary competition for high school learners across South Africa.",
     eligibility: "High school learners who meet the annual competition criteria.",
     coverage: "School fees",
-    applicationUrl: "https://www.zabursaries.co.za",
+    applicationUrl: "https://www.zabursaries.co.za/general-bursaries-south-africa/",
   },
   {
     id: "assisi-scholarships-hs",
