@@ -310,6 +310,20 @@ const MarketSelector = () => {
               </Link>
 
               <Link
+                to="/high-school-scholarships"
+                className="group bg-background p-6 rounded-xl border border-border hover:border-primary hover:shadow-lg transition-all"
+              >
+                <GraduationCap className="w-10 h-10 text-primary mb-4" />
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">High School Scholarships</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Browse 150+ high school scholarships across South Africa — national, corporate, mining and private school.
+                </p>
+                <span className="text-primary text-sm font-semibold flex items-center gap-1">
+                  View scholarships <ChevronRight className="w-4 h-4" />
+                </span>
+              </Link>
+
+              <Link
                 to="/courses"
                 className="group bg-background p-6 rounded-xl border border-border hover:border-primary hover:shadow-lg transition-all"
               >

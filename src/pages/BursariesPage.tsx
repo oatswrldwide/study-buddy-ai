@@ -467,7 +467,20 @@ const BursariesPage = () => {
         <section className="container mx-auto px-4 pb-16">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-xl font-bold mb-6 text-center">Related Tools &amp; Resources</h2>
-            <div className="grid sm:grid-cols-3 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <Link
+                to="/high-school-scholarships"
+                className="group bg-white p-6 rounded-xl border border-border hover:border-accent hover:shadow-lg transition-all"
+              >
+                <GraduationCap className="w-9 h-9 text-accent mb-3" />
+                <h3 className="font-bold text-base mb-1 group-hover:text-accent transition-colors">High School Scholarships</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Browse 150+ high school scholarships and bursaries available in South Africa.
+                </p>
+                <span className="text-accent text-sm font-semibold flex items-center gap-1">
+                  View scholarships <ChevronRight className="w-4 h-4" />
+                </span>
+              </Link>
               <Link
                 to="/aps-calculator"
                 className="group bg-white p-6 rounded-xl border border-border hover:border-primary hover:shadow-lg transition-all"
