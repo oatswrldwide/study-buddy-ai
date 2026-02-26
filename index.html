@@ -6,13 +6,21 @@
     
     <!-- GitHub Pages SPA redirect handler -->
     <script>
-      (function() {
-        var redirect = sessionStorage.getItem('redirect');
-        sessionStorage.removeItem('redirect');
-        if (redirect && redirect !== '/') {
-          history.replaceState(null, null, redirect);
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafgraph/spa-github-pages
+      // Decode the path from the query string and restore it via history.replaceState
+      // so React Router initializes with the correct URL.
+      (function(l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&');
+          });
+          window.history.replaceState(
+            null, null,
+            decoded.shift() + (decoded.length ? '?' + decoded.join('&') : '') + l.hash
+          );
         }
-      })();
+      }(window.location));
     </script>
     
     <!-- Primary Meta Tags -->
