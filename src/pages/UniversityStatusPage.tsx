@@ -369,19 +369,19 @@ const UniversityStatusPage = () => {
   return (
     <>
       <Helmet>
-        <title>2026 SA University Application Status Tracker | Late Applications & Registration</title>
+        <title>Missed 2026 Applications? | What to Do &amp; 2027 Opening Dates</title>
         <meta
           name="description"
-          content="Check the 2026 application and registration status for all 26 South African public universities. See which universities still have late applications open or registration ongoing — organised by province."
+          content="Registration for 2026 is closing! Find out which South African universities still have space, how to apply for the 2027 intake (opening April 1st), and alternative options for late applicants."
         />
         <meta
           name="keywords"
-          content="SA university status 2026, late applications 2026, university registration 2026, South Africa university application status, open applications South Africa"
+          content="missed 2026 university application, late applications 2026, university registration 2026, 2027 university application dates, South Africa university application status, open applications South Africa"
         />
-        <meta property="og:title" content="2026 SA University Application Status Tracker" />
+        <meta property="og:title" content="Missed 2026 Applications? | What to Do &amp; 2027 Opening Dates" />
         <meta
           property="og:description"
-          content="See which SA universities still have late applications open or registration ongoing for 2026 — all 26 public universities by province."
+          content="Registration for 2026 is closing! Find out which South African universities still have space, how to apply for the 2027 intake (opening April 1st), and alternative options for late applicants."
         />
         <meta property="og:url" content="https://studybuddy.works/university-status-2026" />
         <link rel="canonical" href="https://studybuddy.works/university-status-2026" />
@@ -396,16 +396,15 @@ const UniversityStatusPage = () => {
           <div className="container mx-auto px-4 text-center max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-2 rounded-full mb-4">
               <Clock className="w-4 h-4" />
-              February 2026 — Live Status
+              Updated: February 27, 2026
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-              2026 SA University Application Status Tracker
+              Missed 2026 Applications? What to Do &amp; 2027 Opening Dates
             </h1>
             <p className="text-lg text-muted-foreground mb-6">
-              It's February 2026 — most universities are in their{" "}
-              <strong>registration phase</strong>. Some still have{" "}
-              <strong>late applications open</strong>. Check the status of all 26 public SA
-              universities below, organised by province.
+              Registration for 2026 is closing! Find out which South African universities still have
+              space, how to apply for the <strong>2027 intake (opening April 1st)</strong>, and
+              alternative options for late applicants.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Button asChild variant="hero" size="lg">
