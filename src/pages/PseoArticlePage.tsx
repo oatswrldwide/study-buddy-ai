@@ -88,10 +88,13 @@ const PAGE_TYPE_COLORS: Record<string, string> = {
 };
 
 // Strip internal scaffolding headings from AI-generated content
+// Also wraps <table> elements in a scrollable container for mobile
 function cleanContent(content: string): string {
   return content
     .replace(/^##\s*Landing Page for.*?\n/gm, "")
     .replace(/^###\s*\d+\.\s*/gm, "### ")
+    .replace(/<table/g, '<div class="overflow-x-auto -mx-4 sm:mx-0 my-4"><table')
+    .replace(/<\/table>/g, "</table></div>")
     .trim();
 }
 
@@ -116,10 +119,20 @@ function getRelatedArticles(
     .map((x) => x.article);
 }
 
+// Extract short display name from a university apply page title
+function getUniversityShortName(title: string): string {
+  // "How to Apply to University of XYZ 2026 | Complete Guide" -> "University of XYZ"
+  return title
+    .replace(/^How to Apply to /i, "")
+    .replace(/\s*\d{4}\s*\|.*$/, "")
+    .trim();
+}
+
 const PseoArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const [page, setPage] = useState<PseoPage | null>(null);
   const [related, setRelated] = useState<IndexEntry[]>([]);
+  const [applyPages, setApplyPages] = useState<IndexEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -138,7 +151,14 @@ const PseoArticlePage = () => {
           setNotFound(true);
         } else {
           setPage(data as PseoPage);
-          setRelated(getRelatedArticles(index as IndexEntry[], data as PseoPage));
+          const allIndex = index as IndexEntry[];
+          setRelated(getRelatedArticles(allIndex, data as PseoPage));
+          // Collect all published university apply pages except the current one
+          setApplyPages(
+            allIndex
+              .filter((a) => a.published && a.slug.startsWith("how-to-apply-") && a.slug !== slug)
+              .sort((a, b) => a.slug.localeCompare(b.slug))
+          );
         }
       })
       .catch(() => setNotFound(true))
@@ -193,6 +213,8 @@ const PseoArticlePage = () => {
 
   // Detect university-application pages for context-aware CTAs
   const isApplyPage = slug?.startsWith("how-to-apply-");
+  // Strip site-name suffix from title for clean H1 display
+  const displayTitle = page.title.replace(/\s*\|\s*StudyBuddy\s*$/i, "").trim() || page.metaTitle;
   const waApplyText = encodeURIComponent(
     `Hi! I need help applying to a South African university. I found your guide on studybuddy.works.`
   );
@@ -311,8 +333,8 @@ const PseoArticlePage = () => {
             <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 ${typeBadgeClass}`}>
               {typeLabel}
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              {page.metaTitle}
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+              {displayTitle}
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mb-6">
               {page.metaDescription}
@@ -347,16 +369,16 @@ const PseoArticlePage = () => {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3">
               {isApplyPage ? (
                 <>
-                  <Button asChild size="lg">
+                  <Button asChild size="lg" className="w-full sm:w-auto">
                     <Link to="/apply">
                       <GraduationCap className="w-4 h-4 mr-2" />
                       View All Universities
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg">
+                  <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
                     <a
                       href={`https://wa.me/${WA_NUMBER}?text=${waApplyText}`}
                       target="_blank"
@@ -369,10 +391,10 @@ const PseoArticlePage = () => {
                 </>
               ) : (
                 <>
-                  <Button asChild size="lg">
+                  <Button asChild size="lg" className="w-full sm:w-auto">
                     <Link to="/students">Get Free AI Tutoring</Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg">
+                  <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
                     <Link to="/locations">Find Tutors Near You</Link>
                   </Button>
                 </>
@@ -474,14 +496,14 @@ const PseoArticlePage = () => {
 
           {/* CTA Banner */}
           {isApplyPage ? (
-            <section className="mt-14 bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-8 text-white text-center">
-              <h2 className="text-2xl font-bold mb-3">Need Help With Your Application?</h2>
-              <p className="text-white/90 mb-6 max-w-xl mx-auto">
+            <section className="mt-14 bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-6 md:p-8 text-white text-center">
+              <h2 className="text-xl md:text-2xl font-bold mb-3">Need Help With Your Application?</h2>
+              <p className="text-white/90 mb-6 max-w-xl mx-auto text-sm md:text-base">
                 Get free 1-on-1 guidance on your university application — I'll help you choose
                 the right institution, check your APS, and make sure your documents are correct.
               </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                <Button asChild variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-100">
+              <div className="flex flex-col sm:flex-row justify-center gap-3">
+                <Button asChild variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-100 w-full sm:w-auto">
                   <a
                     href={`https://wa.me/${WA_NUMBER}?text=${waApplyText}`}
                     target="_blank"
@@ -491,24 +513,24 @@ const PseoArticlePage = () => {
                     Chat on WhatsApp — Free
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
                   <Link to="/apply">View All Universities</Link>
                 </Button>
               </div>
               <p className="text-xs text-white/70 mt-4">Free guidance • No commitment • SA universities only</p>
             </section>
           ) : (
-            <section className="mt-14 bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-8 text-white text-center">
-              <h2 className="text-2xl font-bold mb-3">Need More Help?</h2>
-              <p className="text-white/90 mb-6 max-w-xl mx-auto">
+            <section className="mt-14 bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-6 md:p-8 text-white text-center">
+              <h2 className="text-xl md:text-2xl font-bold mb-3">Need More Help?</h2>
+              <p className="text-white/90 mb-6 max-w-xl mx-auto text-sm md:text-base">
                 Get unlimited 24/7 AI tutoring for all CAPS subjects — just R99/month.
                 7-day free trial, no credit card required.
               </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                <Button asChild variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-100">
+              <div className="flex flex-col sm:flex-row justify-center gap-3">
+                <Button asChild variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-100 w-full sm:w-auto">
                   <Link to="/students">Start Free Trial</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
                   <Link to="/schools">For Schools</Link>
                 </Button>
               </div>
@@ -545,6 +567,40 @@ const PseoArticlePage = () => {
               <div className="mt-6">
                 <Link to="/resources" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
                   View all study resources
+                  <ChevronRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </section>
+          )}
+
+          {/* SA University Application Guides interlinking */}
+          {isApplyPage && applyPages.length > 0 && (
+            <section className="mt-14 pt-10 border-t border-border">
+              <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
+                <GraduationCap className="w-6 h-6 text-primary" />
+                Apply to Other SA Universities
+              </h2>
+              <p className="text-sm text-muted-foreground mb-6">
+                Step-by-step application guides for every South African university — deadlines, APS requirements, and documents.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {applyPages.map((article) => (
+                  <Link
+                    key={article.slug}
+                    to={`/${article.slug}`}
+                    title={article.title}
+                    className="group flex items-center gap-2 p-3 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all text-sm"
+                  >
+                    <GraduationCap className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span className="font-medium group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                      {getUniversityShortName(article.title)}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-6">
+                <Link to="/apply" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
+                  View all university profiles
                   <ChevronRight className="w-3 h-3" />
                 </Link>
               </div>
