@@ -19,7 +19,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, CheckCircle, Clock, Star, Users, ChevronRight } from "lucide-react";
+import { BookOpen, CheckCircle, Clock, Star, Users, ChevronRight, GraduationCap, MessageCircle } from "lucide-react";
+
+const WA_NUMBER = "27680187300";
 
 interface PseoFAQ {
   question: string;
@@ -189,6 +191,12 @@ const PseoArticlePage = () => {
       })
     : null;
 
+  // Detect university-application pages for context-aware CTAs
+  const isApplyPage = slug?.startsWith("how-to-apply-");
+  const waApplyText = encodeURIComponent(
+    `Hi! I need help applying to a South African university. I found your guide on studybuddy.works.`
+  );
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -340,12 +348,35 @@ const PseoArticlePage = () => {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/students">Get Free AI Tutoring</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/locations">Find Tutors Near You</Link>
-              </Button>
+              {isApplyPage ? (
+                <>
+                  <Button asChild size="lg">
+                    <Link to="/apply">
+                      <GraduationCap className="w-4 h-4 mr-2" />
+                      View All Universities
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg">
+                    <a
+                      href={`https://wa.me/${WA_NUMBER}?text=${waApplyText}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Get Application Help
+                    </a>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button asChild size="lg">
+                    <Link to="/students">Get Free AI Tutoring</Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg">
+                    <Link to="/locations">Find Tutors Near You</Link>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -442,22 +473,48 @@ const PseoArticlePage = () => {
           )}
 
           {/* CTA Banner */}
-          <section className="mt-14 bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-8 text-white text-center">
-            <h2 className="text-2xl font-bold mb-3">Need More Help?</h2>
-            <p className="text-white/90 mb-6 max-w-xl mx-auto">
-              Get unlimited 24/7 AI tutoring for all CAPS subjects — just R99/month.
-              7-day free trial, no credit card required.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Button asChild variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-100">
-                <Link to="/students">Start Free Trial</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                <Link to="/schools">For Schools</Link>
-              </Button>
-            </div>
-            <p className="text-xs text-white/70 mt-4">No credit card • Cancel anytime • CAPS-aligned</p>
-          </section>
+          {isApplyPage ? (
+            <section className="mt-14 bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-8 text-white text-center">
+              <h2 className="text-2xl font-bold mb-3">Need Help With Your Application?</h2>
+              <p className="text-white/90 mb-6 max-w-xl mx-auto">
+                Get free 1-on-1 guidance on your university application — I'll help you choose
+                the right institution, check your APS, and make sure your documents are correct.
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <Button asChild variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-100">
+                  <a
+                    href={`https://wa.me/${WA_NUMBER}?text=${waApplyText}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Chat on WhatsApp — Free
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+                  <Link to="/apply">View All Universities</Link>
+                </Button>
+              </div>
+              <p className="text-xs text-white/70 mt-4">Free guidance • No commitment • SA universities only</p>
+            </section>
+          ) : (
+            <section className="mt-14 bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-8 text-white text-center">
+              <h2 className="text-2xl font-bold mb-3">Need More Help?</h2>
+              <p className="text-white/90 mb-6 max-w-xl mx-auto">
+                Get unlimited 24/7 AI tutoring for all CAPS subjects — just R99/month.
+                7-day free trial, no credit card required.
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <Button asChild variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-100">
+                  <Link to="/students">Start Free Trial</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+                  <Link to="/schools">For Schools</Link>
+                </Button>
+              </div>
+              <p className="text-xs text-white/70 mt-4">No credit card • Cancel anytime • CAPS-aligned</p>
+            </section>
+          )}
 
           {/* Related Articles */}
           {related.length > 0 && (

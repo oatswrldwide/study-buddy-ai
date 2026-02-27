@@ -17,6 +17,8 @@ import {
   ChevronRight,
   Brain,
   Globe,
+  AlertCircle,
+  Download,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -407,6 +409,34 @@ const MarketSelector = () => {
                 </p>
                 <span className="text-accent text-sm font-semibold flex items-center gap-1">
                   Learn more <ChevronRight className="w-4 h-4" />
+                </span>
+              </Link>
+
+              <Link
+                to="/university-status-2026"
+                className="group bg-background p-6 rounded-xl border border-border hover:border-primary hover:shadow-lg transition-all"
+              >
+                <AlertCircle className="w-10 h-10 text-primary mb-4" />
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">2026 Status Tracker</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Check which SA universities still have late applications or registration open for 2026.
+                </p>
+                <span className="text-primary text-sm font-semibold flex items-center gap-1">
+                  Check status <ChevronRight className="w-4 h-4" />
+                </span>
+              </Link>
+
+              <Link
+                to="/university-prospectus-2026"
+                className="group bg-background p-6 rounded-xl border border-border hover:border-accent hover:shadow-lg transition-all"
+              >
+                <Download className="w-10 h-10 text-accent mb-4" />
+                <h3 className="font-bold text-lg mb-2 group-hover:text-accent transition-colors">Download 2026 Prospectus</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Download the 2026 prospectus for all 26 South African public universities in one place.
+                </p>
+                <span className="text-accent text-sm font-semibold flex items-center gap-1">
+                  Get prospectus <ChevronRight className="w-4 h-4" />
                 </span>
               </Link>
             </div>
