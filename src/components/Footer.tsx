@@ -18,6 +18,7 @@ const footerLinks = {
   Company: [
     { label: "About Us", href: "/about", isRoute: true },
     { label: "How It Works", href: "/how-it-works", isRoute: true },
+    { label: "Portfolio", href: "/portfolio", isRoute: true },
     { label: "Login", href: "/login", isRoute: true },
     { label: "Contact", href: "/schools#contact", isRoute: true },
   ],
