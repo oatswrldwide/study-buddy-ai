@@ -45,6 +45,7 @@ import UniversitiesApplyPage from "./pages/UniversitiesApplyPage";
 import UniversityStatusPage from "./pages/UniversityStatusPage";
 import ProspectusPage from "./pages/ProspectusPage";
 import PortfolioPage from "./pages/PortfolioPage";
+import TVETCollegesPage from "./pages/TVETCollegesPage";
 import { HelmetProvider } from 'react-helmet-async';
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -81,6 +82,7 @@ const App = () => (
             <Route path="/university-status-2026" element={<UniversityStatusPage />} />
             <Route path="/university-prospectus-2026" element={<ProspectusPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/tvet-colleges" element={<TVETCollegesPage />} />
             <Route path="/tutor/:slug" element={<LocationPage />} />
             <Route path="/province/:slug" element={<ProvincePage />} />
             <Route path="/login" element={<Login />} />
