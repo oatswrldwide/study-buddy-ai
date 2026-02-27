@@ -366,26 +366,92 @@ const UniversitiesApplyPage = () => {
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://studybuddy.works/" },
+      { "@type": "ListItem", position: 2, name: "Apply to University", item: "https://studybuddy.works/apply" },
+    ],
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "When do South African university applications open in 2026?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Most South African universities open applications for 2027 in April–May 2026. Some universities like UCT, UP, Stellenbosch and SMU have early deadlines in June 2026, so applying as soon as applications open is strongly recommended.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I still apply to a South African university in 2026?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "As of February 2026, most universities are in their registration phase for the 2026 academic year. Late applications may still be available at some institutions. New applications for the 2027 academic year typically open in April 2026.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Which South African university has the lowest APS requirement?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Damelin and Boston City Campus accept applicants from APS 15–16. Among public universities, Mangosuthu University of Technology (MUT) requires APS 18+, while UNISA, TUT, DUT, CPUT, VUT and CUT start from APS 20+.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What documents do I need to apply to a South African university?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Most SA universities require: certified copy of your ID document, Grade 11 results (for matric students) or matric certificate, proof of residence, and completion of the online application form. Some faculties require additional documents such as a portfolio or motivation letter.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How much does it cost to apply to a South African university?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Application fees vary by institution. UCT charges R100 (waived for eligible students), Wits charges R100, and UP charges R300. Some universities like UNISA offer free online applications. Private institutions typically have no application fee.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Which SA university applications close first in 2026?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The earliest closing dates are at UCT (30 Sep for most, some faculties earlier), Stellenbosch University (30 Jun), University of Pretoria (30 Jun, some faculties earlier), and Sefako Makgatho Health Sciences University (30 Jun). Apply early — popular programmes fill up fast.",
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <Helmet>
-        <title>How to Apply to South African Universities 2026 | Complete Guides</title>
+        <title>How to Apply to South African Universities 2026 — APS, Deadlines & Guides</title>
         <meta
           name="description"
-          content="Step-by-step application guides for every South African university — UCT, Wits, Stellenbosch, UJ, UNISA, TUT, CPUT and more. APS requirements, deadlines, documents needed and bursary info."
+          content="Apply to SA universities in 2026 — UCT, Wits, UP, UNISA, UJ, Stellenbosch & more. APS requirements, closing dates & free step-by-step guides for all 32 universities."
         />
         <meta
           name="keywords"
           content="how to apply to university South Africa, SA university applications 2026, university application guides, UCT application, Wits application, UNISA application, APS requirements"
         />
-        <meta property="og:title" content="How to Apply to South African Universities 2026" />
+        <meta property="og:title" content="How to Apply to SA Universities 2026 — APS, Deadlines & Guides" />
         <meta
           property="og:description"
-          content="Application guides for all 32 SA universities. APS requirements, deadlines, bursaries and step-by-step instructions."
+          content="Free application guides for all 32 SA universities. APS requirements, closing dates & step-by-step instructions for UCT, Wits, UNISA, UP, UJ and more."
         />
         <meta property="og:url" content="https://studybuddy.works/apply" />
         <link rel="canonical" href="https://studybuddy.works/apply" />
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <div className="min-h-screen bg-background flex flex-col">
