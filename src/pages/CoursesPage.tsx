@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
   GraduationCap,
@@ -27,6 +27,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { COURSES, COURSE_CATEGORIES } from "@/data/courseRequirements";
+import { COURSE_CATEGORY_TO_BURSARY_FIELD, BURSARY_FIELD_SLUGS } from "@/data/bursaries";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   "Health Sciences": <Stethoscope className="w-5 h-5" />,
@@ -43,6 +44,7 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
 const CoursesPage = () => {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
+  const navigate = useNavigate();
 
   const filteredCourses = COURSES.filter(c => {
     const matchesSearch =
@@ -178,9 +180,18 @@ const CoursesPage = () => {
                 {filteredCourses.map(course => {
                   const lowestAPS = Math.min(...course.universities.map(u => u.aps));
                   const highestAPS = Math.max(...course.universities.map(u => u.aps));
+                  const bursaryField = COURSE_CATEGORY_TO_BURSARY_FIELD[course.category];
+                  const bursarySlug = bursaryField ? BURSARY_FIELD_SLUGS[bursaryField] : null;
                   return (
-                    <Link key={course.id} to={`/courses/${course.id}`}>
-                      <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary/30 group">
+                    <div
+                      key={course.id}
+                      role="link"
+                      tabIndex={0}
+                      onClick={() => navigate(`/courses/${course.id}`)}
+                      onKeyDown={(e) => e.key === "Enter" && navigate(`/courses/${course.id}`)}
+                      className="cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
+                    >
+                      <Card className="h-full hover:shadow-lg transition-shadow border-2 hover:border-primary/30 group">
                         <CardHeader className="pb-3">
                           <div className="flex items-start justify-between gap-2">
                             <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
@@ -230,12 +241,24 @@ const CoursesPage = () => {
                             )}
                           </div>
 
-                          <div className="pt-1 flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all">
-                            Compare universities <ArrowRight className="w-4 h-4" />
+                          <div className="flex items-center justify-between pt-1">
+                            <span className="flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all">
+                              Compare universities <ArrowRight className="w-4 h-4" />
+                            </span>
+                            {bursarySlug && (
+                              <Link
+                                to={`/bursaries/${bursarySlug}`}
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-1 text-xs text-green-700 font-medium bg-green-50 border border-green-200 px-2 py-1 rounded-full hover:bg-green-100 transition-colors shrink-0"
+                              >
+                                <Award className="w-3 h-3" />
+                                Bursaries
+                              </Link>
+                            )}
                           </div>
                         </CardContent>
                       </Card>
-                    </Link>
+                    </div>
                   );
                 })}
               </div>

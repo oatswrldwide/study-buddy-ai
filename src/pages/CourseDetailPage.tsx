@@ -15,6 +15,8 @@ import {
   ChevronDown,
   ChevronUp,
   Briefcase,
+  Award,
+  MessageCircle,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -24,6 +26,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getCourseById, COURSES } from "@/data/courseRequirements";
+import {
+  BURSARIES,
+  BURSARY_FIELD_SLUGS,
+  COURSE_CATEGORY_TO_BURSARY_FIELD,
+} from "@/data/bursaries";
+
+const WHATSAPP_NUMBER = "27680187300";
 
 // ─── APS helpers (duplicated to keep this page self-contained) ────────────────
 const DEFAULT_SUBJECTS = [
@@ -89,6 +98,13 @@ const CourseDetailPage = () => {
 
   // Related courses (same category, different id)
   const relatedCourses = COURSES.filter(c => c.category === course.category && c.id !== course.id).slice(0, 3);
+
+  // Bursaries for this course's field
+  const bursaryField = COURSE_CATEGORY_TO_BURSARY_FIELD[course.category];
+  const fieldBursaries = bursaryField
+    ? BURSARIES.filter((b) => b.field === bursaryField).slice(0, 3)
+    : [];
+  const bursaryFieldSlug = bursaryField ? BURSARY_FIELD_SLUGS[bursaryField] : null;
 
   const lowestAPS = Math.min(...course.universities.map(u => u.aps));
   const highestAPS = Math.max(...course.universities.map(u => u.aps));
@@ -429,6 +445,77 @@ const CourseDetailPage = () => {
             </Card>
           </div>
         </section>
+
+        {/* Bursaries for this course */}
+        {fieldBursaries.length > 0 && bursaryFieldSlug && (
+          <section className="container mx-auto px-4 pb-8">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center justify-between gap-4 mb-2 flex-wrap">
+                <h2 className="text-2xl font-bold flex items-center gap-2">
+                  <Award className="w-6 h-6 text-primary" />
+                  Bursaries Available for {course.name} Students
+                </h2>
+                <Link
+                  to={`/bursaries/${bursaryFieldSlug}`}
+                  className="text-primary text-sm font-semibold hover:underline flex items-center gap-1 shrink-0"
+                >
+                  View all {bursaryField} bursaries →
+                </Link>
+              </div>
+              <p className="text-muted-foreground text-sm mb-6">
+                These bursaries are specifically available for students studying in the {bursaryField} field.
+                Apply early — most deadlines are August to October.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-4 mb-6">
+                {fieldBursaries.map((b) => (
+                  <Card key={b.id} className="hover:shadow-md transition-shadow border-2 hover:border-primary/30">
+                    <CardContent className="p-4">
+                      <p className="font-semibold text-sm mb-1">{b.name}</p>
+                      <p className="text-xs text-muted-foreground mb-2">{b.provider}</p>
+                      <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{b.value}</p>
+                      <a
+                        href={b.applicationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline"
+                      >
+                        Apply / Learn More <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              {/* Bursary application CTA */}
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-5">
+                <div className="flex-1 text-center sm:text-left">
+                  <p className="font-bold text-base mb-1">Need help applying for {bursaryField} bursaries?</p>
+                  <p className="text-sm text-muted-foreground">
+                    Get personal 1-on-1 WhatsApp assistance — we'll shortlist the right bursaries for you
+                    and help you submit complete, winning applications.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2 shrink-0">
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi! I need help applying for ${bursaryField} bursaries for my ${course.name} studies.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="gap-2 bg-green-600 hover:bg-green-700 text-white w-full">
+                      <MessageCircle className="w-4 h-4" />
+                      WhatsApp for Help
+                    </Button>
+                  </a>
+                  <Link to={`/bursaries/${bursaryFieldSlug}`}>
+                    <Button variant="outline" size="sm" className="gap-1 w-full text-xs">
+                      <Award className="w-3.5 h-3.5" />
+                      See All {bursaryField} Bursaries
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Related courses */}
         {relatedCourses.length > 0 && (

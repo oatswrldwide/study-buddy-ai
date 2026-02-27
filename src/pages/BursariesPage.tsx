@@ -29,7 +29,7 @@ import WhatsAppPricingOffers from "@/components/shared/WhatsAppPricingOffers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { BURSARIES, BURSARY_FIELDS, type Bursary } from "@/data/bursaries";
+import { BURSARIES, BURSARY_FIELDS, BURSARY_FIELD_SLUGS, type Bursary } from "@/data/bursaries";
 
 const FIELD_ICONS: Record<string, React.ReactNode> = {
   "Engineering & Technology": <Wrench className="w-4 h-4" />,
@@ -280,18 +280,29 @@ const BursariesPage = () => {
             {filteredBursaries.length > 0 &&
               Object.entries(grouped).map(([field, bursaries]) => (
                 <div key={field} className="mb-12">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span
-                      className={`inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-full border ${
-                        FIELD_COLORS[field] ?? "bg-gray-100 text-gray-700"
-                      }`}
-                    >
-                      {FIELD_ICONS[field]}
-                      {field}
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      {bursaries.length} bursari{bursaries.length === 1 ? "y" : "es"}
-                    </span>
+                  <div className="flex items-center justify-between gap-2 mb-4 flex-wrap">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-full border ${
+                          FIELD_COLORS[field] ?? "bg-gray-100 text-gray-700"
+                        }`}
+                      >
+                        {FIELD_ICONS[field]}
+                        {field}
+                      </span>
+                      <span className="text-sm text-muted-foreground">
+                        {bursaries.length} bursari{bursaries.length === 1 ? "y" : "es"}
+                      </span>
+                    </div>
+                    {BURSARY_FIELD_SLUGS[field] && (
+                      <Link
+                        to={`/bursaries/${BURSARY_FIELD_SLUGS[field]}`}
+                        className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+                      >
+                        View dedicated {field} page
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </Link>
+                    )}
                   </div>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {bursaries.map((b) => (

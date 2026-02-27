@@ -28,6 +28,40 @@ export const BURSARY_FIELDS = [
   "General / Multiple Fields",
 ] as const;
 
+/** URL-safe slug for each bursary field */
+export const BURSARY_FIELD_SLUGS: Record<string, string> = {
+  "Engineering & Technology": "engineering-technology",
+  "Finance & Accounting": "finance-accounting",
+  "Information Technology": "information-technology",
+  "Health Sciences": "health-sciences",
+  "Education": "education",
+  "Law & Justice": "law-justice",
+  "Mining & Resources": "mining-resources",
+  "Agriculture & Environment": "agriculture-environment",
+  "Built Environment & Construction": "built-environment",
+  "Arts & Creative Industries": "arts-creative",
+  "Social Sciences": "social-sciences",
+  "General / Multiple Fields": "general",
+};
+
+/** Reverse map: slug → field display name */
+export const BURSARY_SLUG_TO_FIELD: Record<string, string> = Object.fromEntries(
+  Object.entries(BURSARY_FIELD_SLUGS).map(([field, slug]) => [slug, field])
+);
+
+/** Map from university course category → closest bursary field */
+export const COURSE_CATEGORY_TO_BURSARY_FIELD: Record<string, string> = {
+  "Health Sciences": "Health Sciences",
+  "Engineering": "Engineering & Technology",
+  "Law": "Law & Justice",
+  "Commerce & Business": "Finance & Accounting",
+  "Information Technology": "Information Technology",
+  "Education": "Education",
+  "Natural Sciences": "Agriculture & Environment",
+  "Humanities & Social Sciences": "Social Sciences",
+  "Built Environment": "Built Environment & Construction",
+};
+
 export const BURSARIES: Bursary[] = [
   // ── Engineering & Technology ──────────────────────────────────────────────
   {
