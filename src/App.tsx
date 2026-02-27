@@ -38,6 +38,8 @@ import APSCalculator from "./pages/APSCalculator";
 import CoursesPage from "./pages/CoursesPage";
 import CourseDetailPage from "./pages/CourseDetailPage";
 import BursariesPage from "./pages/BursariesPage";
+import UniversityBursariesIndexPage from "./pages/UniversityBursariesIndexPage";
+import UniversityBursaryPage from "./pages/UniversityBursaryPage";
 import HighSchoolScholarshipsPage from "./pages/HighSchoolScholarshipsPage";
 import UniversitiesApplyPage from "./pages/UniversitiesApplyPage";
 import UniversityStatusPage from "./pages/UniversityStatusPage";
@@ -72,6 +74,8 @@ const App = () => (
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/courses/:courseId" element={<CourseDetailPage />} />
             <Route path="/bursaries" element={<BursariesPage />} />
+            <Route path="/bursaries/universities" element={<UniversityBursariesIndexPage />} />
+            <Route path="/bursaries/university/:slug" element={<UniversityBursaryPage />} />
             <Route path="/high-school-scholarships" element={<HighSchoolScholarshipsPage />} />
             <Route path="/apply" element={<UniversitiesApplyPage />} />
             <Route path="/university-status-2026" element={<UniversityStatusPage />} />

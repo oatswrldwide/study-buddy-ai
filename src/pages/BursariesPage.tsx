@@ -385,6 +385,56 @@ const BursariesPage = () => {
         {/* Bursary Assistance Pricing (mid-page) */}
         <WhatsAppPricingOffers variant="bursary" />
 
+        {/* Browse by University section */}
+        <section className="container mx-auto px-4 pb-12">
+          <div className="max-w-5xl mx-auto bg-white rounded-2xl border p-8">
+            <div className="flex items-center gap-2 mb-2">
+              <GraduationCap className="w-5 h-5 text-primary" />
+              <h2 className="text-xl font-bold">Browse Bursaries by University</h2>
+            </div>
+            <p className="text-sm text-muted-foreground mb-6">
+              Already enrolled at a university? Browse bursaries specific to your institution —
+              including university-run merit awards, NSFAS details and corporate bursaries available
+              to students at each campus.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-5">
+              {[
+                { name: "UCT", slug: "uct" },
+                { name: "Wits", slug: "wits" },
+                { name: "UP (Tuks)", slug: "up" },
+                { name: "Stellenbosch", slug: "stellenbosch" },
+                { name: "UKZN", slug: "ukzn" },
+                { name: "UJ", slug: "uj" },
+                { name: "UNISA", slug: "unisa" },
+                { name: "NWU", slug: "nwu" },
+                { name: "Rhodes", slug: "rhodes" },
+                { name: "UFS", slug: "ufs" },
+                { name: "UWC", slug: "uwc" },
+                { name: "NMU", slug: "nmu" },
+                { name: "CPUT", slug: "cput" },
+                { name: "TUT", slug: "tut" },
+                { name: "DUT", slug: "dut" },
+              ].map((uni) => (
+                <Link
+                  key={uni.slug}
+                  to={`/bursaries/university/${uni.slug}`}
+                  className="flex items-center gap-2 text-sm font-medium px-3 py-2.5 rounded-lg border border-gray-200 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all"
+                >
+                  <GraduationCap className="w-3.5 h-3.5 shrink-0" />
+                  {uni.name}
+                </Link>
+              ))}
+            </div>
+            <Link
+              to="/bursaries/universities"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+            >
+              View all university bursary pages
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </section>
+
         {/* Province interlink section */}
         <section className="container mx-auto px-4 pb-12">
           <div className="max-w-5xl mx-auto bg-white rounded-2xl border p-8">
