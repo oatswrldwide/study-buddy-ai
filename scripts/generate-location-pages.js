@@ -53,6 +53,28 @@ while ((pageMatch = pageUrlRegex.exec(sitemapContent)) !== null) {
   }
 }
 
+// Path to PSEO data directory (relative to repo root)
+const pseoDataDir = path.join(__dirname, '../public/pseo-data');
+
+// Maximum length for auto-generated meta descriptions
+const MAX_DESCRIPTION_LENGTH = 160;
+
+// Helper function to create page-specific HTML with correct canonical and meta tags
+function customizeHtmlForPage(html, slug, title, description) {
+  const canonicalUrl = `https://studybuddy.works/${slug}`;
+  return html
+    .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+    .replace(/(<meta name="title" content=").*?(")/, `$1${title}$2`)
+    .replace(/(<meta name="description" content=").*?(")/, `$1${description}$2`)
+    .replace(/(<meta property="og:title" content=").*?(")/, `$1${title}$2`)
+    .replace(/(<meta property="og:description" content=").*?(")/, `$1${description}$2`)
+    .replace(/(<meta property="twitter:title" content=").*?(")/, `$1${title}$2`)
+    .replace(/(<meta property="twitter:description" content=").*?(")/, `$1${description}$2`)
+    .replace(/(<link rel="canonical" href=").*?(")/, `$1${canonicalUrl}$2`)
+    .replace(/(<meta property="og:url" content=").*?(")/, `$1${canonicalUrl}$2`)
+    .replace(/(<meta property="twitter:url" content=").*?(")/, `$1${canonicalUrl}$2`);
+}
+
 console.log(`Generating ${locationSlugs.length} location pages, ${provinceSlugs.length} province pages, and ${pageSlugs.length} other pages from sitemap...`);
 
 // Helper function to create location-specific HTML
@@ -167,9 +189,31 @@ for (const slug of pageSlugs) {
     if (!fs.existsSync(pageDir)) {
       fs.mkdirSync(pageDir, { recursive: true });
     }
-    
-    // For regular pages, just use the base HTML without redirect handler
-    fs.writeFileSync(path.join(pageDir, 'index.html'), indexHtml);
+
+    // Try to load PSEO JSON metadata for article pages
+    const pseoJsonPath = path.join(pseoDataDir, `${slug}.json`);
+    let customHtml;
+
+    if (fs.existsSync(pseoJsonPath)) {
+      try {
+        const pseoData = JSON.parse(fs.readFileSync(pseoJsonPath, 'utf-8'));
+        const title = pseoData.metaTitle || pseoData.title || slug;
+        const description = pseoData.metaDescription || pseoData.content?.slice(0, MAX_DESCRIPTION_LENGTH) || '';
+        customHtml = customizeHtmlForPage(indexHtml, slug, title, description);
+      } catch (error) {
+        console.warn(`Failed to parse PSEO data for ${slug}:`, error.message);
+        customHtml = customizeHtmlForPage(indexHtml, slug,
+          slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') + ' | StudyBuddy Works',
+          'CAPS-aligned AI tutoring for South African students.');
+      }
+    } else {
+      // For known static pages, set at minimum the correct canonical URL
+      customHtml = customizeHtmlForPage(indexHtml, slug,
+        'StudyBuddy Works - AI-Powered Learning Platform for Schools',
+        'Monitor and guide AI usage in education. Schools get dashboards, teachers get insights, students get an AI tutor. Transform learning outcomes with responsible AI.');
+    }
+
+    fs.writeFileSync(path.join(pageDir, 'index.html'), customHtml);
     pagesGenerated++;
   } catch (error) {
     console.error(`Failed to generate page ${slug}:`, error.message);
