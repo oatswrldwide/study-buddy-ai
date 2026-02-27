@@ -10,6 +10,8 @@ import {
   Clock,
   MapPin,
   ChevronRight,
+  FileText,
+  AlertCircle,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -430,6 +432,40 @@ const UniversitiesApplyPage = () => {
               <strong>April–May</strong> and close in <strong>June–October</strong>. Popular
               programmes (Medicine, Law, Engineering) fill up fast — don't wait until the deadline.
             </p>
+          </div>
+        </section>
+
+        {/* 2026 Status & Prospectus Quick Links */}
+        <section className="container mx-auto px-4 pb-8">
+          <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-4">
+            <Link
+              to="/university-status-2026"
+              className="flex items-start gap-3 bg-blue-50 border border-blue-200 rounded-xl p-4 hover:shadow-md transition-shadow group"
+            >
+              <AlertCircle className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold text-blue-800 text-sm group-hover:underline">
+                  2026 Application Status Tracker
+                </p>
+                <p className="text-xs text-blue-600 mt-0.5">
+                  See which universities still have late applications or registration open right now.
+                </p>
+              </div>
+            </Link>
+            <Link
+              to="/university-prospectus-2026"
+              className="flex items-start gap-3 bg-green-50 border border-green-200 rounded-xl p-4 hover:shadow-md transition-shadow group"
+            >
+              <FileText className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold text-green-800 text-sm group-hover:underline">
+                  Download 2026 Prospectus
+                </p>
+                <p className="text-xs text-green-600 mt-0.5">
+                  Download the 2026 prospectus for all 26 SA public universities in one place.
+                </p>
+              </div>
+            </Link>
           </div>
         </section>
 
