@@ -5344,5 +5344,56 @@
       "ai tutor south africa",
       "chatgpt alternative south africa"
     ]
+  },
+  {
+    "slug": "ai",
+    "title": "AI for South African Students | Best AI Tutor for CAPS Curriculum",
+    "description": "Looking for AI to help with school in South Africa? StudyBuddy is a CAPS-aligned AI tutor built for SA matric students. Free to start, available 24/7.",
+    "pageType": "comparison",
+    "published": true,
+    "qualityScore": 9,
+    "lastUpdated": "2026-02-27T18:56:00.000Z",
+    "keywords": [
+      "ai",
+      "ai south africa",
+      "ai for students",
+      "ai tutor south africa",
+      "ai matric",
+      "artificial intelligence south africa"
+    ]
+  },
+  {
+    "slug": "deepseek",
+    "title": "DeepSeek for South African Students | CAPS AI Tutor Alternative",
+    "description": "Searching for DeepSeek in South Africa? Try StudyBuddy \u2014 a CAPS-aligned AI tutor built for SA matric students. Safe, free to start, NSC exam-ready.",
+    "pageType": "comparison",
+    "published": true,
+    "qualityScore": 9,
+    "lastUpdated": "2026-02-27T18:56:00.000Z",
+    "keywords": [
+      "deepseek",
+      "deepseek south africa",
+      "deepseek for students",
+      "deepseek matric",
+      "deepseek alternative south africa",
+      "ai tutor south africa"
+    ]
+  },
+  {
+    "slug": "gemini-ai",
+    "title": "Gemini AI for South African Students | CAPS AI Tutor Alternative",
+    "description": "Using Google Gemini AI for school in South Africa? StudyBuddy is a CAPS-aligned AI tutor purpose-built for SA matric students. Free to start, NSC-ready.",
+    "pageType": "comparison",
+    "published": true,
+    "qualityScore": 9,
+    "lastUpdated": "2026-02-27T18:56:00.000Z",
+    "keywords": [
+      "gemini ai",
+      "gemini ai south africa",
+      "google gemini south africa",
+      "gemini ai for students",
+      "gemini ai matric",
+      "ai tutor south africa"
+    ]
   }
 ]
