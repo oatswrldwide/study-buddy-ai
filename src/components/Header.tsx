@@ -12,6 +12,7 @@ const Header = () => {
     { href: "/schools", label: "For Schools", isRoute: true },
     { href: "/courses", label: "Courses", isRoute: true },
     { href: "/apply", label: "Apply", isRoute: true },
+    { href: "/tvet-colleges", label: "TVET Colleges", isRoute: true },
     { href: "/bursaries", label: "Bursaries", isRoute: true },
     { href: "/resources", label: "Resources", isRoute: true },
     { href: "/locations", label: "Find a Tutor", isRoute: true },
