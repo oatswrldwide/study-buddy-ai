@@ -55,6 +55,72 @@ const staticPages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: 0.8,
   },
+  {
+    url: '/courses',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.8,
+  },
+  {
+    url: '/courses/medicine',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/courses/engineering',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/courses/law',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/courses/bcom-accounting',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/courses/computer-science',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/courses/education',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/courses/nursing',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/courses/architecture',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/courses/psychology',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/apply',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.8,
+  },
 ];
 
 /**

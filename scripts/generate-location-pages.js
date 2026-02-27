@@ -59,6 +59,55 @@ const pseoDataDir = path.join(__dirname, '../public/pseo-data');
 // Maximum length for auto-generated meta descriptions
 const MAX_DESCRIPTION_LENGTH = 160;
 
+// Helper function to escape special characters in HTML attributes
+function escapeHtmlAttr(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+// Helper function to escape special characters in HTML text nodes
+function escapeHtmlText(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+// Build pre-rendered article HTML from PSEO JSON data
+function buildPrerenderedContent(pseoData) {
+  const title = pseoData.metaTitle || pseoData.title || '';
+  const description = pseoData.metaDescription || '';
+  const quickAnswer = pseoData.quickAnswer || '';
+  const content = pseoData.content || '';
+  const faqs = pseoData.faqs || [];
+
+  let html = `<article>`;
+  html += `<h1>${escapeHtmlText(title)}</h1>`;
+  if (description) {
+    html += `<p>${escapeHtmlText(description)}</p>`;
+  }
+  if (quickAnswer && quickAnswer !== content) {
+    html += `<div><strong>Quick Answer:</strong> ${escapeHtmlText(quickAnswer)}</div>`;
+  }
+  if (content) {
+    // content is already HTML from trusted static JSON files — injected as-is
+    // so that heading/table/list markup renders correctly for crawlers.
+    html += `<div>${content}</div>`;
+  }
+  if (faqs.length > 0) {
+    html += `<section><h2>Frequently Asked Questions</h2>`;
+    for (const faq of faqs) {
+      html += `<div><h3>${escapeHtmlText(faq.question)}</h3><p>${escapeHtmlText(faq.answer)}</p></div>`;
+    }
+    html += `</section>`;
+  }
+  html += `</article>`;
+  return html;
+}
+
 // Helper function to create page-specific HTML with correct canonical and meta tags
 function customizeHtmlForPage(html, slug, title, description) {
   const canonicalUrl = `https://studybuddy.works/${slug}`;
@@ -76,6 +125,54 @@ function customizeHtmlForPage(html, slug, title, description) {
 }
 
 console.log(`Generating ${locationSlugs.length} location pages, ${provinceSlugs.length} province pages, and ${pageSlugs.length} other pages from sitemap...`);
+
+// Static metadata for known app pages that don't have PSEO JSON files
+const STATIC_PAGE_META = {
+  'courses': {
+    title: 'University Course Requirements South Africa 2025 | APS Scores & Fees Compared',
+    description: 'Compare APS score requirements and university fees for the most popular courses in South Africa — Medicine, Engineering, Law, Accounting, IT, Education and more. Free APS calculator included.',
+  },
+  'courses/medicine': {
+    title: 'MBChB Medicine Requirements 2025 | APS Scores & Fees at SA Universities',
+    description: 'Compare Medicine (MBChB) APS requirements and university fees at UCT, Wits, UP, Stellenbosch, UKZN and more. APS range: 36–40. Includes career info and bursaries.',
+  },
+  'courses/engineering': {
+    title: 'Engineering Requirements 2025 | APS Scores & Fees at SA Universities',
+    description: 'Compare BEng / BSc Engineering APS requirements and fees at South African universities. APS range: 30–40. Includes civil, mechanical, electrical and more.',
+  },
+  'courses/law': {
+    title: 'LLB Law Requirements 2025 | APS Scores & Fees at SA Universities',
+    description: 'Compare LLB Law APS requirements and fees at UCT, Wits, UP, UFS, NMU and more South African universities. APS range: 28–38.',
+  },
+  'courses/bcom-accounting': {
+    title: 'BCom Accounting Requirements 2025 | APS Scores & Fees at SA Universities',
+    description: 'Compare BCom Accounting APS requirements and fees at South African universities. APS range: 26–38. Pathway to CA(SA) and other accounting careers.',
+  },
+  'courses/computer-science': {
+    title: 'Computer Science Requirements 2025 | APS Scores & Fees at SA Universities',
+    description: 'Compare BSc Computer Science APS requirements and fees at UCT, Wits, UP, Stellenbosch and more. APS range: 28–38. Includes IT and software engineering.',
+  },
+  'courses/education': {
+    title: 'BEd Education Requirements 2025 | APS Scores & Fees at SA Universities',
+    description: 'Compare BEd Education APS requirements and fees at South African universities. APS range: 24–34. Includes Foundation Phase, Intermediate Phase and FET.',
+  },
+  'courses/nursing': {
+    title: 'BNurs Nursing Requirements 2025 | APS Scores & Fees at SA Universities',
+    description: 'Compare BNurs Nursing APS requirements and fees at South African universities. APS range: 25–32. Includes midwifery and community nursing.',
+  },
+  'courses/architecture': {
+    title: 'Architecture Requirements 2025 | APS Scores & Fees at SA Universities',
+    description: 'Compare BArch / BSc Architecture APS requirements and fees at UCT, Wits, UP, TUT and more South African universities. APS range: 30–38.',
+  },
+  'courses/psychology': {
+    title: 'Psychology Requirements 2025 | APS Scores & Fees at SA Universities',
+    description: 'Compare BA / BSc Psychology APS requirements and fees at South African universities. APS range: 26–36. Includes clinical, counselling and educational psychology.',
+  },
+  'apply': {
+    title: 'How to Apply to South African Universities 2026 | Complete Guide',
+    description: 'Find application guides, APS requirements and deadlines for all major South African universities. UCT, Wits, UP, Stellenbosch, UKZN and more.',
+  },
+};
 
 // Helper function to create location-specific HTML
 function customizeHtmlForLocation(html, slug, type = 'tutor') {
@@ -199,7 +296,11 @@ for (const slug of pageSlugs) {
         const pseoData = JSON.parse(fs.readFileSync(pseoJsonPath, 'utf-8'));
         const title = pseoData.metaTitle || pseoData.title || slug;
         const description = pseoData.metaDescription || pseoData.content?.slice(0, MAX_DESCRIPTION_LENGTH) || '';
-        customHtml = customizeHtmlForPage(indexHtml, slug, title, description);
+        // Set meta tags and inject pre-rendered article content so Google can
+        // index the page content even before JavaScript executes.
+        const prerendered = buildPrerenderedContent(pseoData);
+        customHtml = customizeHtmlForPage(indexHtml, slug, title, description)
+          .replace('<div id="root"></div>', `<div id="root">${prerendered}</div>`);
       } catch (error) {
         console.warn(`Failed to parse PSEO data for ${slug}:`, error.message);
         customHtml = customizeHtmlForPage(indexHtml, slug,
@@ -207,10 +308,11 @@ for (const slug of pageSlugs) {
           'CAPS-aligned AI tutoring for South African students.');
       }
     } else {
-      // For known static pages, set at minimum the correct canonical URL
+      // For known static pages, use page-specific meta if available, else canonical URL only
+      const staticMeta = STATIC_PAGE_META[slug];
       customHtml = customizeHtmlForPage(indexHtml, slug,
-        'StudyBuddy Works - AI-Powered Learning Platform for Schools',
-        'Monitor and guide AI usage in education. Schools get dashboards, teachers get insights, students get an AI tutor. Transform learning outcomes with responsible AI.');
+        staticMeta ? staticMeta.title : 'StudyBuddy Works - AI-Powered Learning Platform for Schools',
+        staticMeta ? staticMeta.description : 'Monitor and guide AI usage in education. Schools get dashboards, teachers get insights, students get an AI tutor. Transform learning outcomes with responsible AI.');
     }
 
     fs.writeFileSync(path.join(pageDir, 'index.html'), customHtml);
