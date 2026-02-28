@@ -1,8 +1,12 @@
 import { studentsConfig } from "@/config/students";
 import * as LucideIcons from "lucide-react";
+import type { LucideProps } from "lucide-react";
+import type { ForwardRefExoticComponent, RefAttributes } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+
+type LucideIcon = ForwardRefExoticComponent<LucideProps & RefAttributes<SVGSVGElement>>;
 
 const FeaturesStudents = () => {
   const { features, additionalFeatures, subjects } = studentsConfig;
@@ -25,7 +29,7 @@ const FeaturesStudents = () => {
         {/* Main Feature Cards */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => {
-            const Icon = LucideIcons[feature.icon as keyof typeof LucideIcons] as any;
+            const Icon = LucideIcons[feature.icon as keyof typeof LucideIcons] as LucideIcon;
             return (
               <div
                 key={feature.title}
@@ -83,7 +87,7 @@ const FeaturesStudents = () => {
         {/* Additional Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {additionalFeatures.map((feature, index) => {
-            const Icon = LucideIcons[feature.icon as keyof typeof LucideIcons] as any;
+            const Icon = LucideIcons[feature.icon as keyof typeof LucideIcons] as LucideIcon;
             return (
               <div
                 key={feature.title}

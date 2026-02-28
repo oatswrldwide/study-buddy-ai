@@ -54,7 +54,6 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
     loadExamPapers().then(papers => {
       console.log('ExamBrowser: Loaded', papers.length, 'papers');
       setAllPapers(papers);
-      applyFilters(papers, searchQuery, selectedSubject, selectedYear, selectedSession, gradeFilter);
       setLoading(false);
     }).catch(err => {
       console.error('ExamBrowser: Failed to load exam papers:', err);
@@ -65,7 +64,7 @@ export default function ExamBrowser({ onChatWithExam, selectedGrade }: ExamBrows
   // Apply filters whenever they change
   useEffect(() => {
     applyFilters(allPapers, searchQuery, selectedSubject, selectedYear, selectedSession, gradeFilter);
-  }, [searchQuery, selectedSubject, selectedYear, selectedSession, gradeFilter]);
+  }, [allPapers, searchQuery, selectedSubject, selectedYear, selectedSession, gradeFilter]);
 
   const applyFilters = (
     papers: ExamPaper[], 

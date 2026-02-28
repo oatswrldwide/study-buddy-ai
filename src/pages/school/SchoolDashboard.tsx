@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import SchoolLayout from "@/components/school/SchoolLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/lib/firebase";
@@ -18,11 +18,7 @@ const SchoolDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [schoolName, setSchoolName] = useState("");
 
-  useEffect(() => {
-    loadDashboardData();
-  }, [user]);
-
-  const loadDashboardData = async () => {
+  const loadDashboardData = useCallback(async () => {
     if (!user) return;
 
     try {
@@ -48,7 +44,11 @@ const SchoolDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    loadDashboardData();
+  }, [loadDashboardData]);
 
   const statCards = [
     {

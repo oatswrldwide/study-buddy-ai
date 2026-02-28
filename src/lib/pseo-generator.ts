@@ -33,7 +33,7 @@ export interface GeneratedPage {
   faqs: FAQ[];
   statistics: Statistic[];
   lastUpdated: string;
-  schema: Record<string, any>;
+  schema: Record<string, unknown>;
   internalLinks: InternalLink[];
   qualityScore: number;
 }
@@ -216,16 +216,26 @@ function generateSlug(template: PageTemplate): string {
   return 'page';
 }
 
+interface ParsedAIContent {
+  title: string;
+  metaDescription: string;
+  h1: string;
+  quickAnswer: string;
+  content: string;
+  faqs?: FAQ[];
+  statistics?: Statistic[];
+}
+
 /**
  * Generate Schema.org markup for AEO
  */
 function generateSchemaMarkup(
-  content: any,
+  content: ParsedAIContent,
   template: PageTemplate
-): Record<string, any> {
-  const baseSchema = {
+): Record<string, unknown> {
+  const baseSchema: { '@context': string; '@graph': Record<string, unknown>[] } = {
     '@context': 'https://schema.org',
-    '@graph': [] as any[],
+    '@graph': [],
   };
 
   // Educational content schema
@@ -291,7 +301,7 @@ function generateSchemaMarkup(
 /**
  * Calculate content quality score (0-10)
  */
-function calculateQualityScore(content: any): number {
+function calculateQualityScore(content: ParsedAIContent): number {
   let score = 0;
 
   // Word count (target: 1500-2000 words)

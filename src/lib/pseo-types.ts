@@ -72,7 +72,7 @@ export interface PSEOPage {
   factChecked?: boolean;
   
   // Schema and SEO
-  schema?: Record<string, any>;
+  schema?: Record<string, unknown>;
   schemaType?: string;
   
   // Publishing metadata
@@ -91,7 +91,7 @@ export interface PSEOPage {
   cta?: string;
   
   // Flexible for additional properties
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface PSEOPageIndex {

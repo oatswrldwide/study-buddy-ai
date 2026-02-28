@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import SchoolLayout from "@/components/school/SchoolLayout";
 import { db } from "@/lib/firebase";
@@ -49,17 +49,7 @@ const SchoolStudentsPage = () => {
   const [subjectFilter, setSubjectFilter] = useState<string>("all");
   const [schoolName, setSchoolName] = useState<string>("");
 
-  useEffect(() => {
-    if (user) {
-      loadStudents();
-    }
-  }, [user]);
-
-  useEffect(() => {
-    filterStudents();
-  }, [students, searchTerm, gradeFilter, subjectFilter]);
-
-  const loadStudents = async () => {
+  const loadStudents = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -95,9 +85,9 @@ const SchoolStudentsPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
-  const filterStudents = () => {
+  const filterStudents = useCallback(() => {
     let filtered = [...students];
 
     // Search filter
@@ -122,7 +112,15 @@ const SchoolStudentsPage = () => {
     }
 
     setFilteredStudents(filtered);
-  };
+  }, [students, searchTerm, gradeFilter, subjectFilter]);
+
+  useEffect(() => {
+    loadStudents();
+  }, [loadStudents]);
+
+  useEffect(() => {
+    filterStudents();
+  }, [filterStudents]);
 
   const getTrialStatus = (trialEndsAt: string | null) => {
     if (!trialEndsAt) return { text: "No Trial", color: "bg-gray-500" };

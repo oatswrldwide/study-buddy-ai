@@ -8,7 +8,7 @@
  * - Edit metadata
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { collection, getDocs, doc, updateDoc, getFirestore } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -25,11 +25,7 @@ export default function ContentReview() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'review' | 'published' | 'rejected'>('review');
 
-  useEffect(() => {
-    loadPages();
-  }, [filter]);
-
-  async function loadPages() {
+  const loadPages = useCallback(async () => {
     try {
       const db = getFirestore();
       const pagesSnapshot = await getDocs(collection(db, 'seo_pages'));
@@ -54,7 +50,11 @@ export default function ContentReview() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [filter]);
+
+  useEffect(() => {
+    loadPages();
+  }, [loadPages]);
 
   async function updateStatus(pageId: string, status: 'published' | 'rejected') {
     try {

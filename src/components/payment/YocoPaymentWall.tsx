@@ -11,9 +11,25 @@ interface YocoPaymentWallProps {
   onPaymentSuccess: () => void;
 }
 
+interface YocoSDKInstance {
+  showPopup: (options: {
+    amountInCents: number;
+    currency: string;
+    name: string;
+    description: string;
+    metadata?: Record<string, unknown>;
+    callback: (result: YocoPaymentResult) => void;
+  }) => void;
+}
+
+interface YocoPaymentResult {
+  error?: { message: string };
+  id?: string;
+}
+
 declare global {
   interface Window {
-    YocoSDK: any;
+    YocoSDK: new (options: { publicKey: string }) => YocoSDKInstance;
   }
 }
 
@@ -44,7 +60,7 @@ const YocoPaymentWall = ({ questionsRemaining, onPaymentSuccess }: YocoPaymentWa
           email: user.email,
           plan: "annual_special",
         },
-        callback: async function (result: any) {
+        callback: async function (result: YocoPaymentResult) {
           if (result.error) {
             console.error("Payment error:", result.error);
             setError(result.error.message || "Payment failed. Please try again.");
@@ -93,9 +109,9 @@ const YocoPaymentWall = ({ questionsRemaining, onPaymentSuccess }: YocoPaymentWa
           }
         },
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Payment initialization error:", err);
-      setError(err.message || "Failed to initialize payment. Please try again.");
+      setError((err as Error).message || "Failed to initialize payment. Please try again.");
       setIsProcessing(false);
     }
   };

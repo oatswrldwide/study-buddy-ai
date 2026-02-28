@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,7 @@ interface StudentSignup {
   status: string;
   trial_ends_at: string | null;
   created_at: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 const StudentSignupsPage = () => {
@@ -27,7 +27,7 @@ const StudentSignupsPage = () => {
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState<string>("all");
 
-  const loadStudents = async () => {
+  const loadStudents = useCallback(async () => {
     setLoading(true);
     try {
       const studentsRef = collection(db, "student_signups");
@@ -50,11 +50,11 @@ const StudentSignupsPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter]);
 
   useEffect(() => {
     loadStudents();
-  }, [statusFilter]);
+  }, [loadStudents]);
 
   const updateStatus = async (id: string, newStatus: string) => {
     try {

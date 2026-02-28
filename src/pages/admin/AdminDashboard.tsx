@@ -39,8 +39,8 @@ const AdminDashboard = () => {
       const leadsData = leadsSnapshot.docs.map(doc => doc.data());
       const studentsData = studentsSnapshot.docs.map(doc => doc.data());
 
-      const newLeads = leadsData.filter((l: any) => l.status === "new").length;
-      const activeTrials = studentsData.filter((s: any) => s.status === "trial").length;
+      const newLeads = leadsData.filter((l) => (l as { status?: string }).status === "new").length;
+      const activeTrials = studentsData.filter((s) => (s as { status?: string }).status === "trial").length;
 
       setStats({
         totalLeads: leadsSnapshot.size,

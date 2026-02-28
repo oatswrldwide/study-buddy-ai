@@ -22,29 +22,24 @@ export default function SEOPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadPage();
-  }, [slug]);
-
-  async function loadPage() {
     if (!slug) return;
 
-    try {
-      const db = getFirestore();
-      const docRef = doc(db, 'seo_pages', slug.replace(/\//g, '_'));
-      const docSnap = await getDoc(docRef);
-
+    setLoading(true);
+    const db = getFirestore();
+    const docRef = doc(db, 'seo_pages', slug.replace(/\//g, '_'));
+    getDoc(docRef).then((docSnap) => {
       if (docSnap.exists()) {
         setPage(docSnap.data() as GeneratedPage);
       } else {
         // Page not found - could trigger on-demand generation
         console.log('Page not found, could generate on-demand');
       }
-    } catch (error) {
+    }).catch((error) => {
       console.error('Error loading page:', error);
-    } finally {
+    }).finally(() => {
       setLoading(false);
-    }
-  }
+    });
+  }, [slug]);
 
   if (loading) {
     return (
@@ -221,7 +216,7 @@ function markdownToHtml(markdown: string): string {
     .replace(/^# (.*$)/gim, '<h1 class="text-4xl font-bold mt-12 mb-8">$1</h1>')
     .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
     .replace(/\*(.*)\*/gim, '<em>$1</em>')
-    .replace(/^\- (.*$)/gim, '<li>$1</li>')
+    .replace(/^- (.*$)/gim, '<li>$1</li>')
     .replace(/\n\n/g, '</p><p class="mb-4">')
     .replace(/^(.+)$/gim, '<p class="mb-4">$1</p>')
     .replace(/(<li>.*<\/li>)/s, '<ul class="list-disc pl-6 mb-4">$1</ul>');

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { db } from "@/lib/firebase";
-import { collection, query, where, orderBy, getDocs, doc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { collection, query, where, orderBy, getDocs, doc, updateDoc, serverTimestamp, Timestamp } from "firebase/firestore";
 import { CreditCard, Calendar, DollarSign, RefreshCw, CheckCircle2, XCircle, Eye } from "lucide-react";
 import { format } from "date-fns";
 
@@ -18,11 +18,11 @@ interface PaymentProof {
   payment_method: string;
   proof_image_url: string;
   status: string;
-  created_at: any;
-  reviewed_at?: any;
+  created_at: Timestamp;
+  reviewed_at?: Timestamp;
   rejection_reason?: string;
-  subscription_start_date?: any;
-  [key: string]: any;
+  subscription_start_date?: Timestamp;
+  [key: string]: unknown;
 }
 
 const PaymentsPage = () => {
@@ -34,7 +34,7 @@ const PaymentsPage = () => {
   const [showRejectDialog, setShowRejectDialog] = useState(false);
   const [rejectionReason, setRejectionReason] = useState("");
 
-  const loadPayments = async () => {
+  const loadPayments = useCallback(async () => {
     setLoading(true);
     try {
       const paymentsRef = collection(db, "payment_proofs");
@@ -57,11 +57,11 @@ const PaymentsPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter]);
 
   useEffect(() => {
     loadPayments();
-  }, [statusFilter]);
+  }, [loadPayments]);
 
   const approvePayment = async (id: string) => {
     try {

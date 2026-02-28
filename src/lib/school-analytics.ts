@@ -1,6 +1,26 @@
 import { db } from "./firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, Timestamp } from "firebase/firestore";
 import { differenceInDays, startOfDay, startOfWeek, subDays } from "date-fns";
+
+interface ConversationDoc {
+  id: string;
+  student_signup_id?: string;
+  user_id?: string;
+  subject?: string;
+  created_at?: Timestamp | string;
+}
+
+interface MessageDoc {
+  id: string;
+  conversation_id?: string;
+  created_at?: Timestamp | string;
+}
+
+function toDate(value: Timestamp | string | undefined): Date {
+  if (!value) return new Date(0);
+  if (value instanceof Timestamp) return value.toDate();
+  return new Date(value);
+}
 
 export interface StudentAnalytics {
   studentId: string;
@@ -68,17 +88,17 @@ export const getSchoolAnalytics = async (schoolName: string): Promise<SchoolAnal
     const conversationsRef = collection(db, "chat_conversations");
     const conversationsSnapshot = await getDocs(conversationsRef);
     const conversations = conversationsSnapshot.docs
-      .map(doc => ({ id: doc.id, ...doc.data() }))
-      .filter((c: any) => studentIds.includes(c.student_signup_id || c.user_id));
+      .map(doc => ({ id: doc.id, ...doc.data() } as ConversationDoc))
+      .filter((c) => studentIds.includes(c.student_signup_id || c.user_id || ""));
 
-    const conversationIds = conversations.map((c: any) => c.id);
+    const conversationIds = conversations.map((c) => c.id);
 
     // Get all messages
     const messagesRef = collection(db, "chat_messages");
     const messagesSnapshot = await getDocs(messagesRef);
     const messages = messagesSnapshot.docs
-      .map(doc => ({ id: doc.id, ...doc.data() }))
-      .filter((m: any) => conversationIds.includes(m.conversation_id));
+      .map(doc => ({ id: doc.id, ...doc.data() } as MessageDoc))
+      .filter((m) => conversationIds.includes(m.conversation_id || ""));
 
     // Calculate metrics
     const now = new Date();
@@ -86,23 +106,20 @@ export const getSchoolAnalytics = async (schoolName: string): Promise<SchoolAnal
     const weekStart = startOfWeek(now);
 
     const activeToday = new Set(
-      messages?.filter((m: any) => {
-        const createdAt = m.created_at?.toDate ? m.created_at.toDate() : new Date(m.created_at);
-        return createdAt >= todayStart;
-      }).map((m: any) => m.conversation_id)
+      messages?.filter((m) => toDate(m.created_at) >= todayStart).map((m) => m.conversation_id)
     ).size;
 
     const activeThisWeek = new Set(
-      messages?.filter((m: any) => {
-        const createdAt = m.created_at?.toDate ? m.created_at.toDate() : new Date(m.created_at);
-        return createdAt >= weekStart;
-      }).map((m: any) => m.conversation_id)
+      messages?.filter((m) => toDate(m.created_at) >= weekStart).map((m) => m.conversation_id)
     ).size;
 
     // Subject distribution
     const subjectCounts: Record<string, number> = {};
-    conversations?.forEach((c: any) => {
-      subjectCounts[c.subject] = (subjectCounts[c.subject] || 0) + 1;
+    conversations?.forEach((c) => {
+      const subject = c.subject;
+      if (subject) {
+        subjectCounts[subject] = (subjectCounts[subject] || 0) + 1;
+      }
     });
 
     const topSubjects = Object.entries(subjectCounts)
@@ -117,7 +134,7 @@ export const getSchoolAnalytics = async (schoolName: string): Promise<SchoolAnal
     // At-risk students (no activity in 7+ days)
     const sevenDaysAgo = subDays(now, 7);
     const recentlyActive = new Set(
-      messages?.filter((m) => new Date(m.created_at) >= sevenDaysAgo).map((m) => {
+      messages?.filter((m) => toDate(m.created_at) >= sevenDaysAgo).map((m) => {
         const conv = conversations?.find((c) => c.id === m.conversation_id);
         return conv?.student_signup_id;
       })
@@ -130,13 +147,15 @@ export const getSchoolAnalytics = async (schoolName: string): Promise<SchoolAnal
       const dayStart = startOfDay(subDays(now, i));
       const dayEnd = startOfDay(subDays(now, i - 1));
       
-      const daySessions = conversations?.filter(
-        (c) => new Date(c.created_at) >= dayStart && new Date(c.created_at) < dayEnd
-      ).length || 0;
+      const daySessions = conversations?.filter((c) => {
+        const ts = toDate(c.created_at);
+        return ts >= dayStart && ts < dayEnd;
+      }).length || 0;
 
-      const dayMessages = messages?.filter(
-        (m) => new Date(m.created_at) >= dayStart && new Date(m.created_at) < dayEnd
-      ).length || 0;
+      const dayMessages = messages?.filter((m) => {
+        const ts = toDate(m.created_at);
+        return ts >= dayStart && ts < dayEnd;
+      }).length || 0;
 
       usageTrend.push({
         date: dayStart.toLocaleDateString('en-ZA', { month: 'short', day: 'numeric' }),

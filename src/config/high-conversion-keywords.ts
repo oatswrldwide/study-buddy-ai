@@ -279,7 +279,7 @@ export function generateAllKeywords(): Array<{
   priority: number;
   expectedConversion: string;
 }> {
-  const keywords: Array<any> = [];
+  const keywords: Array<{ keyword: string; type: string; priority: number; expectedConversion: string }> = [];
   
   // Pain points (150) - PRIORITY 1
   PAIN_POINT_KEYWORDS.forEach(template => {
