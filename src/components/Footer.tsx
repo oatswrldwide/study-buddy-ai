@@ -1,4 +1,4 @@
-import { BookOpen, Twitter, Linkedin, Youtube, Mail } from "lucide-react";
+import { Twitter, Linkedin, Youtube, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const footerLinks = {
@@ -39,9 +39,11 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <a href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-hero flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-primary-foreground" />
-              </div>
+              <img 
+                src="/favicon.svg" 
+                alt="StudyBuddy Works Logo" 
+                className="w-10 h-10 rounded-xl"
+              />
               <span className="text-xl font-bold">
                 StudyBuddy<span className="text-primary-light">Works</span>
               </span>

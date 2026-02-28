@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, BookOpen } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -23,9 +23,11 @@ const Header = () => {
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-hero flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow duration-300">
-            <BookOpen className="w-5 h-5 text-primary-foreground" />
-          </div>
+          <img 
+            src="/favicon.svg" 
+            alt="StudyBuddy Works Logo" 
+            className="w-10 h-10 rounded-xl shadow-md group-hover:shadow-glow transition-shadow duration-300"
+          />
           <span className="text-xl font-bold text-foreground">
             StudyBuddy<span className="text-primary">Works</span>
           </span>

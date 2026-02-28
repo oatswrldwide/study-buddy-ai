@@ -50,8 +50,12 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <span className="text-white font-bold text-2xl">SB</span>
+          <div className="w-16 h-16 mx-auto mb-4">
+            <img 
+              src="/favicon.svg" 
+              alt="StudyBuddy Works Logo" 
+              className="w-full h-full"
+            />
           </div>
           <h1 className="text-3xl font-display font-bold text-foreground mb-2">
             StudyBuddy AI
