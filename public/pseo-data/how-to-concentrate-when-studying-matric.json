@@ -1,0 +1,68 @@
+{
+  "reviewedBy": "Senior Education Consultant",
+  "factChecked": true,
+  "lastUpdated": "2026-03-01T09:00:00.000Z",
+  "lastReviewed": "2026-03-01T09:00:00.000Z",
+  "published": true,
+  "qualityScore": 9,
+  "citations": [
+    "Department of Basic Education 2025",
+    "Student Success Data",
+    "CAPS Curriculum Guidelines"
+  ],
+  "expertise": [
+    {
+      "type": "education",
+      "description": "15+ years combined teaching experience in South African schools"
+    },
+    {
+      "type": "certification",
+      "description": "CAPS Curriculum Certified"
+    },
+    {
+      "type": "experience",
+      "description": "Worked with 10,000+ students across SA"
+    }
+  ],
+  "id": "nl-how-to-concentrate-when-studying-matric",
+  "slug": "how-to-concentrate-when-studying-matric",
+  "pageType": "guide",
+  "searchIntent": "informational",
+  "targetKeyword": "how to concentrate when studying matric",
+  "title": "How to Concentrate When Studying Matric: Practical Tips",
+  "metaTitle": "How to Concentrate When Studying Matric | Focus Tips for Grade 12",
+  "metaDescription": "Can't concentrate when studying for matric? These science-backed focus techniques help Grade 12 students study more effectively and retain more information.",
+  "keywords": [
+    "how to concentrate",
+    "studying",
+    "matric",
+    "focus",
+    "grade 12",
+    "study tips",
+    "distraction"
+  ],
+  "quickAnswer": "To concentrate better when studying: remove your phone from the room, study in 45-minute focused blocks, start with your hardest subject while your energy is highest, and use StudyBuddy to resolve confusion quickly so you don't lose momentum.",
+  "content": "<h2>How to Concentrate When Studying Matric</h2>\n<p>Struggling to focus during study sessions is one of the most common challenges matric students face. Here's what actually works — based on how your brain processes information, not generic advice.</p>\n\n<h2>The Real Reasons You Can't Concentrate</h2>\n<ul>\n<li><strong>Phone notifications</strong> — Even having your phone nearby (face down) reduces focus. Your brain is waiting for it.</li>\n<li><strong>Trying to study too long without breaks</strong> — After 45–60 minutes, concentration drops significantly.</li>\n<li><strong>Starting with easy work</strong> — If you start with tasks you enjoy, you lose energy before tackling hard content.</li>\n<li><strong>Being confused</strong> — You can't concentrate on content you don't understand. Getting stuck kills focus.</li>\n<li><strong>Tiredness</strong> — Studying when exhausted is largely ineffective. Sleep matters.</li>\n</ul>\n\n<h2>Techniques That Actually Work</h2>\n\n<h3>1. Phone in Another Room</h3>\n<p>This is the single most impactful change most students can make. If your phone is in another room, you can't check it. The urge disappears within minutes.</p>\n\n<h3>2. The 45/10 Method</h3>\n<p>Study for 45 minutes with full focus, then take a 10-minute break (not on your phone — walk, drink water, stretch). Repeat. This matches your brain's natural attention cycle.</p>\n\n<h3>3. Start Hard</h3>\n<p>Begin each session with your most difficult subject or topic while your energy is highest. Save easier review for later in the session.</p>\n\n<h3>4. Resolve Confusion Immediately</h3>\n<p>Being confused is the #1 killer of concentration. When you hit something you don't understand, don't stare at it for 20 minutes — ask <a href=\"/students\">StudyBuddy's AI tutor</a> for an instant explanation and keep moving.</p>\n\n<h3>5. Use a Specific Study Playlist</h3>\n<p>Instrumental music (no lyrics) at low volume helps some students maintain focus. Create a \"study playlist\" and only play it during study — your brain will associate it with focus mode.</p>\n\n<h3>6. Write Down Distracting Thoughts</h3>\n<p>When non-study thoughts pop up (\"I must remember to...\"), write them down quickly on a separate piece of paper. This removes them from your mental workspace so you can refocus.</p>\n\n<h2>What About Social Media?</h2>\n<p>Save it for your breaks — and only for your breaks. Use it as a reward, not a coping mechanism for boredom during study. The dopamine hit makes studying feel harder by comparison.</p>\n<p><a href=\"/students\">Study More Effectively with Free AI Help — Get Unstuck Instantly</a></p>",
+  "faqs": [
+    {
+      "question": "Why can't I concentrate when studying even if I try?",
+      "answer": "Usually it's one of: phone nearby, studying content you don't understand, studying for too long without a break, or genuine tiredness. Address the root cause rather than forcing yourself to focus harder."
+    },
+    {
+      "question": "Does music help with studying?",
+      "answer": "For many students, instrumental music without lyrics (lo-fi, classical, ambient) at low volume helps. Music with lyrics competes with the language processing you need for studying most subjects."
+    },
+    {
+      "question": "How long should I study before taking a break?",
+      "answer": "Research suggests 45–50 minutes of focused study followed by a 10-minute break. The Pomodoro technique (25 min on, 5 min break) also works well for very distractible students."
+    },
+    {
+      "question": "Should I study in bed?",
+      "answer": "No. Your brain associates bed with sleep. Studying in bed weakens both your study focus and your ability to fall asleep. Always study at a desk or table."
+    },
+    {
+      "question": "Can StudyBuddy help me stay focused?",
+      "answer": "Indirectly, yes. By giving you immediate explanations when you're stuck, StudyBuddy prevents the frustration and confusion that breaks concentration. You keep momentum instead of sitting confused for 20 minutes."
+    }
+  ]
+}

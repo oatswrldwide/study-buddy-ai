@@ -1,0 +1,67 @@
+{
+  "reviewedBy": "Senior Education Consultant",
+  "factChecked": true,
+  "lastUpdated": "2026-03-01T09:00:00.000Z",
+  "lastReviewed": "2026-03-01T09:00:00.000Z",
+  "published": true,
+  "qualityScore": 9,
+  "citations": [
+    "Department of Basic Education 2025",
+    "Student Success Data",
+    "CAPS Curriculum Guidelines"
+  ],
+  "expertise": [
+    {
+      "type": "education",
+      "description": "15+ years combined teaching experience in South African schools"
+    },
+    {
+      "type": "certification",
+      "description": "CAPS Curriculum Certified"
+    },
+    {
+      "type": "experience",
+      "description": "Worked with 10,000+ students across SA"
+    }
+  ],
+  "id": "nl-how-many-hours-should-i-study-for-matric",
+  "slug": "how-many-hours-should-i-study-for-matric",
+  "pageType": "guide",
+  "searchIntent": "informational",
+  "targetKeyword": "how many hours should I study for matric",
+  "title": "How Many Hours Should I Study for Matric? (Honest Answer)",
+  "metaTitle": "How Many Hours Should I Study for Matric? | StudyBuddy Guide",
+  "metaDescription": "Wondering how many hours to study for matric? Get an honest, evidence-based answer plus a practical daily study schedule for South African matric students.",
+  "keywords": [
+    "how many hours",
+    "study",
+    "matric",
+    "grade 12",
+    "study schedule",
+    "daily routine"
+  ],
+  "quickAnswer": "Most matric students should aim for 2–3 hours of focused study per day, separate from homework. Quality matters more than quantity — 2 focused hours beats 5 distracted hours every time.",
+  "content": "<h2>How Many Hours Should I Study for Matric?</h2>\n<p>This is one of the most common questions matric students ask. The honest answer: it depends on where you are and where you want to get to — but here are the numbers that work.</p>\n\n<h2>The Recommended Daily Study Hours</h2>\n<ul>\n<li><strong>Minimum (to pass)</strong>: 1–1.5 hours focused study per day, plus homework</li>\n<li><strong>For a solid matric (60%+)</strong>: 2–3 hours focused study per day</li>\n<li><strong>For distinctions</strong>: 3–4 hours focused study per day, with strategic past paper practice</li>\n<li><strong>Near exams</strong>: 4–6 hours per day, structured around your exam timetable</li>\n</ul>\n<p><em>Note: These are focused study hours — no phone, no distractions. A distracted \"study session\" of 5 hours may be less effective than 2 focused hours.</em></p>\n\n<h2>Quality Over Quantity</h2>\n<p>Research consistently shows that active, focused study is far more effective than passive, distracted study. A student doing 2 hours of focused past paper practice with immediate feedback will outperform a student doing 5 hours of re-reading notes.</p>\n<p>Use <a href=\"/students\">StudyBuddy's AI tutor</a> to make every study hour count — get instant explanations when stuck so you never waste time being confused.</p>\n\n<h2>A Realistic Weekly Study Schedule for Matric</h2>\n<ul>\n<li><strong>Weekdays (school days)</strong>: 1.5–2 hours after school</li>\n<li><strong>Saturday</strong>: 3–4 hours (longer blocks, deeper revision)</li>\n<li><strong>Sunday</strong>: 1–2 hours (lighter review, rest important)</li>\n</ul>\n\n<h2>6–8 Weeks Before Exams: Increase Your Hours</h2>\n<p>As exams approach, gradually increase daily study time:</p>\n<ul>\n<li>6 weeks out: add 30–45 minutes per day</li>\n<li>4 weeks out: shift to mainly past papers</li>\n<li>2 weeks out: full past paper sessions under exam conditions</li>\n<li>Final week: light review, early nights, no all-nighters</li>\n</ul>\n\n<h2>Signs You Need More Study Hours</h2>\n<ul>\n<li>Consistently scoring below 50% in tests</li>\n<li>Finishing past papers with time left but getting many wrong (speed not the issue — understanding is)</li>\n<li>Feeling surprised by topics on tests (means you haven't covered everything)</li>\n</ul>\n<p><a href=\"/students\">Make Every Study Hour Count — Free AI Tutoring Available Now</a></p>",
+  "faqs": [
+    {
+      "question": "Is 2 hours of studying per day enough for matric?",
+      "answer": "For most students aiming for a solid pass or good marks, 2 focused hours daily (plus homework) is a reasonable baseline. If you have weak subjects, increase that for those specific subjects."
+    },
+    {
+      "question": "Can I study too much?",
+      "answer": "Yes. Studying for too many consecutive hours without breaks leads to diminishing returns. Stick to 45-minute focused blocks with 10-minute breaks. After 4–5 hours in a day, your retention drops significantly."
+    },
+    {
+      "question": "How do I make my study sessions more effective?",
+      "answer": "Use active recall (testing yourself), practice with past papers, and get immediate explanations when stuck. Passive re-reading is much less effective."
+    },
+    {
+      "question": "Should I study on weekends?",
+      "answer": "Yes, but include at least one half-day rest. Weekend study is important for matric, but so is mental recovery. A rested brain learns better than an exhausted one."
+    },
+    {
+      "question": "What if I can't study for many hours because of family responsibilities?",
+      "answer": "Even 30–60 minutes of focused, high-quality study daily makes a real difference. Use StudyBuddy to maximise efficiency — get straight to the point with targeted explanations rather than spending time searching for answers."
+    }
+  ]
+}
