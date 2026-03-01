@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, CheckCircle, Clock, Star, Users, ChevronRight, GraduationCap, MessageCircle } from "lucide-react";
+import WhatsAppPricingOffers from "@/components/shared/WhatsAppPricingOffers";
 
 const WA_NUMBER = "27680187300";
 
@@ -605,6 +606,16 @@ const PseoArticlePage = () => {
                 </Link>
               </div>
             </section>
+          )}
+
+          {/* Bursary CTA — shown on all university application pages */}
+          {isApplyPage && (
+            <div className="mt-14">
+              <WhatsAppPricingOffers
+                variant="bursary"
+                heading="Need Help Funding Your Studies? Apply for Bursaries"
+              />
+            </div>
           )}
 
           {/* Citations */}
