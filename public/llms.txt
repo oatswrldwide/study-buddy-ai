@@ -26,6 +26,15 @@ StudyBuddy Works provides affordable, personalized AI tutoring aligned with Sout
 - [About Us](https://studybuddy.works/about): Mission, values, and team behind StudyBuddy Works
 - [Locations](https://studybuddy.works/locations): AI tutoring available in 759 South African towns and cities
 - [Resources](https://studybuddy.works/resources): CAPS-aligned study guides and past exam papers
+- [APS Calculator](https://studybuddy.works/aps-calculator): Calculate your APS score and check university eligibility
+- [University Application Guide](https://studybuddy.works/apply): How to apply to South African universities with APS requirements
+- [Bursaries](https://studybuddy.works/bursaries): South African bursaries and financial aid for students
+- [University Bursaries Directory](https://studybuddy.works/bursaries/universities): Bursaries at all major SA universities
+- [High School Scholarships](https://studybuddy.works/high-school-scholarships): 99+ high school scholarships in South Africa
+- [TVET Colleges](https://studybuddy.works/tvet-colleges): All 50 public TVET colleges, courses, and applications
+- [University Status 2026](https://studybuddy.works/university-status-2026): Which SA universities still have space for 2026
+- [University Prospectus 2026](https://studybuddy.works/university-prospectus-2026): Download 2026 prospectuses for all SA universities
+- [Courses](https://studybuddy.works/courses): APS score requirements and fees for popular SA university courses
 
 ## Study Resources & Guides
 
