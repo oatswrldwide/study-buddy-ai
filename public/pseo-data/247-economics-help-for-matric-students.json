@@ -56,10 +56,11 @@
   "lastReviewed": "2026-02-25T20:22:32.185Z",
   "factChecked": true,
   "schemaType": "Article",
-  "published": true,
+  "published": false,
   "qualityScore": 9,
   "reviewStatus": "approved",
   "lastUpdated": "2026-02-25T20:22:32.185Z",
   "createdAt": "2026-02-20T12:32:43.583Z",
-  "generationModel": "template-based-100-keywords"
+  "generationModel": "template-based-100-keywords",
+  "canonicalUrl": "https://studybuddy.works/24-7-economics-help-for-matric-students"
 }
