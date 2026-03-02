@@ -172,6 +172,102 @@ const STATIC_PAGE_META = {
     title: 'How to Apply to South African Universities 2026 | Complete Guide',
     description: 'Find application guides, APS requirements and deadlines for all major South African universities. UCT, Wits, UP, Stellenbosch, UKZN and more.',
   },
+  'resources': {
+    title: 'Study Resources & Guides | StudyBuddy Works',
+    description: 'Free study guides, exam tips and resources for South African matric students. CAPS-aligned content for Grades 10, 11 and 12.',
+  },
+  'about': {
+    title: 'About StudyBuddy Works | AI Tutoring for South African Students',
+    description: 'StudyBuddy Works is a CAPS-aligned AI tutoring platform helping South African students in Grades 10–12 get 24/7 homework help and exam preparation.',
+  },
+  'how-it-works': {
+    title: 'How StudyBuddy Works | AI Tutoring Explained',
+    description: 'See how StudyBuddy\'s AI tutoring platform works for South African students. Get step-by-step homework help, exam prep, and 24/7 support for all CAPS subjects.',
+  },
+  'aps-calculator': {
+    title: 'APS Calculator 2026 | Calculate Your Admission Point Score',
+    description: 'Free APS calculator for South African students. Enter your matric marks and instantly calculate your Admission Point Score for university applications.',
+  },
+  'university-status-2026': {
+    title: 'University Application Status 2026 | Track Your SA University Application',
+    description: 'Track your 2026 university application status at UCT, Wits, UP, Stellenbosch, UKZN and all major South African universities. Know where you stand.',
+  },
+  'university-prospectus-2026': {
+    title: 'University Prospectus 2026 | SA University Guides & Course Info',
+    description: 'Browse the 2026 prospectus for all major South African universities. Compare courses, APS requirements, fees and application deadlines.',
+  },
+  'high-school-scholarships': {
+    title: 'High School Scholarships South Africa 2026 | Bursaries for Grade 8–12',
+    description: 'Find high school scholarships and bursaries available to South African students in Grades 8–12. Private school funding, merit awards and needs-based support.',
+  },
+  'tvet-colleges': {
+    title: 'TVET Colleges South Africa 2026 | Courses, Requirements & Applications',
+    description: 'Explore TVET colleges in South Africa. Find N-courses, NCV programmes, application requirements and career paths at technical and vocational colleges.',
+  },
+  'bursaries/universities': {
+    title: 'University Bursaries South Africa 2026 | Funding by University',
+    description: 'Find bursary and financial aid opportunities at South African universities. UCT, Wits, UP, Stellenbosch, UKZN and more. Applications, eligibility and deadlines.',
+  },
+  'bursaries/university/uct': {
+    title: 'UCT Bursaries & Financial Aid 2026 | University of Cape Town Funding',
+    description: 'Find bursaries, scholarships and financial aid at the University of Cape Town (UCT). Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/wits': {
+    title: 'Wits Bursaries & Financial Aid 2026 | University of the Witwatersrand Funding',
+    description: 'Find bursaries, scholarships and financial aid at Wits University. Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/stellenbosch': {
+    title: 'Stellenbosch University Bursaries 2026 | SU Financial Aid & Scholarships',
+    description: 'Find bursaries, scholarships and financial aid at Stellenbosch University (SU). Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/up': {
+    title: 'University of Pretoria Bursaries 2026 | UP Financial Aid & Scholarships',
+    description: 'Find bursaries, scholarships and financial aid at the University of Pretoria (UP). Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/ukzn': {
+    title: 'UKZN Bursaries & Financial Aid 2026 | University of KwaZulu-Natal Funding',
+    description: 'Find bursaries, scholarships and financial aid at UKZN. Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/uj': {
+    title: 'UJ Bursaries & Financial Aid 2026 | University of Johannesburg Funding',
+    description: 'Find bursaries, scholarships and financial aid at the University of Johannesburg (UJ). Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/unisa': {
+    title: 'UNISA Bursaries & Financial Aid 2026 | University of South Africa Funding',
+    description: 'Find bursaries, scholarships and financial aid at UNISA. Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/nwu': {
+    title: 'NWU Bursaries & Financial Aid 2026 | North-West University Funding',
+    description: 'Find bursaries, scholarships and financial aid at North-West University (NWU). Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/rhodes': {
+    title: 'Rhodes University Bursaries 2026 | Financial Aid & Scholarships',
+    description: 'Find bursaries, scholarships and financial aid at Rhodes University. Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/ufs': {
+    title: 'UFS Bursaries & Financial Aid 2026 | University of the Free State Funding',
+    description: 'Find bursaries, scholarships and financial aid at the University of the Free State (UFS). Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/uwc': {
+    title: 'UWC Bursaries & Financial Aid 2026 | University of the Western Cape Funding',
+    description: 'Find bursaries, scholarships and financial aid at the University of the Western Cape (UWC). Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/nmu': {
+    title: 'NMU Bursaries & Financial Aid 2026 | Nelson Mandela University Funding',
+    description: 'Find bursaries, scholarships and financial aid at Nelson Mandela University (NMU). Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/cput': {
+    title: 'CPUT Bursaries & Financial Aid 2026 | Cape Peninsula University of Technology Funding',
+    description: 'Find bursaries, scholarships and financial aid at CPUT. Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/tut': {
+    title: 'TUT Bursaries & Financial Aid 2026 | Tshwane University of Technology Funding',
+    description: 'Find bursaries, scholarships and financial aid at TUT. Eligibility criteria, application deadlines and funding amounts.',
+  },
+  'bursaries/university/dut': {
+    title: 'DUT Bursaries & Financial Aid 2026 | Durban University of Technology Funding',
+    description: 'Find bursaries, scholarships and financial aid at DUT. Eligibility criteria, application deadlines and funding amounts.',
+  },
 };
 
 // Helper function to create location-specific HTML

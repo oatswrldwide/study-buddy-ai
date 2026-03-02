@@ -121,6 +121,69 @@ const staticPages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: 0.8,
   },
+  {
+    url: '/resources',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.8,
+  },
+  {
+    url: '/about',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'monthly',
+    priority: 0.6,
+  },
+  {
+    url: '/how-it-works',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'monthly',
+    priority: 0.7,
+  },
+  {
+    url: '/aps-calculator',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'monthly',
+    priority: 0.8,
+  },
+  {
+    url: '/university-status-2026',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.8,
+  },
+  {
+    url: '/university-prospectus-2026',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.8,
+  },
+  {
+    url: '/high-school-scholarships',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/tvet-colleges',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.7,
+  },
+  {
+    url: '/bursaries/universities',
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.8,
+  },
+  // University bursary detail pages
+  ...['uct', 'wits', 'stellenbosch', 'up', 'ukzn', 'uj', 'unisa', 'nwu', 'rhodes', 'ufs', 'uwc', 'nmu', 'cput', 'tut', 'dut'].map(
+    (slug): SitemapEntry => ({
+      url: `/bursaries/university/${slug}`,
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'weekly',
+      priority: 0.7,
+    })
+  ),
 ];
 
 /**

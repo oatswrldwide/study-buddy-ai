@@ -61,6 +61,7 @@ interface PseoPage {
   keywords?: string[];
   published: boolean;
   qualityScore?: number;
+  canonicalUrl?: string;
 }
 
 interface IndexEntry {
@@ -282,11 +283,11 @@ const PseoArticlePage = () => {
         <title>{page.metaTitle}</title>
         <meta name="description" content={page.metaDescription} />
         <meta name="robots" content="index, follow, max-snippet:-1" />
-        <link rel="canonical" href={`https://studybuddy.works/${slug}`} />
+        <link rel="canonical" href={page.canonicalUrl ?? `https://studybuddy.works/${slug}`} />
         <meta property="og:title" content={page.metaTitle} />
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://studybuddy.works/${slug}`} />
+        <meta property="og:url" content={page.canonicalUrl ?? `https://studybuddy.works/${slug}`} />
         <meta property="article:published_time" content={page.lastUpdated} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
