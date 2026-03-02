@@ -316,16 +316,17 @@ let generated = 0;
 let failed = 0;
 
 for (const location of locationSlugs) {
-  const locationDir = path.join(tutorDir, location);
-  
   try {
-    if (!fs.existsSync(locationDir)) {
-      fs.mkdirSync(locationDir, { recursive: true });
+    // Write customized HTML for this location as a .html file so GitHub Pages
+    // serves it at /tutor/{location} (200 OK) instead of causing a 301
+    // redirect from /tutor/{location} to /tutor/{location}/.
+    const locationFile = path.join(tutorDir, location + '.html');
+    const locationParentDir = path.dirname(locationFile);
+    if (!fs.existsSync(locationParentDir)) {
+      fs.mkdirSync(locationParentDir, { recursive: true });
     }
-    
-    // Write customized index.html for this location
     const customHtml = customizeHtmlForLocation(indexHtml, location, 'tutor');
-    fs.writeFileSync(path.join(locationDir, 'index.html'), customHtml);
+    fs.writeFileSync(locationFile, customHtml);
     generated++;
   } catch (error) {
     console.error(`Failed to generate ${location}:`, error.message);
@@ -337,7 +338,7 @@ console.log(`✓ Successfully generated ${generated} location pages`);
 if (failed > 0) {
   console.log(`✗ Failed to generate ${failed} location pages`);
 }
-console.log(`  Located in: dist/tutor/[location]/index.html`);
+console.log(`  Located in: dist/tutor/[location].html`);
 
 // Generate province pages
 const provinceDir = path.join(__dirname, '../dist/province');
@@ -349,16 +350,16 @@ let provinceGenerated = 0;
 let provinceFailed = 0;
 
 for (const province of provinceSlugs) {
-  const provDir = path.join(provinceDir, province);
-  
   try {
-    if (!fs.existsSync(provDir)) {
-      fs.mkdirSync(provDir, { recursive: true });
+    // Write as a .html file so GitHub Pages serves it at /province/{province}
+    // (200 OK) without a 301 trailing-slash redirect.
+    const provFile = path.join(provinceDir, province + '.html');
+    const provParentDir = path.dirname(provFile);
+    if (!fs.existsSync(provParentDir)) {
+      fs.mkdirSync(provParentDir, { recursive: true });
     }
-    
-    // Write customized index.html for this province
     const customHtml = customizeHtmlForLocation(indexHtml, province, 'province');
-    fs.writeFileSync(path.join(provDir, 'index.html'), customHtml);
+    fs.writeFileSync(provFile, customHtml);
     provinceGenerated++;
   } catch (error) {
     console.error(`Failed to generate province ${province}:`, error.message);
@@ -370,7 +371,7 @@ console.log(`✓ Successfully generated ${provinceGenerated} province pages`);
 if (provinceFailed > 0) {
   console.log(`✗ Failed to generate ${provinceFailed} province pages`);
 }
-console.log(`  Located in: dist/province/[province]/index.html`);
+console.log(`  Located in: dist/province/[province].html`);
 
 // Generate other pages (students, resources, locations, schools, etc.)
 const distDir = path.join(__dirname, '../dist');
@@ -378,11 +379,14 @@ let pagesGenerated = 0;
 let pagesFailed = 0;
 
 for (const slug of pageSlugs) {
-  const pageDir = path.join(distDir, slug);
-  
+  // Write as a .html file so GitHub Pages serves /slug with a 200 OK instead
+  // of a 301 redirect from /slug to /slug/ (directory-index redirect).
+  const pageFile = path.join(distDir, slug + '.html');
+
   try {
-    if (!fs.existsSync(pageDir)) {
-      fs.mkdirSync(pageDir, { recursive: true });
+    const parentDir = path.dirname(pageFile);
+    if (!fs.existsSync(parentDir)) {
+      fs.mkdirSync(parentDir, { recursive: true });
     }
 
     // Try to load PSEO JSON metadata for article pages
@@ -419,7 +423,7 @@ for (const slug of pageSlugs) {
         staticMeta ? staticMeta.description : 'Monitor and guide AI usage in education. Schools get dashboards, teachers get insights, students get an AI tutor. Transform learning outcomes with responsible AI.');
     }
 
-    fs.writeFileSync(path.join(pageDir, 'index.html'), customHtml);
+    fs.writeFileSync(pageFile, customHtml);
     pagesGenerated++;
   } catch (error) {
     console.error(`Failed to generate page ${slug}:`, error.message);
@@ -431,5 +435,5 @@ console.log(`✓ Successfully generated ${pagesGenerated} other pages`);
 if (pagesFailed > 0) {
   console.log(`✗ Failed to generate ${pagesFailed} other pages`);
 }
-console.log(`  Located in: dist/[page]/index.html`);
+console.log(`  Located in: dist/[page].html`);
 console.log(`\n🎉 Total: ${generated + provinceGenerated + pagesGenerated} pages generated`);
