@@ -20,6 +20,25 @@ const baseHtml = fs.readFileSync(indexPath, 'utf-8');
 // Define pages with their SEO content
 const pages = [
   {
+    path: '',
+    title: 'StudyBuddy Works - AI-Powered Learning Platform for Schools',
+    description: 'Monitor and guide AI usage in education. Schools get dashboards, teachers get insights, students get an AI tutor.',
+    h1: 'AI-Powered Learning Platform',
+    content: `
+      <div class="min-h-screen bg-white">
+        <main class="container mx-auto px-4 py-16">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">AI-Powered Learning Platform</h1>
+          <p class="text-xl text-gray-600 mb-8">Transform education with responsible AI. Monitor usage, gain insights, and provide 24/7 tutoring support.</p>
+          <div class="grid md:grid-cols-3 gap-8 mt-12">
+            <div><h2 class="text-xl font-semibold mb-3">For Schools</h2><p>Comprehensive AI monitoring and control</p></div>
+            <div><h2 class="text-xl font-semibold mb-3">For Teachers</h2><p>Student progress tracking and insights</p></div>
+            <div><h2 class="text-xl font-semibold mb-3">For Students</h2><p>24/7 CAPS-aligned AI tutoring</p></div>
+          </div>
+        </main>
+      </div>
+    `
+  },
+  {
     path: 'schools',
     title: 'AI Learning Platform for Schools | StudyBuddy Works',
     description: 'Monitor and guide AI usage in your school. Comprehensive dashboards, teacher insights, and responsible AI tutoring for students. Trusted by South African schools.',
