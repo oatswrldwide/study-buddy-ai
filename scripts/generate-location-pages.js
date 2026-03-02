@@ -111,14 +111,16 @@ function buildPrerenderedContent(pseoData) {
 // Helper function to create page-specific HTML with correct canonical and meta tags
 function customizeHtmlForPage(html, slug, title, description) {
   const canonicalUrl = `https://studybuddy.works/${slug}`;
+  const safeTitle = escapeHtmlAttr(title);
+  const safeDesc = escapeHtmlAttr(description);
   return html
-    .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
-    .replace(/(<meta name="title" content=").*?(")/, `$1${title}$2`)
-    .replace(/(<meta name="description" content=").*?(")/, `$1${description}$2`)
-    .replace(/(<meta property="og:title" content=").*?(")/, `$1${title}$2`)
-    .replace(/(<meta property="og:description" content=").*?(")/, `$1${description}$2`)
-    .replace(/(<meta property="twitter:title" content=").*?(")/, `$1${title}$2`)
-    .replace(/(<meta property="twitter:description" content=").*?(")/, `$1${description}$2`)
+    .replace(/<title>.*?<\/title>/, `<title>${safeTitle}</title>`)
+    .replace(/(<meta name="title" content=").*?(")/, `$1${safeTitle}$2`)
+    .replace(/(<meta name="description" content=").*?(")/, `$1${safeDesc}$2`)
+    .replace(/(<meta property="og:title" content=").*?(")/, `$1${safeTitle}$2`)
+    .replace(/(<meta property="og:description" content=").*?(")/, `$1${safeDesc}$2`)
+    .replace(/(<meta property="twitter:title" content=").*?(")/, `$1${safeTitle}$2`)
+    .replace(/(<meta property="twitter:description" content=").*?(")/, `$1${safeDesc}$2`)
     .replace(/(<link rel="canonical" href=").*?(")/, `$1${canonicalUrl}$2`)
     .replace(/(<meta property="og:url" content=").*?(")/, `$1${canonicalUrl}$2`)
     .replace(/(<meta property="twitter:url" content=").*?(")/, `$1${canonicalUrl}$2`);
@@ -390,6 +392,12 @@ for (const slug of pageSlugs) {
     if (fs.existsSync(pseoJsonPath)) {
       try {
         const pseoData = JSON.parse(fs.readFileSync(pseoJsonPath, 'utf-8'));
+        // Skip unpublished pages to prevent serving pre-rendered content for pages
+        // that return 404 in the React app (cloaking).
+        if (!pseoData.published) {
+          console.warn(`Skipping unpublished page: ${slug}`);
+          continue;
+        }
         const title = pseoData.metaTitle || pseoData.title || slug;
         const description = pseoData.metaDescription || pseoData.content?.slice(0, MAX_DESCRIPTION_LENGTH) || '';
         // Set meta tags and inject pre-rendered article content so Google can
