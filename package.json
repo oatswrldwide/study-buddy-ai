@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generate-location-pages.js",
+    "build": "vite build && node scripts/generate-location-pages.js && node scripts/prerender-static.cjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -108,11 +108,38 @@
     "globals": "^15.15.0",
     "lovable-tagger": "^1.1.13",
     "postcss": "^8.5.6",
+    "react-snap": "^1.23.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.21.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
     "vite": "^5.4.19"
+  },
+  "reactSnap": {
+    "source": "dist",
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    },
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "crawl": true,
+    "include": [
+      "/",
+      "/schools",
+      "/students",
+      "/locations",
+      "/bursaries",
+      "/courses",
+      "/apply",
+      "/about",
+      "/how-it-works",
+      "/aps-calculator",
+      "/high-school-scholarships"
+    ],
+    "skipThirdPartyRequests": true,
+    "cacheAjaxRequests": false,
+    "http2PushManifest": false,
+    "headless": true
   }
 }
