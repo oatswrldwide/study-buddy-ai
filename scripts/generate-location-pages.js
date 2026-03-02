@@ -172,6 +172,102 @@ const STATIC_PAGE_META = {
     title: 'How to Apply to South African Universities 2026 | Complete Guide',
     description: 'Find application guides, APS requirements and deadlines for all major South African universities. UCT, Wits, UP, Stellenbosch, UKZN and more.',
   },
+  'resources': {
+    title: 'Study Guides & Resources | StudyBuddy Works',
+    description: 'Browse CAPS-aligned matric study guides, exam breakdowns, bursary listings, university application guides, and AI tutoring resources for South African students.',
+  },
+  'about': {
+    title: 'About Us | StudyBuddy Works - AI Tutoring for South African Students',
+    description: 'Learn about StudyBuddy Works — our mission to make quality CAPS-aligned tutoring accessible to every South African student through affordable AI technology.',
+  },
+  'how-it-works': {
+    title: 'How It Works | StudyBuddy Works - AI Tutoring in 5 Simple Steps',
+    description: 'Learn how StudyBuddy Works provides 24/7 CAPS-aligned AI tutoring for South African students. Sign up, ask questions, and get instant step-by-step answers.',
+  },
+  'aps-calculator': {
+    title: 'APS Calculator 2025 | South African University Eligibility Checker | StudyBuddy',
+    description: 'Calculate your APS score instantly. See which South African universities you qualify for, check course requirements, and plan your university application.',
+  },
+  'high-school-scholarships': {
+    title: 'High School Scholarships South Africa 2025 — 99+ Listed | StudyBuddyWorks',
+    description: 'Explore 99+ high school scholarships in South Africa for 2025–2026. National, corporate, mining, private school and provincial scholarships — all with direct application links.',
+  },
+  'university-status-2026': {
+    title: 'Missed 2026 Applications? | What to Do & 2027 Opening Dates | StudyBuddy Works',
+    description: 'Registration for 2026 is closing. Find out which South African universities still have space, how to appeal a rejection, and when 2027 applications open.',
+  },
+  'university-prospectus-2026': {
+    title: 'Download 2026 Prospectus for All SA Universities | StudyBuddy Works',
+    description: 'Download the 2026 prospectus for all 26 South African public universities. Find prospectus PDFs for UCT, Wits, UP, Stellenbosch, UKZN and more.',
+  },
+  'tvet-colleges': {
+    title: 'TVET Colleges in South Africa 2026 — All 50 Colleges, Courses & Skills',
+    description: 'Complete guide to all 50 public TVET colleges in South Africa. NCV programmes, N-courses (N1–N6), application dates, fees and career pathways.',
+  },
+  'bursaries/universities': {
+    title: 'Bursaries at South African Universities 2025 — Full Directory | StudyBuddy Works',
+    description: 'Find bursaries and financial aid at every major South African university — UCT, Wits, UP, Stellenbosch, UKZN, UJ and more. 15 universities covered with direct links to apply.',
+  },
+  'bursaries/university/uct': {
+    title: 'UCT Bursaries & Financial Aid 2025 | University of Cape Town | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the University of Cape Town (UCT) for 2025. Includes NSFAS, merit bursaries and external funding.',
+  },
+  'bursaries/university/wits': {
+    title: 'Wits Bursaries & Financial Aid 2025 | University of the Witwatersrand | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the University of the Witwatersrand (Wits) for 2025. Includes NSFAS and merit awards.',
+  },
+  'bursaries/university/stellenbosch': {
+    title: 'Stellenbosch University Bursaries & Financial Aid 2025 | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at Stellenbosch University for 2025. Includes NSFAS, merit bursaries and external funding.',
+  },
+  'bursaries/university/up': {
+    title: 'University of Pretoria Bursaries & Financial Aid 2025 | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the University of Pretoria (UP/Tuks) for 2025. Includes NSFAS, merit bursaries and external funding.',
+  },
+  'bursaries/university/ukzn': {
+    title: 'UKZN Bursaries & Financial Aid 2025 | University of KwaZulu-Natal | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the University of KwaZulu-Natal (UKZN) for 2025. Includes NSFAS and merit awards.',
+  },
+  'bursaries/university/uj': {
+    title: 'UJ Bursaries & Financial Aid 2025 | University of Johannesburg | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the University of Johannesburg (UJ) for 2025. Includes NSFAS, merit bursaries and external funding.',
+  },
+  'bursaries/university/unisa': {
+    title: 'UNISA Bursaries & Financial Aid 2025 | University of South Africa | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the University of South Africa (UNISA) for 2025. Includes NSFAS and distance learning funding.',
+  },
+  'bursaries/university/nwu': {
+    title: 'NWU Bursaries & Financial Aid 2025 | North-West University | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at North-West University (NWU) for 2025. Includes NSFAS, merit bursaries and external funding.',
+  },
+  'bursaries/university/rhodes': {
+    title: 'Rhodes University Bursaries & Financial Aid 2025 | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at Rhodes University for 2025. Includes NSFAS, merit bursaries and external funding.',
+  },
+  'bursaries/university/ufs': {
+    title: 'UFS Bursaries & Financial Aid 2025 | University of the Free State | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the University of the Free State (UFS) for 2025. Includes NSFAS, merit bursaries and external funding.',
+  },
+  'bursaries/university/uwc': {
+    title: 'UWC Bursaries & Financial Aid 2025 | University of the Western Cape | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the University of the Western Cape (UWC) for 2025. Includes NSFAS and merit awards.',
+  },
+  'bursaries/university/nmu': {
+    title: 'NMU Bursaries & Financial Aid 2025 | Nelson Mandela University | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at Nelson Mandela University (NMU) for 2025. Includes NSFAS, merit bursaries and external funding.',
+  },
+  'bursaries/university/cput': {
+    title: 'CPUT Bursaries & Financial Aid 2025 | Cape Peninsula University of Technology | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the Cape Peninsula University of Technology (CPUT) for 2025. Includes NSFAS and external funding.',
+  },
+  'bursaries/university/tut': {
+    title: 'TUT Bursaries & Financial Aid 2025 | Tshwane University of Technology | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at Tshwane University of Technology (TUT) for 2025. Includes NSFAS, merit bursaries and external funding.',
+  },
+  'bursaries/university/dut': {
+    title: 'DUT Bursaries & Financial Aid 2025 | Durban University of Technology | StudyBuddy Works',
+    description: 'Find all bursaries, scholarships and financial aid available at the Durban University of Technology (DUT) for 2025. Includes NSFAS and merit awards.',
+  },
 };
 
 // Helper function to create location-specific HTML
