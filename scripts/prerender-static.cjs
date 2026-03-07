@@ -205,14 +205,14 @@ pages.forEach(page => {
         `<div id="root">${page.content}</div>`
       );
 
-    // Create directory if it doesn't exist
-    const pagePath = path.join(distPath, page.path);
-    if (!fs.existsSync(pagePath)) {
-      fs.mkdirSync(pagePath, { recursive: true });
+    // Write as a .html file so GitHub Pages serves /path with a 200 OK
+    // instead of a 301 redirect from /path to /path/ (directory-index redirect).
+    // The root page (path='') writes directly to dist/index.html.
+    if (page.path === '') {
+      fs.writeFileSync(path.join(distPath, 'index.html'), pageHtml);
+    } else {
+      fs.writeFileSync(path.join(distPath, page.path + '.html'), pageHtml);
     }
-
-    // Write the HTML file
-    fs.writeFileSync(path.join(pagePath, 'index.html'), pageHtml);
     console.log(`✓ Generated /${page.path}`);
     generated++;
   } catch (error) {
